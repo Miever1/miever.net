@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "alias": ["www.jcofman.de"],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "status": 301,
+      "headers": { "Location": "https://jcofman.de/$1" }
+    }
+  ]
+}

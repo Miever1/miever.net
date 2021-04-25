@@ -1,0 +1,269 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render a H1 header tags 1`] = `
+.c0 {
+  font-size: 8rem;
+  font-family: 'Raleway',sans-serif;
+  -webkit-transform: skew(-5deg) rotate(-1deg);
+  -ms-transform: skew(-5deg) rotate(-1deg);
+  transform: skew(-5deg) rotate(-1deg);
+  margin-bottom: 2rem;
+  color: var(--color-text);
+  text-shadow: var(--text-shadow);
+}
+
+.c0 a {
+  color: var(--color-text);
+  -webkit-transition: color var(--theme-transition);
+  transition: color var(--theme-transition);
+}
+
+.c0 a:hover,
+.c0 a:focus {
+  color: var(--color-primary);
+  -webkit-transition: none;
+  transition: none;
+}
+
+.c0:before {
+  width: 0;
+  height: 0;
+  opacity: 0.2;
+  border-left: 1em solid transparent;
+  border-right: 1em solid transparent;
+  border-bottom: 2em solid var(--color-text);
+  content: '';
+  pointer-events: none;
+  position: absolute;
+  z-index: -1;
+  -webkit-transform: translateX(-0.5em) translateY(-1.5rem);
+  -ms-transform: translateX(-0.5em) translateY(-1.5rem);
+  transform: translateX(-0.5em) translateY(-1.5rem);
+}
+
+<h1
+  class="c0"
+>
+  I am a 
+  H1
+   headline
+</h1>
+`;
+
+exports[`should render a H2 header tags 1`] = `
+.c0 {
+  font-family: 'Raleway',sans-serif;
+  -webkit-transform: skew(-5deg) rotate(-1deg);
+  -ms-transform: skew(-5deg) rotate(-1deg);
+  transform: skew(-5deg) rotate(-1deg);
+  margin-bottom: 2rem;
+  color: var(--color-text);
+  text-shadow: var(--text-shadow);
+  font-size: 5rem;
+}
+
+.c0 a {
+  color: var(--color-text);
+  -webkit-transition: color var(--theme-transition);
+  transition: color var(--theme-transition);
+}
+
+.c0 a:hover,
+.c0 a:focus {
+  color: var(--color-primary);
+  -webkit-transition: none;
+  transition: none;
+}
+
+.c0:before {
+  width: 0;
+  height: 0;
+  opacity: 0.2;
+  border-left: 1em solid transparent;
+  border-right: 1em solid transparent;
+  border-bottom: 2em solid var(--color-text);
+  content: '';
+  pointer-events: none;
+  position: absolute;
+  z-index: -1;
+  -webkit-transform: translateX(-0.5em) translateY(-1.5rem);
+  -ms-transform: translateX(-0.5em) translateY(-1.5rem);
+  transform: translateX(-0.5em) translateY(-1.5rem);
+}
+
+<h2
+  class="c0"
+>
+  I am a 
+  H2
+   headline
+</h2>
+`;
+
+exports[`should render a H3 header tags 1`] = `
+.c0 {
+  font-family: 'Raleway',sans-serif;
+  -webkit-transform: skew(-5deg) rotate(-1deg);
+  -ms-transform: skew(-5deg) rotate(-1deg);
+  transform: skew(-5deg) rotate(-1deg);
+  margin-bottom: 2rem;
+  color: var(--color-text);
+  text-shadow: var(--text-shadow);
+  font-size: 4rem;
+}
+
+.c0 a {
+  color: var(--color-text);
+  -webkit-transition: color var(--theme-transition);
+  transition: color var(--theme-transition);
+}
+
+.c0 a:hover,
+.c0 a:focus {
+  color: var(--color-primary);
+  -webkit-transition: none;
+  transition: none;
+}
+
+.c0:before {
+  width: 0;
+  height: 0;
+  opacity: 0.2;
+  border-left: 1em solid transparent;
+  border-right: 1em solid transparent;
+  border-bottom: 2em solid var(--color-text);
+  content: '';
+  pointer-events: none;
+  position: absolute;
+  z-index: -1;
+  -webkit-transform: translateX(-0.5em) translateY(-1.5rem);
+  -ms-transform: translateX(-0.5em) translateY(-1.5rem);
+  transform: translateX(-0.5em) translateY(-1.5rem);
+}
+
+<h3
+  class="c0"
+>
+  I am a 
+  H3
+   headline
+</h3>
+`;
+
+exports[`should render a H4 header tags 1`] = `
+.c0 {
+  font-family: 'Raleway',sans-serif;
+  -webkit-transform: skew(-5deg) rotate(-1deg);
+  -ms-transform: skew(-5deg) rotate(-1deg);
+  transform: skew(-5deg) rotate(-1deg);
+  margin-bottom: 2rem;
+  color: var(--color-text);
+  text-shadow: var(--text-shadow);
+  font-size: 3rem;
+}
+
+.c0 a {
+  color: var(--color-text);
+  -webkit-transition: color var(--theme-transition);
+  transition: color var(--theme-transition);
+}
+
+.c0 a:hover,
+.c0 a:focus {
+  color: var(--color-primary);
+  -webkit-transition: none;
+  transition: none;
+}
+
+.c0:before {
+  width: 0;
+  height: 0;
+  opacity: 0.2;
+  border-left: 1em solid transparent;
+  border-right: 1em solid transparent;
+  border-bottom: 2em solid var(--color-text);
+  content: '';
+  pointer-events: none;
+  position: absolute;
+  z-index: -1;
+  -webkit-transform: translateX(-0.5em) translateY(-1.5rem);
+  -ms-transform: translateX(-0.5em) translateY(-1.5rem);
+  transform: translateX(-0.5em) translateY(-1.5rem);
+}
+
+<h4
+  class="c0"
+>
+  I am a 
+  H4
+   headline
+</h4>
+`;
+
+exports[`should render a H5 header tags 1`] = `
+.c0 {
+  font-family: 'Raleway',sans-serif;
+  -webkit-transform: skew(-5deg) rotate(-1deg);
+  -ms-transform: skew(-5deg) rotate(-1deg);
+  transform: skew(-5deg) rotate(-1deg);
+  margin-bottom: 2rem;
+  color: var(--color-text);
+  text-shadow: var(--text-shadow);
+  font-size: 2.5rem;
+}
+
+.c0 a {
+  color: var(--color-text);
+  -webkit-transition: color var(--theme-transition);
+  transition: color var(--theme-transition);
+}
+
+.c0 a:hover,
+.c0 a:focus {
+  color: var(--color-primary);
+  -webkit-transition: none;
+  transition: none;
+}
+
+<h5
+  class="c0"
+>
+  I am a 
+  H5
+   headline
+</h5>
+`;
+
+exports[`should render a H6 header tags 1`] = `
+.c0 {
+  font-family: 'Raleway',sans-serif;
+  -webkit-transform: skew(-5deg) rotate(-1deg);
+  -ms-transform: skew(-5deg) rotate(-1deg);
+  transform: skew(-5deg) rotate(-1deg);
+  margin-bottom: 2rem;
+  color: var(--color-text);
+  text-shadow: var(--text-shadow);
+  font-size: 2rem;
+}
+
+.c0 a {
+  color: var(--color-text);
+  -webkit-transition: color var(--theme-transition);
+  transition: color var(--theme-transition);
+}
+
+.c0 a:hover,
+.c0 a:focus {
+  color: var(--color-primary);
+  -webkit-transition: none;
+  transition: none;
+}
+
+<h6
+  class="c0"
+>
+  I am a 
+  H6
+   headline
+</h6>
+`;

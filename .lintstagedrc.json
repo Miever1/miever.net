@@ -1,0 +1,6 @@
+{
+  "linters": {
+    "*.js": ["eslint"],
+    "*.+(js|jsx|json|yml|css|less|scss|ts|tsx|md|graphql|mdx": ["prettier --ignore-path .gitignore --write", "git add"]
+  }
+}

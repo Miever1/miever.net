@@ -1,0 +1,115 @@
+---
+path: 'datastructures-in-js-stacks'
+id: 'datastructures-in-js-stacks'
+date: '2020-12-10'
+title: 'Datastructures in JS Part 1: Stacks'
+tags: [Data Structures, JS]
+featuredImage: './featured-image.jpg'
+headerImage: './header.jpg'
+excerpt: 'A stack in terms of computer science is a data structure to store a collection of elements'
+---
+
+TLDR;
+
+- A stack in terms of computer science is a data structure to store a collection of elements
+- There are two core functionalities for stacks
+  - You can ➕ add an element on top 🔝
+  - And also ➖ remove an element pop from top (the most recently added element)
+
+## What is a Stack
+
+In real-life situations, stacks can be found everywhere. In your kitchen where your plates are stacked on top of each other, you can see a perfectly working stack. If you have a clean plate you put it on top of the stack and if you want to get a fresh one you typically just take them from the top of the stack. There are literally thousands of memes about stacks.
+
+![Stack first example](./stack3.jpg)
+
+![Stack second example](./stack1.jpg)
+
+![Stack third example](./stack2.jpg)
+
+## Stacks in JavaScript
+
+In JavaScript, stacks can be used to implement do and undo functionality.
+
+The JavaScript language itself uses a call stack to figure out which function to call next. There is an awesome talk about how this works by Phillip Roberts and you can find a detailed explanation on [MDN](https://developer.mozilla.org/en-US/docs/Glossary/Call_stack)
+
+<iframe frame frameborder="0" width="560" height="315" src="https://www.youtube.com/embed/8aGhZQkoFbQ"></iframe>
+You can implement a stack using an array. The following example shows an implementation using functions with a function
+constructor.
+
+```jsx
+/**
+ * Represents a stack.
+ * @constructor
+ * @param {array} items - the array to store elements in the stack
+ */
+const Stack = (items = []) => {
+  let _storage = items;
+  /**
+   * Returns and removes the top element of the stack.
+   * @return {*} the most recently added element of the stack
+   */
+  const pop = () => {
+    return _storage.pop();
+  };
+
+  /**
+   * Adds a new element at then end (on top) of the stack.
+   * @param {*} element which should be put on top of the stack
+   */
+  const push = (element) => {
+    _storage.push(element);
+  };
+
+  /**
+   * Returns the current size (length) of the stack
+   * @return {number} current size of the stack
+   */
+  const size = () => {
+    return _storage.length;
+  };
+
+  /**
+   * Returns the value at the end of the stack without removing it
+   * @return {*} the last and newest value in the stack
+   */
+  const peek = () => {
+    return _storage[size() - 1];
+  };
+
+  /*
+   * @return {*} wheter no values are stored in stack
+   */
+  const isEmpty = () => {
+    return _storage.length === 0;
+  };
+
+  /**
+   * Empties the stack
+   */
+  const reset = () => {
+    _storage = [];
+  };
+
+  return {
+    pop,
+    push,
+    peek,
+    size,
+    reset,
+    isEmpty,
+  };
+};
+```
+
+On [Visaulgo](https://visualgo.net/en/list) you can also find awesome visual representations of a stack.
+
+They used a list to implement the Stack instead of an array.
+
+## Real-world usage and Problems
+
+Some real world use cases and questions where you can make use of a stack data structure.
+
+- [https://leetcode.com/problems/valid-parentheses/](https://leetcode.com/problems/valid-parentheses/)
+- [https://medium.com/techie-delight/stack-data-structure-practice-problems-and-interview-questions-9f08a35a7f19](https://medium.com/techie-delight/stack-data-structure-practice-problems-and-interview-questions-9f08a35a7f19)
+
+Try it yourself maybe you can also find problems on [https://adventofcode.com/](https://adventofcode.com/) where you can make use of a Stack.

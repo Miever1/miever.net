@@ -1,0 +1,195 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Divider is rendered properly 1`] = `
+.c3 {
+  fill: var(--color-text);
+}
+
+.c2 {
+  display: block;
+  width: 55px;
+  height: 12px;
+  margin: 0 auto;
+}
+
+.c1 {
+  font-family: 'Raleway',sans-serif;
+  -webkit-transform: skew(-5deg) rotate(-1deg);
+  -ms-transform: skew(-5deg) rotate(-1deg);
+  transform: skew(-5deg) rotate(-1deg);
+  margin-bottom: 2rem;
+  color: var(--color-text);
+  text-shadow: var(--text-shadow);
+  font-size: 5rem;
+}
+
+.c1 a {
+  color: var(--color-text);
+  -webkit-transition: color var(--theme-transition);
+  transition: color var(--theme-transition);
+}
+
+.c1 a:hover,
+.c1 a:focus {
+  color: var(--color-primary);
+  -webkit-transition: none;
+  transition: none;
+}
+
+.c1:before {
+  width: 0;
+  height: 0;
+  opacity: 0.2;
+  border-left: 1em solid transparent;
+  border-right: 1em solid transparent;
+  border-bottom: 2em solid var(--color-text);
+  content: '';
+  pointer-events: none;
+  position: absolute;
+  z-index: -1;
+  -webkit-transform: translateX(-0.5em) translateY(-1.5rem);
+  -ms-transform: translateX(-0.5em) translateY(-1.5rem);
+  transform: translateX(-0.5em) translateY(-1.5rem);
+}
+
+.c0 {
+  display: none;
+  padding: 1.6rem;
+  margin-left: 1rem;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -webkit-align-items: flex-start;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+  max-width: 300px;
+  font-family: 'Raleway',sans-serif;
+  color: var(--color-text);
+  background: var(--color-background);
+  position: -webkit-sticky;
+  position: sticky;
+  top: 70px;
+}
+
+.c0 h2 {
+  font-size: 1.8rem;
+  font-weight: var(--font-weight-medium);
+  text-transform: uppercase;
+  -webkit-letter-spacing: 0.2rem;
+  -moz-letter-spacing: 0.2rem;
+  -ms-letter-spacing: 0.2rem;
+  letter-spacing: 0.2rem;
+  text-rendering: optimizelegibility;
+  margin-bottom: 16px;
+}
+
+.c0 a {
+  display: block;
+  opacity: 0.8;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  -webkit-transition: opacity 500ms ease 0s;
+  transition: opacity 500ms ease 0s;
+  margin-top: 1rem;
+  text-align: left;
+}
+
+.c0 a:hover,
+.c0 a:focus {
+  color: var(--color-primary);
+}
+
+@media (min-width:1200px) {
+  .c0 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
+
+<div>
+  <div>
+    <nav
+      class="c0"
+    >
+      <h2
+        class="c1"
+      >
+        <svg
+          fill="currentColor"
+          height="1em"
+          stroke="currentColor"
+          stroke-width="0"
+          viewBox="0 0 512 512"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M48 48a48 48 0 1 0 48 48 48 48 0 0 0-48-48zm0 160a48 48 0 1 0 48 48 48 48 0 0 0-48-48zm0 160a48 48 0 1 0 48 48 48 48 0 0 0-48-48zm448 16H176a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h320a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16zm0-320H176a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h320a16 16 0 0 0 16-16V80a16 16 0 0 0-16-16zm0 160H176a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h320a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16z"
+          />
+        </svg>
+         Table of contents
+      </h2>
+      <svg
+        class="c2"
+      >
+        <g
+          fill="none"
+          fill-rule="evenodd"
+          stroke="none"
+          stroke-width="1"
+        >
+          <g
+            class="c3"
+            transform="translate(-483.000000, -1059.000000)"
+          >
+            <g
+              transform="translate(182.000000, 936.000000)"
+            >
+              <g
+                transform="translate(301.000000, 123.000000)"
+              >
+                <rect
+                  fill-opacity="0.3"
+                  height="12"
+                  width="35"
+                  x="0"
+                  y="0"
+                />
+                <rect
+                  fill-opacity="0.1"
+                  height="12"
+                  width="35"
+                  x="20"
+                  y="0"
+                />
+              </g>
+            </g>
+          </g>
+        </g>
+      </svg>
+      <a
+        href="#exciting-stuff"
+      >
+        Exciting Stuff
+      </a>
+      <a
+        href="#what-i-have-learned-in-a-nutshell"
+      >
+        What I have learned in a nutshell
+      </a>
+      <a
+        href="#some-improvement-ideas"
+      >
+        Some improvement ideas
+      </a>
+    </nav>
+  </div>
+</div>
+`;

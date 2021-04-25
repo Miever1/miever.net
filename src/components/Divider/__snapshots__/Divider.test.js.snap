@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Divider is rendered properly 1`] = `
+.c1 {
+  fill: var(--color-text);
+}
+
+.c0 {
+  display: block;
+  width: 55px;
+  height: 12px;
+  margin: 0 auto;
+}
+
+<div>
+  <svg
+    class="c0"
+  >
+    <g
+      fill="none"
+      fill-rule="evenodd"
+      stroke="none"
+      stroke-width="1"
+    >
+      <g
+        class="c1"
+        transform="translate(-483.000000, -1059.000000)"
+      >
+        <g
+          transform="translate(182.000000, 936.000000)"
+        >
+          <g
+            transform="translate(301.000000, 123.000000)"
+          >
+            <rect
+              fill-opacity="0.3"
+              height="12"
+              width="35"
+              x="0"
+              y="0"
+            />
+            <rect
+              fill-opacity="0.1"
+              height="12"
+              width="35"
+              x="20"
+              y="0"
+            />
+          </g>
+        </g>
+      </g>
+    </g>
+  </svg>
+</div>
+`;
