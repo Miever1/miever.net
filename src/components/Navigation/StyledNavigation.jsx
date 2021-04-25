@@ -41,8 +41,7 @@ export const StyledNav = styled.nav`
 
   @media (max-width: ${sizes.phone}px) {
     mask-image: linear-gradient(to right, transparent, black 20px, black 90%, transparent);
-    margin-left: 200px;
-    width: 250px;
+    width: 320px;
     overflow-x: auto;
     overflow-y: hidden;
     position: absolute;

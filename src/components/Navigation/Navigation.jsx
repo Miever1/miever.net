@@ -123,9 +123,6 @@ const Navigation = (props) => {
           <StyledNavWrapper>
             {!Array.isArray(isMobile) && isMobile ? (
               <>
-                <StyledSearchIconButton aria-label="search button" aria-haspopup="true" onClick={toggleModal}>
-                  <StyledSearchIcon></StyledSearchIcon>
-                </StyledSearchIconButton>
                 {isOpen && (
                   <Modal>
                     <StyledModal>
