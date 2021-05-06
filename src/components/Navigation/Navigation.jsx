@@ -91,8 +91,9 @@ export const NavLink = (props) => (
 const Navigation = (props) => {
   const {
     theme: { mode },
+    language
   } = props;
-  const { closeModal, isOpen, Modal, toggleModal } = useModal();
+  const { closeModal, isOpen, Modal } = useModal();
   const searchBarRef = React.useRef(null);
 
   React.useEffect(() => {
@@ -133,25 +134,27 @@ const Navigation = (props) => {
                   </Modal>
                 )}
               </>
-            ) : (
-              <StyledSearch>
-                {/* <InstantSearch searchClient={searchClient} indexName="jacob-blog">
-                  <SearchBar />
-                </InstantSearch> */}
-              </StyledSearch>
+            ) : (null
+              // <StyledSearch>
+              //   <InstantSearch searchClient={searchClient} indexName="jacob-blog">
+              //     <SearchBar />
+              //   </InstantSearch>
+              // </StyledSearch>
             )}
 
             <StyledNav>
-              <div>&nbsp;</div>
               <StyledNavList>
                 <NavLink to="/">Home</NavLink>
                 <NavLink to="/blog">Blog</NavLink>
                 <NavLink to="/project">Project</NavLink>
                 <NavLink to="/about">About</NavLink>
+              </StyledNavList>
+              <StyledNavList>
                 <li
                   css={`
                     padding: 1rem 1rem;
                     margin-bottom: 0;
+                    float: right
                   `}
                 >
                   <StyledDarkLightModeSwitcherButton
@@ -165,11 +168,18 @@ const Navigation = (props) => {
                 </li>
                 <li
                   css={`
-                    padding: 1rem 0.5rem;
+                    padding: 1rem 1rem;
                     margin-bottom: 0;
                   `}
                 >
-                  <a href="https://github.com/Miever1/miever.net">GitHub</a>
+                  <StyledDarkLightModeSwitcherButton
+                    onClick={() => {
+                      props.changeLanguage();
+                    }}
+                    aria-label="Switch Language"
+                  >
+                    {language === 'en' ? 'EN' : '中文' }
+                  </StyledDarkLightModeSwitcherButton>
                 </li>
               </StyledNavList>
             </StyledNav>

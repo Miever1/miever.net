@@ -68,6 +68,7 @@
     "react-helmet": "^6.1.0",
     "react-icons": "^4.2.0",
     "react-instantsearch-dom": "^6.10.3",
+    "react-intl": "^5.16.0",
     "react-is": "^17.0.2",
     "react-simple-maps": "^2.3.0",
     "react-spring": "^9.1.0",

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import Heading from '../../components/Heading';
 import Stack from '../../components/Stack';
+import Social from '../../components/Social'
 import { useBreakpoint } from '../../hooks/useBreakpoint';
 
 const StyledMap = styled.div`
@@ -65,6 +66,7 @@ const Footer = () => {
                   </Suspense>
                 )}
               </StyledMap>
+              <Social />
             </>
           )}
         </Stack>

@@ -57,7 +57,7 @@ const Project = () => (
     `}
     render={() => (
       <Layout>
-        <SEO title="About Me" keywords={[`about me`, `jacob cofman`, `frontend`, `engineer`]} />
+        <SEO title="Project" keywords={[`project`, `aerman`, `frontend`, `engineer`]} />
         <Wrapper>
             under construction
         </Wrapper>

@@ -143,7 +143,7 @@ const AboutMe = () => (
     `}
     render={(data) => (
       <Layout>
-        <SEO title="About Me" keywords={[`about me`, `jacob cofman`, `frontend`, `engineer`]} />
+        <SEO title="About Me" keywords={[`about me`, `aerman`, `frontend`, `engineer`]} />
         <Wrapper>
           <StyledTriangle>
             {` `}
@@ -162,8 +162,6 @@ const AboutMe = () => (
                 <li>JavaScript</li>
                 <li>Styled-Components - CSS</li>
                 <li>React</li>
-              </StyledListParallelogram>
-              <StyledListParallelogram>
                 <StyledH3>Things I am currently learning</StyledH3>
                 <li>SCSS</li>
                 <li>TypeScript</li>

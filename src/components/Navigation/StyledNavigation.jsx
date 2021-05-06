@@ -17,7 +17,6 @@ export const StyledWrapper = styled.div`
 
 export const StyledNavWrapper = styled.div`
   width: 100%;
-  max-width: 1024px;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 70px;
   grid-gap: 20px;
@@ -38,10 +37,12 @@ export const StyledNav = styled.nav`
   display: flex;
   align-items: center;
   height: 70px;
+  justify-content: space-between;
+  min-width: 640px;
 
   @media (max-width: ${sizes.phone}px) {
     mask-image: linear-gradient(to right, transparent, black 20px, black 90%, transparent);
-    width: 320px;
+    width: 640px;
     overflow-x: auto;
     overflow-y: hidden;
     position: absolute;

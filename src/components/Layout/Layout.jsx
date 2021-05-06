@@ -920,8 +920,8 @@ const Layout = ({ children, location }) => {
   if (typeof window !== `undefined`) {
     defaultThemeMode = getInitialTheme(prefersDarkMode ? `dark` : `light`);
   }
-
   const [themeMode, setThemeMode] = useLocalStorageState('theme', defaultThemeMode);
+  const [language, setLanguage] = useLocalStorageState('language', 'en');
 
   const changeTheme = () => {
     if (themeMode === 'light') {
@@ -933,10 +933,13 @@ const Layout = ({ children, location }) => {
     }
   };
 
+  const changeLanguage = () => {
+    language === 'en' ? setLanguage('cn') : setLanguage('en')
+  }
+
   React.useEffect(() => {
-    const root = window.document.documentElement;
-    const initialTheme = root.style.getPropertyValue('--initial-color-mode');
-    updateCSSProperties(initialTheme);
+    setThemeMode(themeMode);
+    updateCSSProperties(themeMode);
   }, []);
 
   const updateCSSProperties = (themeMode) => {
@@ -970,7 +973,12 @@ const Layout = ({ children, location }) => {
         ) : null}
       </Helmet>
       <StyledLayout>
-        <Navigation location={location} changeTheme={changeTheme} />
+        <Navigation
+          language={language}
+          location={location}
+          changeTheme={changeTheme}
+          changeLanguage={changeLanguage}
+        />
         {children}
         <Footer />
       </StyledLayout>
