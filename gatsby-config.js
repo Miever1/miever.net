@@ -43,16 +43,15 @@ const queries = [
 module.exports = {
   // flags: { PRESERVE_WEBPACK_CACHE: true, FAST_DEV: true, FAST_REFRESH: true, DEV_SSR: true },
   siteMetadata: {
-    title: `Jacob Cofman Website`,
+    title: `Aerman's Website`,
     description: `This is my website and blog`,
     author: {
-      name: `Jacob Cofman`,
+      name: `Aerman`,
       summary: `who lives and works in Lörrach building useful things.`,
     },
-    siteUrl: `https://jcofman.de`,
+    siteUrl: `http://www.miever.net`,
     social: {
-      twitter: `jcofman`,
-      github: `jcofman`,
+      github: `miever1`,
     },
   },
   plugins: [

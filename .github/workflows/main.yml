@@ -3,7 +3,7 @@ name: Test build and deploy site
 on: [push]
 
 jobs:
-  test:
+  CI_CD:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2

@@ -22,6 +22,14 @@ import {
   borderRadius,
   linearGradients,
 } from './Theme';
+import { IntlProvider } from "react-intl";
+import messages_zh from "../../translations/zh.json";
+import messages_en from "../../translations/en.json";
+
+const messages = {
+    'zh': messages_zh,
+    'en': messages_en
+};
 
 export const GlobalStyle = createGlobalStyle`
    :root {
@@ -934,7 +942,7 @@ const Layout = ({ children, location }) => {
   };
 
   const changeLanguage = () => {
-    language === 'en' ? setLanguage('cn') : setLanguage('en')
+    language === 'en' ? setLanguage('zh') : setLanguage('en')
   }
 
   React.useEffect(() => {
@@ -963,26 +971,28 @@ const Layout = ({ children, location }) => {
         colors: { ...colors },
       }}
     >
-      <Helmet>
-        {activeEnv !== 'development' ? (
-          <script
-            defer
-            src="https://static.cloudflareinsights.com/beacon.min.js"
-            data-cf-beacon='{"token": "27f1e6ab8f5743bd8e1e770722db344b"}'
-          ></script>
-        ) : null}
-      </Helmet>
-      <StyledLayout>
-        <Navigation
-          language={language}
-          location={location}
-          changeTheme={changeTheme}
-          changeLanguage={changeLanguage}
-        />
-        {children}
-        <Footer />
-      </StyledLayout>
-      <GlobalStyle />
+      <IntlProvider locale={language} messages={messages[language]}>
+        <Helmet>
+          {activeEnv !== 'development' ? (
+            <script
+              defer
+              src="https://static.cloudflareinsights.com/beacon.min.js"
+              data-cf-beacon='{"token": "27f1e6ab8f5743bd8e1e770722db344b"}'
+            ></script>
+          ) : null}
+        </Helmet>
+        <StyledLayout>
+          <Navigation
+            language={language}
+            location={location}
+            changeTheme={changeTheme}
+            changeLanguage={changeLanguage}
+          />
+          {children}
+          <Footer />
+        </StyledLayout>
+        <GlobalStyle />  
+      </IntlProvider>
     </ThemeProvider>
   );
 };

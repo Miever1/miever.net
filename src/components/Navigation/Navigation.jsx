@@ -3,6 +3,7 @@ import { Link } from 'gatsby';
 import { withTheme, css } from 'styled-components';
 import styled from 'styled-components';
 import { Location } from '@reach/router';
+import { FormattedMessage } from "react-intl";
 import { FaMoon, FaSun, FaSearch, FaWindowClose } from 'react-icons/fa';
 
 import useModal from '../../hooks/useModal';
@@ -144,10 +145,18 @@ const Navigation = (props) => {
 
             <StyledNav>
               <StyledNavList>
-                <NavLink to="/">Home</NavLink>
-                <NavLink to="/blog">Blog</NavLink>
-                <NavLink to="/project">Project</NavLink>
-                <NavLink to="/about">About</NavLink>
+                <NavLink to="/">
+                  <FormattedMessage id="text_0001" />
+                </NavLink>
+                <NavLink to="/blog">
+                  <FormattedMessage id="text_0002" />
+                </NavLink>
+                <NavLink to="/project">
+                  <FormattedMessage id="text_0003" />
+                </NavLink>
+                <NavLink to="/about">
+                  <FormattedMessage id="text_0004" />
+                </NavLink>
               </StyledNavList>
               <StyledNavList>
                 <li
@@ -178,7 +187,7 @@ const Navigation = (props) => {
                     }}
                     aria-label="Switch Language"
                   >
-                    {language === 'en' ? 'EN' : '中文' }
+                    {language === 'en' ? 'EN' : <FormattedMessage id="text_0005" /> }
                   </StyledDarkLightModeSwitcherButton>
                 </li>
               </StyledNavList>
