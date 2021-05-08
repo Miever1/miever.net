@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { StaticQuery, graphql } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
+import { FormattedMessage } from "react-intl";
 
 import Layout from '../components/Layout';
 import Heading from '../components/Heading';
@@ -150,19 +151,19 @@ const AboutMe = () => (
             <GatsbyImage image={data.profileImage.childImageSharp.gatsbyImageData} alt="A picture of myself" />
           </StyledTriangle>
           <StyledMainInformation>
-            <StyledH1>Aerman</StyledH1>
+            <StyledH1><FormattedMessage id="text_0007" /></StyledH1>
           </StyledMainInformation>
           <StyledInformationSkills>
             <Heading appearance="H2" backgroundStyle="PARALLELOGRAM">
-              <StyledH2>Skills</StyledH2>
+              <StyledH2><FormattedMessage id="text_0008" /></StyledH2>
             </Heading>
             <StyledSkills>
               <StyledListParallelogram>
-                <StyledH3>💅 Frontend</StyledH3>
+                <StyledH3>💅 <FormattedMessage id="text_0009" /></StyledH3>
                 <li>JavaScript</li>
                 <li>Styled-Components - CSS</li>
                 <li>React</li>
-                <StyledH3>Things I am currently learning</StyledH3>
+                <StyledH3><FormattedMessage id="text_0010" /></StyledH3>
                 <li>SCSS</li>
                 <li>TypeScript</li>
               </StyledListParallelogram>

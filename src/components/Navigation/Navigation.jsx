@@ -187,7 +187,7 @@ const Navigation = (props) => {
                     }}
                     aria-label="Switch Language"
                   >
-                    {language === 'en' ? 'EN' : <FormattedMessage id="text_0005" /> }
+                    {language === 'en' ? <FormattedMessage id="text_0005" /> : 'EN' }
                   </StyledDarkLightModeSwitcherButton>
                 </li>
               </StyledNavList>

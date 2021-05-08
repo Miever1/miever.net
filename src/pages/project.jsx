@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { StaticQuery, graphql } from 'gatsby';
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
+import { FormattedMessage } from "react-intl";
 
 const Wrapper = styled.div`
   display: grid;
@@ -59,7 +60,7 @@ const Project = () => (
       <Layout>
         <SEO title="Project" keywords={[`project`, `aerman`, `frontend`, `engineer`]} />
         <Wrapper>
-            under construction
+          <FormattedMessage id="text_0011" /> 
         </Wrapper>
       </Layout>
     )}

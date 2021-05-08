@@ -3,6 +3,7 @@ import { useStaticQuery, graphql } from 'gatsby';
 
 import { StyledHeaderBG, StyledWrapper, StyledInformation } from '../templates/PageStyles/StyledHome';
 import { getImage } from 'gatsby-plugin-image';
+import { FormattedMessage } from "react-intl";
 
 const LightHeader = () => {
   const { placeholderImage } = useStaticQuery(graphql`
@@ -24,7 +25,7 @@ const LightHeader = () => {
       <StyledWrapper>
         <StyledInformation>
           <h1>
-            {`Welcome to Aerman's Website!`}
+            <FormattedMessage id="text_0006" />
           </h1>
         </StyledInformation>
       </StyledWrapper>
