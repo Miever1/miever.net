@@ -125,7 +125,7 @@ const AboutMe = () => (
   <StaticQuery
     query={graphql`
       {
-        profileImage: file(relativePath: { eq: "profilePicture.jpg" }) {
+        profileImage: file(relativePath: { eq: "profilePicture.jpeg" }) {
           childImageSharp {
             gatsbyImageData(width: 800, layout: CONSTRAINED)
           }
