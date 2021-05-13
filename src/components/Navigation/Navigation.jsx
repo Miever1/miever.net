@@ -4,7 +4,7 @@ import { withTheme, css } from 'styled-components';
 import styled from 'styled-components';
 import { Location } from '@reach/router';
 import { FormattedMessage } from "react-intl";
-import { FaMoon, FaSun, FaSearch, FaWindowClose } from 'react-icons/fa';
+import { FaMoon, FaSun, FaWindowClose } from 'react-icons/fa';
 
 import useModal from '../../hooks/useModal';
 import { useMedia } from '../../hooks/useMedia';
@@ -17,13 +17,6 @@ import {
   StyledWrapper,
 } from './StyledNavigation';
 
-// const searchClient = algoliasearch(`8C28RWVQVQ`, `8bf43203e68ea1c9d485ccb865e18e99`);
-
-const StyledSearchIcon = styled(FaSearch)`
-  color: ${(props) => props.theme.primary};
-  align-self: center;
-`;
-
 const StyledModalCloseButton = styled.button`
   position: absolute;
   top: 14px;
@@ -32,22 +25,6 @@ const StyledModalCloseButton = styled.button`
   color: var(--color-text);
   cursor: pointer;
   border: none;
-`;
-
-const StyledSearchIconButton = styled.button`
-  display: flex;
-  width: 4rem;
-  height: 7rem;
-  background-color: transparent;
-  color: var(--color-text);
-  cursor: pointer;
-  border: none;
-`;
-
-const StyledSearch = styled.div`
-  align-self: center;
-  justify-content: flex-end;
-  z-index: 1000;
 `;
 
 const StyledModal = styled.div`
@@ -123,26 +100,15 @@ const Navigation = (props) => {
       {() => (
         <StyledWrapper>
           <StyledNavWrapper>
-            {!Array.isArray(isMobile) && isMobile ? (
-              <>
-                {isOpen && (
-                  <Modal>
-                    <StyledModal>
-                      <StyledModalCloseButton onClick={() => closeModal()}>
-                        <FaWindowClose></FaWindowClose>
-                      </StyledModalCloseButton>
-                    </StyledModal>
-                  </Modal>
-                )}
-              </>
-            ) : (null
-              // <StyledSearch>
-              //   <InstantSearch searchClient={searchClient} indexName="jacob-blog">
-              //     <SearchBar />
-              //   </InstantSearch>
-              // </StyledSearch>
+            {isOpen && (
+              <Modal>
+                <StyledModal>
+                  <StyledModalCloseButton onClick={() => closeModal()}>
+                    <FaWindowClose></FaWindowClose>
+                  </StyledModalCloseButton>
+                </StyledModal>
+              </Modal>
             )}
-
             <StyledNav>
               <StyledNavList>
                 <NavLink to="/">

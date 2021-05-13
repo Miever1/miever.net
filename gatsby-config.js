@@ -41,13 +41,12 @@ const queries = [
 ];
 
 module.exports = {
-  // flags: { PRESERVE_WEBPACK_CACHE: true, FAST_DEV: true, FAST_REFRESH: true, DEV_SSR: true },
   siteMetadata: {
     title: `Aerman's Website`,
-    description: `This is my website and blog`,
+    description: `This is Aerman's website and blog`,
     author: {
       name: `Aerman`,
-      summary: `who lives and works in Lörrach building useful things.`,
+      summary: `I graduated from Nanjing University of Aeronautics and Astronautics , aspired to become an excellent front-end development engineer.`,
     },
     siteUrl: `http://www.miever.net`,
     social: {
@@ -58,8 +57,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-robots-txt`,
       options: {
-        host: 'https://www.jcofman.de',
-        sitemap: 'https://www.jcofman.de/sitemap.xml',
+        host: 'http://www.miever.net',
+        sitemap: 'http://www.miever.net/sitemap.xml',
         policy: [{ userAgent: '*', allow: '/' }],
       },
     },
