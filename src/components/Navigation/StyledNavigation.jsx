@@ -10,6 +10,8 @@ export const StyledWrapper = styled.div`
   display: flex;
   align-items: center;
   background-color: var(--color-background);
+  padding: 0 280px;
+  opacity: 0.8;
   z-index: ${zIndexNavigation};
   border-top: 2px solid ${(props) => props.theme.colors.primary};
   border-bottom: 1px solid #201c29;

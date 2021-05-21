@@ -57,8 +57,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-robots-txt`,
       options: {
-        host: 'http://www.miever.net',
-        sitemap: 'http://www.miever.net/sitemap.xml',
+        host: 'https://www.miever.net',
+        sitemap: 'https://www.miever.net/sitemap.xml',
         policy: [{ userAgent: '*', allow: '/' }],
       },
     },
@@ -73,13 +73,11 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Jacob Cofman´s personal website`,
-        short_name: `JCofman`,
+        name: `Aerman's website`,
+        short_name: `Aerman`,
         start_url: `/`,
         background_color: `#FFF`,
         theme_color: `#50E3C2`,
-        // Enables "Add to Homescreen" prompt and disables browser UI (including back button)
-        // see https://developers.google.com/web/fundamentals/web-app-manifest/#display
         display: `standalone`,
         icon: `src/assets/images/icon.png`, // This path is relative to the root of the site.
       },
