@@ -1,43 +1,5 @@
 import styled from 'styled-components';
-import { zIndexLogo } from '../../components/Styles/zIndex';
 import { BgImage } from 'gbimage-bridge';
-
-export const StyledLogo = styled.svg`
-  display: none;
-  position: ${(props) => (props.scrollPositionY > 0 ? `fixed` : `static`)};
-  top: -235px;
-  left: -200px;
-  margin-top: 20px;
-  align-self: flex-start;
-  z-index: ${zIndexLogo};
-  height: 60rem;
-  width: 40rem;
-  transition: all 0.25s ease-out 0s;
-  transform: ${(props) => (props.scrollPositionY > 0 ? `scale(0.2)` : `scale(1.0)`)};
-
-  ${(props) => props.theme.xsmall} {
-    display: none;
-  }
-  ${(props) => props.theme.small} {
-    display: none;
-  }
-  ${(props) => props.theme.medium} {
-    display: none;
-  }
-  ${(props) => props.theme.large} {
-    display: none;
-  }
-  ${(props) => props.theme.large} {
-    display: none;
-  }
-  @media (min-width: 2000px) {
-    position: absolute;
-    top: 100px;
-    left: 80px;
-    height: 80rem;
-    display: ${(props) => (props.scrollPositionY > 0 ? `none` : `visible`)};
-  }
-`;
 
 export const StyledWrapper = styled.div`
   display: flex;

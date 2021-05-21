@@ -18,33 +18,6 @@ const StyledGrid = styled.main`
   color: var(--color-text);
 `;
 
-const StyledGradientBox = styled.div`
-  box-sizing: border-box;
-  margin: 1rem auto 2rem;
-  padding: 0.5rem;
-  width: 200%;
-  max-width: 25rem;
-  background: linear-gradient(var(--color-background), var(--color-background)),
-    linear-gradient(to right, #3eecac, #4a90e2);
-  border: 5px solid transparent;
-  background-repeat: no-repeat;
-  background-origin: padding-box, border-box;
-  border-radius: 1rem;
-  border-width: 1rem;
-  position: relative;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: -5px;
-    bottom: -5px;
-    left: -5px;
-    right: -5px;
-    border: 6px solid var(--color-background);
-    border-radius: 0.8rem;
-  }
-`;
-
 const BlogArtikelImageWrapper = styled.div`
   min-width: 30rem;
   width: 30rem;
@@ -94,9 +67,6 @@ const MyBlog = () => {
           padding-top: 15rem;
         `}
       >
-        <StyledGradientBox>
-          <span> {posts.length} posts </span>
-        </StyledGradientBox>
         <StyledGrid>
           {posts.map((post) => {
             return (
@@ -175,15 +145,6 @@ const MyBlog = () => {
             );
           })}
         </StyledGrid>
-
-        <Link
-          css={`
-            margin-top: 12.8rem;
-          `}
-          to="/"
-        >
-          Back to homepage
-        </Link>
       </div>
     </Layout>
   );

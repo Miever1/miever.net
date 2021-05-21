@@ -32,16 +32,6 @@ const StyledH1 = styled.h1`
   }
 `;
 
-const StyledH2 = styled.h2`
-  color: ${(props) => props.theme.colors.primary};
-  ${(props) => props.theme.xsmall} {
-    font-size: 6rem;
-  }
-  ${(props) => props.theme.small} {
-    font-size: 8rem;
-  }
-`;
-
 const Wrapper = styled.div`
   display: grid;
   margin: 5rem 5rem;
@@ -157,16 +147,15 @@ const AboutMe = () => (
           </StyledMainInformation>
           <StyledInformationSkills>
             <Heading appearance="H2" backgroundStyle="PARALLELOGRAM">
-              <StyledH2>
-                <FormattedMessage id="text_0008" />
-              </StyledH2>
+              <FormattedMessage id="text_0008" />
             </Heading>
             <StyledSkills>
               <StyledListParallelogram>
                 <StyledH3>💅 <FormattedMessage id="text_0009" /></StyledH3>
                 <li>JavaScript</li>
-                <li>Styled-Components - CSS</li>
                 <li>React</li>
+              </StyledListParallelogram>
+              <StyledListParallelogram>
                 <StyledH3>
                   <FormattedMessage id="text_0010" />
                 </StyledH3>
