@@ -48,7 +48,7 @@ module.exports = {
       name: `Aerman`,
       summary: `I graduated from Nanjing University of Aeronautics and Astronautics , aspired to become an excellent front-end development engineer.`,
     },
-    siteUrl: `http://www.miever.net`,
+    siteUrl: `https://www.miever.net`,
     social: {
       github: `miever1`,
     },

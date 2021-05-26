@@ -1,12 +1,12 @@
 {
-  "name": "jacob-website",
-  "description": "Jacob's personal website",
+  "name": "aerman-website",
+  "description": "Aerman's website",
   "private": true,
   "version": "1.0.0",
-  "author": "Jacob Cofman <cofman.jacob@gmail.com>",
-  "homepage": "https://jcofman.de",
+  "author": "Aerman <miever1.@163.com>",
+  "homepage": "https://miever.net",
   "bugs": {
-    "url": "https://github.com/JCofman/jc-website/issues"
+    "url": "https://github.com/Miever1/miever.net/issues"
   },
   "dependencies": {
     "@fontsource/raleway": "^4.2.2",
