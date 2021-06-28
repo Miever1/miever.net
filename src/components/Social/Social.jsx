@@ -2,13 +2,16 @@ import React from 'react';
 
 import { StyledSocial } from './StyledSocial';
 
-import { FaGithub } from 'react-icons/fa';
+import { AiFillGithub, AiFillZhihuCircle } from 'react-icons/ai';
 
 const Social = () => {
   return (
     <StyledSocial>
       <a href="https://github.com/Miever1" aria-label="Github">
-        <FaGithub size={24} />
+        <AiFillGithub size={24} />
+      </a>
+      <a href="https://www.zhihu.com/people/miever" aria-label="知乎">
+        <AiFillZhihuCircle size={24} />
       </a>
     </StyledSocial>
   );
