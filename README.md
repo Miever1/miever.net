@@ -1,54 +1,52 @@
-<p align="center">
-  <a href="https://www.gatsbyjs.com/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts">
-    <img alt="Gatsby" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="60" />
-  </a>
-</p>
-<h1 align="center">
-  Gatsby minimal TypeScript starter
-</h1>
+# Miever's Website
 
-## 🚀 Quick start
+Everyone needs their own little spot on the interwebs, and this is mine.
 
-1.  **Create a Gatsby site.**
+Welcome to my personal website!
 
-    Use the Gatsby CLI to create a new site, specifying the minimal TypeScript starter.
+## Introduction
+ 
+As a Front-end engineer, a descent personal website is required! It's been a long time that I want to build a personal website, but I always delay it because of some excuses, busy work for example. When it comes to the end of 2022, I realized that i need change. As you see, I'm changing.
 
-    ```shell
-    # create a new Gatsby site using the minimal TypeScript starter
-    npm init gatsby
-    ```
+You can check the live version on [miever.net](https://miever.net/)
 
-2.  **Start developing.**
+## Project
 
-    Navigate into your new site’s directory and start it up.
+The main purpose of this project is that I want to show my true self, here you can see my resume, blog, and other information about me. Of course, I also want to apply what I know in technology to my personal web page, if you want to know, please check out the source code.
 
-    ```shell
-    cd my-gatsby-site/
-    npm run develop
-    ```
+## Building from Source
 
-3.  **Open the code and start customizing!**
+I used Gatsby to create my website. Gatsby is a React-based open source framework for creating websites. About how to use gatsby, please check out official documents [gatsbyjs](https://www.gatsbyjs.com/docs)
 
-    Your site is now running at http://localhost:8000!
+### develop
 
-    Edit `src/pages/index.tsx` to see your site update in real-time!
+#### requirements: 
 
-4.  **Learn more**
+* node version > 18
 
-    - [Documentation](https://www.gatsbyjs.com/docs/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
+#### install dependencies
 
-    - [Tutorials](https://www.gatsbyjs.com/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
+```
+  npm run install
+```
 
-    - [Guides](https://www.gatsbyjs.com/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
+#### dev
 
-    - [API Reference](https://www.gatsbyjs.com/docs/api-reference/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
+Start the local development server with
 
-    - [Plugin Library](https://www.gatsbyjs.com/plugins?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
+```
+  npm run develop
+```
 
-    - [Cheat Sheet](https://www.gatsbyjs.com/docs/cheat-sheet/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
+Gatsby will start a hot-reloading development environment accessible by default at http://localhost:8000.
 
-## 🚀 Quick start (Gatsby Cloud)
+### build
 
-Deploy this starter with one click on [Gatsby Cloud](https://www.gatsbyjs.com/cloud/):
+```
+  run with gatsby build
+```
 
-[<img src="https://www.gatsbyjs.com/deploynow.svg" alt="Deploy to Gatsby Cloud">](https://www.gatsbyjs.com/dashboard/deploynow?url=https://github.com/gatsbyjs/gatsby-starter-minimal-ts)
+
+🍷 🍷 🍷 
+
+&emsp;&emsp; Cheers !!! 
