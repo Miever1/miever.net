@@ -1,16 +1,12 @@
 import React, { FunctionComponent } from "react";
-import { Box, Image } from "@chakra-ui/react";
-import Layout from "../../components/Layout";
+import { Image } from "@chakra-ui/react";
+import { Box } from "miever_ui";
 
 const Home:FunctionComponent<{}> = () => {
     return (
-        <Layout>
-            <Box p="4">
-                <Box>
-                    <Image src='https://wallpaperaccess.com/full/354997.jpg' alt='Dan Abramov' />
-                </Box>
-            </Box>
-        </Layout>
+        <Box>
+            <Image src='https://wallpaperaccess.com/full/354997.jpg' alt='Dan Abramov' />
+        </Box>
     );
 }
 
