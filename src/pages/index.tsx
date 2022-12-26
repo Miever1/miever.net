@@ -3,11 +3,11 @@ import type { HeadFC, PageProps } from "gatsby"
 
 import Home from "./home"
 
+import "miever_ui/dist/index.css"
+
 const IndexPage: FunctionComponent<PageProps> = () => {
   return (
-    <div
-      style={{ color: "#fff" }}
-    >
+    <div>
       <Home />
     </div>
   )
@@ -15,4 +15,9 @@ const IndexPage: FunctionComponent<PageProps> = () => {
 
 export default IndexPage
 
-export const Head: HeadFC = () => <title>Home</title>
+export const Head: HeadFC = () => (
+  <>
+    <title>Home</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="./static/icon.png" ></link>
+  </>
+)

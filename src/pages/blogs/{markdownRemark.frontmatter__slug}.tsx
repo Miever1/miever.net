@@ -1,9 +1,7 @@
 import * as React from "react"
 import { graphql, HeadFC } from "gatsby"
 import styled from '@emotion/styled'
-import { Box } from "@chakra-ui/react";
-
-import Layout from "../../components/Layout";
+import { Box } from "miever_ui";
 
 const BoxWrapper = styled(Box)(() => {
   const commonStyle = `
@@ -42,11 +40,7 @@ const BoxWrapper = styled(Box)(() => {
   }
   > p {
     ${commonStyle}
-    padding: 0 var(--chakra-space-12);
     font-size: var(--chakra-fontSizes-lg);
-  }
-  > ul {
-    padding: var(--chakra-space-4) 0 var(--chakra-space-4) var(--chakra-space-16);
   }
   > ul > li {
     font-weight: 800;
@@ -61,11 +55,10 @@ export default function BlogPostTemplate({
   const { markdownRemark } = data // data.markdownRemark holds your post data
   const { html } = markdownRemark
   return (
-    <Layout>
-        <BoxWrapper
-          dangerouslySetInnerHTML={{ __html: html }}
-        />
-    </Layout>
+      <BoxWrapper
+        //@ts-ignore
+        dangerouslySetInnerHTML={{ __html: html }}
+      />
   )
 }
 
