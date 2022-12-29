@@ -24,7 +24,7 @@ export const SEO = ({
     <>
       <title>{seo.title}</title>
       <meta name="description" content={seo.description} />
-      <link rel="icon" type="image/png" sizes="16x16" href="/static/icon.png" ></link>
+      <link rel="icon" type="image/png" sizes="16x16" href="/icon.png" ></link>
       {children}
     </>
   )

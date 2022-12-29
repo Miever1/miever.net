@@ -28,9 +28,9 @@ const Layout: FunctionComponent<{
                         <Box
                             width="240px"
                             style={{
-                                backgroundImage: "url(/static/home.png)",
-                                backgroundPosition: "32px",
-                                backgroundSize: "160px",
+                                backgroundImage: "url(/home.png)",
+                                backgroundPosition: "24px",
+                                backgroundSize: "180px",
                                 backgroundRepeat: "no-repeat",
                                 cursor: "pointer"
                             }}

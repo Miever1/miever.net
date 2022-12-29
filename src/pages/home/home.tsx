@@ -23,7 +23,7 @@ const Home:FunctionComponent<{}> = () => {
                 <br/>
             </Box>
             <Image
-                src='/static/IMG_2672.JPG'
+                src='/selfies.JPG'
                 alt='Sammy Uyghur'
                 style={{ marginBottom: "12px" }}
             />
