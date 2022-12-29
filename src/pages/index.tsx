@@ -1,23 +1,21 @@
 import React, { FunctionComponent } from "react"
-import type { HeadFC, PageProps } from "gatsby"
+import type { PageProps } from "gatsby"
 
 import Home from "./home"
+import { SEO } from "../components/SEO";
 
 import "miever_ui/dist/index.css"
 
 const IndexPage: FunctionComponent<PageProps> = () => {
   return (
-    <div>
-      <Home />
-    </div>
+    <Home />
   )
 }
 
 export default IndexPage
 
-export const Head: HeadFC = () => (
+export const Head = () => (
   <>
-    <title>Home</title>
-    <link rel="icon" type="image/png" sizes="16x16" href="./static/icon.png" ></link>
+    <SEO />
   </>
 )

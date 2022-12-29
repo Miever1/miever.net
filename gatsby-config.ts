@@ -3,7 +3,8 @@ import type { GatsbyConfig } from "gatsby";
 const config: GatsbyConfig = {
   siteMetadata: {
     title: `miever.net`,
-    siteUrl: `https://www.yourdomain.tld`
+    description: "Everyone needs their own little spot on the interwebs, and this is mine. Welcome to miever's website!",
+    siteUrl: `https://miever.net`
   },
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
   // If you use VSCode you can also use the GraphQL plugin
@@ -20,7 +21,6 @@ const config: GatsbyConfig = {
         path: `${__dirname}/src/content`,
       },
     },
-    
     {
       resolve: '@chakra-ui/gatsby-plugin',
       options: {
@@ -34,6 +34,28 @@ const config: GatsbyConfig = {
          * if false, this plugin will not use <ColorModeProvider />
          */
         isUsingColorMode: true,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-google-gtag`,
+      options: {
+        // You can add multiple tracking ids and a pageview event will be fired for all of them.
+        trackingIds: [
+          "G-F2WMEWZSR2", // Google Analytics / GA
+        ],
+        // This object is used for configuration specific to this plugin
+        pluginConfig: {
+          // Puts tracking script in the head instead of the body
+          head: true,
+          // Setting this parameter is also optional
+          respectDNT: true,
+          // Avoids sending pageview hits from custom paths
+          exclude: ["/preview/**", "/do-not-track/me/too/"],
+          // Defaults to https://www.googletagmanager.com
+          origin: "https://miever.net/",
+          // Delays processing pageview events on route update (in milliseconds)
+          delayOnRouteUpdate: 200,
+        },
       },
     },
   ]

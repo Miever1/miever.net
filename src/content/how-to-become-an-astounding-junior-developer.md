@@ -405,8 +405,6 @@ https://jamesclear.com/marginal-gains
 
 抬头挺胸，记得要休息。每天提高 1%，一年之后你就会对结果感到惊讶!
 
-如果你喜欢这篇文章，我在我的博客上写了同样的分享[4]。
-
 感谢阅读！
 
 [1]: https://jamesclear.com/atomic-habits

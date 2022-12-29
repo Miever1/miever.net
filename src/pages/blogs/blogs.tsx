@@ -1,7 +1,8 @@
 import React, { FunctionComponent } from "react";
-import { Card, Image, CardBody, Heading, CardHeader, Text } from "@chakra-ui/react";
+import { Image } from "@chakra-ui/react";
 import { navigate, graphql, useStaticQuery } from "gatsby"
-import { Box } from "miever_ui";
+import { Box, Card } from "miever_ui";
+
 interface BlogInfo {
     title: string;
     date: string;
@@ -39,35 +40,29 @@ const Blogs:FunctionComponent<{}> = () => {
                 const { title, date, description, slug } = frontmatter;
                 return (
                     <Card
-                        mb={4}
+                        hoverable
                         key={slug}
-                        bg="rgba(255,255,255,.8)"
+                        title={title}
+                        subTitle={date}
+                        style={{
+                            minWidth: "800px"
+                        }}
                     >
-                        <CardHeader>
-                            <Heading size='md'>{title}</Heading>
-                            <Text as='i'>{date}</Text>
-                        </CardHeader>
-                        <CardBody
-                            overflow="hidden"
-                            minH={270}
-                            onClick={() => navigate(`/blogs${slug}`)}
-                        >
-                            <Box flexBox>
-                                <Box
-                                    width={480}
-                                >
-                                    <Image
-                                        src='https://wallpaperaccess.com/full/354997.jpg'
-                                        alt='Green double couch with wooden legs'
-                                        borderRadius='lg'
-                                        h="100%"
-                                    />
-                                </Box>
-                                <Box style={{ flex: 1, padding: "0 16px" }}>
-                                    {description}
-                                </Box>
+                        <Box flexBox onClick={() => navigate(`/blogs${slug}`)}>
+                            <Box
+                                width={480}
+                            >
+                                <Image
+                                    src='https://wallpaperaccess.com/full/354997.jpg'
+                                    alt='Green double couch with wooden legs'
+                                    borderRadius='lg'
+                                    h="100%"
+                                />
                             </Box>
-                        </CardBody>
+                            <Box style={{ flex: 1, padding: "0 16px" }}>
+                                {description}
+                            </Box>
+                        </Box>
                     </Card>
                 )
             })}
@@ -76,4 +71,3 @@ const Blogs:FunctionComponent<{}> = () => {
 }
 
 export default Blogs;
-

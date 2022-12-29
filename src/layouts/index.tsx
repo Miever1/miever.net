@@ -2,10 +2,15 @@
 import React, { FunctionComponent, ReactElement } from "react";
 import { navigate } from "gatsby"
 import { Menu, Icon, Box, Button } from "miever_ui";
+import { useLocation } from '@reach/router';
  
 const Layout: FunctionComponent<{
     children: ReactElement
 }> = ({ children }) => {
+    const location = useLocation();
+    const { pathname } = location;
+    const defaultKey = pathname === "/" ? "home" : pathname.split("/")[1];
+
     return (
         <Box
             flexBox
@@ -15,12 +20,15 @@ const Layout: FunctionComponent<{
         >
             <Box padding="4px 0 0 0">
                 <Menu
-                    defaultKey="home"
+                    defaultKey={defaultKey}
+                    style={{
+                        minWidth: "1180px"
+                    }}
                     prefix={(
                         <Box
                             width="240px"
                             style={{
-                                backgroundImage: "url(./static/home.png)",
+                                backgroundImage: "url(/static/home.png)",
                                 backgroundPosition: "32px",
                                 backgroundSize: "160px",
                                 backgroundRepeat: "no-repeat",
