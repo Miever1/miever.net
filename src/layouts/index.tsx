@@ -66,7 +66,7 @@ const Layout: FunctionComponent<{
                     }}
                 />
             </Box>
-            <Box padding="0 290px">
+            <Box padding="0 290px" style={{ minWidth: "1180px" }}>
                 {children}
             </Box>
             <Box
@@ -76,6 +76,7 @@ const Layout: FunctionComponent<{
                 justifyContent="center"
                 alignItems="center"
                 paddingY={8}
+                style={{ minWidth: "1180px" }}
             >
                 <Button
                     styleType="link"
