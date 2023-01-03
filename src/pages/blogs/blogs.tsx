@@ -57,6 +57,7 @@ const Blogs:FunctionComponent<{}> = () => {
                                     alt='Green double couch with wooden legs'
                                     borderRadius='lg'
                                     h="100%"
+                                    maxHeight={270}
                                 />
                             </Box>
                             <Box style={{ flex: 1, padding: "0 16px" }}>

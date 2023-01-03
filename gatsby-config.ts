@@ -6,9 +6,6 @@ const config: GatsbyConfig = {
     description: "Everyone needs their own little spot on the interwebs, and this is mine. Welcome to miever's website!",
     siteUrl: `https://miever.net`
   },
-  // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
-  // If you use VSCode you can also use the GraphQL plugin
-  // Learn more at: https://gatsby.dev/graphql-typegen
   graphqlTypegen: true,
   plugins: [
     "gatsby-plugin-emotion",
@@ -37,22 +34,19 @@ const config: GatsbyConfig = {
       },
     },
     {
-      resolve: `gatsby-plugin-google-gtag`,
+      resolve: "gatsby-plugin-datadog",
       options: {
-        // You can add multiple tracking ids and a pageview event will be fired for all of them.
-        trackingIds: [
-          "G-F2WMEWZSR2", // Google Analytics / GA
-        ],
-        // This object is used for configuration specific to this plugin
-        pluginConfig: {
-          // Puts tracking script in the head instead of the body
-          head: true,
-          // Setting this parameter is also optional
-          respectDNT: true,
-          // Avoids sending pageview hits from custom paths
-          exclude: ["/preview/**", "/do-not-track/me/too/"],
+        site: 'us5.datadoghq.com',
+        sampleRate: 100,
+        enabled: true,
+        rum: {
+          applicationId: '4e2ee008-f188-492c-b4c6-6b695772d8de',
+          clientToken: 'pub433009872f641faefb3c0b2e009452d7',
         },
-      },
+        logs: {
+          clientToken: 'pub433009872f641faefb3c0b2e009452d7',
+        }
+      }
     },
   ]
 };
