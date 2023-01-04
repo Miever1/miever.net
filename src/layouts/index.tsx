@@ -22,7 +22,7 @@ const Layout: FunctionComponent<{
                 <Menu
                     defaultKey={defaultKey}
                     style={{
-                        minWidth: "1180px"
+                        minWidth: "1200px"
                     }}
                     prefix={(
                         <Box
@@ -38,7 +38,7 @@ const Layout: FunctionComponent<{
                         />
                     )}
                     suffix={(
-                      <Box flexBox alignItems="center" style={{ paddingLeft: "600px" }}>
+                      <Box flexBox alignItems="center" style={{ paddingLeft: "500px" }}>
                         <Button
                             styleType="link"
                             onClick={() => window.open("https://github.com/Miever1")}
@@ -51,6 +51,10 @@ const Layout: FunctionComponent<{
                         {
                             label: "Home",
                             key: "home"
+                        },
+                        {
+                            label: "Dashboard",
+                            key: "dashboard"
                         },
                         {
                             label: "Blogs",
@@ -66,7 +70,7 @@ const Layout: FunctionComponent<{
                     }}
                 />
             </Box>
-            <Box padding="0 290px" style={{ minWidth: "1180px" }}>
+            <Box padding={pathname === "/dashboard/" ? "" : "0 290px"} style={{ minWidth: "1200px", height: `${pathname === "/dashboard/" ? "calc(100vh - 80px)" : ""}` }}>
                 {children}
             </Box>
             <Box
@@ -76,7 +80,7 @@ const Layout: FunctionComponent<{
                 justifyContent="center"
                 alignItems="center"
                 paddingY={8}
-                style={{ minWidth: "1180px" }}
+                style={{ minWidth: "1200px" }}
             >
                 <Button
                     styleType="link"
