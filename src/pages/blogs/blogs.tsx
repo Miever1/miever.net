@@ -44,23 +44,20 @@ const Blogs:FunctionComponent<{}> = () => {
                         key={slug}
                         title={title}
                         subTitle={date}
-                        style={{
-                            minWidth: "800px"
-                        }}
                     >
                         <Box flexBox onClick={() => navigate(`/blogs${slug}`)}>
                             <Box
                                 width={480}
+                                style={{ flex: 4 }}
                             >
                                 <Image
                                     src='https://wallpaperaccess.com/full/354997.jpg'
                                     alt='Green double couch with wooden legs'
                                     borderRadius='lg'
                                     h="100%"
-                                    maxHeight={270}
                                 />
                             </Box>
-                            <Box style={{ flex: 1, padding: "0 16px" }}>
+                            <Box style={{ flex: 5, padding: "0 16px" }}>
                                 {description}
                             </Box>
                         </Box>
