@@ -4,8 +4,6 @@ import type { PageProps } from "gatsby"
 import Home from "./home"
 import { SEO } from "../components/SEO";
 
-import "miever_ui/dist/index.css"
-
 const IndexPage: FunctionComponent<PageProps> = () => {
   return (
     <Home />

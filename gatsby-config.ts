@@ -1,5 +1,9 @@
 import type { GatsbyConfig } from "gatsby";
 
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+
 const config: GatsbyConfig = {
   siteMetadata: {
     title: `miever.net`,
@@ -40,11 +44,11 @@ const config: GatsbyConfig = {
         sampleRate: 100,
         enabled: true,
         rum: {
-          applicationId: '4e2ee008-f188-492c-b4c6-6b695772d8de',
-          clientToken: 'pub433009872f641faefb3c0b2e009452d7',
+          applicationId: process.env.APPLICATION_ID,
+          clientToken: process.env.CLIENT_TOKEN,
         },
         logs: {
-          clientToken: 'pub433009872f641faefb3c0b2e009452d7',
+          clientToken: process.env.CLIENT_TOKEN,
         }
       }
     },

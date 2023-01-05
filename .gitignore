@@ -4,3 +4,4 @@ public
 .yalc*
 yalc.lock
 src/gatsby-types.d.ts
+*.env*
