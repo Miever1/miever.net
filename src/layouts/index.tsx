@@ -3,6 +3,8 @@ import React, { FunctionComponent, ReactElement } from "react";
 import { navigate } from "gatsby"
 import { Menu, Icon, Box, Button } from "miever_ui";
 import { useLocation } from '@reach/router';
+
+import "miever_ui/dist/index.css"
  
 const Layout: FunctionComponent<{
     children: ReactElement

@@ -48,7 +48,7 @@ const Blogs:FunctionComponent<{}> = () => {
                         <Box flexBox onClick={() => navigate(`/blogs${slug}`)}>
                             <Box
                                 width={480}
-                                style={{ flex: 4 }}
+                                style={{ flex: 4, maxHeight: 240 }}
                             >
                                 <Image
                                     src='https://wallpaperaccess.com/full/354997.jpg'
