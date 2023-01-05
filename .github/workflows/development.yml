@@ -10,6 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: skiddph/actions-env@v1.0.2
+        with:
+          prefix: ""
         env:
           APPLICATION_ID: '${{ secrets.APPLICATION_ID }}'
           CLIENT_TOKEN: '${{ secrets.CLIENT_TOKEN }}'
