@@ -16,6 +16,7 @@ jobs:
           CLIENT_TOKEN: '${{ secrets.CLIENT_TOKEN }}'
           file_name: .env.production
           fail_on_empty: false
+          directory: "../../"
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2-beta
         with:
