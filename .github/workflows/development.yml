@@ -9,7 +9,7 @@ jobs:
   CI-CD:
     runs-on: ubuntu-latest
     steps:
-      - uses: SpicyPizza/create-envfile@v1.2
+      - uses: SpicyPizza/create-envfile@v1.3
         with:
           envkey_DEBUG: false
           APPLICATION_ID: '${{ secrets.APPLICATION_ID }}'

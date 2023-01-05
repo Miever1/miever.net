@@ -1,10 +1,10 @@
 import type { GatsbyConfig } from "gatsby";
 
 require("dotenv").config({
-  path: `.env.${process.env.NODE_ENV}`,
+  path: `.env.production`,
 })
 
-console.log(process.env)
+console.log(process.env.APPLICATION_ID, '112123123')
 
 const config: GatsbyConfig = {
   siteMetadata: {
