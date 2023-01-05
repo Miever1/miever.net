@@ -9,16 +9,16 @@ jobs:
   CI-CD:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2-beta
+        with:
+          node-version: 18
       - uses: skiddph/actions-env@v1.0.2
         with:
           prefix: ""
         env:
           APPLICATION_ID: '${{ secrets.APPLICATION_ID }}'
           CLIENT_TOKEN: '${{ secrets.CLIENT_TOKEN }}'
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2-beta
-        with:
-          node-version: 18
       - run: npm install
       - run: npm run-script build
 
