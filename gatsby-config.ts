@@ -1,7 +1,7 @@
 import type { GatsbyConfig } from "gatsby";
 
 require("dotenv").config({
-  path: `.env.production`,
+  path: `.env`,
 })
 
 console.log(process.env.APPLICATION_ID, '112123123')
