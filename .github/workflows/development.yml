@@ -9,12 +9,13 @@ jobs:
   CI-CD:
     runs-on: ubuntu-latest
     steps:
-      - uses: SpicyPizza/create-envfile@v1.2
+      - uses: SpicyPizza/create-envfile@v1.3
         with:
           envkey_DEBUG: false
           APPLICATION_ID: '${{ secrets.APPLICATION_ID }}'
           CLIENT_TOKEN: '${{ secrets.CLIENT_TOKEN }}'
           fail_on_empty: true
+          directory: "../../"
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2-beta
         with:
