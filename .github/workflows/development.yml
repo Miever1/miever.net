@@ -1,9 +1,9 @@
-name: Build & Deploy
+name: Development
 
 on:
   push:
     branches: 
-      - master
+      - 'feature/**'
 
 jobs:
   CI-CD:

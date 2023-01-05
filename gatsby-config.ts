@@ -4,6 +4,8 @@ require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 })
 
+console.log(process.env)
+
 const config: GatsbyConfig = {
   siteMetadata: {
     title: `miever.net`,
