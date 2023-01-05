@@ -11,13 +11,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Make envfile
-        uses: SpicyPizza/create-envfile@v1.3
-          with:
-            envkey_DEBUG: false
-            APPLICATION_ID: '${{ secrets.APPLICATION_ID }}'
-            CLIENT_TOKEN: '${{ secrets.CLIENT_TOKEN }}'
-            file_name: .env.production
-            fail_on_empty: false
+        - uses: SpicyPizza/create-envfile@v1.3
+            with:
+              envkey_DEBUG: false
+              APPLICATION_ID: '${{ secrets.APPLICATION_ID }}'
+              CLIENT_TOKEN: '${{ secrets.CLIENT_TOKEN }}'
+              file_name: .env.production
+              fail_on_empty: false
       - uses: actions/setup-node@v2-beta
         with:
           node-version: 18
