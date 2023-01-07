@@ -13,6 +13,12 @@ jobs:
       - uses: actions/setup-node@v2-beta
         with:
           node-version: 18
+      - uses: skiddph/actions-env@v1.0.2
+        with:
+          prefix: ""
+        env:
+          APPLICATION_ID: '${{ secrets.APPLICATION_ID }}'
+          CLIENT_TOKEN: '${{ secrets.CLIENT_TOKEN }}'
       - run: npm install
       - run: npm run-script build
 
@@ -22,6 +28,6 @@ jobs:
           server: '${{ secrets.SERVER_IP }}' #引用之前创建好的secret
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }} #引用之前创建好的secret
           local_path: './public/*'  # 对应我们项目build的文件夹路径
-          remote_path: '/home/ubuntu/miever'
+          remote_path: '/home/ubuntu/test_miever'
 
 
