@@ -1,7 +1,7 @@
 
 import React, { FunctionComponent, ReactElement } from "react";
 import { navigate } from "gatsby"
-import { Menu, Icon, Box, Button } from "miever_ui";
+import { Menu, Icon, Box, Button, Tooltip } from "miever_ui";
 import { useLocation } from '@reach/router';
 import ParticlesContainer from "./particles-container";
 
@@ -43,14 +43,16 @@ const Layout: FunctionComponent<{
                             />
                         )}
                         suffix={(
-                        <Box flexBox alignItems="center" style={{ paddingLeft: "500px" }}>
-                            <Button
-                                styleType="link"
-                                onClick={() => window.open("https://github.com/Miever1")}
-                            >
-                                <Icon icon={["fab", "github"]} theme="primary" style={{ fontSize: "14px", cursor: "pointer" }}/>
-                            </Button>
-                        </Box>
+                            <Box flexBox alignItems="center" style={{ marginRight: "24px" }}>
+                                <Tooltip overlay="Github" placement="bottom">
+                                    <Button
+                                        styleType="link"
+                                        onClick={() => window.open("https://github.com/Miever1")}
+                                    >
+                                        <Icon icon={["fab", "github"]} theme="primary" style={{ fontSize: "14px", cursor: "pointer" }}/>
+                                    </Button>
+                                </Tooltip>
+                            </Box>
                         )}
                         items={[
                             {
