@@ -11,20 +11,16 @@ const Home:FunctionComponent<{}> = () => {
             <Box>
                 <Box
                     style={{ fontSize: "32px", fontWeight: 600 }}
+                    paddingY={4}
                 >
                     Welcome to my personal website!
                 </Box>
-                <br/>
                 <p>
                     Everyone needs their own little spot on the interwebs, and this is mine.
                 </p>
                 <p>
-                    As a Front-end engineer, a descent personal website is required! It's been a long time that I want to build a personal website, but I always delay it because of some excuses, busy work for example.
+                    As a Front-end engineer, a descent personal website is required! It's been a long time that I want to build a personal website, but I always delay it because of some excuses, busy work for example.When it comes to the end of 2022, I realized that i need change. As you see, I'm changing.
                 </p>
-                <p>
-                    When it comes to the end of 2022, I realized that i need change. As you see, I'm changing.
-                </p>
-                <br/>
             </Box>
             <Image
                 src='/selfies.JPG'

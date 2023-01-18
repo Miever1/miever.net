@@ -5,6 +5,7 @@ import { Menu, Icon, Box, Button, Tooltip } from "miever_ui";
 import { useLocation } from '@reach/router';
 import ParticlesContainer from "./particles-container";
 
+import "./layout.css"
 import "miever_ui/dist/index.css"
  
 const Layout: FunctionComponent<{
@@ -46,11 +47,22 @@ const Layout: FunctionComponent<{
                             <Box flexBox alignItems="center" style={{ marginRight: "24px" }}>
                                 <Tooltip overlay="Github" placement="bottom">
                                     <Button
+                                        style={{ padding: "8px"}}
                                         styleType="link"
                                         onClick={() => window.open("https://github.com/Miever1")}
                                     >
                                         <Icon icon={["fab", "github"]} theme="primary" style={{ fontSize: "14px", cursor: "pointer" }}/>
                                     </Button>
+                                </Tooltip>
+                                <Tooltip overlay="Mail" placement="bottom">
+                                    <a href="mailto:miever1@163.com">
+                                        <Button
+                                            style={{ padding: "8px"}}
+                                            styleType="link"
+                                        >
+                                            <Icon icon={["fas", "envelope"]} theme="primary" style={{ fontSize: "14px", cursor: "pointer" }}/>
+                                        </Button>
+                                    </a>
                                 </Tooltip>
                             </Box>
                         )}

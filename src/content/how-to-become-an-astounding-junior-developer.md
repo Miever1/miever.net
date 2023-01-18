@@ -1,9 +1,14 @@
 ---
 slug: "/how-to-become-an-astounding-junior-developer"
-date: "2019-05-04 20:09"
+date: "2020-10-29 02:24"
 title: "如何成为一名优秀的初级开发者"
+home_image: "https://cdn-media-2.freecodecamp.org/w1280/5f9c9992740569d1a4ca207a.jpg"
 description: "如果你正在阅读这篇文章，你可能刚刚开始你的第一份工作，那么祝贺你！获得第一份工作是你在技术路上遇到的最为困难的事情之一。你也一定为此默默付出了很多努力。或许你还没有第一份工作，但是你想知道你所期待的。不管怎么样，在这篇文章中我将阐述一些常见的担忧和问题，比如在工作中应该期待什么，以及怎样在事业上成为一名成功的开发者。"
 ---
+
+> - 原文地址：[How to Become an Outstanding Junior Developer 初级开发者如何自我提升？从转变思维方式开始！](https://www.freecodecamp.org/news/how-to-become-an-astounding-junior-developer/)
+> - 原文作者：John Mosesman
+> - 译者：Miever1
 
 # 如何成为一名优秀的初级开发者
 

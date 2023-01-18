@@ -56,7 +56,6 @@ export default function BlogPostTemplate({
   const { html } = markdownRemark
   return (
       <BoxWrapper
-        //@ts-ignore
         dangerouslySetInnerHTML={{ __html: html }}
       />
   )

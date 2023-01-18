@@ -8,6 +8,7 @@ interface BlogInfo {
     date: string;
     description: string;
     slug: string;
+    home_image: string;
 }
 
 const Blogs:FunctionComponent<{}> = () => {
@@ -26,7 +27,8 @@ const Blogs:FunctionComponent<{}> = () => {
                         title,
                         date,
                         description,
-                        slug
+                        slug,
+                        home_image
                     }
                   }
                 }
@@ -37,31 +39,42 @@ const Blogs:FunctionComponent<{}> = () => {
         <Box>
             {edges.map((item: { node: { frontmatter: BlogInfo }}) => {
                 const { node: { frontmatter } } = item;
-                const { title, date, description, slug } = frontmatter;
+                const { title, date, description, slug, home_image } = frontmatter;
                 return (
-                    <Card
-                        hoverable
-                        key={slug}
-                        title={title}
-                        subTitle={date}
-                    >
-                        <Box flexBox onClick={() => navigate(`/blogs${slug}`)}>
-                            <Box
-                                width={480}
-                                style={{ flex: 4, maxHeight: 240 }}
-                            >
-                                <Image
-                                    src='https://wallpaperaccess.com/full/354997.jpg'
-                                    alt='Green double couch with wooden legs'
-                                    borderRadius='lg'
-                                    h="100%"
-                                />
+                    <Box paddingY={2}>
+                        <Card
+                            hoverable
+                            key={slug}
+                            title={title}
+                            subTitle={(
+                                <Box flexBox paddingX={1} justifyContent="space-between">
+                                    <Box>
+                                        {date}
+                                    </Box>
+                                    <Box>
+                                        Translate Program
+                                    </Box>
+                                </Box>
+                            )}
+                        >
+                            <Box flexBox onClick={() => navigate(`/blogs${slug}`)}>
+                                <Box
+                                    width={480}
+                                    style={{ flex: 4, maxHeight: 240 }}
+                                >
+                                    <Image
+                                        src={home_image}
+                                        alt='Green double couch with wooden legs'
+                                        borderRadius='lg'
+                                        h="100%"
+                                    />
+                                </Box>
+                                <Box style={{ flex: 5, padding: "0 16px" }}>
+                                    {description}
+                                </Box>
                             </Box>
-                            <Box style={{ flex: 5, padding: "0 16px" }}>
-                                {description}
-                            </Box>
-                        </Box>
-                    </Card>
+                        </Card>
+                    </Box>
                 )
             })}
         </Box>
