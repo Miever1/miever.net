@@ -9,6 +9,7 @@ interface BlogInfo {
     description: string;
     slug: string;
     home_image: string;
+    tags: string[];
 }
 
 const Blogs:FunctionComponent<{}> = () => {
@@ -28,7 +29,8 @@ const Blogs:FunctionComponent<{}> = () => {
                         date,
                         description,
                         slug,
-                        home_image
+                        home_image,
+                        tags
                     }
                   }
                 }
@@ -39,9 +41,9 @@ const Blogs:FunctionComponent<{}> = () => {
         <Box>
             {edges.map((item: { node: { frontmatter: BlogInfo }}) => {
                 const { node: { frontmatter } } = item;
-                const { title, date, description, slug, home_image } = frontmatter;
+                const { title, date, description, slug, home_image, tags } = frontmatter;
                 return (
-                    <Box paddingY={2}>
+                    <Box paddingY={2} key={`blog_${slug}`}>
                         <Card
                             hoverable
                             key={slug}
@@ -52,7 +54,7 @@ const Blogs:FunctionComponent<{}> = () => {
                                         {date}
                                     </Box>
                                     <Box>
-                                        Translate Program
+                                        {tags.map(item => item)}
                                     </Box>
                                 </Box>
                             )}
