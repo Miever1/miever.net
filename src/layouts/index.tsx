@@ -1,6 +1,7 @@
 
 import React, { FunctionComponent, ReactElement } from "react";
-import { navigate } from "gatsby"
+import { navigate } from "gatsby";
+import { useScroll } from 'ahooks';
 import { Menu, Icon, Box, Button, Tooltip } from "miever_ui";
 import { useLocation } from '@reach/router';
 import ParticlesContainer from "./particles-container";
@@ -11,10 +12,10 @@ import "miever_ui/dist/index.css"
 const Layout: FunctionComponent<{
     children: ReactElement
 }> = ({ children }) => {
+    const scroll = useScroll(document);
     const location = useLocation();
     const { pathname } = location;
     const defaultKey = pathname === "/" ? "home" : pathname.split("/")[1];
-
     return (
         <Box>
             <ParticlesContainer />
@@ -24,17 +25,17 @@ const Layout: FunctionComponent<{
                 style={{ minHeight: "100vh" }}
                 justifyContent="space-between"
             >
-                <Box style={{ background: "#FFF", width: "100%" }}>
+                <Box style={{ background: "#FFF", width: "100%", position: scroll?.top && scroll.top > 42 ? "fixed" : "relative" }}>
                     <Menu
                         defaultKey={defaultKey}
                         style={{
-                            minWidth: "1200px"
+                            minWidth: "1200px",
                         }}
                         prefix={(
                             <Box
                                 width="240px"
                                 style={{
-                                    backgroundImage: "url(/home.png)",
+                                    backgroundImage: "url(/home.webp)",
                                     backgroundPosition: "24px",
                                     backgroundSize: "180px",
                                     backgroundRepeat: "no-repeat",

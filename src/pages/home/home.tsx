@@ -23,7 +23,7 @@ const Home:FunctionComponent<{}> = () => {
                 </p>
             </Box>
             <Image
-                src='/selfies.JPG'
+                src='/selfies.webp'
                 alt='Sammy Uyghur'
                 style={{ marginBottom: "12px" }}
             />
