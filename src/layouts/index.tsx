@@ -12,6 +12,7 @@ import "miever_ui/dist/index.css"
 const Layout: FunctionComponent<{
     children: ReactElement
 }> = ({ children }) => {
+    if (typeof document === 'undefined') return null;
     const scroll = useScroll(document);
     const location = useLocation();
     const { pathname } = location;
