@@ -45,6 +45,11 @@ const BoxWrapper = styled(Box)(() => {
   > ul > li {
     font-weight: 800;
   }
+  > pre {
+    color: #fff;
+    padding: var(--chakra-space-2);
+    background: rgb(42, 39, 52);
+  }
   `
   return styleText
 })
