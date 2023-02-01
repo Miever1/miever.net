@@ -39,7 +39,9 @@ const Blogs:FunctionComponent<{}> = () => {
     `)
     return (
         <Box>
-            {edges.map((item: { node: { frontmatter: BlogInfo }}) => {
+            {edges.sort((lastBlog: { node: { frontmatter: BlogInfo }}, nextBlog: { node: { frontmatter: BlogInfo }}) => {
+                return lastBlog.node?.frontmatter?.date < nextBlog.node?.frontmatter?.date
+            }).map((item: { node: { frontmatter: BlogInfo }}) => {
                 const { node: { frontmatter } } = item;
                 const { title, date, description, slug, home_image, tags } = frontmatter;
                 return (
