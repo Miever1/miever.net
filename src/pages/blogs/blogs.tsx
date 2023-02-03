@@ -63,14 +63,14 @@ const Blogs:FunctionComponent<{}> = () => {
                         >
                             <Box flexBox onClick={() => navigate(`/blogs${slug}`)}>
                                 <Box
-                                    width={480}
-                                    style={{ flex: 4, maxHeight: 240 }}
+                                    style={{ flex: 4 }}
                                 >
                                     <Image
                                         src={home_image}
-                                        alt='Green double couch with wooden legs'
+                                        alt={`blogs-${title}`}
                                         borderRadius='lg'
-                                        h="100%"
+                                        w={360}
+                                        h={200}
                                     />
                                 </Box>
                                 <Box style={{ flex: 5, padding: "0 16px" }}>
