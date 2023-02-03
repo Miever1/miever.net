@@ -25,6 +25,7 @@ const Home:FunctionComponent<{}> = () => {
             <Image
                 src='/selfies.webp'
                 alt='Sammy Uyghur'
+                w="100%"
                 style={{ marginBottom: "12px" }}
             />
             <Blogs />
