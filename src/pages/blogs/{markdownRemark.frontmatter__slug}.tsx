@@ -2,6 +2,7 @@ import * as React from "react"
 import { graphql, HeadFC } from "gatsby"
 import styled from '@emotion/styled'
 import { Box } from "miever_ui";
+import { SEO } from "../../components/SEO";
 
 const BoxWrapper = styled(Box)(() => {
   const commonStyle = `
@@ -84,9 +85,12 @@ export const pageQuery = graphql`
   }
 `
 
-export const Head: HeadFC = ({ data }: {data: any}) => {
-  const { markdownRemark: { frontmatter } } = data;
+export const Head: HeadFC = ({ data }: { data: any }) => {
+  const { markdownRemark: { frontmatter, html, slug } } = data;
   return (
-    <title>{`Miever-${frontmatter.title}`}</title>
+    <Box>
+      <title>{`Miever-${frontmatter.title}`}</title>
+      <SEO title={frontmatter.title} description={html} pathname={slug} />
+    </Box>
   )
 }
