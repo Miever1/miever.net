@@ -40,7 +40,8 @@ const Layout: FunctionComponent<{
                                     backgroundPosition: "24px",
                                     backgroundSize: "180px",
                                     backgroundRepeat: "no-repeat",
-                                    cursor: "pointer"
+                                    cursor: "pointer",
+                                    width: "240px"
                                 }}
                                 onClick={() => window.location.replace("/")}
                             />
@@ -51,16 +52,18 @@ const Layout: FunctionComponent<{
                                     <Button
                                         style={{ padding: "8px"}}
                                         styleType="link"
+                                        aria-label="Github"
                                         onClick={() => window.open("https://github.com/Miever1")}
                                     >
                                         <Icon icon={["fab", "github"]} theme="primary" style={{ fontSize: "14px", cursor: "pointer" }}/>
                                     </Button>
                                 </Tooltip>
                                 <Tooltip overlay="Mail" placement="bottom">
-                                    <a href="mailto:miever1@163.com">
+                                    <a href="mailto:miever1@163.com" aria-label="Mail">
                                         <Button
                                             style={{ padding: "8px"}}
                                             styleType="link"
+                                            aria-label="Mail"
                                         >
                                             <Icon icon={["fas", "envelope"]} theme="primary" style={{ fontSize: "14px", cursor: "pointer" }}/>
                                         </Button>

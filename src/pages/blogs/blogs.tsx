@@ -70,7 +70,7 @@ const Blogs:FunctionComponent<{}> = () => {
                                         alt={`blogs-${title}`}
                                         borderRadius='lg'
                                         w={360}
-                                        h={200}
+                                        loading="lazy"
                                     />
                                 </Box>
                                 <Box style={{ flex: 5, padding: "0 16px" }}>

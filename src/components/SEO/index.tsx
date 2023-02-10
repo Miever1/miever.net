@@ -22,10 +22,13 @@ export const SEO = ({
 
   return (
     <>
+      <html lang="en"></html>
       <title>{seo.title}</title>
       <meta name="description" content={seo.description} />
       <link rel="icon" type="image/png" sizes="16x16" href="/icon.png" ></link>
-      {children}
+      <body>
+        {children}
+      </body>
     </>
   )
 }
