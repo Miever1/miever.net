@@ -77,10 +77,6 @@ const Layout: FunctionComponent<{
                                 key: "home"
                             },
                             {
-                                label: "Dashboard",
-                                key: "dashboard"
-                            },
-                            {
                                 label: "Blogs",
                                 key: "blogs"
                             },
@@ -88,13 +84,21 @@ const Layout: FunctionComponent<{
                                 label: "Resume",
                                 key: "resume"
                             },
+                            {
+                                label: "Dashboard",
+                                key: "dashboard"
+                            },
+                            {
+                                label: "Web Performance",
+                                key: "performance"
+                            }
                         ]}
                         onSelect={(value: string) => {
                             navigate(value === "home" ? "/" : `/${value}`)
                         }}
                     />
                 </Box>
-                <Box padding={pathname === "/dashboard/" ? "" : "0 290px"} style={{ minWidth: "1200px", height: `${pathname === "/dashboard/" ? "calc(100vh - 80px)" : ""}` }}>
+                <Box padding={["/dashboard/", "/performance/"].includes(pathname) ? "" : "0 290px"} style={{ minWidth: "1200px", height: `${["/dashboard/", "/performance/"].includes(pathname) ? "100vh" : ""}` }}>
                     {children}
                 </Box>
                 <Box
