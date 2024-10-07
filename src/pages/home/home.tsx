@@ -2,7 +2,6 @@ import React, { FunctionComponent } from "react";
 import { Image } from "@chakra-ui/react";
 import { Box } from "miever_ui";
 
-import Blogs from "../blogs";
 import { SEO } from "../../components/SEO"
 
 const Home:FunctionComponent<{}> = () => {
@@ -29,7 +28,6 @@ const Home:FunctionComponent<{}> = () => {
                 h="67%"
                 style={{ marginBottom: "12px" }}
             />
-            <Blogs />
         </Box>
     );
 }
