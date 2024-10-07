@@ -1,3 +1,21 @@
 p {
     margin-bottom: 12px !important;
 }
+
+html, body {
+    min-width: 1200px;
+    background: #f0f0f0 !important;
+}
+
+.menu-container {
+    background: #FFF;
+    width: 100%;
+}
+
+.menu-fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    width: 100%;
+  }

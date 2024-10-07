@@ -4,7 +4,6 @@ import { navigate } from "gatsby";
 import { useScroll } from 'ahooks';
 import { Menu, Icon, Box, Button, Tooltip } from "miever_ui";
 import { useLocation } from '@reach/router';
-import ParticlesContainer from "./particles-container";
 
 import "./layout.css"
 import "miever_ui/dist/index.css"
@@ -16,22 +15,27 @@ const Layout: FunctionComponent<{
     const scroll = useScroll(document);
     const location = useLocation();
     const { pathname } = location;
+    const isFixed = scroll?.top && scroll.top > 42;
     const defaultKey = pathname === "/" ? "home" : pathname.split("/")[1];
     return (
-        <Box>
-            <ParticlesContainer />
+        <Box
+            width="100%"
+        >
             <Box
                 flexBox
                 direction="column"
-                style={{ minHeight: "100vh" }}
+                style={{
+                    width: "100%",
+                    minHeight: "100vh"
+                }}
                 justifyContent="space-between"
             >
-                <Box style={{ background: "#FFF", width: "100%", position: scroll?.top && scroll.top > 42 ? "fixed" : "relative" }}>
+                <Box className={`menu-container ${isFixed ? 'menu-fixed' : ''}`}>
                     <Menu
-                        defaultKey={defaultKey}
                         style={{
-                            minWidth: "1200px",
+                            margin: 0,
                         }}
+                        defaultKey={defaultKey}
                         prefix={(
                             <Box
                                 width="240px"
@@ -69,6 +73,27 @@ const Layout: FunctionComponent<{
                                         </Button>
                                     </a>
                                 </Tooltip>
+                                <Tooltip overlay="LinkedIn" placement="bottom">
+                                    <Button
+                                        style={{ padding: "8px"}}
+                                        styleType="link"
+                                        aria-label="LinkedIn"
+                                        onClick={() => window.open("https://www.linkedin.com/in/aerman-huofuer-413328280/")}
+                                    >
+                                        <Icon icon={["fab", "linkedin"]} theme="primary" style={{ fontSize: "14px", cursor: "pointer" }}/>
+                                    </Button>
+                                </Tooltip>
+                                <Tooltip overlay="Instgram" placement="bottom">
+                                    <Button
+                                        style={{ padding: "8px"}}
+                                        styleType="link"
+                                        aria-label="Instgram"
+                                        onClick={() => window.open("https://www.instagram.com/imiever7/profilecard/?igsh=MXFyMHJ1OWkxZmhqag==")}
+                                    >
+                                        {/* @ts-ignore */}
+                                        <Icon icon={["fab", "square-instagram"]} theme="primary" style={{ fontSize: "14px", cursor: "pointer" }}/>
+                                    </Button>
+                                </Tooltip>
                             </Box>
                         )}
                         items={[
@@ -79,6 +104,10 @@ const Layout: FunctionComponent<{
                             {
                                 label: "Blogs",
                                 key: "blogs"
+                            },
+                            {
+                                label: "Projects",
+                                key: "projects"
                             },
                             {
                                 label: "Resume",
@@ -98,7 +127,10 @@ const Layout: FunctionComponent<{
                         }}
                     />
                 </Box>
-                <Box padding={["/dashboard/", "/performance/"].includes(pathname) ? "" : "0 290px"} style={{ minWidth: "1200px", height: `${["/dashboard/", "/performance/"].includes(pathname) ? "100vh" : ""}` }}>
+                <Box 
+                    padding={["/dashboard/", "/performance/"].includes(pathname) ? "" : "8px 290px"} 
+                    style={{ minWidth: "1200px", height: `${["/dashboard/", "/performance/"].includes(pathname) ? "100vh" : ""}` }}
+                >
                     {children}
                 </Box>
                 <Box
@@ -119,7 +151,7 @@ const Layout: FunctionComponent<{
                     <Box
                         style={{ fontSize: "12px" }}
                     >
-                        Copyright © 2022-2023 Miever
+                        Copyright © 2024-2025 Miever
                     </Box>
                 </Box>
             </Box>
