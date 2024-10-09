@@ -5,6 +5,8 @@ import { useScroll } from 'ahooks';
 import { Menu, Icon, Box, Button, Tooltip } from "miever_ui";
 import { useLocation } from '@reach/router';
 
+import ParticlesContainer from "./particles-container";
+
 import "./layout.css"
 import "miever_ui/dist/index.css"
  
@@ -21,6 +23,7 @@ const Layout: FunctionComponent<{
         <Box
             width="100%"
         >
+            <ParticlesContainer />
             <Box
                 flexBox
                 direction="column"
