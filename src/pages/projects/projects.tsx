@@ -18,7 +18,7 @@ const Projects:FunctionComponent<{}> = () => {
             title: "Miever.net",
             subTitle: "Welcome to my personal website, crafted with Miever UI!",
             liveDemoPath: "https://miever.net",
-            thumbnailPath: "/thumbnail-miever.jpg",
+            thumbnailPath: "https://miever.s3.ap-east-1.amazonaws.com/static/thumbnail-miever.webp",
             githubPath: "https://github.com/Miever1",
             description: "The main purpose of this project is that I want to show my true self, here you can see my resume, blog, and other information about me. Of course, I also want to apply what I know in technology to my personal web page, if you want to know, please check out the source code."
         },
@@ -26,7 +26,7 @@ const Projects:FunctionComponent<{}> = () => {
             title: "Miever UI",
             subTitle: "Crafting Beautiful User Interfaces Made Easy!",
             liveDemoPath: "https://components.miever.net",
-            thumbnailPath: "/thumbnail-components.jpg",
+            thumbnailPath: "https://miever.s3.ap-east-1.amazonaws.com/static/thumbnail-components.webp",
             githubPath: "https://github.com/Components",
             description: "Miever UI is a personal React component library that offers a wide range of UI components designed to enhance the functionality and aesthetics of my web applications. With customizable styles and responsive designs, Miever UI simplifies the development process, enabling faster and more efficient creation of beautiful user interfaces."
         }
