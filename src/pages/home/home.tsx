@@ -19,10 +19,13 @@ const Home: FunctionComponent<{}> = () => {
                     As a front-end engineer, I understand the importance of having a personal website to highlight my skills and projects. I had been putting off creating mine, always busy with work and other commitments. However, as time went on, I realized it was time to change that. So here I am, finally embracing the journey of building my online presence!
                 </p>
                 <Image
-                    src='/selfies.webp'
-                    alt='Sammy Uyghur'
+                    src='https://miever.s3.ap-east-1.amazonaws.com/static/selfies.webp'
+                    alt='Aerman'
+                    width={1704}
+                    height={1280}
                     w="100%"
                     h="auto"
+                    loading="lazy"
                     style={{ marginBottom: "12px" }}
                 />
                 <Box

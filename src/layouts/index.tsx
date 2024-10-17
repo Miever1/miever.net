@@ -43,7 +43,7 @@ const Layout: FunctionComponent<{
                             <Box
                                 width="240px"
                                 style={{
-                                    backgroundImage: "url(/home.webp)",
+                                    backgroundImage: "url(https://miever.s3.ap-east-1.amazonaws.com/static/home.webp)",
                                     backgroundPosition: "24px",
                                     backgroundSize: "180px",
                                     backgroundRepeat: "no-repeat",
