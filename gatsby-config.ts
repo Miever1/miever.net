@@ -1,5 +1,4 @@
 import type { GatsbyConfig } from "gatsby";
-
 require("dotenv").config({
   path: `.env`,
 })
@@ -25,15 +24,7 @@ const config: GatsbyConfig = {
     {
       resolve: '@chakra-ui/gatsby-plugin',
       options: {
-        /**
-         * @property {boolean} [resetCSS=true]
-         * if false, this plugin will not use `<CSSReset />
-         */
         resetCSS: true,
-        /**
-         * @property {boolean} [isUsingColorMode=true]
-         * if false, this plugin will not use <ColorModeProvider />
-         */
         isUsingColorMode: true,
       },
     },
@@ -52,6 +43,19 @@ const config: GatsbyConfig = {
         }
       }
     },
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `miever.net`,
+        short_name: `miever`,
+        start_url: `/`,
+        background_color: `#ffffff`,
+        theme_color: `#12aa9c`,
+        display: `standalone`,
+        icon: `static/favicon.png`,
+      },
+    },
+    `gatsby-plugin-offline`,
   ]
 };
 

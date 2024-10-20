@@ -26,6 +26,8 @@
     "gatsby-plugin-datadog": "^1.1.1",
     "gatsby-plugin-emotion": "^8.2.0",
     "gatsby-plugin-layout": "^4.3.0",
+    "gatsby-plugin-manifest": "^5.13.1",
+    "gatsby-plugin-offline": "^6.13.3",
     "gatsby-source-filesystem": "^5.2.0",
     "gatsby-transformer-remark": "^6.2.0",
     "miever_ui": "^0.1.2",
