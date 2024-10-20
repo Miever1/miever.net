@@ -25,7 +25,7 @@ export const SEO = ({
       <html lang="en"></html>
       <title>{seo.title}</title>
       <meta name="description" content={seo.description} />
-      <link rel="icon" type="image/png" sizes="16x16" href="https://miever.s3.ap-east-1.amazonaws.com/static/icon.png" ></link>
+      <link rel="icon" type="image/png" sizes="16x16" href="https://miever.s3.ap-east-1.amazonaws.com/static/icon.webp" ></link>
       <body>
         {children}
       </body>
