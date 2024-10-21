@@ -52,7 +52,34 @@ const config: GatsbyConfig = {
         background_color: `#ffffff`,
         theme_color: `#12aa9c`,
         display: `standalone`,
-        icon: `static/favicon.png`,
+        icons: [
+          {
+            src: `/favicon-48x48.png`,
+            sizes: `48x48`,
+            type: `image/png`,
+          },
+          {
+            src: `/web-app-manifest-192x192.png`,
+            sizes: `192x192`,
+            type: `image/png`,
+          },
+          {
+            src: `/web-app-manifest-512x512.png`,
+            sizes: `512x512`,
+            type: `image/png`,
+          },
+          {
+            src: `/apple-touch-icon.png`,
+            sizes: `180x180`,
+            type: `image/png`,
+          },
+          {
+            src: `/maskable_icon_x48.png`,
+            sizes: `48x48`,
+            type: `image/png`,
+            purpose: `maskable`,
+          },
+        ],
       },
     },
     `gatsby-plugin-offline`,
