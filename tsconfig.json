@@ -11,9 +11,6 @@
     "strict": true,
     "allowSyntheticDefaultImports": true,
     "baseUrl": "./",
-    "paths": {
-      "miever_ui": ["node_modules/miever_ui"] // 配置路径别名，以便 TypeScript 能解析到
-    }
   },
   "include": ["src/**/*", "gatsby-node.ts", "gatsby-config.ts", "plugins/**/*"],
   "exclude": ["node_modules", "dist"]

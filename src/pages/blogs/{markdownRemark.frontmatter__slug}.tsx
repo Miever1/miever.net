@@ -56,9 +56,9 @@ const BoxWrapper = styled(Box)(() => {
 })
 
 export default function BlogPostTemplate({
-  data, // this prop will be injected by the GraphQL query below.
+  data,
 }: { data: any }) {
-  const { markdownRemark } = data // data.markdownRemark holds your post data
+  const { markdownRemark } = data;
   const { html } = markdownRemark
   return (
       <BoxWrapper
@@ -85,12 +85,13 @@ export const pageQuery = graphql`
   }
 `
 
-export const Head: HeadFC = ({ data }: { data: any }) => {
-  const { markdownRemark: { frontmatter, html, slug } } = data;
+export const Head: HeadFC = ({ data }) => {
+  // @ts-ignore
+  const title = data?.markdownRemark?.frontmatter?.title || "Default Title";
+  // @ts-ignore
+  const description = data?.markdownRemark?.frontmatter?.description || "Default Description";
+
   return (
-    <Box>
-      <title>{`Miever-${frontmatter.title}`}</title>
-      <SEO title={frontmatter.title} description={html} pathname={slug} />
-    </Box>
-  )
-}
+    <SEO title={title} description={description} />
+  );
+};
