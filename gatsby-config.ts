@@ -1,5 +1,4 @@
 import type { GatsbyConfig } from "gatsby";
-import { designs } from "miever_ui";
 
 require("dotenv").config({
   path: `.env`,
@@ -52,7 +51,7 @@ const config: GatsbyConfig = {
         short_name: `miever`,
         start_url: `/`,
         background_color: `#ffffff`,
-        theme_color: designs.BRAND_COLORS.primary || `#000`,
+        theme_color: "#0CC0DF",
         display: `standalone`,
         icons: [
           {
