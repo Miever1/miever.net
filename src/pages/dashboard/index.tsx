@@ -7,6 +7,6 @@ export default Dashboard;
 
 export const Head = () => (
     <>
-      <SEO title="Dashboard" description="Dashboard" pathname="/dashboard" />
+      <SEO title="Dashboard - Miever" description="Dashboard - Miever" pathname="/dashboard" />
     </>
 )

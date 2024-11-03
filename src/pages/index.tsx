@@ -1,6 +1,5 @@
 import React, { FunctionComponent } from "react"
 import type { PageProps } from "gatsby"
-
 import Home from "./home"
 import { SEO } from "../components/SEO";
 
@@ -14,6 +13,6 @@ export default IndexPage
 
 export const Head = () => (
   <>
-    <SEO />
+    <SEO title="Miever" description="Miever's Personal website!" pathname="/" />
   </>
 )

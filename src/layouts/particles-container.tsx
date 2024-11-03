@@ -5,6 +5,7 @@ import { loadFull } from "tsparticles";
 import { designs } from "miever_ui";
 
 const ParticlesContainer = () => {
+    const { BRAND_COLORS } = designs;
     const particlesInit = useCallback(async (engine: Engine) => {
         try {
             await loadFull(engine);
@@ -48,10 +49,10 @@ const ParticlesContainer = () => {
                 },
                 particles: {
                     color: {
-                        value: designs.BRAND_COLORS.primary || "#000",
+                        value: BRAND_COLORS.primary || "#000",
                     },
                     links: {
-                        color: designs.BRAND_COLORS.primary || "#000",
+                        color: BRAND_COLORS.primary || "#000",
                         distance: 150,
                         enable: true,
                         opacity: 0.5,

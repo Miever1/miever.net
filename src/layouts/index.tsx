@@ -8,7 +8,7 @@ import { useLocation } from '@reach/router';
 import ParticlesContainer from "./particles-container";
 
 import "./layout.css"
-import "miever_ui/dist/index.css"
+import 'miever_ui/style';
  
 const Layout: FunctionComponent<{
     children: ReactElement
@@ -43,7 +43,7 @@ const Layout: FunctionComponent<{
                             <Box
                                 width="240px"
                                 style={{
-                                    backgroundImage: "url(https://miever.s3.ap-east-1.amazonaws.com/static/home.webp)",
+                                    backgroundImage: "url(https://miever.s3.ap-east-1.amazonaws.com/static/main-logo.webp)",
                                     backgroundPosition: "24px",
                                     backgroundSize: "180px",
                                     backgroundRepeat: "no-repeat",

@@ -6,9 +6,14 @@ html, body {
     min-width: 1200px;
 }
 
+.layout-container {
+    min-width: 1200px;
+}
+
 .menu-container {
     background: #FFF;
     width: 100%;
+    transition: all 0.3s;
 }
 
 .menu-fixed {
@@ -16,5 +21,39 @@ html, body {
     top: 0;
     left: 0;
     z-index: 1000;
-    width: 100%;
-  }
+    min-width: 1200px;
+    width: 100% !important;
+}
+
+.logo-container {
+    width: 240px;
+    background-image: url(https://miever.s3.ap-east-1.amazonaws.com/static/main-logo.webp);
+    background-position: 24px;
+    background-size: 180px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+.content-container {
+    padding: 8px 290px;
+    min-width: 1200px;
+}
+
+.full-height {
+    height: 100vh;
+}
+
+.footer {
+    min-width: 1200px;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 0;
+}
+
+.footer a {
+    text-decoration: none;
+    color: inherit;
+}

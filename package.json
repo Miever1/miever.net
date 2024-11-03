@@ -30,7 +30,7 @@
     "gatsby-plugin-offline": "^6.13.3",
     "gatsby-source-filesystem": "^5.2.0",
     "gatsby-transformer-remark": "^6.2.0",
-    "miever_ui": "^0.1.2",
+    "miever_ui": "^0.1.12",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-particles": "^2.7.1",

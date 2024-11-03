@@ -1,4 +1,6 @@
 import type { GatsbyConfig } from "gatsby";
+import { designs } from "miever_ui";
+
 require("dotenv").config({
   path: `.env`,
 })
@@ -50,18 +52,20 @@ const config: GatsbyConfig = {
         short_name: `miever`,
         start_url: `/`,
         background_color: `#ffffff`,
-        theme_color: `#12aa9c`,
+        theme_color: designs.BRAND_COLORS.primary || `#000`,
         display: `standalone`,
         icons: [
           {
             src: `/favicon-48x48.png`,
             sizes: `48x48`,
             type: `image/png`,
+            purpose: `maskable`
           },
           {
             src: `/web-app-manifest-192x192.png`,
             sizes: `192x192`,
             type: `image/png`,
+            purpose: `maskable`
           },
           {
             src: `/web-app-manifest-512x512.png`,
@@ -72,12 +76,6 @@ const config: GatsbyConfig = {
             src: `/apple-touch-icon.png`,
             sizes: `180x180`,
             type: `image/png`,
-          },
-          {
-            src: `/maskable_icon_x48.png`,
-            sizes: `48x48`,
-            type: `image/png`,
-            purpose: `maskable`,
           },
         ],
       },
