@@ -7,6 +7,6 @@ export default Resume;
 
 export const Head = () => (
     <>
-      <SEO title="Resume" description="Resume page" pathname="/resume" />
+      <SEO title="Resume - Miever" description="Resume - Miever" pathname="/resume" />
     </>
 )

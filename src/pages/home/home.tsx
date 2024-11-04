@@ -1,5 +1,4 @@
 import React, { FunctionComponent } from "react";
-import { Image } from "@chakra-ui/react";
 import { Box, Card } from "miever_ui"; 
 import MapChart from "./footprints";
 import { SEO } from "../../components/SEO";

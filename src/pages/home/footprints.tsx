@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { ComposableMap, Geographies, Geography, Marker } from "react-simple-maps";
+import { designs } from "miever_ui";
+
 
 const MapChart = () => {
+  const { BRAND_COLORS } = designs;
   const geoUrl = "https://unpkg.com/world-atlas@2.0.2/countries-110m.json";
 
   const markers = [
@@ -37,7 +40,7 @@ const MapChart = () => {
     { markerOffset: -20, name: "Madrid", country: "Spain", coordinates: [-3.7038, 40.4168] } // 马德里
   ];
 
-  const themeColor = "#12aa9c";
+  const themeColor = BRAND_COLORS.primary || "#000";
   const visitedCountries = ["China", "Singapore", "United States of America", "Portugal", "Indonesia", "Spain"]; 
 
   const [hoveredMarker, setHoveredMarker] = useState(null);

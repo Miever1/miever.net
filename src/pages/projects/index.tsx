@@ -7,6 +7,6 @@ export default Projects;
 
 export const Head = () => (
     <>
-      <SEO title="Miever's Projects" description="Projects page" pathname="/projects" />
+      <SEO title="Projects - Miever" description="Projects page - Miever" pathname="/projects" />
     </>
 )
