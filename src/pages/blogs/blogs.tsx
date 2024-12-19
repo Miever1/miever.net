@@ -56,7 +56,13 @@ const Blogs:FunctionComponent<{}> = () => {
                                         {date}
                                     </Box>
                                     <Box>
-                                        {tags.map(item => item)}
+                                    <Box>
+                                        {tags.map((item, index) => (
+                                            <span key={index}>
+                                                {item}{index < tags.length - 1 ? ', ' : ''}
+                                            </span>
+                                        ))}
+                                    </Box>
                                     </Box>
                                 </Box>
                             )}
