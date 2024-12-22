@@ -23,6 +23,13 @@ const config: GatsbyConfig = {
       },
     },
     {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `designs`,
+        path: `${__dirname}/src/content`,
+      },
+    },
+    {
       resolve: '@chakra-ui/gatsby-plugin',
       options: {
         resetCSS: true,

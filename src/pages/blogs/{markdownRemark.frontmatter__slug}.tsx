@@ -1,13 +1,18 @@
 import * as React from "react"
 import { graphql, HeadFC } from "gatsby"
 import styled from '@emotion/styled'
-import { Box } from "miever_ui";
+import { Box, designs } from "miever_ui";
 import { SEO } from "../../components/SEO";
 
-const BoxWrapper = styled(Box)(() => {
+const { BRAND_COLORS } = designs
+
+export const BoxWrapper = styled(Box)(() => {
   const commonStyle = `
     font-size: var(--chakra-fontSizes-6xl);
     margin: var(--chakra-space-6) 0;
+    a {
+      color: ${BRAND_COLORS.primary};
+    }
   `
   let styleText = `
   background: rgba(255,255,255,.8);

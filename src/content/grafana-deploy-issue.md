@@ -2,6 +2,7 @@
 slug: "/grafana-deploy-issue"
 date: "2022-05-06 15:34"
 title: "Grafana 部署遇到的问题及解决方案"
+type: "blogs"
 tags: ["Issue Resolve"]
 home_image: "https://mattermost.com/wp-content/uploads/2022/07/01_Grafana_Dashboard_K8s@2x.webp"
 description: "Grafana 部署遇到的问题及解决方案"

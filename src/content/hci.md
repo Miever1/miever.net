@@ -2,6 +2,7 @@
 slug: "/hci-introduction-and-design-methods"
 date: "2024-12-18 19:16"
 title: "Introduction to Human-Computer Interaction and Design Methods"
+type: "blogs"
 tags: [HCI, User Experience, Usability]
 home_image: "https://miever.s3.ap-east-1.amazonaws.com/static/blogs/Human-Computer-Interaction-Timeline.png"
 description: An overview of key concepts in Human-Computer Interaction including Usability, User-Centered Design, and Interaction Design.
@@ -9,6 +10,8 @@ description: An overview of key concepts in Human-Computer Interaction including
 
 
 # Human-Computer Interation: Introduction and Design Methods
+
+![Human-Computer Interaction History](https://miever.s3.ap-east-1.amazonaws.com/static/blogs/Human-Computer-Interaction-Timeline.png)
 
 ## Introduction to HCI - Chapter 1
 
