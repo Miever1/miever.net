@@ -113,6 +113,10 @@ const Layout: FunctionComponent<{
                                 key: "projects"
                             },
                             {
+                                label: "Designs",
+                                key: "designs"
+                            },
+                            {
                                 label: "Resume",
                                 key: "resume"
                             },
