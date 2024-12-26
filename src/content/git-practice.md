@@ -3,6 +3,7 @@ slug: "/git-practice"
 date: "2020-12-28 17:48"
 title: "Git 常用命令"
 type: "blogs"
+language: "zh"
 tags: ["Small Practice"]
 home_image: "https://www.howtogeek.com/wp-content/uploads/csit/2021/09/4d72a7db.png?height=200p&trim=2,2,2,2"
 description: "Git 常用命令"

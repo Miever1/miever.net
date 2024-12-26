@@ -4,16 +4,18 @@ import { navigate } from "gatsby";
 import { useScroll } from 'ahooks';
 import { Menu, Icon, Box, Button, Tooltip } from "miever_ui";
 import { useLocation } from '@reach/router';
+import { useTranslation } from "react-i18next";
 
 import ParticlesContainer from "./particles-container";
 
 import "./layout.css"
-import 'miever_ui/style';
+import "miever_ui/style";
  
 const Layout: FunctionComponent<{
     children: ReactElement
 }> = ({ children }) => {
     if (typeof document === 'undefined') return null;
+    const { t, i18n } = useTranslation();
     const scroll = useScroll(document);
     const location = useLocation();
     const { pathname } = location;
@@ -42,6 +44,7 @@ const Layout: FunctionComponent<{
                         prefix={(
                             <Box
                                 width="240px"
+                                height="100%"
                                 style={{
                                     backgroundImage: "url(https://miever.s3.ap-east-1.amazonaws.com/static/main-logo.webp)",
                                     backgroundPosition: "24px",
@@ -55,6 +58,26 @@ const Layout: FunctionComponent<{
                         )}
                         suffix={(
                             <Box flexBox alignItems="center" style={{ marginRight: "24px" }}>
+                                <Tooltip
+                                    overlay={t(i18n.language === "en" ? "tooltip_switch_to_zh" : "tooltip_switch_to_en")}
+                                    placement="bottom"
+                                >
+                                    <Button
+                                        style={{ padding: "8px" }}
+                                        styleType="link"
+                                        aria-label="Language"
+                                        onClick={() => {
+                                            const nextLocale = i18n.language === "en" ? "zh" : "en";
+                                            i18n.changeLanguage(nextLocale);
+                                        }}
+                                    >
+                                        <Icon
+                                            icon={["fas", "language"]}
+                                            theme="primary"
+                                            style={{ fontSize: "14px", cursor: "pointer" }}
+                                        />
+                                    </Button>
+                                </Tooltip>  
                                 <Tooltip overlay="Github" placement="bottom">
                                     <Button
                                         style={{ padding: "8px"}}
@@ -65,7 +88,7 @@ const Layout: FunctionComponent<{
                                         <Icon icon={["fab", "github"]} theme="primary" style={{ fontSize: "14px", cursor: "pointer" }}/>
                                     </Button>
                                 </Tooltip>
-                                <Tooltip overlay="Mail" placement="bottom">
+                                <Tooltip overlay={t("mail")} placement="bottom">
                                     <a href="mailto:miever1@163.com" aria-label="Mail">
                                         <Button
                                             style={{ padding: "8px"}}
@@ -76,7 +99,7 @@ const Layout: FunctionComponent<{
                                         </Button>
                                     </a>
                                 </Tooltip>
-                                <Tooltip overlay="LinkedIn" placement="bottom">
+                                <Tooltip overlay={t("linkedin")} placement="bottom">
                                     <Button
                                         style={{ padding: "8px"}}
                                         styleType="link"
@@ -101,31 +124,31 @@ const Layout: FunctionComponent<{
                         )}
                         items={[
                             {
-                                label: "Home",
+                                label: t("navigation_home"),
                                 key: "home"
                             },
                             {
-                                label: "Blogs",
+                                label: t("navigation_blogs"),
                                 key: "blogs"
                             },
                             {
-                                label: "Projects",
+                                label: t("navigation_projects"),
                                 key: "projects"
                             },
                             {
-                                label: "Designs",
+                                label: t("navigation_designs"),
                                 key: "designs"
                             },
                             {
-                                label: "Resume",
+                                label: t("navigation_resume"),
                                 key: "resume"
                             },
                             {
-                                label: "Dashboard",
+                                label: t("navigation_dashboard"),
                                 key: "dashboard"
                             },
                             {
-                                label: "Web Performance",
+                                label: t("navigation_web_performance"),
                                 key: "performance"
                             }
                         ]}
@@ -153,12 +176,12 @@ const Layout: FunctionComponent<{
                         styleType="link"
                         onClick={() => window.open("https://components.miever.net")}
                     >
-                        The website is designed by miever_ui!
+                        {t("footer_design_credit")}
                     </Button>
                     <Box
                         style={{ fontSize: "12px" }}
                     >
-                        Copyright © 2024-2025 Miever
+                        {t("footer_copyright")}
                     </Box>
                 </Box>
             </Box>

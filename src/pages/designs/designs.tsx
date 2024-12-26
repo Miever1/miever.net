@@ -2,9 +2,11 @@ import React, { FunctionComponent } from "react";
 import { Image } from "@chakra-ui/react";
 import { navigate, graphql, useStaticQuery } from "gatsby"
 import { Box, Card, Tooltip, Button, Icon } from "miever_ui";
+import { useTranslation } from "react-i18next";
 
 interface BlogInfo {
     type: "blogs" | "designs";
+    language: "en" | "zh";
     title: string;
     date: string;
     description: string;
@@ -15,6 +17,8 @@ interface BlogInfo {
 }
 
 const Designs:FunctionComponent<{}> = () => {
+    const { t, i18n } = useTranslation();
+    const currentLanguage = i18n.language;
     const { allMarkdownRemark: { edges } } = useStaticQuery(graphql`
         query {
             allMarkdownRemark {
@@ -33,7 +37,8 @@ const Designs:FunctionComponent<{}> = () => {
                         home_image,
                         tags,
                         type,
-                        liveDemoPath
+                        liveDemoPath,
+                        language
                     }
                   }
                 }
@@ -46,8 +51,8 @@ const Designs:FunctionComponent<{}> = () => {
                 return lastBlog.node?.frontmatter?.date < nextBlog.node?.frontmatter?.date
             }).filter((contentItem: { node: { frontmatter: BlogInfo }}) => {
                 const { node: { frontmatter } } = contentItem;
-                const { type } = frontmatter;
-                return type === "designs";
+                const { type, language } = frontmatter;
+                return (type === "designs") && (language === currentLanguage);
             }).map((item: { node: { frontmatter: BlogInfo }}) => {
                 const { node: { frontmatter } } = item;
                 const { title, liveDemoPath, description, slug, home_image, tags } = frontmatter;
@@ -68,7 +73,7 @@ const Designs:FunctionComponent<{}> = () => {
                                 </Box>
                                     </Box>
                                     <Box flexBox justifyContent="flex-end">
-                                        <Tooltip overlay="Live Demo" placement="top">
+                                        <Tooltip overlay={t("live_demo")} placement="top">
                                             <Button
                                                 size="sm"
                                                 styleType="link"

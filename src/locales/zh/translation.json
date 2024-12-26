@@ -1,0 +1,39 @@
+{
+    "header_title": "欢迎来到我的个人网站！",
+    "header_subtitle": "这个网站记录了我作为前端工程师的成长历程，在这里我分享我的个人项目、经验，以及那些塑造我职业发展的关键瞬间。",
+    "about_introduction": "作为一名前端工程师，我深知个人网站在展示技能和项目中的价值。虽然过去因为工作和生活琐事一再推迟，但我终于下定决心开始构建自己的在线形象！希望这个网站能展现我的热情、努力，以及一路走来的点滴。",
+    "footprints_title": "我的足迹",
+    "footprints_description": "欢迎探索我的足迹，它记录了我在世界各地的旅行足迹。地图上的每一个标记背后都藏着一段独特的故事和回忆，这些经历不仅丰富了我的人生，也推动了我的成长。我期待在未来的冒险中，能为这张地图增添更多新的目的地！",
+    "footer_copyright": "版权所有 © 2022-2025 Miever",
+    "footer_design_credit": "本网站由 miever_ui 设计！",
+    "navigation_home": "首页",
+    "navigation_blogs": "博客",
+    "navigation_projects": "项目",
+    "navigation_designs": "设计",
+    "navigation_resume": "简历",
+    "navigation_dashboard": "仪表盘",
+    "navigation_web_performance": "网站性能",
+    "mail": "邮箱",
+    "linkedin": "领英",
+    "tooltip_switch_to_en": "Switch to English",
+    "tooltip_switch_to_zh": "切换到中文",
+    "live_demo": "在线演示",
+    "github_res": "Github 资源",
+    "projects": {
+      "miever_net": {
+        "title": "Miever.net",
+        "subTitle": "欢迎来到我的个人网站，使用 Miever UI 精心制作！",
+        "description": "欢迎来到我的个人网站！这里展示了我的简历、博客以及其他与我相关的内容。同时，这个网站也是我运用所学技术的一个平台。如果您感兴趣，不妨查看一下源代码，发现更多有趣的细节！"
+      },
+      "miever_ui": {
+        "title": "Miever UI",
+        "subTitle": "轻松打造美观的用户界面！",
+        "description": "Miever UI 是一个个人 React 组件库，提供了多种 UI 组件，旨在提升我的网页应用的功能和美观性。通过可定制的样式和响应式设计，Miever UI 简化了开发流程，让创建美观的用户界面变得更加快捷和高效。"
+      },
+      "news_project": {
+        "title": "新闻项目",
+        "subTitle": "使用 Angular 和 Electron 构建无缝的新闻体验",
+        "description": "新闻项目是我的第一个 Angular 应用，旨在创建一个功能齐全的报纸网络应用。它包括显示、过滤和管理文章的功能，现在还支持 Electron，用于桌面应用的功能。"
+      }
+    }
+  }

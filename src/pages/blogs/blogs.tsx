@@ -2,9 +2,10 @@ import React, { FunctionComponent } from "react";
 import { Image } from "@chakra-ui/react";
 import { navigate, graphql, useStaticQuery } from "gatsby"
 import { Box, Card } from "miever_ui";
-
+import { useTranslation } from "react-i18next";
 interface BlogInfo {
     type: "blogs" | "designs";
+    language: "en" | "zh";
     title: string;
     date: string;
     description: string;
@@ -14,6 +15,8 @@ interface BlogInfo {
 }
 
 const Blogs:FunctionComponent<{}> = () => {
+    const { i18n } = useTranslation();
+    const currentLanguage = i18n.language;
     const { allMarkdownRemark: { edges } } = useStaticQuery(graphql`
         query {
             allMarkdownRemark {
@@ -31,7 +34,8 @@ const Blogs:FunctionComponent<{}> = () => {
                         slug,
                         home_image,
                         tags,
-                        type
+                        type,
+                        language
                     }
                   }
                 }
@@ -44,8 +48,8 @@ const Blogs:FunctionComponent<{}> = () => {
                 return lastBlog.node?.frontmatter?.date < nextBlog.node?.frontmatter?.date
             }).filter((contentItem: { node: { frontmatter: BlogInfo }}) => {
                 const { node: { frontmatter } } = contentItem;
-                const { type } = frontmatter;
-                return type === "blogs";
+                const { type, language } = frontmatter;
+                return (type === "blogs") && (language === currentLanguage);
             }).map((item: { node: { frontmatter: BlogInfo }}) => {
                 const { node: { frontmatter } } = item;
                 const { title, date, description, slug, home_image, tags } = frontmatter;
