@@ -3,6 +3,7 @@ title: "Budget Management App: A User-Centered Design"
 subTitle: "Designing Financial Tools for University Students"
 date: "2024-12-22"
 type: "designs"
+language: "en"
 slug: "/budget-management-app"
 home_image: "https://miever.s3.ap-east-1.amazonaws.com/static/designs/budget-management-sketch.webp"
 tags: ["Design", "UX", "Prototyping"]

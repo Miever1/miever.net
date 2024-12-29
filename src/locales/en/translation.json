@@ -1,0 +1,39 @@
+{
+    "header_title": "Welcome to My Personal Website!",
+    "header_subtitle": "This site is a reflection of my journey as a front-end engineer, where I share my personal projects, insights, and the experiences that have shaped who I am today.",
+    "about_introduction": "As a front-end engineer, I understand the importance of having a personal website to highlight my skills and projects. I had been putting off creating mine, always busy with work and other commitments. However, as time went on, I realized it was time to change that. So here I am, finally embracing the journey of building my online presence!",
+    "footprints_title": "My Footprints",
+    "footprints_description": "Explore my interactive map, where I've documented the places I've traveled around the globe. Each pin on this map signifies a unique story and experience that has contributed to my growth, both personally and professionally. I look forward to adding new destinations as I embark on more adventures in life!",
+    "footer_copyright": "Copyright © 2022-2025 Miever",
+    "footer_design_credit": "The website is designed by miever_ui!",
+    "navigation_home": "Home",
+    "navigation_blogs": "Blogs",
+    "navigation_projects": "Projects",
+    "navigation_designs": "Designs",
+    "navigation_resume": "Resume",
+    "navigation_dashboard": "Dashboard",
+    "navigation_web_performance": "Web Performance",
+    "mail": "Email",
+    "linkedin": "LinkedIn",
+    "tooltip_switch_to_en": "Switch to English",
+    "tooltip_switch_to_zh": "切换到中文",
+    "live_demo": "Live Demo",
+    "github_res": "Github Res",
+    "projects": {
+      "miever_net": {
+        "title": "Miever.net",
+        "subTitle": "Welcome to my personal website, crafted with Miever UI!",
+        "description": "The main purpose of this project is that I want to show my true self, here you can see my resume, blog, and other information about me. Of course, I also want to apply what I know in technology to my personal web page, if you want to know, please check out the source code."
+      },
+      "miever_ui": {
+        "title": "Miever UI",
+        "subTitle": "Crafting Beautiful User Interfaces Made Easy!",
+        "description": "Miever UI is a personal React component library that offers a wide range of UI components designed to enhance the functionality and aesthetics of my web applications. With customizable styles and responsive designs, Miever UI simplifies the development process, enabling faster and more efficient creation of beautiful user interfaces."
+      },
+      "news_project": {
+        "title": "News Project",
+        "subTitle": "Building a Seamless News Experience with Angular and Electron",
+        "description": "The News Project is my first Angular application, designed to create a functional newspaper web app. It includes features like displaying, filtering, and managing articles, and now supports Electron for desktop application functionality."
+      }
+    }
+  }

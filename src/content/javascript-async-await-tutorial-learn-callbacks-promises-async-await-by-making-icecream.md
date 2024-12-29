@@ -4,6 +4,7 @@ date: "2021-06-22 09:07"
 tags: ["Translate Program"]
 title: "JavaScript Async/Await 教程"
 type: "blogs"
+language: "zh"
 home_image: "https://www.freecodecamp.org/news/content/images/size/w2000/2021/05/FCC-Thumbnail--3-.png"
 description: "今天我们将在学习 异步 JavaScript 的同时建立并运行一个 冰淇淋店 ，在此过程中，您将学习如何使用: Callbacks、Promises、Async / Await
 "

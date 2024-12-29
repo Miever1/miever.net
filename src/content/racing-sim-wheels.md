@@ -3,6 +3,7 @@ title: "The Evolution and UX Design of Racing Simulator Steering Wheels"
 subTitle: "My First Figma Design: Exploring Racing Sim Hardware Evolution"
 date: "2024-12-22"
 type: "designs"
+language: "en"
 slug: "/racing-sim-wheels"
 home_image: "https://miever.s3.ap-east-1.amazonaws.com/static/designs/Thumbnail-The-Evolution-and-UX-Design-of-+Racing-Simulator-Steering-Wheels.jpg"
 tags: ["Design", "Figma"]
