@@ -1,7 +1,7 @@
 
-import React, { FunctionComponent } from "react";
-import { Image } from "@chakra-ui/react";
-import { Box, Card, Button, Icon, Tooltip } from "miever_ui";
+import React, { FunctionComponent, useState, useEffect } from "react";
+import { Image, Spinner } from "@chakra-ui/react";
+import { Box, Card, Button, Icon, Tooltip, designs } from "miever_ui";
 import { useTranslation } from "react-i18next";
 
 interface Project {
@@ -15,6 +15,15 @@ interface Project {
 
 const Projects:FunctionComponent<{}> = () => {
     const { t } = useTranslation();
+    const { BRAND_COLORS } = designs;
+    const [isLoaded, setIsLoaded] = useState(false);
+
+    useEffect(() => {
+        setTimeout(() => {
+            setIsLoaded(true);
+        }, 500);
+    }, []);
+
     const projectsList: Project[] = [
         {
           title: t("projects.miever_net.title"),
@@ -41,6 +50,23 @@ const Projects:FunctionComponent<{}> = () => {
           githubPath: "https://github.com/Miever1/news-manager"
         }
     ];
+
+    if(!isLoaded) {
+        return(
+            <Box
+                style={{
+                    position: "absolute",
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
+                    zIndex: 10,
+                }}
+            >
+                <Spinner size="xl" color={BRAND_COLORS.primary} />
+            </Box>
+        )
+    }
+
     return (
         <Box>
             {projectsList.map(item => {

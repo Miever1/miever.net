@@ -69,6 +69,7 @@ const Layout: FunctionComponent<{
                                         onClick={() => {
                                             const nextLocale = i18n.language === "en" ? "zh" : "en";
                                             i18n.changeLanguage(nextLocale);
+                                            window.location.replace("/");
                                         }}
                                     >
                                         <Icon

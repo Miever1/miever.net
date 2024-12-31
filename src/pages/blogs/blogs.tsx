@@ -1,7 +1,7 @@
-import React, { FunctionComponent } from "react";
-import { Image } from "@chakra-ui/react";
+import React, { FunctionComponent, useState, useEffect } from "react";
+import { Image, Spinner } from "@chakra-ui/react";
 import { navigate, graphql, useStaticQuery } from "gatsby"
-import { Box, Card } from "miever_ui";
+import { Box, Card, designs } from "miever_ui";
 import { useTranslation } from "react-i18next";
 interface BlogInfo {
     type: "blogs" | "designs";
@@ -15,8 +15,17 @@ interface BlogInfo {
 }
 
 const Blogs:FunctionComponent<{}> = () => {
+    const { BRAND_COLORS } = designs;
     const { i18n } = useTranslation();
     const currentLanguage = i18n.language;
+    const [isLoaded, setIsLoaded] = useState(false);
+
+    useEffect(() => {
+        setTimeout(() => {
+            setIsLoaded(true);
+        }, 500);
+    }, []);
+
     const { allMarkdownRemark: { edges } } = useStaticQuery(graphql`
         query {
             allMarkdownRemark {
@@ -41,7 +50,24 @@ const Blogs:FunctionComponent<{}> = () => {
                 }
               }
         }
-    `)
+    `);
+
+    if(!isLoaded) {
+        return(
+            <Box
+                style={{
+                    position: "absolute",
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
+                    zIndex: 10,
+                }}
+            >
+                <Spinner size="xl" color={BRAND_COLORS.primary} />
+            </Box>
+        )
+    }
+
     return (
         <Box>
             {edges.sort((lastBlog: { node: { frontmatter: BlogInfo }}, nextBlog: { node: { frontmatter: BlogInfo }}) => {

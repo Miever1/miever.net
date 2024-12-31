@@ -1,7 +1,7 @@
-import React, { FunctionComponent } from "react";
-import { Image } from "@chakra-ui/react";
+import React, { FunctionComponent, useState, useEffect } from "react";
+import { Image, Spinner } from "@chakra-ui/react";
 import { navigate, graphql, useStaticQuery } from "gatsby"
-import { Box, Card, Tooltip, Button, Icon } from "miever_ui";
+import { Box, Card, Tooltip, Button, Icon, designs } from "miever_ui";
 import { useTranslation } from "react-i18next";
 
 interface BlogInfo {
@@ -17,8 +17,17 @@ interface BlogInfo {
 }
 
 const Designs:FunctionComponent<{}> = () => {
+    const { BRAND_COLORS } = designs;
+    const [isLoaded, setIsLoaded] = useState(false);
     const { t, i18n } = useTranslation();
     const currentLanguage = i18n.language;
+
+    useEffect(() => {
+        setTimeout(() => {
+            setIsLoaded(true);
+        }, 500);
+    }, []);
+
     const { allMarkdownRemark: { edges } } = useStaticQuery(graphql`
         query {
             allMarkdownRemark {
@@ -44,7 +53,24 @@ const Designs:FunctionComponent<{}> = () => {
                 }
               }
         }
-    `)
+    `);
+
+    if(!isLoaded) {
+        return(
+            <Box
+                style={{
+                    position: "absolute",
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
+                    zIndex: 10,
+                }}
+            >
+                <Spinner size="xl" color={BRAND_COLORS.primary} />
+            </Box>
+        )
+    }
+
     return (
         <Box>
             {edges.sort((lastBlog: { node: { frontmatter: BlogInfo }}, nextBlog: { node: { frontmatter: BlogInfo }}) => {
@@ -57,7 +83,7 @@ const Designs:FunctionComponent<{}> = () => {
                 const { node: { frontmatter } } = item;
                 const { title, liveDemoPath, description, slug, home_image, tags } = frontmatter;
                 return (
-                    <Box paddingY={2} key={`blog_${slug}`} onClick={() => navigate(`/designs${slug}`)}>
+                    <Box paddingY={2} key={`blog_${slug}`} onClick={() => navigate(`/designs${slug}${i18n.language === "en" ? "" : "-zh"}`)}>
                         <Card
                             hoverable
                             title={title}
