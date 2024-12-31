@@ -35,5 +35,47 @@
         "subTitle": "Building a Seamless News Experience with Angular and Electron",
         "description": "The News Project is my first Angular application, designed to create a functional newspaper web app. It includes features like displaying, filtering, and managing articles, and now supports Electron for desktop application functionality."
       }
+    },
+    "countries": {
+      "China": "China",
+      "Singapore": "Singapore",
+      "Latvia": "Latvia",
+      "Portugal": "Portugal",
+      "USA": "United States of America",
+      "Indonesia": "Indonesia",
+      "Spain": "Spain"
+    },
+    "cities": {
+      "Yangzhou": "Yangzhou",
+      "Putian": "Putian",
+      "Yiwu": "Yiwu",
+      "Suzhou": "Suzhou",
+      "Hong Kong": "Hong Kong",
+      "Harbin": "Harbin",
+      "Yili": "Yili",
+      "Shenyang": "Shenyang",
+      "Ningbo": "Ningbo",
+      "Guangzhou": "Guangzhou",
+      "Bortala": "Bortala",
+      "Zhenjiang": "Zhenjiang",
+      "Hangzhou": "Hangzhou",
+      "Beijing": "Beijing",
+      "Urumqi": "Urumqi",
+      "Sanya": "Sanya",
+      "Wanning": "Wanning",
+      "Qionghai": "Qionghai",
+      "Wenchang": "Wenchang",
+      "Haikou": "Haikou",
+      "Zhoushan": "Zhoushan",
+      "Shanghai": "Shanghai",
+      "Xi'an": "Xi'an",
+      "Nanjing": "Nanjing",
+      "Singapore": "Singapore",
+      "Riga": "Riga",
+      "Porto": "Porto",
+      "Hawaii": "Hawaii",
+      "Bali Island": "Bali Island",
+      "Madrid": "Madrid",
+      "Valencia": "Valencia"
     }
   }
