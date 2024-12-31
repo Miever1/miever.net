@@ -3,7 +3,7 @@ import { ComposableMap, Geographies, Geography, Marker } from "react-simple-maps
 import { designs, Card } from "miever_ui";
 import { useTranslation } from "react-i18next";
 
-import { markers } from "./footprints-datas";
+import { markers } from "../../data/footprints-datas";
 
 type HoveredMarker = {
   name: string;
