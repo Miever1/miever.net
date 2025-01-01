@@ -1,11 +1,38 @@
-import React, { FunctionComponent } from "react";
-import { Box, Card } from "miever_ui"; 
+import React, { FunctionComponent, useEffect, useState } from "react";
+import { Box, Card, designs } from "miever_ui"; 
+import { Spinner } from "@chakra-ui/react";
+
 import MapChart from "./footprints";
 import { SEO } from "../../components/SEO";
 import { useTranslation } from "react-i18next";
 
 const Home: FunctionComponent<{}> = () => {
+    const { BRAND_COLORS } = designs;
     const { t } = useTranslation();
+    const [isLoaded, setIsLoaded] = useState(false);
+
+    useEffect(() => {
+        setTimeout(() => {
+            setIsLoaded(true);
+        }, 500);
+    }, []);
+
+    if(!isLoaded) {
+        return(
+            <Box
+                style={{
+                    position: "absolute",
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
+                    zIndex: 10,
+                }}
+            >
+                <Spinner size="xl" color={BRAND_COLORS.primary} />
+            </Box>
+        )
+    }
+
     return (
         <Card
             hoverable
