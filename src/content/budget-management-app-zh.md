@@ -4,7 +4,7 @@ subTitle: "为大学生设计的财务工具"
 date: "2024-12-22"
 type: "designs"
 language: "zh"
-slug: "/budget-management-app"
+slug: "/budget-management-app-zh"
 home_image: "https://miever.s3.ap-east-1.amazonaws.com/static/designs/budget-management-sketch.webp"
 tags: ["设计", "用户体验", "原型设计"]
 liveDemoPath: "https://miever.s3.ap-east-1.amazonaws.com/static/designs/low-fidelidy-demo.mov"
