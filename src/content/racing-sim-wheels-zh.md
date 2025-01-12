@@ -4,7 +4,7 @@ subTitle: "我的第一个 Figma 设计：探索赛车模拟硬件的演变"
 date: "2024-12-22"
 type: "designs"
 language: "zh"
-slug: "/racing-sim-wheels"
+slug: "/racing-sim-wheels-zh"
 home_image: "https://miever.s3.ap-east-1.amazonaws.com/static/designs/Thumbnail-The-Evolution-and-UX-Design-of-+Racing-Simulator-Steering-Wheels.jpg"
 tags: ["设计", "Figma"]
 liveDemoPath: "https://www.figma.com/proto/d3n816mDDp81SMxssBS6ca/The-Evolution-and-UX-Design-of-Racing-Simulator-Steering-Wheels?node-id=101-4&t=rU4I0elLU5TglGGA-1&scaling=scale-down"

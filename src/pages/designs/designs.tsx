@@ -83,7 +83,7 @@ const Designs:FunctionComponent<{}> = () => {
                 const { node: { frontmatter } } = item;
                 const { title, liveDemoPath, description, slug, home_image, tags } = frontmatter;
                 return (
-                    <Box paddingY={2} key={`blog_${slug}`} onClick={() => navigate(`/designs${slug}${i18n.language === "en" ? "" : "-zh"}`)}>
+                    <Box paddingY={2} key={`blog_${slug}`} onClick={() => navigate(`/designs${slug}`)}>
                         <Card
                             hoverable
                             title={title}
