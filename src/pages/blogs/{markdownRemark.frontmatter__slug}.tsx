@@ -6,6 +6,18 @@ import { SEO } from "../../components/SEO";
 
 const { BRAND_COLORS } = designs
 
+interface BlogPostData {
+  markdownRemark: {
+    frontmatter: {
+      title: string;
+      description: string;
+      slug: string;
+      date: string;
+      home_image?: string;
+    };
+  };
+}
+
 export const BoxWrapper = styled(Box)(() => {
   const commonStyle = `
     font-size: var(--chakra-fontSizes-6xl);
@@ -85,18 +97,63 @@ export const pageQuery = graphql`
         slug
         title,
         description,
+        home_image
       }
     }
   }
 `
 
-export const Head: HeadFC = ({ data }) => {
-  // @ts-ignore
-  const title = data?.markdownRemark?.frontmatter?.title || "Default Title";
-  // @ts-ignore
-  const description = data?.markdownRemark?.frontmatter?.description || "Default Description";
+export const Head: HeadFC<BlogPostData> = ({ data }) => {
+  if (!data?.markdownRemark) {
+    return <SEO title="Miever Blog" description="Explore insightful articles on Miever." />;
+  }
+
+  const { frontmatter } = data.markdownRemark;
+  const { title, description, slug, date, home_image } = frontmatter;
+
+  const url = `https://miever.net/blogs/${slug}`;
+  const image = home_image || "https://miever.s3.ap-east-1.amazonaws.com/static/main-logo.webp";
+  const isoDate = new Date(date).toISOString();
 
   return (
-    <SEO title={title} description={description} />
+    <SEO title={title} description={description} pathname={`/blogs/${slug}`} image={image}>
+      <meta property="og:title" content={title} />
+      <meta property="og:description" content={description} />
+      <meta property="og:type" content="article" />
+      <meta property="og:url" content={url} />
+      <meta property="og:image" content={image} />
+      <meta property="og:site_name" content="Miever Blog" />
+
+      <link rel="canonical" href={url} />
+
+      <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          "headline": title,
+          "description": description,
+          "image": image,
+          "url": url,
+          "datePublished": isoDate,
+          "dateModified": isoDate,
+          "author": {
+            "@type": "Person",
+            "name": "Miever"
+          },
+          "publisher": {
+            "@type": "Person",
+            "name": "Miever",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://miever.s3.ap-east-1.amazonaws.com/static/main-logo.webp"
+            }
+          },
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": url
+          }
+        })}
+      </script>
+    </SEO>
   );
 };
