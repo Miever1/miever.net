@@ -8,13 +8,51 @@ const config: GatsbyConfig = {
   siteMetadata: {
     title: `miever.net`,
     description: "Everyone needs their own little spot on the interwebs, and this is mine. Welcome to miever's website!",
-    siteUrl: `https://miever.net`
+    siteUrl: `https://miever.net`,
+    image: "https://miever.net/static/default-og-image.jpg",
+    author: "Miever",
+    social: {
+      github: "https://github.com/Miever1",
+      linkedin: "https://www.linkedin.com/in/aerman-huofuer-413328280/"
+    }
   },
   graphqlTypegen: true,
   plugins: [
     "gatsby-plugin-emotion",
     `gatsby-transformer-remark`,
     `gatsby-plugin-layout`,
+    "gatsby-plugin-preload-fonts",
+    "gatsby-plugin-image",
+    "gatsby-plugin-sharp",
+    "gatsby-transformer-sharp",
+    {
+      resolve: `gatsby-plugin-sitemap`,
+      options: {
+        query: `
+          {
+            allSitePage {
+              nodes {
+                path
+              }
+            }
+          }
+        `,
+        resolveSiteUrl: () => "https://miever.net",
+        serialize: ({ path }: { path: string }) => ({
+          url: `https://miever.net${path}`,
+          changefreq: "daily",
+          priority: 0.7,
+        }),
+      },
+    },
+    {
+      resolve: "gatsby-plugin-robots-txt",
+      options: {
+        policy: [
+          { userAgent: "*", allow: "/" },
+        ],
+      },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
