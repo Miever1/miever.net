@@ -4,7 +4,7 @@ date: "2019-06-29 16:53"
 title: "C语言小练习"
 type: "blogs"
 language: "zh"
-tags: ["Small Practice"]
+tags: ["编程实践"]
 home_image: "https://www.techworm.net/programming/wp-content/uploads/2018/09/c-programming-1.png"
 description: "最近朋友问了几道关于C语言的题目,所幸花了一个晚上写了一下"
 ---

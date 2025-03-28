@@ -1,11 +1,11 @@
 ---
 slug: "/javascript-async-await-tutorial-learn-callbacks-promises-async-await-by-making-icecream"
 date: "2021-06-22 09:07"
-tags: ["Translate Program"]
+tags: ["翻译项目"]
 title: "JavaScript Async/Await 教程"
 type: "blogs"
 language: "zh"
-home_image: "https://www.freecodecamp.org/news/content/images/size/w2000/2021/05/FCC-Thumbnail--3-.png"
+home_image: "https://miever.s3.ap-east-1.amazonaws.com/static/footprints/FreeCodeCamp2.webp"
 description: "今天我们将在学习 异步 JavaScript 的同时建立并运行一个 冰淇淋店 ，在此过程中，您将学习如何使用: Callbacks、Promises、Async / Await
 "
 ---

@@ -1,11 +1,11 @@
 ---
 slug: "/learn-css-background-properties"
 date: "2021-07-15 09:07"
-tags: ["Translate Program"]
+tags: ["翻译项目"]
 title: "学习CSS background 属性"
 type: "blogs"
 language: "zh"
-home_image: "https://www.freecodecamp.org/news/content/images/size/w2000/2021/03/FreeCodeCamp--1-.png"
+home_image: "https://miever.s3.ap-east-1.amazonaws.com/static/footprints/FreeCodeCamp1.webp"
 description: "CSS背景（background）属性让我们可以控制图像的大小和属性，这样我们就可以为不同大小的屏幕制作响应性强的图像。它能帮助我们创建响应式网页。"
 ---
 
