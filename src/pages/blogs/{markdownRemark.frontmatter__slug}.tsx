@@ -60,9 +60,6 @@ export const BoxWrapper = styled(Box)(() => {
     ${commonStyle}
     font-size: var(--chakra-fontSizes-lg);
   }
-  > ul > li {
-    font-weight: 800;
-  }
   > pre {
     color: #fff;
     padding: var(--chakra-space-2);

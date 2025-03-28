@@ -4,7 +4,7 @@ import { Image, Spinner } from "@chakra-ui/react";
 import { Box, Card, Button, Icon, Tooltip, designs } from "miever_ui";
 import { useTranslation } from "react-i18next";
 
-interface Project {
+export interface Project {
     title: string;
     subTitle: string;
     description: string;

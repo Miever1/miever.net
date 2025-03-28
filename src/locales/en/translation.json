@@ -43,7 +43,9 @@
       "Portugal": "Portugal",
       "USA": "United States of America",
       "Indonesia": "Indonesia",
-      "Spain": "Spain"
+      "Spain": "Spain",
+      "France": "France",
+      "United Kingdom": "United Kingdom"
     },
     "cities": {
       "Yangzhou": "Yangzhou",
@@ -76,6 +78,8 @@
       "Hawaii": "Hawaii",
       "Bali Island": "Bali Island",
       "Madrid": "Madrid",
-      "Valencia": "Valencia"
+      "Valencia": "Valencia",
+      "Paris": "Paris",
+      "London": "London"
     }
   }

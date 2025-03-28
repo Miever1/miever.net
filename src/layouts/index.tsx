@@ -90,11 +90,12 @@ const Layout: FunctionComponent<{
                                     </Button>
                                 </Tooltip>
                                 <Tooltip overlay={t("mail")} placement="bottom">
-                                    <a href="mailto:miever1@163.com" aria-label="Mail">
+                                    <a aria-label="Mail">
                                         <Button
                                             style={{ padding: "8px"}}
                                             styleType="link"
                                             aria-label="Mail"
+                                            onClick={() => window.location.href = 'mailto:miever1@163.com'}
                                         >
                                             <Icon icon={["fas", "envelope"]} theme="primary" style={{ fontSize: "14px", cursor: "pointer" }}/>
                                         </Button>
@@ -108,17 +109,6 @@ const Layout: FunctionComponent<{
                                         onClick={() => window.open("https://www.linkedin.com/in/aerman-huofuer-413328280/")}
                                     >
                                         <Icon icon={["fab", "linkedin"]} theme="primary" style={{ fontSize: "14px", cursor: "pointer" }}/>
-                                    </Button>
-                                </Tooltip>
-                                <Tooltip overlay="Instgram" placement="bottom">
-                                    <Button
-                                        style={{ padding: "8px"}}
-                                        styleType="link"
-                                        aria-label="Instgram"
-                                        onClick={() => window.open("https://www.instagram.com/imiever7/profilecard/?igsh=MXFyMHJ1OWkxZmhqag==")}
-                                    >
-                                        {/* @ts-ignore */}
-                                        <Icon icon={["fab", "square-instagram"]} theme="primary" style={{ fontSize: "14px", cursor: "pointer" }}/>
                                     </Button>
                                 </Tooltip>
                             </Box>
