@@ -18,7 +18,7 @@ const MapChart = () => {
   const geoUrl = "https://unpkg.com/world-atlas@2.0.2/countries-110m.json";
 
   const themeColor = BRAND_COLORS.primary || "#000";
-  const visitedCountries = ["China", "Singapore", "USA", "Portugal", "Indonesia", "Spain", "France", "United Kingdom"]; 
+  const visitedCountries = ["China", "Singapore", "USA", "Indonesia", "Spain", "Latvia", "Portugal", "France", "United Kingdom"]; 
 
   const [hoveredMarker, setHoveredMarker] = useState<HoveredMarker>(null);
   const [hoveredCountry, setHoveredCountry] = useState(null);

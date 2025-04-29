@@ -5,7 +5,7 @@
     "footprints_title": "我的足迹",
     "footprints_description": "欢迎探索我的足迹，它记录了我在世界各地的旅行足迹。地图上的每一个标记背后都藏着一段独特的故事和回忆，这些经历不仅丰富了我的人生，也推动了我的成长。我期待在未来的冒险中，能为这张地图增添更多新的目的地！",
     "footer_copyright": "版权所有 © 2022-2025 Miever",
-    "footer_design_credit": "本网站由 miever_ui 设计！",
+    "footer_design_credit": "本网站基于 miever_ui ！",
     "navigation_home": "首页",
     "navigation_blogs": "博客",
     "navigation_projects": "项目",
@@ -268,6 +268,7 @@
       "Madrid": "马德里",
       "Valencia": "瓦伦西亚",
       "Paris": "巴黎",
-      "London": "伦敦"
+      "London": "伦敦",
+      "Tenerife": "特内里费岛"
     }
   }

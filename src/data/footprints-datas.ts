@@ -30,6 +30,7 @@ export const markers: { markerOffset: number; name: string; country: string; coo
     { markerOffset: -20, name: "Bali Island", country: "Indonesia", coordinates: [115.1889, -8.4095], visitTime: "2023-09-08", photo: "https://miever.s3.ap-east-1.amazonaws.com/static/footprints/Bali-Island.webp" },
     { markerOffset: -20, name: "Madrid", country: "Spain", coordinates: [-3.7038, 40.4168], visitTime: "2024-08.22 → Now", photo: "https://miever.s3.ap-east-1.amazonaws.com/static/footprints/Madrid.webp" },
     { markerOffset: -20, name: "Valencia", country: "Spain", coordinates: [-0.3763, 39.4699], visitTime: "2024-12-29", photo: "https://miever.s3.ap-east-1.amazonaws.com/static/footprints/Valencia.webp" },
+    { markerOffset: -20, name: "Tenerife", country: "Spain", coordinates: [-16.6291, 28.2916], visitTime: "2025-04-12", photo: "https://miever.s3.ap-east-1.amazonaws.com/static/footprints/Tenerife.webp" },
     { markerOffset: -20, name: "Paris", country: "France", coordinates: [2.3522, 48.8566], visitTime: "2025-01-08", photo: "https://miever.s3.ap-east-1.amazonaws.com/static/footprints/Paris.webp"},
     { markerOffset: -20, name: "London", country: "United Kingdom", coordinates: [-0.1276, 51.5072], visitTime: "2025-03-21", photo: "https://miever.s3.ap-east-1.amazonaws.com/static/footprints/London.webp"}
   ];
