@@ -86,9 +86,18 @@ const Designs:FunctionComponent<{}> = () => {
                     <Box paddingY={2} key={`blog_${slug}`} onClick={() => navigate(`/designs${slug}`)}>
                         <Card
                             hoverable
-                            title={title}
+                            title={(
+                                <Box
+                                    flexBox
+                                    style={{ cursor: "pointer" }}
+                                >
+                                    <Box style={{ color: BRAND_COLORS.primary }}>
+                                        {title}
+                                    </Box>
+                                </Box>
+                            )}
                             subTitle={(
-                                <Box flexBox paddingX={1} justifyContent="space-between">
+                                <Box flexBox paddingX={1} justifyContent="space-between" style={{ color: BRAND_COLORS.primary }}>
                                     <Box style={{ lineHeight: "29px" }}>
                                     <Box>
                                     {tags.map((item, index) => (

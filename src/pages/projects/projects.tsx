@@ -74,11 +74,16 @@ const Projects:FunctionComponent<{}> = () => {
                 return (
                     <Box paddingY={2}>
                         <Card
-                            hoverable
-                            title={title}
+                            title={(
+                                <Box flexBox >
+                                    <Box style={{ color: BRAND_COLORS.primary }}>
+                                        {title}
+                                    </Box>
+                                </Box>
+                            )}
                             subTitle={(
                                 <Box flexBox paddingX={1} justifyContent="space-between">
-                                    <Box style={{ lineHeight: "29px" }}>
+                                    <Box style={{ lineHeight: "29px", color: BRAND_COLORS.primary }}>
                                         {subTitle}
                                     </Box>
                                     <Box flexBox justifyContent="flex-end">

@@ -19,6 +19,7 @@
     "tooltip_switch_to_zh": "切换到中文",
     "live_demo": "在线演示",
     "github_res": "Github 资源",
+    "comment_title": "思辨如诗，远方如梦 - 与君共话！",
     "projects": {
       "miever_net": {
         "title": "Miever.net",
@@ -269,6 +270,11 @@
       "Valencia": "瓦伦西亚",
       "Paris": "巴黎",
       "London": "伦敦",
-      "Tenerife": "特内里费岛"
+      "Tenerife": "特内里费岛",
+      "Alicante": "阿利坎特",
+      "Salamanca": "萨拉曼卡",
+      "Granada": "格拉纳达",
+      "Avila": "阿维拉",
+      "El Escorial": "埃尔埃斯科里亚尔"
     }
   }

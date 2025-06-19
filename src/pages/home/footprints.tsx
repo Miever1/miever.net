@@ -83,7 +83,7 @@ const MapChart = () => {
           <img
             src={hoveredMarker.photo}
             alt={hoveredMarker.name}
-            style={{ width: "100%", height: "auto" }}
+            style={{ width: "100%", height: "auto", maxHeight: "400px", objectFit: "cover", borderRadius: "8px" }}
           />
         </Card>
       )}

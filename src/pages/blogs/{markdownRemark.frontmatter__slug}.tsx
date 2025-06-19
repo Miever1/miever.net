@@ -3,9 +3,7 @@ import { graphql, HeadFC } from "gatsby"
 import styled from '@emotion/styled'
 import { Box, designs } from "miever_ui";
 import { SEO } from "../../components/SEO";
-
-const { BRAND_COLORS } = designs
-
+import Comments from "../../components/Comments";
 interface BlogPostData {
   markdownRemark: {
     frontmatter: {
@@ -19,11 +17,13 @@ interface BlogPostData {
 }
 
 export const BoxWrapper = styled(Box)(() => {
+  const { BRAND_COLORS: { primary } } = designs;
   const commonStyle = `
     font-size: var(--chakra-fontSizes-6xl);
     margin: var(--chakra-space-6) 0;
+    color: ${primary};
     a {
-      color: ${BRAND_COLORS.primary};
+      color: ${primary};
     }
   `
   let styleText = `
@@ -37,27 +37,28 @@ export const BoxWrapper = styled(Box)(() => {
   > h2 {
     ${commonStyle}
     font-weight: 700;
-    font-size: var(--chakra-fontSizes-4xl)
+    font-size: var(--chakra-fontSizes-4xl);
   }
   > h3 {
     ${commonStyle}
     font-weight: 500;
-    font-size: var(--chakra-fontSizes-3xl)
+    font-size: var(--chakra-fontSizes-3xl);
   }
   > h4 {
     ${commonStyle}
-    font-size: var(--chakra-fontSizes-2xl)
+    font-size: var(--chakra-fontSizes-2xl);
   }
   > h5 {
     ${commonStyle}
-    font-size: var(--chakra-fontSizes-1xl)
+    font-size: var(--chakra-fontSizes-1xl);
+    color: ${primary};
   }
   > h6 {
     ${commonStyle}
-    font-size: var(--chakra-fontSizes-lg)
+    font-size: var(--chakra-fontSizes-lg);
+    color: ${primary};
   }
   > p {
-    ${commonStyle}
     font-size: var(--chakra-fontSizes-lg);
   }
   > pre {
@@ -75,9 +76,12 @@ export default function BlogPostTemplate({
   const { markdownRemark } = data;
   const { html } = markdownRemark
   return (
-      <BoxWrapper
-        dangerouslySetInnerHTML={{ __html: html }}
-      />
+      <Box>
+        <BoxWrapper
+          dangerouslySetInnerHTML={{ __html: html }}
+        />
+        <Comments />
+      </Box>
   )
 }
 

@@ -32,5 +32,10 @@ export const markers: { markerOffset: number; name: string; country: string; coo
     { markerOffset: -20, name: "Valencia", country: "Spain", coordinates: [-0.3763, 39.4699], visitTime: "2024-12-29", photo: "https://miever.s3.ap-east-1.amazonaws.com/static/footprints/Valencia.webp" },
     { markerOffset: -20, name: "Tenerife", country: "Spain", coordinates: [-16.6291, 28.2916], visitTime: "2025-04-12", photo: "https://miever.s3.ap-east-1.amazonaws.com/static/footprints/Tenerife.webp" },
     { markerOffset: -20, name: "Paris", country: "France", coordinates: [2.3522, 48.8566], visitTime: "2025-01-08", photo: "https://miever.s3.ap-east-1.amazonaws.com/static/footprints/Paris.webp"},
-    { markerOffset: -20, name: "London", country: "United Kingdom", coordinates: [-0.1276, 51.5072], visitTime: "2025-03-21", photo: "https://miever.s3.ap-east-1.amazonaws.com/static/footprints/London.webp"}
+    { markerOffset: -20, name: "London", country: "United Kingdom", coordinates: [-0.1276, 51.5072], visitTime: "2025-03-21", photo: "https://miever.s3.ap-east-1.amazonaws.com/static/footprints/London.webp"},
+    { markerOffset: -20, name: "Salamanca", country: "Spain", coordinates: [-5.6731, 40.9701], visitTime: "2025-05-10", photo: "https://miever.s3.ap-east-1.amazonaws.com/static/footprints/Salamanca.webp" },
+    { markerOffset: -20, name: "El Escorial", country: "Spain", coordinates: [-4.1399, 40.5881], visitTime: "2025-05-21", photo: "https://miever.s3.ap-east-1.amazonaws.com/static/footprints/El-Escorial.webp" },
+    { markerOffset: -20, name: "Alicante", country: "Spain", coordinates: [-0.4907, 38.3452], visitTime: "2025-05-28", photo: "https://miever.s3.ap-east-1.amazonaws.com/static/footprints/Alicante.webp" },
+    { markerOffset: -20, name: "Avila", country: "Spain", coordinates: [-4.7091, 40.6566], visitTime: "2025-06-09", photo: "https://miever.s3.ap-east-1.amazonaws.com/static/footprints/Avila.webp" },
+    { markerOffset: -20, name: "Granada", country: "Spain", coordinates: [-3.5986, 37.1773], visitTime: "2025-06-15", photo: "https://miever.s3.ap-east-1.amazonaws.com/static/footprints/Granada.webp" },
   ];

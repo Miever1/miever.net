@@ -84,9 +84,19 @@ const Blogs:FunctionComponent<{}> = () => {
                         <Card
                             hoverable
                             key={slug}
-                            title={title}
+                            title={(
+                                <Box
+                                    flexBox
+                                    justifyContent="space-between"
+                                    style={{ cursor: "pointer" }}
+                                >
+                                    <Box style={{ color: BRAND_COLORS.primary }}>
+                                        {title}
+                                    </Box>
+                                </Box>
+                            )}
                             subTitle={(
-                                <Box flexBox paddingX={1} justifyContent="space-between">
+                                <Box flexBox paddingX={1} justifyContent="space-between" style={{ color: BRAND_COLORS.primary }}>
                                     <Box>
                                         {date}
                                     </Box>
