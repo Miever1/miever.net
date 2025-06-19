@@ -1,7 +1,11 @@
 import Giscus from '@giscus/react';
 import { FunctionComponent } from 'react';
 
-const Comments: FunctionComponent<{}> = () => {
+const Comments: FunctionComponent<{
+    reactionsEnabled?: "0" | "1";
+}> = ({
+    reactionsEnabled = "1",
+}) => {
     return (
         <Giscus
             id="comments"
@@ -10,7 +14,7 @@ const Comments: FunctionComponent<{}> = () => {
             category="General"
             categoryId="DIC_kwDOIm-VVM4CruHb"
             mapping="pathname"
-            reactionsEnabled="1"
+            reactionsEnabled={reactionsEnabled}
             emitMetadata="0"
             inputPosition="top"
             theme="light"

@@ -1,6 +1,9 @@
 import * as React from "react"
 import { graphql, HeadFC } from "gatsby"
 import { SEO } from "../../components/SEO";
+import Comments  from "../../components/Comments";
+
+import { Box } from "miever_ui";
 import { BoxWrapper } from "../blogs/{markdownRemark.frontmatter__slug}";
 
 export default function DesignsTemplate({
@@ -9,9 +12,12 @@ export default function DesignsTemplate({
   const { markdownRemark } = data;
   const { html } = markdownRemark
   return (
-      <BoxWrapper
-        dangerouslySetInnerHTML={{ __html: html }}
-      />
+      <Box>
+        <BoxWrapper
+          dangerouslySetInnerHTML={{ __html: html }}
+        />
+        <Comments />
+      </Box>
   )
 }
 

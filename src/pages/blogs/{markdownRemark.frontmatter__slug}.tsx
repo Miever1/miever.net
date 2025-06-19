@@ -3,9 +3,7 @@ import { graphql, HeadFC } from "gatsby"
 import styled from '@emotion/styled'
 import { Box, designs } from "miever_ui";
 import { SEO } from "../../components/SEO";
-
-const { BRAND_COLORS } = designs
-
+import Comments from "../../components/Comments";
 interface BlogPostData {
   markdownRemark: {
     frontmatter: {
@@ -24,6 +22,7 @@ export const BoxWrapper = styled(Box)(() => {
   const commonStyle = `
     font-size: var(--chakra-fontSizes-6xl);
     margin: var(--chakra-space-6) 0;
+    color: ${BRAND_COLORS.primary};
     a {
       color: ${BRAND_COLORS.primary};
     }
@@ -35,19 +34,16 @@ export const BoxWrapper = styled(Box)(() => {
     ${commonStyle}
     font-size: var(--chakra-fontSizes-5xl);
     font-weight: 800;
-    color: ${primary};
   }
   > h2 {
     ${commonStyle}
     font-weight: 700;
     font-size: var(--chakra-fontSizes-4xl);
-    color: ${primary};
   }
   > h3 {
     ${commonStyle}
     font-weight: 500;
     font-size: var(--chakra-fontSizes-3xl);
-    color: ${primary};
   }
   > h4 {
     ${commonStyle}
@@ -64,7 +60,6 @@ export const BoxWrapper = styled(Box)(() => {
     color: ${primary};
   }
   > p {
-    ${commonStyle}
     font-size: var(--chakra-fontSizes-lg);
   }
   > pre {
@@ -82,9 +77,12 @@ export default function BlogPostTemplate({
   const { markdownRemark } = data;
   const { html } = markdownRemark
   return (
-      <BoxWrapper
-        dangerouslySetInnerHTML={{ __html: html }}
-      />
+      <Box>
+        <BoxWrapper
+          dangerouslySetInnerHTML={{ __html: html }}
+        />
+        <Comments />
+      </Box>
   )
 }
 

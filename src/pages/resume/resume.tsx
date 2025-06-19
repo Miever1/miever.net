@@ -2,6 +2,8 @@ import React, { FunctionComponent, useState, useEffect } from "react";
 import { Box, designs } from "miever_ui";
 import { Spinner } from "@chakra-ui/react";
 
+import Comments from "../../components/Comments";
+
 const Resume: FunctionComponent<{}> = () => {
     const { BRAND_COLORS } = designs;
     const [isLoaded, setIsLoaded] = useState(false);
@@ -48,6 +50,9 @@ const Resume: FunctionComponent<{}> = () => {
                 onError={() => console.error("Iframe failed to load")}
                 title="PDF Viewer"
             />
+            <Box paddingY={16}>
+                <Comments reactionsEnabled="0" />
+            </Box>
         </Box>
     );
 };
