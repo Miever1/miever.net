@@ -19,6 +19,7 @@
     "tooltip_switch_to_zh": "切换到中文",
     "live_demo": "Live Demo",
     "github_res": "Github Res",
+    "comment_title": "Let’s Connect!",
     "projects": {
       "miever_net": {
         "title": "Miever.net",
@@ -81,6 +82,11 @@
       "Valencia": "Valencia",
       "Paris": "Paris",
       "London": "London",
-      "Tenerife": "Tenerife"
+      "Tenerife": "Tenerife",
+      "Alicante": "Alicante",
+      "Salamanca": "Salamanca",
+      "Granada": "Granada",
+      "Avila": "Avila",
+      "El Escorial": "El Escorial"
     }
   }

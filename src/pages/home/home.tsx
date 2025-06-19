@@ -3,6 +3,7 @@ import { Box, Card, designs } from "miever_ui";
 import { Spinner } from "@chakra-ui/react";
 
 import MapChart from "./footprints";
+import Comments from "../../components/Comments";
 import { SEO } from "../../components/SEO";
 import { useTranslation } from "react-i18next";
 
@@ -33,11 +34,25 @@ const Home: FunctionComponent<{}> = () => {
         )
     }
 
+    const renderTitle = (title: string, marginBottom?: string) => (
+        <Box
+            flexBox
+            justifyContent="center"
+            style={{
+                fontSize: "32px",
+                fontWeight: 600,
+                color: BRAND_COLORS.primary,
+                marginBottom: marginBottom && "12px",
+            }}
+            >
+                {t(title)}
+            </Box>
+    );
+
     return (
         <Card
             hoverable
-            title={t("header_title")}
-            style={{ width: "100%" }} 
+            title={renderTitle("header_title")}
         >
             <Box>
                 <p>
@@ -53,11 +68,7 @@ const Home: FunctionComponent<{}> = () => {
                     height="1280"  
                     style={{ maxWidth: "100%", height: "auto", marginBottom: "12px" }}
                 />
-                <Box
-                    style={{ fontSize: "32px", fontWeight: 600 }}
-                >
-                    {t("footprints_title")}
-                </Box>
+                {renderTitle("footprints_title", "0px")}
                 <p>
                     {t("footprints_description")}
                 </p>
@@ -67,6 +78,10 @@ const Home: FunctionComponent<{}> = () => {
                     <MapChart />
                 </Box>
             </Box>
+            <Box>
+                {renderTitle("comment_title")}
+            </Box>
+            <Comments />
         </Card>
     );
 }
