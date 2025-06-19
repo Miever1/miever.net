@@ -17,14 +17,13 @@ interface BlogPostData {
 }
 
 export const BoxWrapper = styled(Box)(() => {
-  const { BRAND_COLORS } = designs;
   const { BRAND_COLORS: { primary } } = designs;
   const commonStyle = `
     font-size: var(--chakra-fontSizes-6xl);
     margin: var(--chakra-space-6) 0;
-    color: ${BRAND_COLORS.primary};
+    color: ${primary};
     a {
-      color: ${BRAND_COLORS.primary};
+      color: ${primary};
     }
   `
   let styleText = `

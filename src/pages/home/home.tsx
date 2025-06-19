@@ -34,25 +34,27 @@ const Home: FunctionComponent<{}> = () => {
         )
     }
 
-    const renderTitle = (title: string, marginBottom?: string) => (
-        <Box
-            flexBox
-            justifyContent="center"
-            style={{
-                fontSize: "32px",
-                fontWeight: 600,
-                color: BRAND_COLORS.primary,
-                marginBottom: marginBottom && "12px",
-            }}
+    const renderTitle = (title: string, marginBottom?: string) => {
+        return (
+            <Box
+                flexBox
+                justifyContent="center"
+                style={{
+                    fontSize: "32px",
+                    fontWeight: 600,
+                    color: BRAND_COLORS.primary,
+                    marginBottom: marginBottom ? marginBottom : "12px",
+                }}
             >
                 {t(title)}
             </Box>
-    );
+        )
+    }
 
     return (
         <Card
             hoverable
-            title={renderTitle("header_title")}
+            title={renderTitle("header_title", "0px")}
         >
             <Box>
                 <p>
@@ -68,7 +70,7 @@ const Home: FunctionComponent<{}> = () => {
                     height="1280"  
                     style={{ maxWidth: "100%", height: "auto", marginBottom: "12px" }}
                 />
-                {renderTitle("footprints_title", "0px")}
+                {renderTitle("footprints_title")}
                 <p>
                     {t("footprints_description")}
                 </p>

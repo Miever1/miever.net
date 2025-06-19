@@ -74,12 +74,8 @@ const Projects:FunctionComponent<{}> = () => {
                 return (
                     <Box paddingY={2}>
                         <Card
-                            hoverable
                             title={(
-                                <Box
-                                    flexBox
-                                    style={{ cursor: "pointer" }}
-                                >
+                                <Box flexBox >
                                     <Box style={{ color: BRAND_COLORS.primary }}>
                                         {title}
                                     </Box>
