@@ -4,6 +4,7 @@ p {
 
 html, body {
     min-width: 1200px;
+    background-color: "var(--body-bg)";
 }
 
 .layout-container {
@@ -27,16 +28,11 @@ html, body {
 
 .logo-container {
     width: 240px;
-    background-image: url(https://miever.s3.ap-east-1.amazonaws.com/static/main-logo.webp);
+    background-image: url(https://miever.s3.ap-east-1.amazonaws.com/static/miever-logo.webp);
     background-position: 24px;
     background-size: 180px;
     background-repeat: no-repeat;
     cursor: pointer;
-}
-
-.content-container {
-    padding: 8px 290px;
-    min-width: 1200px;
 }
 
 .full-height {

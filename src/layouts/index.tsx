@@ -2,6 +2,7 @@
 import React, { FunctionComponent, ReactElement } from "react";
 import { navigate } from "gatsby";
 import { useScroll } from 'ahooks';
+import { useTheme } from "../components/Theme-Context";
 import { Menu, Icon, Box, Button, Tooltip } from "miever_ui";
 import { useLocation } from '@reach/router';
 import { useTranslation } from "react-i18next";
@@ -19,6 +20,7 @@ const Layout: FunctionComponent<{
     const scroll = useScroll(document);
     const location = useLocation();
     const { pathname } = location;
+    const { currentTheme, toggleTheme } = useTheme();
     const isFixed = scroll?.top && scroll.top > 42;
     const defaultKey = pathname === "/" ? "home" : pathname.split("/")[1];
     return (
@@ -46,7 +48,7 @@ const Layout: FunctionComponent<{
                                 width="240px"
                                 height="100%"
                                 style={{
-                                    backgroundImage: "url(https://miever.s3.ap-east-1.amazonaws.com/static/main-logo.webp)",
+                                    backgroundImage: "url(https://miever.s3.ap-east-1.amazonaws.com/static/miever-logo.webp)",
                                     backgroundPosition: "24px",
                                     backgroundSize: "180px",
                                     backgroundRepeat: "no-repeat",
@@ -78,7 +80,24 @@ const Layout: FunctionComponent<{
                                             style={{ fontSize: "14px", cursor: "pointer" }}
                                         />
                                     </Button>
-                                </Tooltip>  
+                                </Tooltip>
+                                <Tooltip
+                                    overlay={t(currentTheme === "dark" ? "tooltip_switch_theme_to_light" : "tooltip_switch_theme_to_dark")}
+                                    placement="bottom"
+                                >
+                                    <Button
+                                        style={{ padding: "8px" }}
+                                        styleType="link"
+                                        aria-label="Language"
+                                        onClick={toggleTheme}
+                                    >
+                                        <Icon
+                                            icon={["fas", currentTheme === "light" ? "sun" : "moon"]}
+                                            theme="primary"
+                                            style={{ fontSize: "14px", cursor: "pointer" }}
+                                        />
+                                    </Button>
+                                </Tooltip> 
                                 <Tooltip overlay="Github" placement="bottom">
                                     <Button
                                         style={{ padding: "8px"}}
