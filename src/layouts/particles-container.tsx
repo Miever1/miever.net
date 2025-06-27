@@ -19,11 +19,6 @@ const ParticlesContainer = () => {
             id="tsparticles"
             init={particlesInit}
             options={{
-                background: {
-                    color: {
-                        value: "#fff",
-                    },
-                },
                 fullScreen: {
                     enable: true,
                     zIndex: -1,
@@ -68,7 +63,7 @@ const ParticlesContainer = () => {
                             default: "bounce",
                         },
                         random: false,
-                        speed: 2,
+                        speed: 0.3,
                         straight: false,
                     },
                     number: {

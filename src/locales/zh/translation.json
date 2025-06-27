@@ -19,6 +19,8 @@
     "tooltip_switch_to_zh": "切换到中文",
     "live_demo": "在线演示",
     "github_res": "Github 资源",
+    "tooltip_switch_theme_to_light": "切换到浅色主题",
+    "tooltip_switch_theme_to_dark": "切换到深色主题",
     "comment_title": "思辨如诗，远方如梦 - 与君共话！",
     "projects": {
       "miever_net": {

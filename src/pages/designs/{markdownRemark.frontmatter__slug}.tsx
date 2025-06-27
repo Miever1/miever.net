@@ -61,7 +61,7 @@ export const Head: HeadFC<DesignsPostData> = ({ data }) => {
   const { title, description, slug, date, home_image } = frontmatter;
 
   const url = `https://miever.net/designs/${slug}`;
-  const image = home_image || "https://miever.s3.ap-east-1.amazonaws.com/static/main-logo.webp";
+  const image = home_image || "https://miever.s3.ap-east-1.amazonaws.com/static/miever-logo.webp";
   const isoDate = new Date(date).toISOString();
 
   return (
@@ -94,7 +94,7 @@ export const Head: HeadFC<DesignsPostData> = ({ data }) => {
             "name": "Miever",
             "logo": {
               "@type": "ImageObject",
-              "url": "https://miever.s3.ap-east-1.amazonaws.com/static/main-logo.webp"
+              "url": "https://miever.s3.ap-east-1.amazonaws.com/static/miever-logo.webp"
             }
           },
           "mainEntityOfPage": {

@@ -20,7 +20,7 @@ export const SEO = ({
     title: title || defaultTitle,
     description: description || defaultDescription,
     url: `${siteUrl}${pathname || ``}`,
-    image: image || `https://miever.s3.ap-east-1.amazonaws.com/static/main-logo.webp`
+    image: image || `https://miever.s3.ap-east-1.amazonaws.com/static/miever-logo.webp`
   };
 
   return (

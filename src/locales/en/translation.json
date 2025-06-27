@@ -19,6 +19,8 @@
     "tooltip_switch_to_zh": "切换到中文",
     "live_demo": "Live Demo",
     "github_res": "Github Res",
+    "tooltip_switch_theme_to_light": "Switch to Light Theme",
+    "tooltip_switch_theme_to_dark": "Switch to Dark Theme",
     "comment_title": "Let’s Connect!",
     "projects": {
       "miever_net": {

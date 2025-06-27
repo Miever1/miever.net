@@ -27,7 +27,7 @@ export const BoxWrapper = styled(Box)(() => {
     }
   `
   let styleText = `
-  background: rgba(255,255,255,.8);
+  background: var(--body-bg);
   padding: var(--chakra-space-4);
   > h1 {
     ${commonStyle}
@@ -113,7 +113,7 @@ export const Head: HeadFC<BlogPostData> = ({ data }) => {
   const { title, description, slug, date, home_image } = frontmatter;
 
   const url = `https://miever.net/blogs/${slug}`;
-  const image = home_image || "https://miever.s3.ap-east-1.amazonaws.com/static/main-logo.webp";
+  const image = home_image || "https://miever.s3.ap-east-1.amazonaws.com/static/miever-logo.webp";
   const isoDate = new Date(date).toISOString();
 
   return (
@@ -146,7 +146,7 @@ export const Head: HeadFC<BlogPostData> = ({ data }) => {
             "name": "Miever",
             "logo": {
               "@type": "ImageObject",
-              "url": "https://miever.s3.ap-east-1.amazonaws.com/static/main-logo.webp"
+              "url": "https://miever.s3.ap-east-1.amazonaws.com/static/miever-logo.webp"
             }
           },
           "mainEntityOfPage": {

@@ -39,3 +39,26 @@ export const markers: { markerOffset: number; name: string; country: string; coo
     { markerOffset: -20, name: "Avila", country: "Spain", coordinates: [-4.7091, 40.6566], visitTime: "2025-06-09", photo: "https://miever.s3.ap-east-1.amazonaws.com/static/footprints/Avila.webp" },
     { markerOffset: -20, name: "Granada", country: "Spain", coordinates: [-3.5986, 37.1773], visitTime: "2025-06-15", photo: "https://miever.s3.ap-east-1.amazonaws.com/static/footprints/Granada.webp" },
   ];
+
+export const sortedMarkers: {
+  markerOffset: number;
+  name: string;
+  country: string;
+  coordinates: [number, number];
+  visitTime: string;
+  photo: string;
+}[] = [...markers].sort((a, b) => {
+    const parseDate = (dateStr: string): Date => {
+        if (dateStr.includes('Now')) {
+            return new Date();
+        }
+        if (dateStr.includes('→')) {
+            const endDate = dateStr.split('→')[1].trim();
+            return endDate === 'Now' ? new Date() : new Date(endDate);
+        }
+        return new Date(dateStr);
+    };
+    
+    return parseDate(b.visitTime).getTime() - parseDate(a.visitTime).getTime();
+});
+

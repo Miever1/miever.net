@@ -22,7 +22,7 @@ export const Head: HeadFC = () => {
     }
   ];
 
-  const defaultImage = "https://miever.s3.ap-east-1.amazonaws.com/static/main-logo.webp";
+  const defaultImage = "https://miever.s3.ap-east-1.amazonaws.com/static/miever-logo.webp";
   const image = projectsList.length > 0 ? projectsList[0].thumbnailPath : defaultImage;
   const url = "https://miever.net/projects";
 
@@ -59,7 +59,7 @@ export const Head: HeadFC = () => {
             "name": "Miever",
             "logo": {
               "@type": "ImageObject",
-              "url": "https://miever.s3.ap-east-1.amazonaws.com/static/main-logo.webp"
+              "url": "https://miever.s3.ap-east-1.amazonaws.com/static/miever-logo.webp"
             }
           }
         })}
