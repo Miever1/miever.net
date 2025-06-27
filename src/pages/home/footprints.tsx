@@ -33,11 +33,11 @@ const MapChart = () => {
                 <Geography
                   key={geo.rsmKey}
                   geography={geo}
-                  stroke="#ffffff" 
+                  stroke="var(--color-border-secondary)" 
                   onMouseEnter={() => setHoveredCountry(t(`${geo.properties.name}`) || geo.properties.name)} 
                   onMouseLeave={() => setHoveredCountry(null)} 
                   style={{
-                    default: { fill: isVisited ? themeColor : "#D6D6DA" },
+                    default: { fill: isVisited ? themeColor : "var(--color-bg-disabled)" },
                     hover: { fill: themeColor, outline: "#FFFFFF" }, 
                     pressed: { fill: themeColor, outline: "#FFFFFF" }, 
                   }}

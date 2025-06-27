@@ -109,16 +109,14 @@ const Layout: FunctionComponent<{
                                     </Button>
                                 </Tooltip>
                                 <Tooltip overlay={t("mail")} placement="bottom">
-                                    <a aria-label="Mail">
-                                        <Button
-                                            style={{ padding: "8px"}}
-                                            styleType="link"
-                                            aria-label="Mail"
-                                            onClick={() => window.location.href = 'mailto:miever1@163.com'}
-                                        >
-                                            <Icon icon={["fas", "envelope"]} theme="primary" style={{ fontSize: "14px", cursor: "pointer" }}/>
-                                        </Button>
-                                    </a>
+                                    <Button
+                                        style={{ padding: "8px"}}
+                                        styleType="link"
+                                        aria-label="Mail"
+                                        onClick={() => window.location.href = 'mailto:miever1@163.com'}
+                                    >
+                                        <Icon icon={["fas", "envelope"]} theme="primary" style={{ fontSize: "14px", cursor: "pointer" }}/>
+                                    </Button>
                                 </Tooltip>
                                 <Tooltip overlay={t("linkedin")} placement="bottom">
                                     <Button
