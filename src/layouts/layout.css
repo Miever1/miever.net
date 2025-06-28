@@ -5,6 +5,7 @@ p {
 html, body {
     min-width: 1200px;
     background-color: var(--body-bg);
+    z-index: -2;
 }
 
 .layout-container {

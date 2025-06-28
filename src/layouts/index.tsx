@@ -20,7 +20,27 @@ const Layout: FunctionComponent<{
     const scroll = useScroll(document);
     const location = useLocation();
     const { pathname } = location;
-    const { currentTheme, toggleTheme } = useTheme();
+    const { currentTheme, setTheme } = useTheme();
+
+    const themeIconItems : {
+        [key: string]: {
+            icon: "moon" | "sun" | "adjust";
+            tooltip: string;
+        }
+    } = {
+        "light": {
+            icon: "sun",
+            tooltip: t("light_theme")
+        },
+        "dark": {
+            icon: "moon",
+            tooltip: t("dark_theme")
+        },
+        "system": {
+            icon: "adjust",
+            tooltip: t("system_theme")
+        }
+    };
     const isFixed = scroll?.top && scroll.top > 42;
     const defaultKey = pathname === "/" ? "home" : pathname.split("/")[1];
     return (
@@ -82,17 +102,25 @@ const Layout: FunctionComponent<{
                                     </Button>
                                 </Tooltip>
                                 <Tooltip
-                                    overlay={t(currentTheme === "dark" ? "tooltip_switch_theme_to_light" : "tooltip_switch_theme_to_dark")}
+                                    overlay={t(themeIconItems[currentTheme].tooltip)}
                                     placement="bottom"
                                 >
                                     <Button
                                         style={{ padding: "8px" }}
                                         styleType="link"
-                                        aria-label="Language"
-                                        onClick={toggleTheme}
+                                        aria-label="Theme"
+                                        onClick={() => {
+                                            if (currentTheme === "light") {
+                                                setTheme("dark");
+                                            } else if (currentTheme === "dark") {
+                                                setTheme("system");
+                                            } else {
+                                                setTheme("light");
+                                            }
+                                        }}
                                     >
                                         <Icon
-                                            icon={["fas", currentTheme === "light" ? "sun" : "moon"]}
+                                            icon={["fas", themeIconItems[currentTheme].icon]}
                                             theme="primary"
                                             style={{ fontSize: "14px", cursor: "pointer" }}
                                         />
