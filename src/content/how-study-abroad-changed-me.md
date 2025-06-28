@@ -1,6 +1,6 @@
 ---
 slug: "/how-study-abroad-changed-me"
-date: "2025-02-15"
+date: "2025-03-05"
 tags: ["留学随想"]
 title: "留学，是送给我自己最好的礼物"
 type: "blogs"
