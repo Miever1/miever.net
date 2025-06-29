@@ -7,8 +7,8 @@ const Comments: FunctionComponent<{
 }> = ({
     reactionsEnabled = "1",
 }) => {
-    const { currentTheme } = useTheme();
-    const id = `giscus-${currentTheme}`;
+    const { resolvedTheme } = useTheme();
+    const id = `giscus-${resolvedTheme}`;
     return (
         <Giscus
             id={id}
@@ -20,7 +20,7 @@ const Comments: FunctionComponent<{
             reactionsEnabled={reactionsEnabled}
             emitMetadata="0"
             inputPosition="top"
-            theme={currentTheme === "dark" ? "dark_dimmed" : "light"}
+            theme={resolvedTheme === "dark" ? "dark_dimmed" : "light"}
             lang="en"
         />
     );
