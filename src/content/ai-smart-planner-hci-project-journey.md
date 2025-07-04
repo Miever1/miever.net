@@ -78,7 +78,7 @@ From low-fidelity sketches to fully interactive high-fidelity prototypes:
 
 #### High-Fidelity Prototype
 
-<video width="100%" controls>
+<video controls style="display: block; margin: 0 auto; max-width: 480px; height: auto;">
   <source src="https://miever.s3.ap-east-1.amazonaws.com/static/blogs/hifi-smart-planner.MP4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
