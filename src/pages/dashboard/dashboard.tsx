@@ -7,14 +7,14 @@ export default function Dashboard() {
     const { BRAND_COLORS } = designs;
     const [isLoaded, setIsLoaded] = useState(false);
     const [iframeKey, setIframeKey] = useState(0);
-    const { currentTheme } = useTheme();
+    const { resolvedTheme } = useTheme();
     
-    const dataDogPath = `https://p.us5.datadoghq.com/sb/071388bc-8801-11ed-9d34-da7ad0900005-e2ef47e4eb064ee8bd7652bc58a9a0f5?fromUser=false&refresh_mode=sliding&theme=${currentTheme}&tpl_var_applicationId%5B0%5D=%2A&tpl_var_browser%5B0%5D=%2A&tpl_var_country%5B0%5D=%2A&tpl_var_device%5B0%5D=%2A&tpl_var_env%5B0%5D=%2A&tpl_var_OS%5B0%5D=%2A&tpl_var_service%5B0%5D=%2A&tpl_var_sessionType%5B0%5D=user&tpl_var_version%5B0%5D=%2A&from_ts=1743181369746&to_ts=1750957369746&live=true`;
+    const dataDogPath = `https://p.us5.datadoghq.com/sb/071388bc-8801-11ed-9d34-da7ad0900005-e2ef47e4eb064ee8bd7652bc58a9a0f5?fromUser=false&refresh_mode=sliding&theme=${resolvedTheme}&tpl_var_applicationId%5B0%5D=%2A&tpl_var_browser%5B0%5D=%2A&tpl_var_country%5B0%5D=%2A&tpl_var_device%5B0%5D=%2A&tpl_var_env%5B0%5D=%2A&tpl_var_OS%5B0%5D=%2A&tpl_var_service%5B0%5D=%2A&tpl_var_sessionType%5B0%5D=user&tpl_var_version%5B0%5D=%2A&from_ts=1743181369746&to_ts=1750957369746&live=true`;
 
     useEffect(() => {
         setIsLoaded(false);
         setIframeKey(prev => prev + 1);
-    }, [currentTheme]);
+    }, [resolvedTheme]);
 
     const handleLoad = () => {
         setTimeout(() => {
