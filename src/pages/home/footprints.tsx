@@ -31,6 +31,7 @@ const MapChart = () => {
   const [hoveredMarker, setHoveredMarker] = useState<HoveredMarker>(null);
   const [hoveredCountry, setHoveredCountry] = useState<string | null>(null);
   const [autoMarkerIndex, setAutoMarkerIndex] = useState(0);
+  const [pauseAutoMarker, setPauseAutoMarker] = useState(false);
   const [autoMarker, setAutoMarker] = useState<HoveredMarker | null>(null);
 
   useEffect(() => {
@@ -41,6 +42,7 @@ const MapChart = () => {
   }, []);
 
   useEffect(() => {
+    if (pauseAutoMarker) return;
     const interval = setInterval(() => {
       const nextIndex = (autoMarkerIndex + 1) % markers.length;
       const marker = markers[nextIndex];
@@ -66,10 +68,11 @@ const MapChart = () => {
       });
 
       setAutoMarkerIndex(nextIndex);
-    }, 6000);
+    }, 10000);
 
-    return () => clearInterval(interval);
-  }, [autoMarkerIndex]);
+  return () => clearInterval(interval);
+}, [autoMarkerIndex, pauseAutoMarker]);
+
 
   return (
     <Box
@@ -79,6 +82,10 @@ const MapChart = () => {
         setHoveredMarker(null);
         setHoveredCountry(null);
         setAutoMarker(null);
+        setPauseAutoMarker(true);
+      }}
+      onMouseLeave={() => {
+        setPauseAutoMarker(false);
       }}
     >
       <ComposableMap>
