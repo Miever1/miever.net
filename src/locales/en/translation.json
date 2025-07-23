@@ -49,7 +49,9 @@
       "Indonesia": "Indonesia",
       "Spain": "Spain",
       "France": "France",
-      "United Kingdom": "United Kingdom"
+      "United Kingdom": "United Kingdom",
+      "Slovenia": "Slovenia",
+      "Netherlands": "Netherlands"
     },
     "cities": {
       "Yangzhou": "Yangzhou",
@@ -91,6 +93,8 @@
       "Granada": "Granada",
       "Avila": "Avila",
       "El Escorial": "El Escorial",
-      "Malaga": "Malaga"
+      "Malaga": "Malaga",
+      "Ljubljana": "Ljubljana",
+      "Amsterdam": "Amsterdam"
     }
   }

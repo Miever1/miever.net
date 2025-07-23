@@ -38,7 +38,9 @@ export const markers: { markerOffset: number; name: string; country: string; coo
     { markerOffset: -20, name: "Alicante", country: "Spain", coordinates: [-0.4907, 38.3452], visitTime: "2025-05-28", photo: "https://miever.s3.ap-east-1.amazonaws.com/static/footprints/Alicante.webp" },
     { markerOffset: -20, name: "Avila", country: "Spain", coordinates: [-4.7091, 40.6566], visitTime: "2025-06-09", photo: "https://miever.s3.ap-east-1.amazonaws.com/static/footprints/Avila.webp" },
     { markerOffset: -20, name: "Granada", country: "Spain", coordinates: [-3.5986, 37.1773], visitTime: "2025-06-15", photo: "https://miever.s3.ap-east-1.amazonaws.com/static/footprints/Granada.webp" },
-    { markerOffset: -20, name: "Malaga", country: "Spain", coordinates: [-4.4214, 36.7213], visitTime: "2025-07-03", photo: "https://miever.s3.ap-east-1.amazonaws.com/static/footprints/Malaga.webp"}
+    { markerOffset: -20, name: "Malaga", country: "Spain", coordinates: [-4.4214, 36.7213], visitTime: "2025-07-03", photo: "https://miever.s3.ap-east-1.amazonaws.com/static/footprints/Malaga.webp"},
+    { markerOffset: -20, name: "Ljubljana", country: "Slovenia", coordinates: [14.5058, 46.0569], visitTime: "2025-07-10", photo: "https://miever.s3.ap-east-1.amazonaws.com/static/footprints/Ljubljana.webp"},
+    { markerOffset: -20, name: "Amsterdam", country: "Netherlands", coordinates: [4.9041, 52.3676], visitTime: "2025-07-18", photo: "https://miever.s3.ap-east-1.amazonaws.com/static/footprints/Amsterdam.webp"}
   ];
 
 export const sortedMarkers: {
