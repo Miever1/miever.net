@@ -77,7 +77,7 @@ const Blogs:FunctionComponent<{}> = () => {
                 const bPinned = b.node.frontmatter.pinned ? 1 : 0;
 
                 if (aPinned !== bPinned) {
-                return bPinned - aPinned;
+                    return bPinned - aPinned;
                 }
 
                 return new Date(b.node.frontmatter.date).getTime() - new Date(a.node.frontmatter.date).getTime();
