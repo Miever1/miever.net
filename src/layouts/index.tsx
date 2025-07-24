@@ -226,7 +226,7 @@ const Layout: FunctionComponent<{
                         <Button
                             styleType="link"
                             size="sm"
-                            onClick={() => navigate("https://github.com/Miever1/miever.net/blob/master/LICENSE")}
+                            onClick={() => window.open("https://github.com/Miever1/miever.net/blob/master/LICENSE")}
                         >
                             {t("license")}
                         </Button>

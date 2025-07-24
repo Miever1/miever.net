@@ -84,10 +84,15 @@ const Home: FunctionComponent<{}> = () => {
                 {renderTitle("comment_title")}
             </Box>
             <Comments />
-            <Box style={{ marginTop: "40px", borderTop: "1px solid var(--color-border-primary)", paddingTop: "24px", textAlign: "center" }}>
+            <Box
+                style={{
+                    borderTop: "1px solid var(--color-border-primary)", 
+                    borderBottom: "1px solid var(--color-border-primary)",
+                    padding: "24px 0", 
+                    textAlign: "center" 
+                }}
+            >
                 {t("thank_you")}
-            </Box>
-            <Box style={{ marginTop: "30px", borderTop: "1px solid var(--color-border-primary)", paddingTop: "24px", textAlign: "center" }}>
             </Box>
         </Card>
     );
