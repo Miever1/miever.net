@@ -208,13 +208,31 @@ const Layout: FunctionComponent<{
                     paddingY={8}
                     style={{ minWidth: "1200px" }}
                 >
-                    <Button
-                        styleType="link"
-                        onClick={() => window.open("https://components.miever.net")}
-                    >
-                        {t("footer_design_credit")}
-                    </Button>
+                    <Box>
+                        <Button
+                            styleType="link"
+                            size="sm"
+                            onClick={() => navigate("/blogs/privacy-notice")}
+                        >
+                            {t("privacy_notice")}
+                        </Button>
+                        <Button
+                            styleType="link"
+                            size="sm"
+                            onClick={() => window.open("https://components.miever.net")}
+                        >
+                            {t("footer_design_credit")}
+                        </Button>
+                        <Button
+                            styleType="link"
+                            size="sm"
+                            onClick={() => navigate("https://github.com/Miever1/miever.net/blob/master/LICENSE")}
+                        >
+                            {t("license")}
+                        </Button>
+                    </Box>
                     <Box
+                        paddingY={4}
                         style={{ fontSize: "12px" }}
                     >
                         {t("footer_copyright")}
