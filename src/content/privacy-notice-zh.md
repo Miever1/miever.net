@@ -3,7 +3,7 @@ slug: "/privacy-notice-zh"
 date: "2025-07-24 18:00"
 tags: ["隐私", "GDPR", "数据保护"]
 title: "隐私声明"
-pinned: "true"
+pinned: true
 type: "blogs"
 language: "zh"
 home_image: "https://miever.s3.ap-east-1.amazonaws.com/static/blogs/privacy.webp"

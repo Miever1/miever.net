@@ -3,11 +3,11 @@ slug: "/privacy-notice"
 date: "2025-07-24 18:00"
 tags: ["Privacy", "GDPR", "Data Protection"]
 title: "Privacy Notice"
-pinned: "true"
+pinned: true
 type: "blogs"
 language: "en"
 home_image: "https://miever.s3.ap-east-1.amazonaws.com/static/blogs/privacy.webp"
-description: "This Privacy Notice explains how Miever.net collects and handles user data, in compliance with international data protection standards."
+description: "This Privacy Notice explains how this personal website collects and handles user data, in compliance with international data protection standards."
 ---
 
 # 🛡️ Privacy Notice
