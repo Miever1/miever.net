@@ -26,7 +26,7 @@ const MapChart = () => {
   const geoUrl = "https://unpkg.com/world-atlas@2.0.2/countries-110m.json";
 
   const themeColor = BRAND_COLORS.primary || "#000";
-  const visitedCountries = ["China", "Singapore", "USA", "Indonesia", "Spain", "Latvia", "Portugal", "France", "United Kingdom"]; 
+  const visitedCountries = ["China", "Singapore", "USA", "Indonesia", "Spain", "Latvia", "Portugal", "France", "United Kingdom", "Slovenia", "Netherlands"]; 
 
   const [hoveredMarker, setHoveredMarker] = useState<HoveredMarker>(null);
   const [hoveredCountry, setHoveredCountry] = useState<string | null>(null);
@@ -139,7 +139,7 @@ const MapChart = () => {
               onMouseLeave={() => setHoveredMarker(null)}
             >
               <circle 
-                r={isActiveMarker ? 6 : 4}
+                r={isActiveMarker ? 6 : 3}
                 fill={isActiveMarker ? BRAND_COLORS["warning"] : themeColor}
                 strokeWidth={1}
                 stroke="#FFF"

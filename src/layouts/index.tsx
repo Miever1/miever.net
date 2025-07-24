@@ -199,27 +199,47 @@ const Layout: FunctionComponent<{
                 >
                     {children}
                 </Box>
-                <Box
-                    flexBox
-                    height={120}
-                    direction="column"
-                    justifyContent="center"
-                    alignItems="center"
-                    paddingY={8}
-                    style={{ minWidth: "1200px" }}
-                >
-                    <Button
-                        styleType="link"
-                        onClick={() => window.open("https://components.miever.net")}
-                    >
-                        {t("footer_design_credit")}
-                    </Button>
+                <nav aria-label="Footer Navigation">
                     <Box
-                        style={{ fontSize: "12px" }}
+                        flexBox
+                        height={120}
+                        direction="column"
+                        justifyContent="center"
+                        alignItems="center"
+                        paddingY={4}
+                        style={{ minWidth: "1200px" }}
                     >
-                        {t("footer_copyright")}
+                        <Box>
+                            <Button
+                                styleType="link"
+                                size="sm"
+                                onClick={() => navigate("/blogs/privacy-notice")}
+                            >
+                                {t("privacy_notice")}
+                            </Button>
+                            <Button
+                                styleType="link"
+                                size="sm"
+                                onClick={() => window.open("https://components.miever.net")}
+                            >
+                                {t("footer_design_credit")}
+                            </Button>
+                            <Button
+                                styleType="link"
+                                size="sm"
+                                onClick={() => window.open("https://github.com/Miever1/miever.net/blob/master/LICENSE")}
+                            >
+                                {t("license")}
+                            </Button>
+                        </Box>
+                        <Box
+                            paddingY={4}
+                            style={{ fontSize: "12px" }}
+                        >
+                            {t("footer_copyright")}
+                        </Box>
                     </Box>
-                </Box>
+                </nav>
             </Box>
         </Box>
     );

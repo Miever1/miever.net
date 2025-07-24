@@ -12,6 +12,7 @@ interface BlogInfo {
     slug: string;
     home_image: string;
     tags: string[];
+    pinned?: boolean;
 }
 
 const Blogs:FunctionComponent<{}> = () => {
@@ -44,7 +45,8 @@ const Blogs:FunctionComponent<{}> = () => {
                         home_image,
                         tags,
                         type,
-                        language
+                        language,
+                        pinned
                     }
                   }
                 }
@@ -70,8 +72,15 @@ const Blogs:FunctionComponent<{}> = () => {
 
     return (
         <Box>
-            {edges.sort((lastBlog: { node: { frontmatter: BlogInfo }}, nextBlog: { node: { frontmatter: BlogInfo }}) => {
-                return lastBlog.node?.frontmatter?.date < nextBlog.node?.frontmatter?.date
+            {edges.sort((a: { node: { frontmatter: BlogInfo }}, b: { node: { frontmatter: BlogInfo }}) => {
+                const aPinned = a.node.frontmatter.pinned ? 1 : 0;
+                const bPinned = b.node.frontmatter.pinned ? 1 : 0;
+
+                if (aPinned !== bPinned) {
+                    return bPinned - aPinned;
+                }
+
+                return new Date(b.node.frontmatter.date).getTime() - new Date(a.node.frontmatter.date).getTime();
             }).filter((contentItem: { node: { frontmatter: BlogInfo }}) => {
                 const { node: { frontmatter } } = contentItem;
                 const { type, language } = frontmatter;
@@ -120,7 +129,7 @@ const Blogs:FunctionComponent<{}> = () => {
                                         src={home_image}
                                         alt={`blogs-${title}`}
                                         borderRadius='lg'
-                                        w={360}
+                                        w={480}
                                         loading="lazy"
                                     />
                                 </Box>
