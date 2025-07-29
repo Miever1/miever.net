@@ -48,8 +48,8 @@ export const Head: HeadFC = () => {
         {JSON.stringify({
           "@context": "https://schema.org",
           "@type": "CollectionPage",
-          "headline": "Projects - Miever",
-          "description": "Explore various projects developed by Miever, including open-source tools and web applications.",
+          "headline": t("projects.title"),
+          "description": t("projects.description"),
           "image": image,
           "url": url,
           "creator": {
