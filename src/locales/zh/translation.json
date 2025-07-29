@@ -26,7 +26,33 @@
     "dark_theme": "深色主题",
     "system_theme": "跟随系统",
     "comment_title": "思辨如诗，远方如梦 - 与君共话！",
+    "home": {
+      "title": "首页 - Miever",
+      "description": "欢迎来到我的个人网站，这里记录了我作为前端工程师的成长历程、项目和见解。"
+    },
+    "resume": {
+      "title": "简历 - Miever",
+      "description": "在这里，您可以查看我的简历，了解我的教育背景、工作经历和技能。简历是我职业发展的缩影，展示了我在前端领域的成长和成就。"
+    },
+    "blogs": {
+      "title": "博客 - Miever",
+      "description": "在这里，我分享我的前端经验、技术见解和个人成长故事。"
+    },
+    "designs": {
+      "title": "设计 - Miever",
+      "description": "在这里，我展示我的设计作品，分享我的创意和灵感。"
+    },
+    "performance": {
+      "title": "网站性能 - Miever",
+      "description": "在这里，您可以查看我网站的性能指标，了解我在前端开发中如何优化用户体验和加载速度。"
+    },
+    "dashboard": {
+      "title": "仪表盘 - Miever",
+      "description": "在这里，您可以查看我的仪表盘，了解我的网站性能、用户行为和其他关键指标。"
+    },
     "projects": {
+      "title": "项目 - Miever",
+      "description": "探索我的项目，这些项目展示了我在前端开发中的技能与创造力。",
       "miever_net": {
         "title": "Miever.net",
         "subTitle": "欢迎来到我的个人网站，使用 Miever UI 精心制作！",

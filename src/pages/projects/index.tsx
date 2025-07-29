@@ -1,12 +1,14 @@
 import React from "react";
 import { HeadFC } from "gatsby";
-import Projects from "./projects";
+import { useTranslation } from "react-i18next";
 
+import Projects from "./projects";
 import { SEO } from "../../components/SEO";
 
 export default Projects;
 
 export const Head: HeadFC = () => {
+  const { t } = useTranslation();
   const projectsList = [
     {
       title: "Miever.net",
@@ -27,7 +29,7 @@ export const Head: HeadFC = () => {
   const url = "https://miever.net/projects";
 
   return (
-    <SEO title="Projects - Miever" description="Explore various projects developed by Miever, including open-source tools and web applications." pathname="/projects" image={image}>
+    <SEO title={t("projects.title")} description={t("projects.description")} pathname="/projects" image={image}>
       <meta property="og:title" content="Projects - Miever" />
       <meta property="og:description" content="Explore various projects developed by Miever, including open-source tools and web applications." />
       <meta property="og:type" content="website" />
