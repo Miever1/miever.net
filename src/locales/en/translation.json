@@ -26,7 +26,33 @@
     "dark_theme": "Dark Theme",
     "system_theme": "Follow System",
     "comment_title": "Let’s Connect!",
+    "home": {
+      "title": "Home - Miever",
+      "description": "Welcome to my personal website, where I share my journey as a front-end engineer, my projects, and my insights."
+    },
+    "resume": {
+      "title": "Resume - Miever",
+      "description": "Here you can view my resume, showcasing my educational background, work experience, and skills. My resume is a snapshot of my professional journey, highlighting my growth and achievements in the front-end field."
+    },
+    "blogs": {
+      "title": "Blogs - Miever",
+      "description": "Here, I share my front-end experiences, technical insights, and personal growth stories."
+    },
+    "designs": {
+      "title": "Designs - Miever",
+      "description": "Here, I showcase my design works, sharing my creativity and inspiration."
+    },
+    "performance": {
+      "title": "Web Performance - Miever",
+      "description": "Here, you can view the performance metrics of my website, showcasing how I optimize user experience and loading speed in front-end development."
+    },
+    "dashboard": {
+      "title": "Dashboard - Miever",
+      "description": "Here, you can view my dashboard, which provides insights into my website's performance, user behavior, and other key metrics."
+    },
     "projects": {
+      "title": "Projects - Miever",
+      "description": "Explore my projects that showcase my skills and creativity in front-end development.",
       "miever_net": {
         "title": "Miever.net",
         "subTitle": "Welcome to my personal website, crafted with Miever UI!",

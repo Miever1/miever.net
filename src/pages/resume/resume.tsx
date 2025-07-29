@@ -1,12 +1,15 @@
 import React, { FunctionComponent, useState, useEffect } from "react";
 import { Box, designs } from "miever_ui";
 import { Spinner } from "@chakra-ui/react";
+import { useTranslation } from "react-i18next";
 
 import Comments from "../../components/Comments";
 
 const Resume: FunctionComponent<{}> = () => {
+    const { i18n } = useTranslation();
     const { BRAND_COLORS } = designs;
     const [isLoaded, setIsLoaded] = useState(false);
+    const resumeUrl = `https://docs.google.com/viewer?url=https://miever.s3.ap-east-1.amazonaws.com/static/resume/${i18n.language === "en" ? "miever" : "miever-zh"}.pdf&embedded=true`;
 
     const handleLoad = () => {
         setIsLoaded(true);
@@ -40,7 +43,7 @@ const Resume: FunctionComponent<{}> = () => {
                 </Box>
             )}
             <iframe
-                src="https://docs.google.com/viewer?url=https://miever.s3.ap-east-1.amazonaws.com/static/resume/miever.pdf&embedded=true"
+                src={resumeUrl}
                 style={{
                     height: "100vh",
                     width: "100%",

@@ -1,12 +1,14 @@
 import React from "react";
 import { HeadFC } from "gatsby";
-import Projects from "./projects";
+import { useTranslation } from "react-i18next";
 
+import Projects from "./projects";
 import { SEO } from "../../components/SEO";
 
 export default Projects;
 
 export const Head: HeadFC = () => {
+  const { t } = useTranslation();
   const projectsList = [
     {
       title: "Miever.net",
@@ -27,17 +29,17 @@ export const Head: HeadFC = () => {
   const url = "https://miever.net/projects";
 
   return (
-    <SEO title="Projects - Miever" description="Explore various projects developed by Miever, including open-source tools and web applications." pathname="/projects" image={image}>
-      <meta property="og:title" content="Projects - Miever" />
-      <meta property="og:description" content="Explore various projects developed by Miever, including open-source tools and web applications." />
+    <SEO title={t("projects.title")} description={t("projects.description")} pathname="/projects" image={image}>
+      <meta property="og:title" content={t("projects.title")} />
+      <meta property="og:description" content={t("projects.description")} />
       <meta property="og:type" content="website" />
       <meta property="og:url" content={url} />
       <meta property="og:image" content={image} />
       <meta property="og:site_name" content="Miever" />
 
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content="Projects - Miever" />
-      <meta name="twitter:description" content="Explore various projects developed by Miever, including open-source tools and web applications." />
+      <meta name="twitter:title" content={t("projects.title")} />
+      <meta name="twitter:description" content={t("projects.description")} />
       <meta name="twitter:image" content={image} />
 
       <link rel="canonical" href={url} />
@@ -46,8 +48,8 @@ export const Head: HeadFC = () => {
         {JSON.stringify({
           "@context": "https://schema.org",
           "@type": "CollectionPage",
-          "headline": "Projects - Miever",
-          "description": "Explore various projects developed by Miever, including open-source tools and web applications.",
+          "headline": t("projects.title"),
+          "description": t("projects.description"),
           "image": image,
           "url": url,
           "creator": {
