@@ -30,16 +30,16 @@ export const Head: HeadFC = () => {
 
   return (
     <SEO title={t("projects.title")} description={t("projects.description")} pathname="/projects" image={image}>
-      <meta property="og:title" content="Projects - Miever" />
-      <meta property="og:description" content="Explore various projects developed by Miever, including open-source tools and web applications." />
+      <meta property="og:title" content={t("projects.title")} />
+      <meta property="og:description" content={t("projects.description")} />
       <meta property="og:type" content="website" />
       <meta property="og:url" content={url} />
       <meta property="og:image" content={image} />
       <meta property="og:site_name" content="Miever" />
 
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content="Projects - Miever" />
-      <meta name="twitter:description" content="Explore various projects developed by Miever, including open-source tools and web applications." />
+      <meta name="twitter:title" content={t("projects.title")} />
+      <meta name="twitter:description" content={t("projects.description")} />
       <meta name="twitter:image" content={image} />
 
       <link rel="canonical" href={url} />
