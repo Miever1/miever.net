@@ -1,6 +1,6 @@
 ---
 slug: "/coding-virtual-worlds-vr-projects"
-date: "2025-10-25 17:00"
+date: "2025-10-25 23:00"
 title: "Coding Virtual Worlds at Aalto University"
 type: "blogs"
 language: "en"
