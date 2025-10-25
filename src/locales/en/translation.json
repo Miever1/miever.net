@@ -80,7 +80,10 @@
       "France": "France",
       "United Kingdom": "United Kingdom",
       "Slovenia": "Slovenia",
-      "Netherlands": "Netherlands"
+      "Netherlands": "Netherlands",
+      "Germany": "Germany",
+      "Finland": "Finland",
+      "Sweden": "Sweden"
     },
     "cities": {
       "Yangzhou": "Yangzhou",
@@ -126,6 +129,8 @@
       "Ljubljana": "Ljubljana",
       "Amsterdam": "Amsterdam",
       "Frankfurt": "Frankfurt",
-      "Helsinki": "Helsinki"
+      "Helsinki": "Helsinki",
+      "Uppsala": "Uppsala",
+      "Stockholm": "Stockholm"
     }
   }

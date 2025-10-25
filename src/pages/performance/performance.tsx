@@ -5,15 +5,15 @@ import { useTheme } from "../../components/Theme-Context";
 
 const Performance: React.FC = () => {
     const { BRAND_COLORS } = designs;
-    const { currentTheme } = useTheme();
+    const { resolvedTheme } = useTheme();
     const [isLoaded, setIsLoaded] = useState(false);
-
     const lighthousePath = useMemo(() => 
-        currentTheme === "dark" 
+        resolvedTheme === "dark" 
             ? "https://dark-mode-lighthouse-report.miever.net/" 
             : "https://lighthouse-report.miever.net/",
-        [currentTheme]
+        [resolvedTheme]
     );
+
 
     useEffect(() => {
         setIsLoaded(false);
