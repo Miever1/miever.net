@@ -6,6 +6,7 @@ import MapChart from "./footprints";
 import Comments from "../../components/Comments";
 import { SEO } from "../../components/SEO";
 import { useTranslation } from "react-i18next";
+import SkillsMap from "../../components/Skills-Map";
 
 const Home: FunctionComponent<{}> = () => {
     const { BRAND_COLORS } = designs;
@@ -70,16 +71,26 @@ const Home: FunctionComponent<{}> = () => {
                     height="1280"  
                     style={{ maxWidth: "100%", height: "auto", marginBottom: "12px" }}
                 />
+            </Box>
+            <Box>
+                {renderTitle("map_skills_title")}
+                <p>
+                    {t("skills_description")}
+                </p>
+                <SkillsMap />
+            </Box>
+            <Box>
                 {renderTitle("footprints_title")}
                 <p>
                     {t("footprints_description")}
                 </p>
-            </Box>
-            <Box style={{ width: "100%", paddingBottom: "70%", position: "relative" }}>
-                <Box style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}>
-                    <MapChart />
+                <Box style={{ width: "100%", paddingBottom: "70%", position: "relative" }}>
+                    <Box style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}>
+                        <MapChart />
+                    </Box>
                 </Box>
             </Box>
+            
             <Box>
                 {renderTitle("comment_title")}
             </Box>

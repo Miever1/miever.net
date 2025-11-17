@@ -26,6 +26,43 @@
     "dark_theme": "Dark Theme",
     "system_theme": "Follow System",
     "comment_title": "Let’s Connect!",
+    "map_skills_title": "Skills Map",
+    "frontend": "Frontend",
+    "html": "HTML5",
+    "css": "CSS3",
+    "javascript": "JavaScript",
+    "typescript": "TypeScript",
+    "react": "React",
+    "reactquery": "React Query",
+    "gatsby": "Gatsby",
+    "backend": "Backend",
+    "nest": "NestJS",
+    "c_cpp": "C/C++",
+    "devops": "DevOps",
+    "aws": "AWS",
+    "nginx": "Nginx",
+    "github_actions": "Github Actions",
+    "tooling": "Tooling",
+    "git": "Git",
+    "jest": "Jest",
+    "eslint": "ESLint",
+    "figma": "Figma",
+    "design": "UI / UX",
+    "interaction_design": "Interaction Design",
+    "ux_research": "UX Research",
+    "prototyping": "Prototyping (Figma)",
+    "visualization": "Visualization",
+    "antv": "AntV",
+    "apexcharts": "ApexCharts",
+    "architecture": "Architecture",
+    "microfrontends": "Micro Frontends",
+    "design_system": "Design System",
+    "topology": "Topology",
+    "spoken": "Spoken",
+    "english": "English",
+    "chinese": "Chinese",
+    "uyghur": "Uyghur",
+    "skills_description": "The connections between my skills shape the way I approach and solve problems. Each skill marks a meaningful milestone in my professional journey, contributing to my continuous growth.",
     "home": {
       "title": "Home - Miever",
       "description": "Welcome to my personal website, where I share my journey as a front-end engineer, my projects, and my insights."
@@ -83,7 +120,8 @@
       "Netherlands": "Netherlands",
       "Germany": "Germany",
       "Finland": "Finland",
-      "Sweden": "Sweden"
+      "Sweden": "Sweden",
+      "Estonia": "Estonia"
     },
     "cities": {
       "Yangzhou": "Yangzhou",
@@ -131,6 +169,7 @@
       "Frankfurt": "Frankfurt",
       "Helsinki": "Helsinki",
       "Uppsala": "Uppsala",
-      "Stockholm": "Stockholm"
+      "Stockholm": "Stockholm",
+      "Tallinn": "Tallinn"
     }
   }

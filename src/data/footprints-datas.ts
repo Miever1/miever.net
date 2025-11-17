@@ -44,7 +44,8 @@ export const markers: { markerOffset: number; name: string; country: string; coo
     { markerOffset: -20, name: "Frankfurt", country: "Germany", coordinates: [8.6821, 50.1109], visitTime: "2025-08-06", photo: "https://miever.s3.ap-east-1.amazonaws.com/static/footprints/Frankfurt.webp"},
     { markerOffset: -20, name: "Helsinki", country: "Finland", coordinates: [24.9384, 60.1695], visitTime: "2025-08-13", photo: "https://miever.s3.ap-east-1.amazonaws.com/static/footprints/Helsinki.webp"},
     { markerOffset: -20, name: "Uppsala", country: "Sweden", coordinates: [17.6389, 59.8586], visitTime: "2025-08-18", photo: "https://miever.s3.ap-east-1.amazonaws.com/static/footprints/Uppsala.webp"},
-    { markerOffset: -20, name: "Stockholm", country: "Sweden", coordinates: [18.0686, 59.3293], visitTime: "2025-08-20", photo: "https://miever.s3.ap-east-1.amazonaws.com/static/footprints/Stockholm.webp"}
+    { markerOffset: -20, name: "Stockholm", country: "Sweden", coordinates: [18.0686, 59.3293], visitTime: "2025-08-20", photo: "https://miever.s3.ap-east-1.amazonaws.com/static/footprints/Stockholm.webp"},
+    { markerOffset: -20, name: "Tallinn", country: "Estonia", coordinates: [24.7536, 59.4370], visitTime: "2025-08-25", photo: "https://miever.s3.ap-east-1.amazonaws.com/static/footprints/Tallinn.webp"},
   ];
 
 export const sortedMarkers: {
