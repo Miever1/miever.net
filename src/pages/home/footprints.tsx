@@ -40,7 +40,8 @@ const MapChart = () => {
     "Netherlands", 
     "Germany",
     "Finland",
-    "Sweden"
+    "Sweden",
+    "Estonia"
   ]; 
 
   const [hoveredMarker, setHoveredMarker] = useState<HoveredMarker>(null);
