@@ -11,6 +11,10 @@ export const Head: HeadFC = () => {
   const { t } = useTranslation();
   const projectsList = [
     {
+      title: "UCloud Cloud Console",
+      thumbnailPath: "https://miever.s3.ap-east-1.amazonaws.com/static/blogs/ucloud-office.webp",
+    },
+    {
       title: "Miever.net",
       thumbnailPath: "https://miever.s3.ap-east-1.amazonaws.com/static/projects/thumbnail-miever.webp",
     },

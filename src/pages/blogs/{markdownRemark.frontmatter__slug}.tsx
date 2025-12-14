@@ -22,13 +22,13 @@ export const BoxWrapper = styled(Box)(() => {
     font-size: var(--chakra-fontSizes-6xl);
     margin: var(--chakra-space-6) 0;
     color: ${primary};
-    a {
-      color: ${primary};
-    }
   `
   let styleText = `
   background: var(--body-bg);
   padding: var(--chakra-space-4);
+  a {
+      color: ${primary};
+  }
   > h1 {
     ${commonStyle}
     font-size: var(--chakra-fontSizes-5xl);

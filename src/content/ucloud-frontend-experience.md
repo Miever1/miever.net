@@ -1,92 +1,111 @@
 ---
 slug: "/ucloud-frontend-experience"
 date: "2025-11-24 16:00"
-title: "Three Years as a Frontend Engineer at UCloud: Console, Network Products, and Monitoring Systems"
+title: "Three Years as a Frontend Engineer at UCloud"
 type: "blogs"
+pinned: true
 language: "en"
 tags: ["Frontend Engineering", "Cloud Computing", "Work Experience"]
 home_image: "https://miever.s3.ap-east-1.amazonaws.com/static/projects/ucloud/ucloud-1.webp"
-description: "A record of my three-year experience as a frontend engineer at UCloud: developing network products, abstracting shared components, refactoring monitoring modules, and growing within a large cloud console ecosystem."
+description: "My three-year journey as a frontend engineer at UCloud, working on cloud console networking products, monitoring systems, and growing from a newcomer into a professional engineer."
 ---
 
-# Three Years as a Frontend Engineer at UCloud: Console, Network Products, and Monitoring Systems
+# Three Years as a Frontend Engineer at UCloud
 
 ![UCloud](https://miever.s3.ap-east-1.amazonaws.com/static/projects/ucloud/ucloud-1.webp)
 
-Today, I’d like to briefly share my frontend development experience at UCloud and the main areas I worked on within the console ecosystem.
+In this post, I want to share a part of my journey as a frontend engineer at UCloud. It is a record of what I worked on, what I learned, and how I grew within a large cloud console ecosystem.
 
-UCloud is a neutral and secure cloud computing service provider offering a full range of cloud services from IaaS and PaaS to AI and big data. As a cloud provider, the console is unquestionably one of its core products—nearly all cloud resources are managed through it. The entire console consists of around 100 product modules, with compute, network, and storage forming the core categories. I was mainly responsible for network-related products and part of the monitoring system’s frontend implementation.
+UCloud is a neutral and security-focused cloud service provider, offering services across IaaS, PaaS, AI, and big data. Like most cloud companies, its console is one of the most critical products. Almost all cloud resources are created, configured, and managed through it. The console contains around one hundred different products, with compute, networking, and storage forming the core categories. During my time at UCloud, I mainly worked on networking-related products, as well as parts of the monitoring system on the frontend side.
 
-The UCloud console (https://console.ucloud.cn) uses a micro-frontend architecture: one main application mounts hundreds of sub-applications. Although the architecture itself is maintained by a dedicated platform team, business-side frontend engineers must complete development, integration, and deployment within this ecosystem. All UI follows UCloud’s in-house design system, UDesign (https://udesign.ucloud.cn/), meaning each product must not only function correctly but also deliver consistent interaction patterns and visual style. The core tech stack is React and TypeScript, with a highly automated CI/CD and progressive deployment pipeline.
+The [UCloud Console](https://console.ucloud.cn) is built on a micro-frontend architecture, where a single host application mounts hundreds of sub-applications. The architecture itself is maintained by a dedicated platform team, but as a business frontend engineer, my daily work involved developing features, coordinating with other teams, and pushing releases within this framework. All UI components follow UCloud’s in-house design system, [UDesign](https://udesign.ucloud.cn), which ensures consistent interaction patterns and visual language across products. The main tech stack is React and TypeScript, supported by a highly automated CI/CD pipeline and gradual rollout process.
 
 ![UDesign](https://miever.s3.ap-east-1.amazonaws.com/static/projects/ucloud/ucloud-8.webp)
 
 ---
 
-## 🌐 Responsible for Core Network Products: EIP / ULB / VPC
+## Working on Core Networking Products
 
 ![Product Dashboard](https://miever.s3.ap-east-1.amazonaws.com/static/projects/ucloud/ucloud-2.webp)
 
-I was responsible for several network products, including EIP, ULB, and VPC—some of the most frequently used and essential modules in the console. Products like ULB (load balancing) involve complex business logic: a single ULB may contain listeners, backend resource pools, health checks, and other hierarchical structures, all of which have strong dependencies. If any form validation or API call is incorrect, the entire creation workflow can fail. As a result, frontend engineers must handle complex data structures while also understanding the underlying business model, networking concepts, and resource relationships.
+I was responsible for several core networking products, including EIP, ULB, and VPC. These are some of the most frequently used and business-critical parts of the console. Among them, ULB, the load balancing product, stood out for its complexity. A single ULB instance may include listeners, backend resource pools, health checks, and multiple layers of configuration, all tightly coupled with each other. If anything goes wrong during the process, whether it is form validation, state handling, or an API call, the entire creation flow can fail.
+
+Because of this, frontend work in this area was never just about rendering pages. It required a solid understanding of networking concepts, resource dependencies, and the underlying business model. Over time, I learned to think less about isolated pages and more about how different resources relate to each other within the system.
 
 ![Network Product](https://miever.s3.ap-east-1.amazonaws.com/static/projects/ucloud/ucloud-5.webp)
 
 ---
 
-## ⚠️ High Stability Requirements & Real Incidents
+## Stability, Responsibility, and a Real Incident
 
-Developing frontend for network-related cloud products is more stressful than typical B2B applications. Cloud services demand extremely high stability—small mistakes can impact many enterprise users. When incidents occur, we must quickly determine whether the issue originates from the frontend, backend, or cross-product dependencies, then collaborate with backend teams, SPT, and user support to resolve it. Even if the root cause lies outside frontend, we proactively drive the solution process—users only care whether it works.
+Frontend development for cloud networking products comes with much higher pressure than typical B-side applications. Cloud services demand extremely high stability, and even small mistakes can affect a large number of enterprise users. When issues occur, the first step is always to identify where the problem lies. It could be frontend logic, backend behavior, or cross-product dependencies. After that, multiple teams often need to work together to resolve it. Even when the issue is not caused by the frontend, we still actively help push things forward, because from a user’s perspective, the only thing that matters is whether the service works.
 
-Development requires equal caution because every operation in the console triggers real resources and incurs real costs. One memorable case occurred when I missed a conditional check during the EIP creation flow. As a result, the creation API was mistakenly triggered multiple times under certain conditions, creating over a hundred EIPs within seconds and consuming the test account’s balance. That incident made me fully aware of how critical cloud resource operations are, and since then I’ve become much more careful about process validation and edge-case handling.
+Development also requires extra caution, because every operation in the console corresponds to real cloud resources and real costs. One incident that left a deep impression on me happened while I was working on the EIP creation flow. I missed a conditional check in the logic, which caused the creation API to be triggered repeatedly under certain conditions. Within a very short time, hundreds of EIPs were created, quickly consuming the balance of a test account. That experience made me fully realize how serious cloud resource operations are. Since then, I have been much more careful with workflow validation and edge-case handling.
 
 ---
 
-## 🔧 Component Reuse & Business Abstraction
+## Component Reuse and Business Abstraction
 
-As I became responsible for more network products, I started summarizing shared patterns in their interactions and resource models. For example:
+As I took ownership of more networking products, I gradually noticed that many of them shared similar interaction patterns and resource models. For example, EIP binding logic appeared across instances, ULBs, and NAT gateways. Firewall configurations were reused by multiple products. Region, availability zone, and subnet selectors showed up in almost every networking workflow.
 
-- **EIP binding logic** appears across hosts, ULB, NAT gateways, etc.  
-- **Firewall component** is reused by multiple network products  
-- **Region / Availability Zone / Subnet selectors** are used across nearly every network workflow  
+Problems in these shared components would not only affect a single product, but could also impact multiple sub-applications across the entire console. Because of this, I became especially cautious when designing, developing, and testing them. I paid close attention to consistency, clarity of logic, and edge cases.
 
-These shared components affect not just my own products—any issue could impact multiple sub-applications across the entire console. Therefore, when designing, developing, and testing these components, I exercised extra caution to ensure consistent behavior, clear logic, and correct boundary handling.
-
-Based on these patterns, I abstracted and maintained several reusable business components, reducing repetitive work and ensuring consistent cross-product experiences. This process shifted my focus from “implementing a product” toward “understanding the business model across the entire network product line and ensuring unified interactions among them.”
+Based on these shared patterns, I abstracted and maintained several reusable business components. This helped reduce repetitive work and made the experience more consistent across products. Over time, my focus shifted from simply completing individual features to understanding the broader networking product line and keeping interactions coherent across different products.
 
 ![Business Components](https://miever.s3.ap-east-1.amazonaws.com/static/projects/ucloud/ucloud-3.webp)
 
 ---
 
-## 📊 Monitoring Component Refactoring: Unification, Reuse, and Performance Optimization
+## Monitoring System Refactoring
 
-Within the monitoring domain, I was primarily responsible for refactoring and unifying frontend components. Monitoring requires collaboration across multiple teams: metric definitions, data structures, and API specifications are generally co-designed by frontend and backend engineers, while my responsibility was to turn these specifications into a stable, extensible, and reusable monitoring component.
+In monitoring-related work, my main responsibility was refactoring and unifying frontend components. Monitoring capabilities require close collaboration across teams. Metric definitions, data structures, and API contracts are usually discussed and agreed on together by frontend and backend engineers. My role was to turn those agreements into a stable, extensible, and reusable monitoring component on the frontend.
 
 ![Monitoring Components](https://miever.s3.ap-east-1.amazonaws.com/static/projects/ucloud/ucloud-6.webp)
 
-Monitoring metrics vary greatly across products, such as:
+Monitoring metrics vary widely across products. Some focus on bandwidth, others on packet counts, disk read and write operations, or percentage-based indicators. To handle these differences, I designed a configurable data mapping and unit conversion mechanism based on shared interface conventions. This allowed different teams to integrate monitoring charts through configuration rather than rewriting formatting logic each time.
 
-- Bandwidth (Kbps)
-- Packet count (count/s)
-- Disk read/write (Ops/s)
-- Various percentage or multi-dimensional metrics
+Chart rendering turned out to be one of the most fragile parts of monitoring. When monitoring is not enabled, data can be missing or structurally invalid, and charting libraries like ECharts may throw runtime errors that break the entire page. To prevent this, I introduced Error Boundaries in the monitoring components. This ensured that a single chart failure would not crash the whole page, and a fallback UI could be shown instead.
 
-To adapt to different formats, I designed a **configurable data mapping and unit conversion system** based on a unified API contract. This allows different teams to integrate monitoring with simple configuration instead of repeatedly implementing formatting logic.
+Monitoring pages often need to render many charts at the same time. I also worked on performance optimizations, reducing unnecessary re-renders, caching processed data, and updating only when needed. These changes helped keep the page responsive even under heavy rendering loads.
 
-Chart rendering is the most error-prone part of monitoring. Since metric data may have missing fields, empty values, or invalid structure when monitoring isn’t enabled, charting libraries (like ECharts) can throw errors and break the entire page. To prevent this, I added an **Error Boundary** in the component layer, ensuring that a single chart failure would not crash the whole page and instead display fallback UI.
-
-Monitoring pages often need to display many charts at once—bandwidth, packets, disk IO, read/write operations, etc. I optimized performance by reducing unnecessary re-renders, caching processed data, and updating only when needed, ensuring smooth performance despite heavy rendering loads.
-
-The final refactored monitoring component was reused across multiple product lines, significantly reducing duplication and improving consistency. This project required close multi-team collaboration: API structure and definitions were co-designed by frontend and backend engineers, and I ensured maintainability, reliability, and reusability on the frontend.
+After refactoring, the monitoring components were reused across multiple product lines. This significantly reduced duplicated work and made the monitoring experience more consistent. It was much a cross-team effort, with interfaces and data definitions designed together and frontend responsibilities focused on maintainability and reliability.
 
 ---
 
-## 🎯 Summary
+## Honors, Mentorship, and Growth
 
-This experience taught me a lot about the complexity and responsibility involved in cloud product frontend development:
+During my time at UCloud, I tried to approach every requirement and detail seriously, aiming to make things a bit more stable and reliable each time. Through this long-term effort, I was honored multiple times as an Outstanding Employee, ranking within the top 10% company-wide in 2021 H1, 2021 H2, 2022 H2, and 2024 H1.
 
-- Understanding complex business models  
-- Maintaining product consistency and long-term maintainability  
-- Collaborating across teams, roles, and product domains  
-- Balancing user experience with platform stability  
+![Honors in UCloud](https://miever.s3.ap-east-1.amazonaws.com/static/blogs/ucloud-honor.webp)
 
-These challenges deepened my interest in B2B interaction design, design systems, and business modeling—and have continued to influence my career direction since.
+These recognitions were not about doing one particular thing right. They were the result of continuous effort and steady improvement alongside the team. I was fortunate to work with leaders and senior engineers who knew how to guide newcomers and were genuinely willing to invest time and patience. When I first joined, I knew very little about real-world engineering and business. Over time, with their trust and support, I grew into someone who could independently handle complex modules and understand the system as a whole.
+
+![Team in UCloud](https://miever.s3.ap-east-1.amazonaws.com/static/blogs/ucloud-team.webp)
+
+The years I spent with the frontend team were the most dedicated, and honestly the happiest, period of my early career. We faced complex problems together and found real satisfaction in getting things right. Looking back now, these honors belong not only to me, but to the team that helped me grow from knowing almost nothing into a professional engineer.
+
+---
+
+## Closing Thoughts
+
+This experience gave me a much deeper understanding of what frontend engineering means in the context of cloud products. It taught me how to reason about complex business models, how to maintain consistency at scale, and how to balance user experience with system stability. More importantly, it shaped the way I think about engineering as a long-term craft rather than just a set of tasks.
+
+---
+
+## Epilogue: Upon Leaving UCloud  
+(Written on August 5, 2024)
+
+> July 6, 2020 — August 5, 2024
+
+![Office at UCloud](https://miever.s3.ap-east-1.amazonaws.com/static/blogs/ucloud-office.webp)
+
+I still remember the nervousness of my campus interview, the novelty of my first day at work, and the small details of onboarding training. In what feels like a moment, four years passed, and it became time to say goodbye.
+
+These four years were neither short nor long, but they left behind many meaningful memories. The first three years as a frontend engineer helped me transition from university to the workplace, slowly moving from uncertainty to a clearer understanding of engineering and responsibility. The following year in a business role gave me a different perspective and allowed me to meet many wonderful people.
+
+Over time, I also spent a lot of effort reflecting on my own direction and what I truly want to pursue. Today, I am closing this chapter and preparing for the next one.
+
+Looking back, the boat has already passed countless mountains.  
+Looking ahead, the road is long, and it is bright.
+
+Grateful for every encounter over these four years, and wishing all the best for the future.

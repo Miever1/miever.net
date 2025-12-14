@@ -92,18 +92,23 @@
       "description": "Explore my projects that showcase my skills and creativity in front-end development.",
       "miever_net": {
         "title": "Miever.net",
-        "subTitle": "Welcome to my personal website, crafted with Miever UI!",
-        "description": "The main purpose of this project is that I want to show my true self, here you can see my resume, blog, and other information about me. Of course, I also want to apply what I know in technology to my personal web page, if you want to know, please check out the source code."
+        "subTitle": "My personal website, built with Miever UI",
+        "description": "This is my personal website where I share my resume, blog posts, and projects. It is also a place where I experiment with ideas and apply what I learn in frontend engineering to a real, evolving product."
       },
       "miever_ui": {
         "title": "Miever UI",
-        "subTitle": "Crafting Beautiful User Interfaces Made Easy!",
-        "description": "Miever UI is a personal React component library that offers a wide range of UI components designed to enhance the functionality and aesthetics of my web applications. With customizable styles and responsive designs, Miever UI simplifies the development process, enabling faster and more efficient creation of beautiful user interfaces."
+        "subTitle": "A personal React component library",
+        "description": "Miever UI is a personal React component library I built to support my own projects. It focuses on reusable components, customizable styles, and responsive design, helping me build interfaces faster and more consistently."
       },
       "news_project": {
         "title": "News Project",
-        "subTitle": "Building a Seamless News Experience with Angular and Electron",
-        "description": "The News Project is my first Angular application, designed to create a functional newspaper web app. It includes features like displaying, filtering, and managing articles, and now supports Electron for desktop application functionality."
+        "subTitle": "A news application built with Angular and Electron",
+        "description": "A news application that supports article listing, filtering, and management. It was originally built as a web app with Angular, and later extended with Electron to run as a desktop application."
+      },
+      "ucloud_console": {
+        "title": "UCloud Cloud Console",
+        "subTitle": "Frontend work on a large-scale cloud console",
+        "description": "Three years of frontend engineering work on UCloud’s cloud console, focusing on networking products, monitoring components, and system-level consistency."
       }
     },
     "countries": {

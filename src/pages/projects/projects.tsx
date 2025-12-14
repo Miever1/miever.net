@@ -8,7 +8,7 @@ export interface Project {
     title: string;
     subTitle: string;
     description: string;
-    githubPath: string;
+    githubPath?: string;
     liveDemoPath: string;
     thumbnailPath: string;
 }
@@ -25,6 +25,13 @@ const Projects:FunctionComponent<{}> = () => {
     }, []);
 
     const projectsList: Project[] = [
+        {
+          title: t("projects.ucloud_console.title"),
+          subTitle: t("projects.ucloud_console.subTitle"),
+          description: t("projects.ucloud_console.description"),
+          liveDemoPath: "/blogs/ucloud-frontend-experience/",
+          thumbnailPath: "https://miever.s3.ap-east-1.amazonaws.com/static/blogs/ucloud-office.webp",
+        },
         {
           title: t("projects.miever_net.title"),
           subTitle: t("projects.miever_net.subTitle"),
@@ -76,7 +83,15 @@ const Projects:FunctionComponent<{}> = () => {
                         <Card
                             title={(
                                 <Box flexBox >
-                                    <Box style={{ color: BRAND_COLORS.primary }}>
+                                    <Box
+                                        style={{ 
+                                            color: BRAND_COLORS.primary,
+                                            cursor: "pointer",
+                                        }}
+                                        onClick={() => {
+                                            window.open(liveDemoPath);
+                                        }}
+                                    >
                                         {title}
                                     </Box>
                                 </Box>
@@ -96,15 +111,17 @@ const Projects:FunctionComponent<{}> = () => {
                                                 <Icon icon={["fas", "desktop"]} theme="primary" style={{ cursor: "pointer" }}/>
                                             </Button>
                                         </Tooltip>
-                                        <Tooltip overlay={t("github_res")} placement="top">
-                                            <Button
-                                                size="sm"
-                                                styleType="link"
-                                                onClick={() => window.open(githubPath)}
-                                            >
-                                                <Icon icon={["fab", "github"]} theme="primary" style={{ fontSize: "14px", cursor: "pointer" }}/>
-                                            </Button>
-                                        </Tooltip>
+                                        {githubPath && (
+                                            <Tooltip overlay={t("github_res")} placement="top">
+                                                <Button
+                                                    size="sm"
+                                                    styleType="link"
+                                                    onClick={() => window.open(githubPath)}
+                                                >
+                                                    <Icon icon={["fab", "github"]} theme="primary" style={{ fontSize: "14px", cursor: "pointer" }}/>
+                                                </Button>
+                                            </Tooltip>
+                                        )}
                                     </Box>
                                 </Box>
                             )}
