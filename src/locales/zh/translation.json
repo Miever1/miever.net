@@ -92,18 +92,23 @@
       "description": "探索我的项目，这些项目展示了我在前端开发中的技能与创造力。",
       "miever_net": {
         "title": "Miever.net",
-        "subTitle": "欢迎来到我的个人网站，使用 Miever UI 精心制作！",
-        "description": "欢迎来到我的个人网站！这里展示了我的简历、博客以及其他与我相关的内容。同时，这个网站也是我运用所学技术的一个平台。如果您感兴趣，不妨查看一下源代码，发现更多有趣的细节！"
+        "subTitle": "我的个人网站，基于 Miever UI 构建",
+        "description": "这是我的个人网站，用来展示我的简历、博客和项目经历。同时，它也是我实践和验证前端技术想法的一个长期演进的产品。"
       },
       "miever_ui": {
         "title": "Miever UI",
-        "subTitle": "轻松打造美观的用户界面！",
-        "description": "Miever UI 是一个个人 React 组件库，提供了多种 UI 组件，旨在提升我的网页应用的功能和美观性。通过可定制的样式和响应式设计，Miever UI 简化了开发流程，让创建美观的用户界面变得更加快捷和高效。"
+        "subTitle": "一个个人 React 组件库",
+        "description": "Miever UI 是我为个人项目开发的 React 组件库，主要用于沉淀常用的 UI 组件和样式规范，帮助我在不同项目中更高效、统一地构建界面。"
       },
       "news_project": {
         "title": "新闻项目",
-        "subTitle": "使用 Angular 和 Electron 构建无缝的新闻体验",
-        "description": "新闻项目是我的第一个 Angular 应用，旨在创建一个功能齐全的报纸网络应用。它包括显示、过滤和管理文章的功能，现在还支持 Electron，用于桌面应用的功能。"
+        "subTitle": "基于 Angular 和 Electron 的新闻应用",
+        "description": "这是一个新闻应用项目，支持文章的展示、筛选和管理。最初使用 Angular 构建为 Web 应用，后续引入 Electron，使其能够以桌面应用的形式运行。"
+      },
+      "ucloud_console": {
+        "title": "UCloud 云控制台",
+        "subTitle": "大型云控制台的前端工程实践",
+        "description": "在 UCloud 云控制台中进行为期三年的前端工程实践，主要负责网络类产品、监控组件以及跨产品的系统一致性建设。"
       }
     },
     "countries": {
