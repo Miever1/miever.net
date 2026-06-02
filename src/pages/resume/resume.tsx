@@ -8,6 +8,8 @@ import {
     education,
     skills,
     experience,
+    internships,
+    awards,
     projects,
     languages,
     labels,
@@ -78,6 +80,46 @@ const Resume: FunctionComponent<{}> = () => {
                                         {entry.highlights.map((h, j) => (
                                             <li key={j}>{tr(h)}</li>
                                         ))}
+                                    </ul>
+                                </article>
+                            ))}
+                        </div>
+                    </section>
+
+                    <section className="resume-section">
+                        <h2 className="resume-section-title">{tr(labels.internships)}</h2>
+                        <div className="resume-timeline">
+                            {internships.map((entry, i) => (
+                                <article className="resume-entry" key={i}>
+                                    <div className="resume-entry-head">
+                                        <h3 className="resume-entry-title">{tr(entry.title)}</h3>
+                                        <span className="resume-entry-period">{entry.period}</span>
+                                    </div>
+                                    <p className="resume-entry-org">
+                                        {tr(entry.company)} · {tr(entry.location)}
+                                    </p>
+                                    <ul className="resume-bullets">
+                                        {entry.highlights.map((h, j) => (
+                                            <li key={j}>{tr(h)}</li>
+                                        ))}
+                                    </ul>
+                                </article>
+                            ))}
+                        </div>
+                    </section>
+
+                    <section className="resume-section">
+                        <h2 className="resume-section-title">{tr(labels.awards)}</h2>
+                        <div className="resume-timeline">
+                            {awards.map((a, i) => (
+                                <article className="resume-entry" key={i}>
+                                    <div className="resume-entry-head">
+                                        <h3 className="resume-entry-title">{tr(a.title)}</h3>
+                                        <span className="resume-entry-period">{a.period}</span>
+                                    </div>
+                                    <p className="resume-entry-org">{tr(a.event)}</p>
+                                    <ul className="resume-bullets">
+                                        <li>{tr(a.note)}</li>
                                     </ul>
                                 </article>
                             ))}

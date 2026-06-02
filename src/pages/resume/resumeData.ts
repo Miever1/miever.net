@@ -69,11 +69,11 @@ export const skills: SkillGroup[] = [
     },
     {
         label: L("Frameworks & Libraries", "框架与库"),
-        items: ["React", "Gatsby", "Chakra UI", "Storybook"],
+        items: ["React", "NestJS", "Gatsby", "Chakra UI"],
     },
     {
         label: L("Tooling & Testing", "工具与测试"),
-        items: ["Git", "Jest", "ESLint", "Figma", "GitHub Actions"],
+        items: ["Git", "Jest", "ESLint", "Figma", "GitHub Actions", "Storybook"],
     },
     {
         label: L("Cloud & DevOps", "云与 DevOps"),
@@ -114,6 +114,25 @@ export const experience: ExperienceItem[] = [
             ),
         ],
     },
+];
+
+export const internships: ExperienceItem[] = [
+    {
+        company: L("Huawei Suomi (Finland)", "华为芬兰研究所"),
+        title: L("Graphics Intern", "图形学实习生"),
+        period: "Feb 2026 – Present",
+        location: L("Helsinki, Finland", "芬兰 · 赫尔辛基"),
+        highlights: [
+            L(
+                "Built a 2D-to-3D photo-album prototype with ArkUI and the Huawei AR Engine for interactive 3D visualisation.",
+                "用 ArkUI 与华为 AR Engine 构建 2D 转 3D 相册原型，实现交互式三维可视化。"
+            ),
+            L(
+                "Exploring AI-based upscaling and artifact reduction for impostor rendering — memory vs. quality trade-offs.",
+                "探索基于 AI 的超分与去伪影（impostor 渲染），权衡显存与画质。"
+            ),
+        ],
+    },
     {
         company: L("Ericsson (China) Communications Co., Ltd.", "爱立信（中国）通信有限公司"),
         title: L("Front-End Engineer (Intern)", "前端工程师（实习）"),
@@ -129,6 +148,34 @@ export const experience: ExperienceItem[] = [
                 "与后端团队对接 RESTful API 并优化数据流。"
             ),
         ],
+    },
+];
+
+export interface AwardItem {
+    title: Localized;
+    event: Localized;
+    period: string;
+    note: Localized;
+}
+
+export const awards: AwardItem[] = [
+    {
+        title: L("First Place — Huawei Finland TechArena 2025", "华为芬兰 TechArena 2025 冠军"),
+        event: L("Huawei Finland Research Center", "华为芬兰研究中心"),
+        period: "Dec 2025",
+        note: L(
+            "Team Lead — guided the team from concept to a 3D interactive prototype, with a focus on UX and interaction design.",
+            "担任组长，带队从概念走到 3D 交互原型，聚焦用户体验与交互设计。"
+        ),
+    },
+    {
+        title: L("First Place — The Startup Hack", "The Startup Hack 冠军"),
+        event: L("24-hour hackathon", "24 小时黑客松"),
+        period: "Apr 2026",
+        note: L(
+            "Built an AI-powered gameplay-analysis prototype in 24h — multi-persona player reactions from video via LLMs + TTS.",
+            "24 小时内做出 AI 游戏体验分析原型：用 LLM + TTS 从视频生成多人格玩家反应。"
+        ),
     },
 ];
 
@@ -188,6 +235,8 @@ export const languages: LanguageItem[] = [
 export const labels = {
     summary: L("Summary", "简介"),
     experience: L("Experience", "工作经历"),
+    internships: L("Internships", "实习经历"),
+    awards: L("Awards", "获奖"),
     projects: L("Selected Projects", "精选项目"),
     education: L("Education", "教育背景"),
     skills: L("Skills", "技能"),
