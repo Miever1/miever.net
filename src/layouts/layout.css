@@ -75,3 +75,45 @@ html, body {
 .content-area.content-flush {
     padding: 0;
 }
+
+/* ── List card media row (projects / blogs / designs) ────────────────
+   Image beside text on desktop; stacked on phones. Replaces the old
+   fixed flex:4 / flex:5 + 480px image. */
+.card-media-row {
+    display: flex;
+    gap: 16px;
+}
+
+.card-media-row .card-media-image {
+    flex: 0 0 40%;
+    max-width: 40%;
+    overflow: hidden;
+}
+
+.card-media-row .card-media-image img {
+    width: 100%;
+    height: auto;
+}
+
+.card-media-row .card-media-text {
+    flex: 1;
+    min-width: 0;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 6;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media (max-width: 767.98px) {
+    .card-media-row {
+        flex-direction: column;
+    }
+    .card-media-row .card-media-image {
+        flex: none;
+        max-width: 100%;
+    }
+    .card-media-row .card-media-text {
+        -webkit-line-clamp: 4;
+    }
+}

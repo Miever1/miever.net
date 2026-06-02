@@ -124,32 +124,16 @@ const Designs:FunctionComponent<{}> = () => {
                                 </Box>
                             )}
                         >
-                            <Box flexBox>
-                                <Box
-                                    style={{ 
-                                        flex: 4,
-                                        overflow: "hidden"
-                                    }}
-                                >
+                            <Box className="card-media-row">
+                                <Box className="card-media-image">
                                     <Image
                                         src={home_image}
                                         alt={`blogs-${title}`}
                                         borderRadius='lg'
-                                        w={480}
                                         loading="lazy"
                                     />
                                 </Box>
-                                <Box 
-                                    style={{
-                                        flex: 5,
-                                        padding: "0 16px",
-                                        display: "-webkit-box",
-                                        WebkitBoxOrient: "vertical",
-                                        WebkitLineClamp: 6,
-                                        overflow: "hidden",
-                                        textOverflow: "ellipsis",
-                                    }}
-                                >
+                                <Box className="card-media-text">
                                     {description}
                                 </Box>
                             </Box>

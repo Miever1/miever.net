@@ -177,7 +177,8 @@ const MapChart = () => {
             position: "absolute",
             top: (hoveredMarker || autoMarker)!.position?.y ?? 50,
             left: (hoveredMarker || autoMarker)!.position?.x ?? 50,
-            width: "580px",
+            width: "min(580px, 90vw)",
+            maxWidth: "90vw",
             zIndex: 10,
           }}
         >
