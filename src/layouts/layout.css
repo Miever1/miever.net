@@ -339,6 +339,15 @@ html, body {
     object-fit: cover;
     border-radius: var(--radius-2xl);
     box-shadow: var(--shadow-lg);
+    /* Editorial treatment: a casual photo reads as intentional when slightly
+       desaturated, returning to full color on hover. */
+    filter: grayscale(0.4) contrast(1.03);
+    transition: filter 0.45s ease, transform 0.45s ease;
+}
+
+.hero-portrait-img:hover {
+    filter: grayscale(0) contrast(1);
+    transform: scale(1.015);
 }
 
 .home-thanks {
