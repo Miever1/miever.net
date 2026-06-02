@@ -1,9 +1,9 @@
 
-import React, { FunctionComponent, ReactElement } from "react";
+import React, { FunctionComponent, ReactElement, useState } from "react";
 import { navigate } from "gatsby";
 import { useScroll } from 'ahooks';
 import { useTheme } from "../components/Theme-Context";
-import { Menu, Icon, Box, Button, Tooltip } from "miever_ui";
+import { Menu, Icon, Box, Button, Tooltip, Drawer, useBreakpoint } from "miever_ui";
 import { useLocation } from '@reach/router';
 import { useTranslation } from "react-i18next";
 
@@ -11,7 +11,7 @@ import ParticlesContainer from "./particles-container";
 
 import "./layout.css"
 import "miever_ui/style";
- 
+
 const Layout: FunctionComponent<{
     children: ReactElement
 }> = ({ children }) => {
@@ -21,6 +21,8 @@ const Layout: FunctionComponent<{
     const location = useLocation();
     const { pathname } = location;
     const { currentTheme, setTheme } = useTheme();
+    const { isMobile } = useBreakpoint();
+    const [drawerOpen, setDrawerOpen] = useState(false);
 
     const themeIconItems : {
         [key: string]: {
@@ -43,6 +45,100 @@ const Layout: FunctionComponent<{
     };
     const isFixed = scroll?.top && scroll.top > 42;
     const defaultKey = pathname === "/" ? "home" : pathname.split("/")[1];
+
+    const navItems = [
+        { label: t("navigation_home"), key: "home" },
+        { label: t("navigation_blogs"), key: "blogs" },
+        { label: t("navigation_projects"), key: "projects" },
+        { label: t("navigation_designs"), key: "designs" },
+        { label: t("navigation_resume"), key: "resume" },
+        { label: t("navigation_dashboard"), key: "dashboard" },
+        { label: t("navigation_web_performance"), key: "performance" },
+    ];
+
+    const handleNavigate = (value: string) => {
+        navigate(value === "home" ? "/" : `/${value}`);
+        setDrawerOpen(false);
+    };
+
+    const toggleTheme = () => {
+        if (currentTheme === "light") {
+            setTheme("dark");
+        } else if (currentTheme === "dark") {
+            setTheme("system");
+        } else {
+            setTheme("light");
+        }
+    };
+
+    const toggleLanguage = () => {
+        const nextLocale = i18n.language === "en" ? "zh" : "en";
+        i18n.changeLanguage(nextLocale);
+        window.location.replace("/");
+    };
+
+    // Action buttons (language / theme / social) reused in the desktop suffix
+    // and the mobile drawer. `inline` keeps the desktop tooltip+row layout.
+    const renderActions = (inline: boolean) => (
+        <Box
+            flexBox
+            direction={inline ? "row" : "column"}
+            alignItems={inline ? "center" : "flex-start"}
+            style={inline ? { marginRight: "24px" } : { gap: "8px", marginTop: "16px" }}
+        >
+            <Tooltip
+                overlay={t(i18n.language === "en" ? "tooltip_switch_to_zh" : "tooltip_switch_to_en")}
+                placement="bottom"
+            >
+                <Button style={{ padding: "8px" }} styleType="link" aria-label="Language" onClick={toggleLanguage}>
+                    <Icon icon={["fas", "language"]} theme="primary" style={{ fontSize: "14px", cursor: "pointer" }} />
+                    {!inline && <span style={{ marginLeft: "8px" }}>{t("language")}</span>}
+                </Button>
+            </Tooltip>
+            <Tooltip overlay={t(themeIconItems[currentTheme].tooltip)} placement="bottom">
+                <Button style={{ padding: "8px" }} styleType="link" aria-label="Theme" onClick={toggleTheme}>
+                    <Icon icon={["fas", themeIconItems[currentTheme].icon]} theme="primary" style={{ fontSize: "14px", cursor: "pointer" }} />
+                    {!inline && <span style={{ marginLeft: "8px" }}>{t(themeIconItems[currentTheme].tooltip)}</span>}
+                </Button>
+            </Tooltip>
+            <Tooltip overlay="Github" placement="bottom">
+                <Button style={{ padding: "8px" }} styleType="link" aria-label="Github" onClick={() => window.open("https://github.com/Miever1")}>
+                    <Icon icon={["fab", "github"]} theme="primary" style={{ fontSize: "14px", cursor: "pointer" }} />
+                    {!inline && <span style={{ marginLeft: "8px" }}>Github</span>}
+                </Button>
+            </Tooltip>
+            <Tooltip overlay={t("mail")} placement="bottom">
+                <Button style={{ padding: "8px" }} styleType="link" aria-label="Mail" onClick={() => window.location.href = 'mailto:miever1@163.com'}>
+                    <Icon icon={["fas", "envelope"]} theme="primary" style={{ fontSize: "14px", cursor: "pointer" }} />
+                    {!inline && <span style={{ marginLeft: "8px" }}>{t("mail")}</span>}
+                </Button>
+            </Tooltip>
+            <Tooltip overlay={t("linkedin")} placement="bottom">
+                <Button style={{ padding: "8px" }} styleType="link" aria-label="LinkedIn" onClick={() => window.open("https://www.linkedin.com/in/aerman-huofuer-413328280/")}>
+                    <Icon icon={["fab", "linkedin"]} theme="primary" style={{ fontSize: "14px", cursor: "pointer" }} />
+                    {!inline && <span style={{ marginLeft: "8px" }}>{t("linkedin")}</span>}
+                </Button>
+            </Tooltip>
+        </Box>
+    );
+
+    const logo = (
+        <Box
+            width="240px"
+            height="100%"
+            style={{
+                backgroundImage: "url(https://miever.s3.ap-east-1.amazonaws.com/static/miever-logo.webp)",
+                backgroundPosition: "24px",
+                backgroundSize: "180px",
+                backgroundRepeat: "no-repeat",
+                cursor: "pointer",
+                width: "240px",
+                minHeight: "48px",
+            }}
+            onClick={() => window.location.replace("/")}
+        />
+    );
+
     return (
         <Box
             width="100%"
@@ -58,141 +154,50 @@ const Layout: FunctionComponent<{
                 justifyContent="space-between"
             >
                 <Box className={`menu-container ${isFixed ? 'menu-fixed' : ''}`}>
-                    <Menu
-                        style={{
-                            margin: 0,
-                        }}
-                        defaultKey={defaultKey}
-                        prefix={(
-                            <Box
-                                width="240px"
-                                height="100%"
-                                style={{
-                                    backgroundImage: "url(https://miever.s3.ap-east-1.amazonaws.com/static/miever-logo.webp)",
-                                    backgroundPosition: "24px",
-                                    backgroundSize: "180px",
-                                    backgroundRepeat: "no-repeat",
-                                    cursor: "pointer",
-                                    width: "240px"
-                                }}
-                                onClick={() => window.location.replace("/")}
-                            />
-                        )}
-                        suffix={(
-                            <Box flexBox alignItems="center" style={{ marginRight: "24px" }}>
-                                <Tooltip
-                                    overlay={t(i18n.language === "en" ? "tooltip_switch_to_zh" : "tooltip_switch_to_en")}
-                                    placement="bottom"
-                                >
-                                    <Button
-                                        style={{ padding: "8px" }}
-                                        styleType="link"
-                                        aria-label="Language"
-                                        onClick={() => {
-                                            const nextLocale = i18n.language === "en" ? "zh" : "en";
-                                            i18n.changeLanguage(nextLocale);
-                                            window.location.replace("/");
-                                        }}
-                                    >
-                                        <Icon
-                                            icon={["fas", "language"]}
-                                            theme="primary"
-                                            style={{ fontSize: "14px", cursor: "pointer" }}
-                                        />
-                                    </Button>
-                                </Tooltip>
-                                <Tooltip
-                                    overlay={t(themeIconItems[currentTheme].tooltip)}
-                                    placement="bottom"
-                                >
-                                    <Button
-                                        style={{ padding: "8px" }}
-                                        styleType="link"
-                                        aria-label="Theme"
-                                        onClick={() => {
-                                            if (currentTheme === "light") {
-                                                setTheme("dark");
-                                            } else if (currentTheme === "dark") {
-                                                setTheme("system");
-                                            } else {
-                                                setTheme("light");
-                                            }
-                                        }}
-                                    >
-                                        <Icon
-                                            icon={["fas", themeIconItems[currentTheme].icon]}
-                                            theme="primary"
-                                            style={{ fontSize: "14px", cursor: "pointer" }}
-                                        />
-                                    </Button>
-                                </Tooltip> 
-                                <Tooltip overlay="Github" placement="bottom">
-                                    <Button
-                                        style={{ padding: "8px"}}
-                                        styleType="link"
-                                        aria-label="Github"
-                                        onClick={() => window.open("https://github.com/Miever1")}
-                                    >
-                                        <Icon icon={["fab", "github"]} theme="primary" style={{ fontSize: "14px", cursor: "pointer" }}/>
-                                    </Button>
-                                </Tooltip>
-                                <Tooltip overlay={t("mail")} placement="bottom">
-                                    <Button
-                                        style={{ padding: "8px"}}
-                                        styleType="link"
-                                        aria-label="Mail"
-                                        onClick={() => window.location.href = 'mailto:miever1@163.com'}
-                                    >
-                                        <Icon icon={["fas", "envelope"]} theme="primary" style={{ fontSize: "14px", cursor: "pointer" }}/>
-                                    </Button>
-                                </Tooltip>
-                                <Tooltip overlay={t("linkedin")} placement="bottom">
-                                    <Button
-                                        style={{ padding: "8px"}}
-                                        styleType="link"
-                                        aria-label="LinkedIn"
-                                        onClick={() => window.open("https://www.linkedin.com/in/aerman-huofuer-413328280/")}
-                                    >
-                                        <Icon icon={["fab", "linkedin"]} theme="primary" style={{ fontSize: "14px", cursor: "pointer" }}/>
-                                    </Button>
-                                </Tooltip>
-                            </Box>
-                        )}
-                        items={[
-                            {
-                                label: t("navigation_home"),
-                                key: "home"
-                            },
-                            {
-                                label: t("navigation_blogs"),
-                                key: "blogs"
-                            },
-                            {
-                                label: t("navigation_projects"),
-                                key: "projects"
-                            },
-                            {
-                                label: t("navigation_designs"),
-                                key: "designs"
-                            },
-                            {
-                                label: t("navigation_resume"),
-                                key: "resume"
-                            },
-                            {
-                                label: t("navigation_dashboard"),
-                                key: "dashboard"
-                            },
-                            {
-                                label: t("navigation_web_performance"),
-                                key: "performance"
-                            }
-                        ]}
-                        onSelect={(value: string) => {
-                            navigate(value === "home" ? "/" : `/${value}`)
-                        }}
-                    />
+                    {isMobile ? (
+                        <Box
+                            flexBox
+                            justifyContent="space-between"
+                            alignItems="center"
+                            style={{ padding: "4px 16px", height: "56px" }}
+                        >
+                            {logo}
+                            <Button
+                                styleType="link"
+                                aria-label={t("navigation_menu") || "Menu"}
+                                style={{ padding: "8px" }}
+                                onClick={() => setDrawerOpen(true)}
+                            >
+                                <Icon icon={["fas", "bars"]} theme="primary" style={{ fontSize: "20px", cursor: "pointer" }} />
+                            </Button>
+                        </Box>
+                    ) : (
+                        <Menu
+                            style={{ margin: 0 }}
+                            defaultKey={defaultKey}
+                            prefix={logo}
+                            suffix={renderActions(true)}
+                            items={navItems}
+                            onSelect={handleNavigate}
+                        />
+                    )}
                 </Box>
+
+                <Drawer
+                    open={drawerOpen}
+                    placement="right"
+                    title="MIEVER"
+                    onClose={() => setDrawerOpen(false)}
+                >
+                    <Menu
+                        mode="vertical"
+                        defaultKey={defaultKey}
+                        items={navItems}
+                        onSelect={handleNavigate}
+                    />
+                    {renderActions(false)}
+                </Drawer>
+
                 <Box
                     className={`content-area${
                         ["/dashboard/", "/performance/"].includes(pathname) ? " content-flush" : ""
