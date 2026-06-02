@@ -3,13 +3,12 @@ p {
 }
 
 html, body {
-    min-width: 1200px;
     background-color: var(--body-bg);
     z-index: -2;
 }
 
 .layout-container {
-    min-width: 1200px;
+    width: 100%;
 }
 
 .menu-container {
@@ -23,7 +22,6 @@ html, body {
     top: 0;
     left: 0;
     z-index: 1000;
-    min-width: 1200px;
     width: 100% !important;
 }
 
@@ -41,7 +39,6 @@ html, body {
 }
 
 .footer {
-    min-width: 1200px;
     height: 120px;
     display: flex;
     flex-direction: column;
@@ -53,4 +50,28 @@ html, body {
 .footer a {
     text-decoration: none;
     color: inherit;
+}
+
+/* ── Responsive content padding ──────────────────────────────────────
+   Desktop keeps generous side gutters; tablet shrinks them; phone goes
+   nearly edge-to-edge. Replaces the old fixed `8px 290px`. */
+.content-area {
+    padding: 8px 290px;
+}
+
+@media (max-width: 1199.98px) {
+    .content-area {
+        padding: 8px 64px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .content-area {
+        padding: 8px 16px;
+    }
+}
+
+/* Full-bleed pages (dashboard / performance iframes) opt out of padding. */
+.content-area.content-flush {
+    padding: 0;
 }

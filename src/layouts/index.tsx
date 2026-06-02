@@ -193,9 +193,11 @@ const Layout: FunctionComponent<{
                         }}
                     />
                 </Box>
-                <Box 
-                    padding={["/dashboard/", "/performance/"].includes(pathname) ? "" : "8px 290px"} 
-                    style={{ minWidth: "1200px", height: `${["/dashboard/", "/performance/"].includes(pathname) ? "100vh" : ""}` }}
+                <Box
+                    className={`content-area${
+                        ["/dashboard/", "/performance/"].includes(pathname) ? " content-flush" : ""
+                    }`}
+                    style={{ height: `${["/dashboard/", "/performance/"].includes(pathname) ? "100vh" : ""}` }}
                 >
                     {children}
                 </Box>
@@ -207,7 +209,6 @@ const Layout: FunctionComponent<{
                         justifyContent="center"
                         alignItems="center"
                         paddingY={4}
-                        style={{ minWidth: "1200px" }}
                     >
                         <Box>
                             <Button

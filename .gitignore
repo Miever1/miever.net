@@ -5,3 +5,6 @@ public
 yalc.lock
 src/gatsby-types.d.ts
 *.env*
+
+# macOS
+.DS_Store
