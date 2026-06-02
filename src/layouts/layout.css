@@ -453,6 +453,43 @@ html, body {
     transform: scale(1.015);
 }
 
+/* Stats band — a few credible, personable numbers under the hero. */
+.home-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-6);
+    padding: var(--space-8) 0;
+    border-top: 1px solid var(--color-border-primary);
+    border-bottom: 1px solid var(--color-border-primary);
+}
+
+@media (min-width: 720px) {
+    .home-stats {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.home-stat {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+}
+
+.home-stat-num {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: var(--letter-spacing-tight);
+    line-height: 1;
+    color: var(--color-text-primary);
+    font-variant-numeric: tabular-nums;
+}
+
+.home-stat-label {
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-snug);
+    color: var(--color-text-secondary);
+}
+
 /* Numbered, left-aligned editorial section headers. */
 .home-section-head {
     display: flex;

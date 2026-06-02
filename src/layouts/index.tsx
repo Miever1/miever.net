@@ -1,6 +1,9 @@
 
-import React, { FunctionComponent, ReactElement, useState } from "react";
+import React, { FunctionComponent, ReactElement, useState, useEffect } from "react";
 import { navigate } from "gatsby";
+// Gatsby 5's router (NOT @reach/router) — listen here so the active nav item
+// follows client-side navigation on the persisted layout.
+import { globalHistory } from "@gatsbyjs/reach-router";
 import { useScroll } from 'ahooks';
 import { useTheme } from "../components/Theme-Context";
 import { Menu, Icon, Box, Button, Tooltip, Drawer, useBreakpoint } from "miever_ui";
@@ -19,7 +22,13 @@ const Layout: FunctionComponent<{
     if (typeof document === 'undefined') return null;
     const { t, i18n } = useTranslation();
     const scroll = useScroll(document);
-    const { pathname } = location;
+    // Track the path reactively: the location prop is correct on mount but the
+    // persisted layout doesn't get a fresh one on client-side navigation.
+    const [pathname, setPathname] = useState(location.pathname);
+    useEffect(
+        () => globalHistory.listen(({ location: loc }) => setPathname(loc.pathname)),
+        [],
+    );
     const { currentTheme, setTheme } = useTheme();
     const { isMobile } = useBreakpoint();
     const [drawerOpen, setDrawerOpen] = useState(false);
