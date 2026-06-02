@@ -32,7 +32,7 @@
     "dark_theme": "Dark Theme",
     "system_theme": "Follow System",
     "comment_title": "Let’s Connect!",
-    "map_skills_title": "Skills Map",
+    "map_skills_title": "Skills",
     "frontend": "Frontend",
     "html": "HTML5",
     "css": "CSS3",
@@ -68,7 +68,7 @@
     "english": "English",
     "chinese": "Chinese",
     "uyghur": "Uyghur",
-    "skills_description": "The connections between my skills shape the way I approach and solve problems. Each skill marks a meaningful milestone in my professional journey, contributing to my continuous growth.",
+    "skills_description": "The tools, frameworks and disciplines I work with day to day — grouped by where they fit, with the ones I lean on most highlighted.",
     "home": {
       "title": "Home - Miever",
       "description": "Welcome to my personal website, where I share my journey as a front-end engineer, my projects, and my insights."
