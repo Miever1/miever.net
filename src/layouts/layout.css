@@ -57,9 +57,8 @@ html, body {
 }
 
 .site-footer-inner {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr;
     gap: var(--space-10);
     padding: var(--space-12) 290px var(--space-8);
 }
@@ -103,22 +102,30 @@ html, body {
     transform: translateY(-2px);
 }
 
-.site-footer-links {
+.site-footer-col {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: var(--space-2);
+    gap: var(--space-3);
 }
 
-.site-footer-links a {
+.site-footer-col-title {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--letter-spacing-wider);
+    text-transform: uppercase;
+    color: var(--color-text-disabled);
+}
+
+.site-footer-col a {
     font-size: var(--font-size-sm);
     color: var(--color-text-secondary);
     text-decoration: none;
     transition: color 0.2s ease;
 }
 
-.site-footer-links a:hover {
-    color: var(--color-text-primary);
+.site-footer-col a:hover {
+    color: var(--color-border-focus);
 }
 
 .site-footer-bottom {
@@ -138,10 +145,13 @@ html, body {
 
 @media (max-width: 767.98px) {
     .site-footer-inner {
-        flex-direction: column;
+        grid-template-columns: 1fr 1fr;
         gap: var(--space-6);
         padding-left: 16px;
         padding-right: 16px;
+    }
+    .site-footer-brand {
+        grid-column: 1 / -1;
     }
     .site-footer-bottom {
         padding-left: 16px;
@@ -207,6 +217,12 @@ html, body {
     display: flex;
     flex-direction: column;
     gap: var(--space-5);
+}
+
+.pagination-row {
+    display: flex;
+    justify-content: center;
+    margin-top: var(--space-10);
 }
 
 /* ── Footprints: map + bottom thumbnail strip ───────────────────────
@@ -435,43 +451,6 @@ html, body {
 .hero-portrait-img:hover {
     filter: grayscale(0) contrast(1);
     transform: scale(1.015);
-}
-
-/* Stats band — eye-catching numbers right under the hero. */
-.home-stats {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-6);
-    padding: var(--space-8) 0;
-    border-top: 1px solid var(--color-border-primary);
-    border-bottom: 1px solid var(--color-border-primary);
-}
-
-@media (min-width: 720px) {
-    .home-stats {
-        grid-template-columns: repeat(4, 1fr);
-    }
-}
-
-.home-stat {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-1);
-}
-
-.home-stat-num {
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: var(--font-weight-bold);
-    letter-spacing: var(--letter-spacing-tight);
-    line-height: 1;
-    color: var(--color-text-primary);
-    font-variant-numeric: tabular-nums;
-}
-
-.home-stat-label {
-    font-size: var(--font-size-sm);
-    line-height: var(--line-height-snug);
-    color: var(--color-text-secondary);
 }
 
 /* Numbered, left-aligned editorial section headers. */

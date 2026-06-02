@@ -64,20 +64,6 @@ const Home: FunctionComponent<{}> = () => {
                 </div>
             </header>
 
-            <div className="home-stats">
-                {[
-                    { num: "4+", label: t("stat_years") },
-                    { num: "2×", label: t("stat_awards") },
-                    { num: "48", label: t("stat_cities") },
-                    { num: "30+", label: t("stat_components") },
-                ].map((stat) => (
-                    <div className="home-stat" key={stat.label}>
-                        <span className="home-stat-num">{stat.num}</span>
-                        <span className="home-stat-label">{stat.label}</span>
-                    </div>
-                ))}
-            </div>
-
             <HomeSection index="01" title={t("map_skills_title")} subtitle={t("skills_description")}>
                 <SkillsMap />
             </HomeSection>

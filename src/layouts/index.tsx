@@ -4,7 +4,6 @@ import { navigate } from "gatsby";
 import { useScroll } from 'ahooks';
 import { useTheme } from "../components/Theme-Context";
 import { Menu, Icon, Box, Button, Tooltip, Drawer, useBreakpoint } from "miever_ui";
-import { useLocation } from '@reach/router';
 import { useTranslation } from "react-i18next";
 
 import ParticlesContainer from "./particles-container";
@@ -13,12 +12,13 @@ import "./layout.css"
 import "miever_ui/style";
 
 const Layout: FunctionComponent<{
-    children: ReactElement
-}> = ({ children }) => {
+    children: ReactElement;
+    // Provided by gatsby-plugin-layout; updates on every navigation.
+    location: { pathname: string };
+}> = ({ children, location }) => {
     if (typeof document === 'undefined') return null;
     const { t, i18n } = useTranslation();
     const scroll = useScroll(document);
-    const location = useLocation();
     const { pathname } = location;
     const { currentTheme, setTheme } = useTheme();
     const { isMobile } = useBreakpoint();
@@ -174,7 +174,7 @@ const Layout: FunctionComponent<{
                     ) : (
                         <Menu
                             style={{ margin: 0 }}
-                            defaultKey={defaultKey}
+                            activeKey={defaultKey}
                             prefix={logo}
                             suffix={renderActions(true)}
                             items={navItems}
@@ -191,7 +191,7 @@ const Layout: FunctionComponent<{
                 >
                     <Menu
                         mode="vertical"
-                        defaultKey={defaultKey}
+                        activeKey={defaultKey}
                         items={navItems}
                         onSelect={handleNavigate}
                     />
@@ -233,7 +233,29 @@ const Layout: FunctionComponent<{
                                 </a>
                             </div>
                         </div>
-                        <nav className="site-footer-links" aria-label="Footer">
+                        <nav className="site-footer-col" aria-label={t("footer_explore")}>
+                            <span className="site-footer-col-title">{t("footer_explore")}</span>
+                            {[
+                                { to: "/", key: "navigation_home" },
+                                { to: "/blogs", key: "navigation_blogs" },
+                                { to: "/projects", key: "navigation_projects" },
+                                { to: "/designs", key: "navigation_designs" },
+                                { to: "/resume", key: "navigation_resume" },
+                            ].map((item) => (
+                                <a
+                                    key={item.to}
+                                    href={item.to}
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        navigate(item.to);
+                                    }}
+                                >
+                                    {t(item.key)}
+                                </a>
+                            ))}
+                        </nav>
+                        <nav className="site-footer-col" aria-label={t("footer_resources")}>
+                            <span className="site-footer-col-title">{t("footer_resources")}</span>
                             <a
                                 href="/blogs/privacy-notice"
                                 onClick={(e) => {

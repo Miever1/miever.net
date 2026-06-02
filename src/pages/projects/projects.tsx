@@ -63,7 +63,7 @@ const Projects:FunctionComponent<{}> = () => {
                             clamp={3}
                             cover={<img src={thumbnailPath} alt={title} loading="lazy" />}
                             title={title}
-                            subTitle={subTitle}
+                            meta={subTitle}
                             footer={
                                 <>
                                     <Button
