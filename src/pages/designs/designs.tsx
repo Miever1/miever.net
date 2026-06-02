@@ -111,7 +111,7 @@ const Designs:FunctionComponent<{}> = () => {
                                         <Tooltip overlay={t("live_demo")} placement="top">
                                             <Button
                                                 size="sm"
-                                                styleType="link"
+                                                type="link"
                                                 onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
                                                     e.stopPropagation();
                                                     window.open(liveDemoPath);

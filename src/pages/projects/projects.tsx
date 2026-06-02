@@ -105,7 +105,7 @@ const Projects:FunctionComponent<{}> = () => {
                                         <Tooltip overlay={t("live_demo")} placement="top">
                                             <Button
                                                 size="sm"
-                                                styleType="link"
+                                                type="link"
                                                 onClick={() => window.open(liveDemoPath)}
                                             >
                                                 <Icon icon={["fas", "desktop"]} theme="primary" style={{ cursor: "pointer" }}/>
@@ -115,7 +115,7 @@ const Projects:FunctionComponent<{}> = () => {
                                             <Tooltip overlay={t("github_res")} placement="top">
                                                 <Button
                                                     size="sm"
-                                                    styleType="link"
+                                                    type="link"
                                                     onClick={() => window.open(githubPath)}
                                                 >
                                                     <Icon icon={["fab", "github"]} theme="primary" style={{ fontSize: "14px", cursor: "pointer" }}/>

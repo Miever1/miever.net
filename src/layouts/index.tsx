@@ -90,31 +90,31 @@ const Layout: FunctionComponent<{
                 overlay={t(i18n.language === "en" ? "tooltip_switch_to_zh" : "tooltip_switch_to_en")}
                 placement="bottom"
             >
-                <Button style={{ padding: "8px" }} styleType="link" aria-label="Language" onClick={toggleLanguage}>
+                <Button style={{ padding: "8px" }} type="link" aria-label="Language" onClick={toggleLanguage}>
                     <Icon icon={["fas", "language"]} theme="primary" style={{ fontSize: "14px", cursor: "pointer" }} />
                     {!inline && <span style={{ marginLeft: "8px" }}>{t("language")}</span>}
                 </Button>
             </Tooltip>
             <Tooltip overlay={t(themeIconItems[currentTheme].tooltip)} placement="bottom">
-                <Button style={{ padding: "8px" }} styleType="link" aria-label="Theme" onClick={toggleTheme}>
+                <Button style={{ padding: "8px" }} type="link" aria-label="Theme" onClick={toggleTheme}>
                     <Icon icon={["fas", themeIconItems[currentTheme].icon]} theme="primary" style={{ fontSize: "14px", cursor: "pointer" }} />
                     {!inline && <span style={{ marginLeft: "8px" }}>{t(themeIconItems[currentTheme].tooltip)}</span>}
                 </Button>
             </Tooltip>
             <Tooltip overlay="Github" placement="bottom">
-                <Button style={{ padding: "8px" }} styleType="link" aria-label="Github" onClick={() => window.open("https://github.com/Miever1")}>
+                <Button style={{ padding: "8px" }} type="link" aria-label="Github" onClick={() => window.open("https://github.com/Miever1")}>
                     <Icon icon={["fab", "github"]} theme="primary" style={{ fontSize: "14px", cursor: "pointer" }} />
                     {!inline && <span style={{ marginLeft: "8px" }}>Github</span>}
                 </Button>
             </Tooltip>
             <Tooltip overlay={t("mail")} placement="bottom">
-                <Button style={{ padding: "8px" }} styleType="link" aria-label="Mail" onClick={() => window.location.href = 'mailto:miever1@163.com'}>
+                <Button style={{ padding: "8px" }} type="link" aria-label="Mail" onClick={() => window.location.href = 'mailto:miever1@163.com'}>
                     <Icon icon={["fas", "envelope"]} theme="primary" style={{ fontSize: "14px", cursor: "pointer" }} />
                     {!inline && <span style={{ marginLeft: "8px" }}>{t("mail")}</span>}
                 </Button>
             </Tooltip>
             <Tooltip overlay={t("linkedin")} placement="bottom">
-                <Button style={{ padding: "8px" }} styleType="link" aria-label="LinkedIn" onClick={() => window.open("https://www.linkedin.com/in/aerman-huofuer-413328280/")}>
+                <Button style={{ padding: "8px" }} type="link" aria-label="LinkedIn" onClick={() => window.open("https://www.linkedin.com/in/aerman-huofuer-413328280/")}>
                     <Icon icon={["fab", "linkedin"]} theme="primary" style={{ fontSize: "14px", cursor: "pointer" }} />
                     {!inline && <span style={{ marginLeft: "8px" }}>{t("linkedin")}</span>}
                 </Button>
@@ -163,7 +163,7 @@ const Layout: FunctionComponent<{
                         >
                             {logo}
                             <Button
-                                styleType="link"
+                                type="link"
                                 aria-label={t("navigation_menu") || "Menu"}
                                 style={{ padding: "8px" }}
                                 onClick={() => setDrawerOpen(true)}
@@ -217,21 +217,21 @@ const Layout: FunctionComponent<{
                     >
                         <Box>
                             <Button
-                                styleType="link"
+                                type="link"
                                 size="sm"
                                 onClick={() => navigate("/blogs/privacy-notice")}
                             >
                                 {t("privacy_notice")}
                             </Button>
                             <Button
-                                styleType="link"
+                                type="link"
                                 size="sm"
                                 onClick={() => window.open("https://components.miever.net")}
                             >
                                 {t("footer_design_credit")}
                             </Button>
                             <Button
-                                styleType="link"
+                                type="link"
                                 size="sm"
                                 onClick={() => window.open("https://github.com/Miever1/miever.net/blob/master/LICENSE")}
                             >
