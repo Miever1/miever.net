@@ -206,46 +206,57 @@ const Layout: FunctionComponent<{
                 >
                     {children}
                 </Box>
-                <nav aria-label="Footer Navigation">
-                    <Box
-                        flexBox
-                        height={120}
-                        direction="column"
-                        justifyContent="center"
-                        alignItems="center"
-                        paddingY={4}
-                    >
-                        <Box>
-                            <Button
-                                type="link"
-                                size="sm"
-                                onClick={() => navigate("/blogs/privacy-notice")}
+                <footer className="site-footer">
+                    <div className="site-footer-inner">
+                        <div className="site-footer-brand">
+                            <span className="site-footer-name">Aerman</span>
+                            <span className="site-footer-tagline">{t("hero_eyebrow")}</span>
+                            <div className="site-footer-social">
+                                <a
+                                    href="https://github.com/Miever1"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label="GitHub"
+                                >
+                                    <Icon icon={["fab", "github"]} />
+                                </a>
+                                <a
+                                    href="https://www.linkedin.com/in/aerman-huofuer-413328280/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label="LinkedIn"
+                                >
+                                    <Icon icon={["fab", "linkedin"]} />
+                                </a>
+                                <a href="mailto:miever1@163.com" aria-label={t("mail")}>
+                                    <Icon icon={["fas", "envelope"]} />
+                                </a>
+                            </div>
+                        </div>
+                        <nav className="site-footer-links" aria-label="Footer">
+                            <a
+                                href="/blogs/privacy-notice"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    navigate("/blogs/privacy-notice");
+                                }}
                             >
                                 {t("privacy_notice")}
-                            </Button>
-                            <Button
-                                type="link"
-                                size="sm"
-                                onClick={() => window.open("https://components.miever.net")}
-                            >
+                            </a>
+                            <a href="https://components.miever.net" target="_blank" rel="noopener noreferrer">
                                 {t("footer_design_credit")}
-                            </Button>
-                            <Button
-                                type="link"
-                                size="sm"
-                                onClick={() => window.open("https://github.com/Miever1/miever.net/blob/master/LICENSE")}
+                            </a>
+                            <a
+                                href="https://github.com/Miever1/miever.net/blob/master/LICENSE"
+                                target="_blank"
+                                rel="noopener noreferrer"
                             >
                                 {t("license")}
-                            </Button>
-                        </Box>
-                        <Box
-                            paddingY={4}
-                            style={{ fontSize: "12px" }}
-                        >
-                            {t("footer_copyright")}
-                        </Box>
-                    </Box>
-                </nav>
+                            </a>
+                        </nav>
+                    </div>
+                    <div className="site-footer-bottom">{t("footer_copyright")}</div>
+                </footer>
             </Box>
         </Box>
     );

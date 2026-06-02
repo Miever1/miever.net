@@ -7,6 +7,18 @@ html, body {
     z-index: -2;
 }
 
+/* Calm, static page backdrop — a subtle brand-tinted glow that replaces the
+   old animated particle mesh. Pointer-events free, sits behind all content. */
+.bg-canvas {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+        radial-gradient(55% 45% at 82% -5%, rgba(12, 192, 223, 0.06), transparent 70%),
+        radial-gradient(45% 40% at 0% 100%, rgba(18, 170, 156, 0.05), transparent 70%);
+}
+
 .layout-container {
     width: 100%;
 }
@@ -38,18 +50,103 @@ html, body {
     height: 100vh;
 }
 
-.footer {
-    height: 120px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 8px 0;
+/* ── Site footer ─────────────────────────────────────────────────── */
+.site-footer {
+    margin-top: var(--space-24);
+    border-top: 1px solid var(--color-border-primary);
 }
 
-.footer a {
+.site-footer-inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--space-10);
+    padding: var(--space-12) 290px var(--space-8);
+}
+
+.site-footer-name {
+    display: block;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: var(--letter-spacing-tight);
+    color: var(--color-text-primary);
+}
+
+.site-footer-tagline {
+    display: block;
+    margin-top: var(--space-1);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+}
+
+.site-footer-social {
+    display: flex;
+    gap: var(--space-2);
+    margin-top: var(--space-4);
+}
+
+.site-footer-social a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: var(--radius-full);
+    color: var(--color-text-secondary);
+    border: 1px solid var(--color-border-primary);
+    transition: color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.site-footer-social a:hover {
+    color: var(--color-border-focus);
+    border-color: var(--color-border-focus);
+    transform: translateY(-2px);
+}
+
+.site-footer-links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+}
+
+.site-footer-links a {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
     text-decoration: none;
-    color: inherit;
+    transition: color 0.2s ease;
+}
+
+.site-footer-links a:hover {
+    color: var(--color-text-primary);
+}
+
+.site-footer-bottom {
+    padding: var(--space-4) 290px;
+    border-top: 1px solid var(--color-border-primary);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-disabled);
+}
+
+@media (max-width: 1199.98px) {
+    .site-footer-inner,
+    .site-footer-bottom {
+        padding-left: 64px;
+        padding-right: 64px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .site-footer-inner {
+        flex-direction: column;
+        gap: var(--space-6);
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+    .site-footer-bottom {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
 }
 
 /* ── Responsive content padding ──────────────────────────────────────
@@ -74,6 +171,30 @@ html, body {
 /* Full-bleed pages (dashboard / performance iframes) opt out of padding. */
 .content-area.content-flush {
     padding: 0;
+}
+
+/* Gentle page entrance — each route's content fades up on mount. */
+.content-area > * {
+    animation: page-enter 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@keyframes page-enter {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .content-area > *,
+    .hero-portrait-img {
+        animation: none !important;
+        transition: none !important;
+    }
 }
 
 /* ── Content list pages (blogs / projects / designs) ─────────────────
