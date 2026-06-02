@@ -86,18 +86,7 @@ const Blogs:FunctionComponent<{}> = () => {
                             }}
                             cover={<img src={home_image} alt={title} loading="lazy" />}
                             title={title}
-                            meta={date}
-                            footer={
-                                tags?.length ? (
-                                    <span className="card-tags">
-                                        {tags.map((tag) => (
-                                            <span className="card-tag" key={tag}>
-                                                {tag}
-                                            </span>
-                                        ))}
-                                    </span>
-                                ) : undefined
-                            }
+                            meta={tags?.length ? `${date}  ·  ${tags.join("  ·  ")}` : date}
                         >
                             {description}
                         </Card>

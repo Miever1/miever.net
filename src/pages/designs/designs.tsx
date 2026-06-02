@@ -79,32 +79,21 @@ const Designs:FunctionComponent<{}> = () => {
                             }}
                             cover={<img src={home_image} alt={title} loading="lazy" />}
                             title={title}
+                            meta={tags?.length ? tags.join("  ·  ") : undefined}
                             footer={
-                                <>
-                                    {tags?.length ? (
-                                        <span className="card-tags">
-                                            {tags.map((tag) => (
-                                                <span className="card-tag" key={tag}>
-                                                    {tag}
-                                                </span>
-                                            ))}
-                                        </span>
-                                    ) : null}
-                                    {liveDemoPath && (
-                                        <Button
-                                            size="sm"
-                                            type="link"
-                                            style={{ marginLeft: "auto" }}
-                                            onClick={(e) => {
-                                                e.preventDefault();
-                                                e.stopPropagation();
-                                                window.open(liveDemoPath);
-                                            }}
-                                        >
-                                            {t("live_demo")} ↗
-                                        </Button>
-                                    )}
-                                </>
+                                liveDemoPath ? (
+                                    <Button
+                                        size="sm"
+                                        type="link"
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            e.stopPropagation();
+                                            window.open(liveDemoPath);
+                                        }}
+                                    >
+                                        {t("live_demo")} ↗
+                                    </Button>
+                                ) : undefined
                             }
                         >
                             {description}

@@ -230,22 +230,6 @@ html, body {
     gap: var(--space-5);
 }
 
-/* Tag pills shown in a card footer. */
-.card-tags {
-    display: inline-flex;
-    flex-wrap: wrap;
-    gap: var(--space-2);
-}
-
-.card-tag {
-    padding: 2px var(--space-2);
-    font-size: var(--font-size-xs);
-    font-weight: var(--font-weight-medium);
-    color: var(--color-text-secondary);
-    background: var(--color-bg-secondary);
-    border-radius: var(--radius-full);
-}
-
 /* ── Footprints: map + bottom thumbnail strip ───────────────────────
    The active city drives both the highlighted map marker and the selected
    thumbnail. The strip scrolls horizontally on every device; nothing floats
@@ -405,13 +389,13 @@ html, body {
 
 @media (min-width: 880px) {
     .hero {
-        grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
-        gap: var(--space-16);
+        grid-template-columns: minmax(0, 1.7fr) minmax(0, 0.82fr);
+        gap: var(--space-12);
     }
 }
 
 .hero-content {
-    max-width: 42ch;
+    max-width: none;
 }
 
 .hero-eyebrow {
@@ -426,12 +410,13 @@ html, body {
 
 .hero-headline {
     margin: 0;
-    font-size: clamp(2.25rem, 5vw + 1rem, 3.75rem);
+    font-size: clamp(1.875rem, 2.4vw + 1rem, 3rem);
     line-height: var(--line-height-tight);
-    letter-spacing: var(--letter-spacing-tighter);
+    letter-spacing: var(--letter-spacing-tight);
     font-weight: var(--font-weight-bold);
     color: var(--color-text-primary);
     text-wrap: balance;
+    hyphens: manual;
 }
 
 .hero-lead {
@@ -455,14 +440,16 @@ html, body {
 
 .hero-portrait-img {
     width: 100%;
-    max-width: 320px;
-    aspect-ratio: 1 / 1;
+    max-width: 300px;
+    aspect-ratio: 4 / 5;
     object-fit: cover;
     border-radius: var(--radius-2xl);
     box-shadow: var(--shadow-lg);
-    /* Editorial treatment: a casual photo reads as intentional when slightly
-       desaturated, returning to full color on hover. */
-    filter: grayscale(0.4) contrast(1.03);
+    /* A thin ring + faint desaturation make a casual photo read as intentional;
+       full colour on hover. */
+    outline: 1px solid var(--color-border-primary);
+    outline-offset: -1px;
+    filter: grayscale(0.12) contrast(1.02);
     transition: filter 0.45s ease, transform 0.45s ease;
 }
 
