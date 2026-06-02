@@ -241,3 +241,33 @@
     font-size: var(--font-size-sm);
     color: var(--color-text-disabled);
 }
+
+/* ── Awards (highlight cards) & Projects (card grid) ─────────────────
+   Distinct treatments from the experience timeline give the page hierarchy. */
+.resume-awards,
+.resume-proj-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--space-4);
+}
+
+.resume-award {
+    border-top: 3px solid var(--color-border-focus);
+}
+
+/* Tighten the Card title for these denser grids. */
+.resume-award .miever-card-title,
+.resume-proj .miever-card-title {
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-snug);
+}
+
+.resume-proj .miever-card-title a {
+    color: var(--color-border-focus);
+    text-decoration: none;
+}
+
+.resume-award .miever-card-content,
+.resume-proj .miever-card-content {
+    font-size: var(--font-size-sm);
+}

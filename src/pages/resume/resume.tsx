@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from "react";
-import { Box, Button, Icon } from "miever_ui";
+import { Box, Button, Card, Icon } from "miever_ui";
 import { useTranslation } from "react-i18next";
 
 import { SEO } from "../../components/SEO";
@@ -110,45 +110,43 @@ const Resume: FunctionComponent<{}> = () => {
 
                     <section className="resume-section">
                         <h2 className="resume-section-title">{tr(labels.awards)}</h2>
-                        <div className="resume-timeline">
+                        <div className="resume-awards">
                             {awards.map((a, i) => (
-                                <article className="resume-entry" key={i}>
-                                    <div className="resume-entry-head">
-                                        <h3 className="resume-entry-title">{tr(a.title)}</h3>
-                                        <span className="resume-entry-period">{a.period}</span>
-                                    </div>
-                                    <p className="resume-entry-org">{tr(a.event)}</p>
-                                    <ul className="resume-bullets">
-                                        <li>{tr(a.note)}</li>
-                                    </ul>
-                                </article>
+                                <Card
+                                    key={i}
+                                    variant="elevated"
+                                    className="resume-award"
+                                    title={tr(a.title)}
+                                    meta={`${tr(a.event)} · ${a.period}`}
+                                    extra={<Icon icon={["fas", "trophy"]} theme="warning" />}
+                                >
+                                    {tr(a.note)}
+                                </Card>
                             ))}
                         </div>
                     </section>
 
                     <section className="resume-section">
                         <h2 className="resume-section-title">{tr(labels.projects)}</h2>
-                        <div className="resume-timeline">
+                        <div className="resume-proj-grid">
                             {projects.map((p, i) => (
-                                <article className="resume-entry" key={i}>
-                                    <div className="resume-entry-head">
-                                        <h3 className="resume-entry-title">
-                                            {p.link ? (
-                                                <a href={p.link} target="_blank" rel="noopener noreferrer">
-                                                    {tr(p.name)} ↗
-                                                </a>
-                                            ) : (
-                                                tr(p.name)
-                                            )}
-                                        </h3>
-                                        <span className="resume-entry-period">{p.period}</span>
-                                    </div>
-                                    <ul className="resume-bullets">
-                                        {p.points.map((pt, j) => (
-                                            <li key={j}>{tr(pt)}</li>
-                                        ))}
-                                    </ul>
-                                </article>
+                                <Card
+                                    key={i}
+                                    variant="outlined"
+                                    className="resume-proj"
+                                    title={
+                                        p.link ? (
+                                            <a href={p.link} target="_blank" rel="noopener noreferrer">
+                                                {tr(p.name)} ↗
+                                            </a>
+                                        ) : (
+                                            tr(p.name)
+                                        )
+                                    }
+                                    meta={p.period}
+                                >
+                                    {p.points.map((pt) => tr(pt)).join(" ")}
+                                </Card>
                             ))}
                         </div>
                     </section>
