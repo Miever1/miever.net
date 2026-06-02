@@ -1,7 +1,6 @@
-import React, { FunctionComponent, useState, useEffect } from "react";
-import { Image, Spinner } from "@chakra-ui/react";
+import React, { FunctionComponent } from "react";
 import { navigate, graphql, useStaticQuery } from "gatsby"
-import { Box, Card, Tooltip, Button, Icon, designs } from "miever_ui";
+import { Box, Card, Button } from "miever_ui";
 import { useTranslation } from "react-i18next";
 
 interface BlogInfo {
@@ -17,16 +16,8 @@ interface BlogInfo {
 }
 
 const Designs:FunctionComponent<{}> = () => {
-    const { BRAND_COLORS } = designs;
-    const [isLoaded, setIsLoaded] = useState(false);
     const { t, i18n } = useTranslation();
     const currentLanguage = i18n.language;
-
-    useEffect(() => {
-        setTimeout(() => {
-            setIsLoaded(true);
-        }, 500);
-    }, []);
 
     const { allMarkdownRemark: { edges } } = useStaticQuery(graphql`
         query {
@@ -55,92 +46,72 @@ const Designs:FunctionComponent<{}> = () => {
         }
     `);
 
-    if(!isLoaded) {
-        return(
-            <Box
-                style={{
-                    position: "absolute",
-                    top: "50%",
-                    left: "50%",
-                    transform: "translate(-50%, -50%)",
-                    zIndex: 10,
-                }}
-            >
-                <Spinner size="xl" color={BRAND_COLORS.primary} />
-            </Box>
-        )
-    }
+    const works: { node: { frontmatter: BlogInfo } }[] = edges
+        .filter((item: { node: { frontmatter: BlogInfo } }) => {
+            const { type, language } = item.node.frontmatter;
+            return type === "designs" && language === currentLanguage;
+        })
+        .sort((a: { node: { frontmatter: BlogInfo } }, b: { node: { frontmatter: BlogInfo } }) =>
+            (b.node?.frontmatter?.date || "").localeCompare(a.node?.frontmatter?.date || "")
+        );
 
     return (
-        <Box>
-            {edges.sort((lastBlog: { node: { frontmatter: BlogInfo }}, nextBlog: { node: { frontmatter: BlogInfo }}) => {
-                return lastBlog.node?.frontmatter?.date < nextBlog.node?.frontmatter?.date
-            }).filter((contentItem: { node: { frontmatter: BlogInfo }}) => {
-                const { node: { frontmatter } } = contentItem;
-                const { type, language } = frontmatter;
-                return (type === "designs") && (language === currentLanguage);
-            }).map((item: { node: { frontmatter: BlogInfo }}) => {
-                const { node: { frontmatter } } = item;
-                const { title, liveDemoPath, description, slug, home_image, tags } = frontmatter;
-                return (
-                    <Box paddingY={2} key={`blog_${slug}`} onClick={() => navigate(`/designs${slug}`)}>
+        <Box className="content-list">
+            <header className="page-header">
+                <h1 className="page-title">{t("navigation_designs")}</h1>
+                <p className="page-subtitle">{t("designs.description")}</p>
+            </header>
+            <div className="card-list">
+                {works.map((item) => {
+                    const { title, liveDemoPath, description, slug, home_image, tags } =
+                        item.node.frontmatter;
+                    const to = `/designs${slug}`;
+                    return (
                         <Card
+                            key={slug}
                             hoverable
-                            title={(
-                                <Box
-                                    flexBox
-                                    style={{ cursor: "pointer" }}
-                                >
-                                    <Box style={{ color: BRAND_COLORS.primary }}>
-                                        {title}
-                                    </Box>
-                                </Box>
-                            )}
-                            subTitle={(
-                                <Box flexBox paddingX={1} justifyContent="space-between" style={{ color: BRAND_COLORS.primary }}>
-                                    <Box style={{ lineHeight: "29px" }}>
-                                    <Box>
-                                    {tags.map((item, index) => (
-                                        <span key={index}>
-                                            {item}{index < tags.length - 1 ? ', ' : ''}
+                            orientation="horizontal"
+                            clamp={3}
+                            href={to}
+                            onClick={(e) => {
+                                e.preventDefault();
+                                navigate(to);
+                            }}
+                            cover={<img src={home_image} alt={title} loading="lazy" />}
+                            title={title}
+                            footer={
+                                <>
+                                    {tags?.length ? (
+                                        <span className="card-tags">
+                                            {tags.map((tag) => (
+                                                <span className="card-tag" key={tag}>
+                                                    {tag}
+                                                </span>
+                                            ))}
                                         </span>
-                                    ))}
-                                </Box>
-                                    </Box>
-                                    <Box flexBox justifyContent="flex-end">
-                                        <Tooltip overlay={t("live_demo")} placement="top">
-                                            <Button
-                                                size="sm"
-                                                type="link"
-                                                onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-                                                    e.stopPropagation();
-                                                    window.open(liveDemoPath);
-                                                }}
-                                            >
-                                                <Icon icon={["fas", "desktop"]} theme="primary" style={{ cursor: "pointer" }}/>
-                                            </Button>
-                                        </Tooltip>
-                                    </Box>
-                                </Box>
-                            )}
+                                    ) : null}
+                                    {liveDemoPath && (
+                                        <Button
+                                            size="sm"
+                                            type="link"
+                                            style={{ marginLeft: "auto" }}
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                e.stopPropagation();
+                                                window.open(liveDemoPath);
+                                            }}
+                                        >
+                                            {t("live_demo")} ↗
+                                        </Button>
+                                    )}
+                                </>
+                            }
                         >
-                            <Box className="card-media-row">
-                                <Box className="card-media-image">
-                                    <Image
-                                        src={home_image}
-                                        alt={`blogs-${title}`}
-                                        borderRadius='lg'
-                                        loading="lazy"
-                                    />
-                                </Box>
-                                <Box className="card-media-text">
-                                    {description}
-                                </Box>
-                            </Box>
+                            {description}
                         </Card>
-                    </Box>
-                )
-            })}
+                    );
+                })}
+            </div>
         </Box>
     );
 }

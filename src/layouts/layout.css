@@ -76,46 +76,53 @@ html, body {
     padding: 0;
 }
 
-/* ── List card media row (projects / blogs / designs) ────────────────
-   Image beside text on desktop; stacked on phones. Replaces the old
-   fixed flex:4 / flex:5 + 480px image. */
-.card-media-row {
+/* ── Content list pages (blogs / projects / designs) ─────────────────
+   A page header above a vertical stack of editorial Cards. */
+.content-list {
+    padding: var(--space-10) 0 var(--space-16);
+}
+
+.page-header {
+    margin-bottom: var(--space-10);
+    max-width: 60ch;
+}
+
+.page-title {
+    margin: 0;
+    font-size: clamp(2rem, 3vw + 1rem, 2.75rem);
+    line-height: var(--line-height-tight);
+    letter-spacing: var(--letter-spacing-tighter);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+}
+
+.page-subtitle {
+    margin: var(--space-3) 0 0 !important;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-secondary);
+}
+
+.card-list {
     display: flex;
-    gap: 16px;
+    flex-direction: column;
+    gap: var(--space-5);
 }
 
-.card-media-row .card-media-image {
-    flex: 0 0 40%;
-    max-width: 40%;
-    overflow: hidden;
+/* Tag pills shown in a card footer. */
+.card-tags {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
 }
 
-.card-media-row .card-media-image img {
-    width: 100%;
-    height: auto;
-}
-
-.card-media-row .card-media-text {
-    flex: 1;
-    min-width: 0;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 6;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-@media (max-width: 767.98px) {
-    .card-media-row {
-        flex-direction: column;
-    }
-    .card-media-row .card-media-image {
-        flex: none;
-        max-width: 100%;
-    }
-    .card-media-row .card-media-text {
-        -webkit-line-clamp: 4;
-    }
+.card-tag {
+    padding: 2px var(--space-2);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-secondary);
+    background: var(--color-bg-secondary);
+    border-radius: var(--radius-full);
 }
 
 /* ── Footprints: map + bottom thumbnail strip ───────────────────────
