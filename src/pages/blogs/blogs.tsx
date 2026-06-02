@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from "react";
 import { navigate, graphql, useStaticQuery } from "gatsby"
-import { Box, Card } from "miever_ui";
+import { Box, Card, PageHeader } from "miever_ui";
 import { useTranslation } from "react-i18next";
 interface BlogInfo {
     type: "blogs" | "designs";
@@ -64,10 +64,7 @@ const Blogs:FunctionComponent<{}> = () => {
 
     return (
         <Box className="content-list">
-            <header className="page-header">
-                <h1 className="page-title">{t("navigation_blogs")}</h1>
-                <p className="page-subtitle">{t("blogs.description")}</p>
-            </header>
+            <PageHeader title={t("navigation_blogs")} subtitle={t("blogs.description")} />
             <div className="card-list">
                 {posts.map((item) => {
                     const { title, date, description, slug, home_image, tags } =

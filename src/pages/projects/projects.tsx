@@ -1,6 +1,6 @@
 
 import React, { FunctionComponent } from "react";
-import { Box, Card, Button, Icon } from "miever_ui";
+import { Box, Card, Button, Icon, PageHeader } from "miever_ui";
 import { useTranslation } from "react-i18next";
 
 export interface Project {
@@ -51,10 +51,7 @@ const Projects:FunctionComponent<{}> = () => {
 
     return (
         <Box className="content-list">
-            <header className="page-header">
-                <h1 className="page-title">{t("navigation_projects")}</h1>
-                <p className="page-subtitle">{t("projects.description")}</p>
-            </header>
+            <PageHeader title={t("navigation_projects")} subtitle={t("projects.description")} />
             <div className="card-list">
                 {projectsList.map((item) => {
                     const { title, subTitle, liveDemoPath, githubPath, description, thumbnailPath } = item;

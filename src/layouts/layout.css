@@ -203,27 +203,6 @@ html, body {
     padding: var(--space-10) 0 var(--space-16);
 }
 
-.page-header {
-    margin-bottom: var(--space-10);
-    max-width: 60ch;
-}
-
-.page-title {
-    margin: 0;
-    font-size: clamp(2rem, 3vw + 1rem, 2.75rem);
-    line-height: var(--line-height-tight);
-    letter-spacing: var(--letter-spacing-tighter);
-    font-weight: var(--font-weight-bold);
-    color: var(--color-text-primary);
-}
-
-.page-subtitle {
-    margin: var(--space-3) 0 0 !important;
-    font-size: var(--font-size-lg);
-    line-height: var(--line-height-relaxed);
-    color: var(--color-text-secondary);
-}
-
 .card-list {
     display: flex;
     flex-direction: column;
