@@ -1,5 +1,6 @@
-import React, { FunctionComponent, useEffect, useState } from "react";
-import { Box, Section, Typography, Spin } from "miever_ui";
+import React, { FunctionComponent } from "react";
+import { navigate } from "gatsby";
+import { Box, Button, Section, Typography } from "miever_ui";
 
 import MapChart from "./footprints";
 import Comments from "../../components/Comments";
@@ -7,50 +8,42 @@ import { SEO } from "../../components/SEO";
 import { useTranslation } from "react-i18next";
 import SkillsMap from "../../components/Skills-Map";
 
-const { Title, Paragraph } = Typography;
+const { Paragraph } = Typography;
 
 const Home: FunctionComponent<{}> = () => {
     const { t } = useTranslation();
-    const [isLoaded, setIsLoaded] = useState(false);
-
-    useEffect(() => {
-        const timer = setTimeout(() => setIsLoaded(true), 500);
-        return () => clearTimeout(timer);
-    }, []);
-
-    if (!isLoaded) {
-        return (
-            <Box
-                flexBox
-                justifyContent="center"
-                alignItems="center"
-                style={{ minHeight: "60vh" }}
-            >
-                <Spin size="lg" tip={t("header_title")} />
-            </Box>
-        );
-    }
 
     return (
         <Box className="home">
             {/* Hero */}
-            <Box className="home-hero">
-                <img
-                    className="home-hero-photo"
-                    src="https://miever.s3.ap-east-1.amazonaws.com/static/selfies.webp"
-                    alt="Aerman"
-                    width="1704"
-                    height="1280"
-                    loading="eager"
-                />
-                <Box className="home-hero-text">
-                    <Title level={1} type="primary">
-                        {t("header_title")}
-                    </Title>
-                    <Paragraph type="secondary">{t("header_subtitle")}</Paragraph>
-                    <Paragraph>{t("about_introduction")}</Paragraph>
-                </Box>
-            </Box>
+            <header className="hero">
+                <div className="hero-content">
+                    <span className="hero-eyebrow">{t("hero_eyebrow")}</span>
+                    <h1 className="hero-headline">{t("hero_headline")}</h1>
+                    <p className="hero-lead">{t("hero_lead")}</p>
+                    <div className="hero-actions">
+                        <Button type="primary" onClick={() => navigate("/projects")}>
+                            {t("cta_projects")}
+                        </Button>
+                        <Button onClick={() => navigate("/blogs")}>
+                            {t("cta_blog")}
+                        </Button>
+                        <Button type="link" onClick={() => navigate("/resume")}>
+                            {t("cta_resume")} →
+                        </Button>
+                    </div>
+                </div>
+                <div className="hero-portrait">
+                    <img
+                        className="hero-portrait-img"
+                        src="https://miever.s3.ap-east-1.amazonaws.com/static/selfies.webp"
+                        alt="Aerman"
+                        width="1704"
+                        height="1280"
+                        loading="eager"
+                    />
+                </div>
+            </header>
 
             <Section
                 title={t("map_skills_title")}
