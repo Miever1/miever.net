@@ -1,14 +1,14 @@
 import React, { FunctionComponent } from "react";
-import { Tag } from "miever_ui";
+import { Card, Tag } from "miever_ui";
 import { useTranslation } from "react-i18next";
 
 import { skillGroups } from "./skillData";
 import "./skills.css";
 
 /**
- * A calm, editorial skills overview: skills grouped by category as tags, with
- * level-5 (expert) skills highlighted in the accent colour. Replaces the old
- * animated force-graph, which clashed with the site's restrained typography.
+ * A calm, editorial skills overview: each category is a Card of skill tags,
+ * with level-5 (expert) skills highlighted in the accent colour. Replaces the
+ * old animated force-graph, which clashed with the site's restrained type.
  */
 const SkillsMap: FunctionComponent = () => {
     const { t } = useTranslation();
@@ -16,8 +16,12 @@ const SkillsMap: FunctionComponent = () => {
     return (
         <div className="skills-grid">
             {skillGroups.map((group) => (
-                <div className="skills-group" key={group.id}>
-                    <h3 className="skills-group-title">{t(group.label)}</h3>
+                <Card
+                    key={group.id}
+                    variant="outlined"
+                    className="skills-card"
+                    title={t(group.label)}
+                >
                     <div className="skills-tags">
                         {group.skills.map((skill) => (
                             <Tag
@@ -28,7 +32,7 @@ const SkillsMap: FunctionComponent = () => {
                             </Tag>
                         ))}
                     </div>
-                </div>
+                </Card>
             ))}
         </div>
     );

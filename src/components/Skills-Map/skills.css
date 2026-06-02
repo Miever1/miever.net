@@ -1,12 +1,12 @@
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: var(--space-8) var(--space-6);
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: var(--space-4);
     text-align: left;
 }
 
-.skills-group-title {
-    margin: 0 0 var(--space-3);
+/* Category cards: a compact heading + tag cluster. */
+.skills-card .miever-card-title {
     font-size: var(--font-size-xs);
     font-weight: var(--font-weight-semibold);
     letter-spacing: var(--letter-spacing-wider);

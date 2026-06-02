@@ -458,6 +458,84 @@ html, body {
     transform: scale(1.015);
 }
 
+/* Stats band — eye-catching numbers right under the hero. */
+.home-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-6);
+    padding: var(--space-8) 0;
+    border-top: 1px solid var(--color-border-primary);
+    border-bottom: 1px solid var(--color-border-primary);
+}
+
+@media (min-width: 720px) {
+    .home-stats {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.home-stat {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+}
+
+.home-stat-num {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: var(--letter-spacing-tight);
+    line-height: 1;
+    color: var(--color-text-primary);
+    font-variant-numeric: tabular-nums;
+}
+
+.home-stat-label {
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-snug);
+    color: var(--color-text-secondary);
+}
+
+/* Numbered, left-aligned editorial section headers. */
+.home-section-head {
+    display: flex;
+    gap: var(--space-4);
+    align-items: baseline;
+    margin-bottom: var(--space-8);
+    padding-bottom: var(--space-5);
+    border-bottom: 1px solid var(--color-border-primary);
+}
+
+.home-section-index {
+    flex: 0 0 auto;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--letter-spacing-wide);
+    color: var(--color-border-focus);
+    font-variant-numeric: tabular-nums;
+}
+
+.home-section-heading {
+    flex: 1;
+    min-width: 0;
+}
+
+.home-section-title {
+    margin: 0;
+    font-size: clamp(1.5rem, 2vw + 1rem, 2.25rem);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: var(--letter-spacing-tight);
+    line-height: var(--line-height-tight);
+    color: var(--color-text-primary);
+}
+
+.home-section-sub {
+    margin: var(--space-3) 0 0 !important;
+    max-width: 62ch;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-secondary);
+}
+
 .home-thanks {
     padding: var(--space-6) 0;
     border-top: 1px solid var(--color-border-primary);
