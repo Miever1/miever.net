@@ -1,11 +1,13 @@
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: var(--space-4);
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: var(--space-8) var(--space-6);
+    align-items: start;
     text-align: left;
 }
 
-.skills-card .miever-card-title {
+.skills-group-title {
+    margin: 0 0 var(--space-3);
     font-size: var(--font-size-xs);
     font-weight: var(--font-weight-semibold);
     letter-spacing: var(--letter-spacing-wider);

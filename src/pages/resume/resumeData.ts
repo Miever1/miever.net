@@ -128,7 +128,7 @@ export const internships: ExperienceItem[] = [
                 "用 ArkUI 与华为 AR Engine 构建 2D 转 3D 相册原型，实现交互式三维可视化。"
             ),
             L(
-                "Exploring AI-based upscaling and artifact reduction for impostor rendering — memory vs. quality trade-offs.",
+                "Exploring AI upscaling and artifact reduction for impostor rendering, weighing memory against quality.",
                 "探索基于 AI 的超分与去伪影（impostor 渲染），权衡显存与画质。"
             ),
         ],
@@ -160,20 +160,20 @@ export interface AwardItem {
 
 export const awards: AwardItem[] = [
     {
-        title: L("First Place — Huawei Finland TechArena 2025", "华为芬兰 TechArena 2025 冠军"),
+        title: L("First Place, Huawei Finland TechArena 2025", "华为芬兰 TechArena 2025 冠军"),
         event: L("Huawei Finland Research Center", "华为芬兰研究中心"),
         period: "Dec 2025",
         note: L(
-            "Team Lead — guided the team from concept to a 3D interactive prototype, with a focus on UX and interaction design.",
+            "Team lead. Guided the team from concept to a 3D interactive prototype, focused on UX and interaction design.",
             "担任组长，带队从概念走到 3D 交互原型，聚焦用户体验与交互设计。"
         ),
     },
     {
-        title: L("First Place — The Startup Hack", "The Startup Hack 冠军"),
+        title: L("First Place, The Startup Hack", "The Startup Hack 冠军"),
         event: L("24-hour hackathon", "24 小时黑客松"),
         period: "Apr 2026",
         note: L(
-            "Built an AI-powered gameplay-analysis prototype in 24h — multi-persona player reactions from video via LLMs + TTS.",
+            "Built an AI-powered gameplay-analysis prototype in 24 hours, generating multi-persona player reactions from video with LLMs and TTS.",
             "24 小时内做出 AI 游戏体验分析原型：用 LLM + TTS 从视频生成多人格玩家反应。"
         ),
     },
@@ -188,7 +188,7 @@ export interface ProjectItem {
 
 export const projects: ProjectItem[] = [
     {
-        name: L("Miever UI — React component library", "Miever UI — React 组件库"),
+        name: L("Miever UI, a React component library", "Miever UI，React 组件库"),
         period: "2024 – Present",
         link: "https://components.miever.net",
         points: [
