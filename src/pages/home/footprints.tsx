@@ -1,222 +1,186 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   ComposableMap,
   Geographies,
   Geography,
   Marker
 } from "react-simple-maps";
-import { Image } from "@chakra-ui/react";
-import { designs, Card, Box } from "miever_ui";
+import { designs, Box } from "miever_ui";
 import { useTranslation } from "react-i18next";
 
 import { sortedMarkers } from "../../data/footprints-datas";
 
-type HoveredMarker = {
-  name: string;
-  country: string;
-  visitTime: string;
-  photo: string;
-  position?: { x: number; y: number };
-} | null;
-
 const MapChart = () => {
-  let markers = sortedMarkers;
+  const markers = sortedMarkers;
   const { BRAND_COLORS } = designs;
   const { t } = useTranslation();
   const geoUrl = "https://unpkg.com/world-atlas@2.0.2/countries-110m.json";
 
   const themeColor = BRAND_COLORS.primary || "#000";
+  const activeColor = BRAND_COLORS.warning || "#f5a623";
   const visitedCountries = [
-    "China", 
-    "Singapore", 
-    "USA", 
-    "Indonesia", 
-    "Spain", 
-    "Latvia", 
-    "Portugal", 
-    "France", 
-    "United Kingdom", 
-    "Slovenia", 
-    "Netherlands", 
+    "China",
+    "Singapore",
+    "USA",
+    "Indonesia",
+    "Spain",
+    "Latvia",
+    "Portugal",
+    "France",
+    "United Kingdom",
+    "Slovenia",
+    "Netherlands",
     "Germany",
     "Finland",
     "Sweden",
     "Estonia"
-  ]; 
+  ];
 
-  const [hoveredMarker, setHoveredMarker] = useState<HoveredMarker>(null);
+  // Map a marker's `country` value to the geo dataset's `properties.name`
+  // (mostly identical; only a couple differ).
+  const geoNameForCountry = (country: string): string =>
+    country === "USA" ? "United States of America" : country;
+
+  // Single source of truth: the index of the active city. Drives both the map
+  // marker highlight and the selected thumbnail. Auto-advances until the user
+  // interacts, then stays put.
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
   const [hoveredCountry, setHoveredCountry] = useState<string | null>(null);
-  const [autoMarkerIndex, setAutoMarkerIndex] = useState(0);
-  const [pauseAutoMarker, setPauseAutoMarker] = useState(false);
-  const [autoMarker, setAutoMarker] = useState<HoveredMarker | null>(null);
+  const stripRef = useRef<HTMLDivElement>(null);
+  const itemRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
+  // Preload photos once.
   useEffect(() => {
-      markers.forEach(marker => {
-        const img = new window.Image();
-        img.src = marker.photo;
-      });
-  }, []);
+    markers.forEach((marker) => {
+      const img = new window.Image();
+      img.src = marker.photo;
+    });
+  }, [markers]);
 
+  // Auto-rotate through cities (paused on interaction).
   useEffect(() => {
-    if (pauseAutoMarker) return;
+    if (paused) return;
     const interval = setInterval(() => {
-      const nextIndex = (autoMarkerIndex + 1) % markers.length;
-      const marker = markers[nextIndex];
+      setActiveIndex((prev) => (prev + 1) % markers.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [paused, markers.length]);
 
-      // Obtain the screen position
-      const el = document.querySelector(`[data-marker="${marker.name}"]`);
-      const mapContainer = document.querySelector(".map-container")?.getBoundingClientRect();
-      const markerRect = el?.getBoundingClientRect();
+  // Keep the active thumbnail centred *within the strip* by adjusting the
+  // strip's own horizontal scroll. (scrollIntoView would also scroll the whole
+  // page vertically, which yanked the viewport to the map on load.)
+  useEffect(() => {
+    const strip = stripRef.current;
+    const el = itemRefs.current[activeIndex];
+    if (!strip || !el) return;
+    const target = el.offsetLeft - strip.clientWidth / 2 + el.clientWidth / 2;
+    strip.scrollTo({ left: target, behavior: "smooth" });
+  }, [activeIndex]);
 
-      const pos = markerRect && mapContainer
-        ? {
-            x: markerRect.left - mapContainer.left + 20,
-            y: markerRect.top - mapContainer.top + 20,
-          }
-        : undefined;
+  const select = (index: number) => {
+    setPaused(true);
+    setActiveIndex(index);
+  };
 
-      setAutoMarker({
-        name: marker.name,
-        country: marker.country,
-        visitTime: marker.visitTime,
-        photo: marker.photo,
-        position: pos,
-      });
-
-      setAutoMarkerIndex(nextIndex);
-    }, 10000);
-
-  return () => clearInterval(interval);
-}, [autoMarkerIndex, pauseAutoMarker]);
-
+  const activeMarker = markers[activeIndex];
+  const activeGeoName = geoNameForCountry(activeMarker.country);
 
   return (
-    <Box
-      className="map-container"
-      style={{ position: "relative", width: "100%" }}
-      onMouseEnter={() => {
-        setHoveredMarker(null);
-        setHoveredCountry(null);
-        setAutoMarker(null);
-        setPauseAutoMarker(true);
-      }}
-      onMouseLeave={() => {
-        setPauseAutoMarker(false);
-      }}
-    >
-      <ComposableMap>
-        <Geographies geography={geoUrl}>
-          {({ geographies }) =>
-            geographies &&
-            geographies.map((geo) => {
-              const isVisited = visitedCountries.includes(geo.properties.name) ||geo.properties.name === "United States of America";
-              return (
-                <Geography
-                  key={geo.rsmKey}
-                  geography={geo}
-                  stroke="var(--color-border-secondary)"
-                  onMouseEnter={() =>
-                    setHoveredCountry(t(`${geo.properties.name}`))
-                  }
-                  onMouseLeave={() => setHoveredCountry(null)}
-                  style={{
-                    default: { fill: isVisited ? themeColor : "var(--color-bg-disabled)" },
-                    hover: { fill: themeColor, outline: "#FFFFFF" }, 
-                    pressed: { fill: themeColor, outline: "#FFFFFF" }, 
-                  }}
+    <Box className="footprints">
+      <Box
+        className="footprints-map"
+        onMouseLeave={() => setHoveredCountry(null)}
+      >
+        <ComposableMap>
+          <Geographies geography={geoUrl}>
+            {({ geographies }) =>
+              geographies &&
+              geographies.map((geo) => {
+                const isVisited =
+                  visitedCountries.includes(geo.properties.name) ||
+                  geo.properties.name === "United States of America";
+                const isActiveCountry = geo.properties.name === activeGeoName;
+                const fill = isActiveCountry
+                  ? activeColor
+                  : isVisited
+                    ? themeColor
+                    : "var(--color-bg-disabled)";
+                return (
+                  <Geography
+                    key={geo.rsmKey}
+                    geography={geo}
+                    stroke="var(--color-border-secondary)"
+                    onMouseEnter={() => setHoveredCountry(t(`${geo.properties.name}`))}
+                    onMouseLeave={() => setHoveredCountry(null)}
+                    style={{
+                      default: { fill, outline: "none", transition: "fill 0.3s ease" },
+                      hover: { fill: isActiveCountry ? activeColor : themeColor, outline: "none" },
+                      pressed: { fill: themeColor, outline: "none" },
+                    }}
+                  />
+                );
+              })
+            }
+          </Geographies>
+          {markers.map(({ name, coordinates }, index) => {
+            const isActive = index === activeIndex;
+            return (
+              <Marker
+                key={name}
+                coordinates={coordinates}
+                onClick={() => select(index)}
+                style={{ default: { cursor: "pointer" } }}
+              >
+                {isActive && (
+                  <circle r={10} fill={BRAND_COLORS.warning} opacity={0.3} className="footprints-pulse" />
+                )}
+                <circle
+                  r={isActive ? 5 : 3}
+                  fill={isActive ? BRAND_COLORS.warning : themeColor}
+                  strokeWidth={1}
+                  stroke="#FFF"
+                  style={{ cursor: "pointer", transition: "r 0.2s ease" }}
                 />
-              );
-            })
-          }
-        </Geographies>
-        {markers.map(({ name, country, coordinates, visitTime, photo }) => {
-          const isActiveMarker = hoveredMarker?.name === name || autoMarker?.name === name;
+              </Marker>
+            );
+          })}
+        </ComposableMap>
+
+        {hoveredCountry && (
+          <Box className="footprints-country-tip">
+            {typeof hoveredCountry === "string"
+              ? `${t(`countries.${hoveredCountry}`, hoveredCountry)}`
+              : hoveredCountry}
+          </Box>
+        )}
+      </Box>
+
+      {/* Bottom thumbnail strip — scrollable on every device. */}
+      <div className="footprints-strip" ref={stripRef}>
+        {markers.map((marker, index) => {
+          const isActive = index === activeIndex;
           return (
-            <Marker
-              key={name}
-              coordinates={coordinates}
-              data-marker={name}
-              onMouseEnter={(e) => {
-                const parentRect = e.currentTarget.closest(".map-container")?.getBoundingClientRect();
-                setHoveredMarker({
-                  name,
-                  country,
-                  visitTime,
-                  photo,
-                  position: parentRect
-                    ? {
-                        x: e.clientX - parentRect.left,
-                        y: e.clientY - parentRect.top,
-                      }
-                    : undefined,
-                });
-                setAutoMarker(null);
-              }}
-              onMouseLeave={() => setHoveredMarker(null)}
+            <button
+              key={marker.name}
+              type="button"
+              ref={(el) => (itemRefs.current[index] = el)}
+              className={`footprints-thumb${isActive ? " active" : ""}`}
+              onClick={() => select(index)}
+              aria-label={`${t(`cities.${marker.name}`)} — ${marker.visitTime}`}
             >
-              <circle 
-                r={isActiveMarker ? 6 : 3}
-                fill={isActiveMarker ? BRAND_COLORS["warning"] : themeColor}
-                strokeWidth={1}
-                stroke="#FFF"
+              <span
+                className="footprints-thumb-img"
+                style={{ backgroundImage: `url(${marker.photo})` }}
               />
-            </Marker>
+              <span className="footprints-thumb-meta">
+                <span className="footprints-thumb-city">{t(`cities.${marker.name}`)}</span>
+                <span className="footprints-thumb-date">{marker.visitTime}</span>
+              </span>
+            </button>
           );
         })}
-      </ComposableMap>
-
-      {(hoveredMarker || autoMarker) && (
-        <Card
-          title={
-            t(`cities.${(hoveredMarker || autoMarker)!.name}`) +
-            " - " +
-            t(`countries.${(hoveredMarker || autoMarker)!.country}`)
-          }
-          subTitle={(hoveredMarker || autoMarker)!.visitTime}
-          style={{
-            position: "absolute",
-            top: (hoveredMarker || autoMarker)!.position?.y ?? 50,
-            left: (hoveredMarker || autoMarker)!.position?.x ?? 50,
-            width: "min(580px, 90vw)",
-            maxWidth: "90vw",
-            zIndex: 10,
-          }}
-        >
-          <Image
-            src={(hoveredMarker || autoMarker)!.photo}
-            alt={(hoveredMarker || autoMarker)!.name}
-            style={{
-              width: "100%",
-              height: "auto",
-              maxHeight: "400px",
-              objectFit: "cover",
-              borderRadius: "8px",
-            }}
-          />
-        </Card>
-      )}
-
-      {hoveredCountry && (
-        <Box
-          style={{
-            position: "absolute",
-            bottom: "12vh",
-            left: "2vw",
-            background: "rgba(255, 255, 255, 0.8)",
-            padding: "5px 10px",
-            borderRadius: "5px",
-            boxShadow: "0 0 5px rgba(0,0,0,0.3)",
-            fontFamily: "system-ui",
-            fontSize: "14px",
-            color: "#333",
-            zIndex: 10,
-          }}
-        >
-          {typeof hoveredCountry === "string"
-            ? `${t(`countries.${hoveredCountry}`, hoveredCountry)}`
-            : hoveredCountry}
-        </Box>
-      )}
+      </div>
     </Box>
   );
 };

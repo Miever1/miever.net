@@ -117,3 +117,188 @@ html, body {
         -webkit-line-clamp: 4;
     }
 }
+
+/* ── Footprints: map + bottom thumbnail strip ───────────────────────
+   The active city drives both the highlighted map marker and the selected
+   thumbnail. The strip scrolls horizontally on every device; nothing floats
+   over the map, so it works identically on desktop and mobile. */
+.footprints {
+    width: 100%;
+}
+
+.footprints-map {
+    position: relative;
+    width: 100%;
+}
+
+/* The map SVG scales to the container width while keeping its (now shorter)
+   aspect ratio, so the section stays compact instead of a tall, empty globe. */
+.footprints-map svg {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.footprints-country-tip {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    background: var(--color-surface-elevated);
+    color: var(--color-text-primary);
+    padding: 4px 10px;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    font-size: 13px;
+    z-index: 9;
+    pointer-events: none;
+}
+
+/* Pulsing ring on the active marker. */
+.footprints-pulse {
+    transform-origin: center;
+    transform-box: fill-box;
+    animation: footprints-pulse 1.6s ease-out infinite;
+}
+
+@keyframes footprints-pulse {
+    0%   { transform: scale(0.6); opacity: 0.5; }
+    70%  { transform: scale(2.2); opacity: 0; }
+    100% { transform: scale(2.2); opacity: 0; }
+}
+
+/* Horizontal thumbnail strip. Pulled up over the map's empty lower band
+   (the default world projection leaves ocean/Antarctica whitespace at the
+   bottom) so the strip sits close to the landmass without distorting the map. */
+.footprints-strip {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding: 12px 4px;
+    margin-top: -11%;
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 767.98px) {
+    .footprints-strip {
+        margin-top: -8%;
+    }
+}
+
+.footprints-strip::-webkit-scrollbar {
+    height: 6px;
+}
+.footprints-strip::-webkit-scrollbar-thumb {
+    background: var(--color-border-secondary);
+    border-radius: 3px;
+}
+
+.footprints-thumb {
+    flex: 0 0 auto;
+    width: 132px;
+    padding: 0;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    background: var(--color-bg-secondary);
+    cursor: pointer;
+    overflow: hidden;
+    scroll-snap-align: center;
+    transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    text-align: left;
+}
+
+.footprints-thumb:hover {
+    transform: translateY(-2px);
+}
+
+.footprints-thumb.active {
+    border-color: var(--color-border-focus);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+    transform: translateY(-2px);
+}
+
+.footprints-thumb-img {
+    display: block;
+    width: 100%;
+    height: 78px;
+    background-size: cover;
+    background-position: center;
+}
+
+.footprints-thumb-meta {
+    display: block;
+    padding: 6px 8px;
+}
+
+.footprints-thumb-city {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.footprints-thumb-date {
+    display: block;
+    font-size: 11px;
+    color: var(--color-text-secondary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media (max-width: 767.98px) {
+    .footprints-thumb {
+        width: 116px;
+    }
+    .footprints-thumb-img {
+        height: 68px;
+    }
+}
+
+/* ── Home page ───────────────────────────────────────────────────────
+   Hero: portrait beside the intro text on desktop, stacked on mobile. */
+.home-hero {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    margin-bottom: calc(var(--spacer, 1rem) * 2);
+    padding: 32px 0 24px;
+}
+
+.home-hero-photo {
+    flex: 0 0 240px;
+    width: 240px;
+    height: 240px;
+    object-fit: cover;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+.home-hero-text {
+    flex: 1;
+    min-width: 0;
+}
+
+.home-thanks {
+    margin-top: 8px;
+    padding: 24px 0;
+    border-top: 1px solid var(--color-border-primary);
+}
+
+@media (max-width: 767.98px) {
+    .home-hero {
+        flex-direction: column;
+        text-align: center;
+        gap: 16px;
+    }
+    .home-hero-photo {
+        flex: none;
+        width: 160px;
+        height: 160px;
+    }
+}
