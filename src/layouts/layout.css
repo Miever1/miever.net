@@ -116,7 +116,7 @@ html, body {
     font-weight: var(--font-weight-semibold);
     letter-spacing: var(--letter-spacing-wider);
     text-transform: uppercase;
-    color: var(--color-text-disabled);
+    color: var(--color-text-disabled) !important;
 }
 
 .site-footer-col a {
@@ -128,6 +128,7 @@ html, body {
 
 .site-footer-col a:hover {
     color: var(--color-text-accent);
+    text-decoration: none;
 }
 
 .site-footer-bottom {
@@ -580,7 +581,7 @@ html, body {
 }
 
 .hero-headline {
-    margin: 0;
+    margin: 0 !important;
     font-size: clamp(2.25rem, 4vw + 1rem, 3.5rem);
     line-height: var(--line-height-tight);
     letter-spacing: var(--letter-spacing-tighter);
@@ -657,7 +658,7 @@ html, body {
     font-size: var(--font-size-sm);
     font-weight: var(--font-weight-semibold);
     letter-spacing: var(--letter-spacing-wide);
-    color: var(--color-text-accent);
+    color: var(--color-text-accent) !important;
     font-variant-numeric: tabular-nums;
 }
 
@@ -667,7 +668,7 @@ html, body {
 }
 
 .home-section-title {
-    margin: 0;
+    margin: 0 !important;
     font-size: clamp(1.5rem, 2vw + 1rem, 2.25rem);
     font-weight: var(--font-weight-bold);
     letter-spacing: var(--letter-spacing-tight);

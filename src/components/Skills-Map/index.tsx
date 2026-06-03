@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from "react";
-import { Icon, Tag } from "miever_ui";
+import { Box, Icon, Tag } from "miever_ui";
 import { useTranslation } from "react-i18next";
 
 import { skillGroups } from "./skillData";
@@ -61,9 +61,9 @@ const SkillsMap: FunctionComponent = () => {
     const { t } = useTranslation();
 
     return (
-        <div className="skills-grid">
+        <Box className="skills-grid">
             {skillGroups.map((group) => (
-                <div className="skills-group" key={group.id}>
+                <Box className="skills-group" key={group.id}>
                     <h3 className="skills-group-title">
                         <Icon
                             icon={CATEGORY_ICONS[group.id] as never}
@@ -71,7 +71,7 @@ const SkillsMap: FunctionComponent = () => {
                         />
                         {t(group.label)}
                     </h3>
-                    <div className="skills-tags">
+                    <Box className="skills-tags">
                         {group.skills.map((skill) => (
                             <Tag key={skill.id}>
                                 <Icon
@@ -81,10 +81,10 @@ const SkillsMap: FunctionComponent = () => {
                                 {t(skill.label)}
                             </Tag>
                         ))}
-                    </div>
-                </div>
+                    </Box>
+                </Box>
             ))}
-        </div>
+        </Box>
     );
 };
 

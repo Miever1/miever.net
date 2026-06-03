@@ -6,7 +6,7 @@ import { navigate } from "gatsby";
 import { globalHistory } from "@gatsbyjs/reach-router";
 import { useScroll } from 'ahooks';
 import { useTheme } from "../components/Theme-Context";
-import { Menu, Icon, Box, Button, Tooltip, Drawer, useBreakpoint } from "miever_ui";
+import { Menu, Icon, Box, Button, Tooltip, Drawer, Typography, useBreakpoint } from "miever_ui";
 import { useTranslation } from "react-i18next";
 
 import ParticlesContainer from "./particles-container";
@@ -217,35 +217,37 @@ const Layout: FunctionComponent<{
                     {children}
                 </Box>
                 <footer className="site-footer">
-                    <div className="site-footer-inner">
-                        <div className="site-footer-brand">
-                            <span className="site-footer-name">Aerman Huofuer</span>
-                            <p className="site-footer-blurb">{t("footer_blurb")}</p>
-                            <div className="site-footer-social">
-                                <a
+                    <Box className="site-footer-inner">
+                        <Box className="site-footer-brand">
+                            <Typography.Text className="site-footer-name">Aerman Huofuer</Typography.Text>
+                            <Typography.Paragraph type="secondary" className="site-footer-blurb">
+                                {t("footer_blurb")}
+                            </Typography.Paragraph>
+                            <Box className="site-footer-social">
+                                <Typography.Link
                                     href="https://github.com/Miever1"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     aria-label="GitHub"
                                 >
                                     <Icon icon={["fab", "github"]} />
-                                </a>
-                                <a
+                                </Typography.Link>
+                                <Typography.Link
                                     href="https://www.linkedin.com/in/aerman-huofuer-413328280/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     aria-label="LinkedIn"
                                 >
                                     <Icon icon={["fab", "linkedin"]} />
-                                </a>
-                                <a href="mailto:miever1@163.com" aria-label={t("mail")}>
+                                </Typography.Link>
+                                <Typography.Link href="mailto:miever1@163.com" aria-label={t("mail")}>
                                     <Icon icon={["fas", "envelope"]} />
-                                </a>
-                            </div>
-                        </div>
+                                </Typography.Link>
+                            </Box>
+                        </Box>
                         <nav className="site-footer-col" aria-label={t("footer_resources")}>
-                            <span className="site-footer-col-title">{t("footer_resources")}</span>
-                            <a
+                            <Typography.Text className="site-footer-col-title">{t("footer_resources")}</Typography.Text>
+                            <Typography.Link
                                 href="/blogs/privacy-notice"
                                 onClick={(e) => {
                                     e.preventDefault();
@@ -253,20 +255,20 @@ const Layout: FunctionComponent<{
                                 }}
                             >
                                 {t("privacy_notice")}
-                            </a>
-                            <a href="https://components.miever.net" target="_blank" rel="noopener noreferrer">
+                            </Typography.Link>
+                            <Typography.Link href="https://components.miever.net" target="_blank" rel="noopener noreferrer">
                                 {t("footer_design_credit")}
-                            </a>
-                            <a
+                            </Typography.Link>
+                            <Typography.Link
                                 href="https://github.com/Miever1/miever.net/blob/master/LICENSE"
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
                                 {t("license")}
-                            </a>
+                            </Typography.Link>
                         </nav>
-                    </div>
-                    <div className="site-footer-bottom">{t("footer_copyright")}</div>
+                    </Box>
+                    <Box className="site-footer-bottom">{t("footer_copyright")}</Box>
                 </footer>
             </Box>
         </Box>

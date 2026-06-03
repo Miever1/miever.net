@@ -9,7 +9,7 @@ import { useTranslation } from "react-i18next";
 import SkillsMap from "../../components/Skills-Map";
 import { useInView } from "../../components/useInView";
 
-const { Paragraph } = Typography;
+const { Title, Paragraph, Text } = Typography;
 
 /** A numbered, left-aligned editorial section header used across the home page. */
 const HomeSection: FunctionComponent<{
@@ -21,13 +21,13 @@ const HomeSection: FunctionComponent<{
     const [ref, inView] = useInView<HTMLElement>();
     return (
     <section ref={ref} className={`home-section reveal${inView ? " is-in" : ""}`}>
-        <div className="home-section-head">
-            <span className="home-section-index">{index}</span>
-            <div className="home-section-heading">
-                <h2 className="home-section-title">{title}</h2>
-                {subtitle && <p className="home-section-sub">{subtitle}</p>}
-            </div>
-        </div>
+        <Box className="home-section-head">
+            <Text className="home-section-index">{index}</Text>
+            <Box className="home-section-heading">
+                <Title level={2} className="home-section-title">{title}</Title>
+                {subtitle && <Paragraph type="secondary" className="home-section-sub">{subtitle}</Paragraph>}
+            </Box>
+        </Box>
         {children}
     </section>
     );
@@ -41,10 +41,10 @@ const Home: FunctionComponent<{}> = () => {
         <Box className="home">
             {/* Hero */}
             <header className="hero">
-                <div className="hero-content">
-                    <h1 className="hero-headline">{t("hero_headline")}</h1>
-                    <p className="hero-lead">{t("hero_lead")}</p>
-                    <div className="hero-actions">
+                <Box className="hero-content">
+                    <Title level={1} className="hero-headline">{t("hero_headline")}</Title>
+                    <Paragraph type="secondary" className="hero-lead">{t("hero_lead")}</Paragraph>
+                    <Box className="hero-actions">
                         <Button type="primary" onClick={() => navigate("/projects")}>
                             {t("cta_projects")}
                         </Button>
@@ -54,8 +54,8 @@ const Home: FunctionComponent<{}> = () => {
                         <Button type="link" onClick={() => navigate("/resume")}>
                             {t("cta_resume")} →
                         </Button>
-                    </div>
-                </div>
+                    </Box>
+                </Box>
                 {/* Decorative, purely typographic/geometric panel. aria-hidden:
                     no information lives here, it just gives the hero a balanced
                     right side. CSS-only so it themes and scales for free. */}
@@ -78,10 +78,10 @@ const Home: FunctionComponent<{}> = () => {
                     { num: "48", label: t("stat_cities") },
                     { num: "3", label: t("stat_languages") },
                 ].map((stat) => (
-                    <div className="home-stat" key={stat.label}>
-                        <span className="home-stat-num">{stat.num}</span>
-                        <span className="home-stat-label">{stat.label}</span>
-                    </div>
+                    <Box className="home-stat" key={stat.label}>
+                        <Text className="home-stat-num">{stat.num}</Text>
+                        <Text type="secondary" className="home-stat-label">{stat.label}</Text>
+                    </Box>
                 ))}
             </div>
 
