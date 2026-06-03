@@ -42,7 +42,6 @@ const Home: FunctionComponent<{}> = () => {
             {/* Hero */}
             <header className="hero">
                 <div className="hero-content">
-                    <span className="hero-eyebrow">{t("hero_eyebrow")}</span>
                     <h1 className="hero-headline">{t("hero_headline")}</h1>
                     <p className="hero-lead">{t("hero_lead")}</p>
                     <div className="hero-actions">
@@ -64,9 +63,10 @@ const Home: FunctionComponent<{}> = () => {
                     <div className="hero-visual-panel">
                         <span className="hero-visual-ring hero-visual-ring-a" />
                         <span className="hero-visual-ring hero-visual-ring-b" />
-                        <span className="hero-visual-orbit" />
-                        <span className="hero-visual-monogram">AH</span>
-                        <span className="hero-visual-tag">Software · HCI · AI</span>
+                        <span className="hero-visual-ring hero-visual-ring-c" />
+                        <span className="hero-visual-orbit hero-visual-orbit-a" />
+                        <span className="hero-visual-orbit hero-visual-orbit-b" />
+                        <span className="hero-visual-core" />
                     </div>
                 </div>
             </header>
@@ -109,7 +109,7 @@ export default Home;
 export const Head = () => (
     <>
         <SEO
-            title="Aerman Huofuer · Software, HCI & AI"
+            title="Aerman Huofuer, Software Engineer (HCI & AI)"
             description="Software engineer with an HCI background and a front-end core, building across engineering, design and AI. Projects, writing and design work."
             pathname="/"
         />
