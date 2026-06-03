@@ -46,6 +46,34 @@ Gatsby will start a hot-reloading development environment accessible by default 
   run with gatsby build
 ```
 
+## Developing the miever_ui component library locally
+
+This site is built on [miever_ui](https://github.com/Miever1/miever_ui). To work
+on the library and see changes here live (instead of waiting for an npm
+release), link it locally:
+
+```bash
+# 1. in the miever_ui repo (once)
+npm run build
+npm link
+
+# 2. here, in miever.net
+npm link miever_ui
+
+# 3. run both watchers
+#   - miever_ui:  npm run watch     (rebuilds dist on change)
+#   - miever.net: npm run develop   (dev server, picks up changes on reload)
+```
+
+`gatsby-node.ts` aliases `react`/`react-dom` to this project's copy so the
+linked library doesn't pull in a second React instance ("Invalid hook call").
+
+To go back to the published version:
+
+```bash
+npm unlink miever_ui && npm install
+```
+
 
 🍷 🍷 🍷 
 

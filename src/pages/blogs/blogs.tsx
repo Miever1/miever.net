@@ -1,7 +1,8 @@
-import React, { FunctionComponent, useState, useEffect } from "react";
-import { Image, Spinner } from "@chakra-ui/react";
+import React, { FunctionComponent, useState } from "react";
 import { navigate, graphql, useStaticQuery } from "gatsby"
-import { Box, Card, designs } from "miever_ui";
+import { Box, Card, PageHeader, Pagination } from "miever_ui";
+
+const PAGE_SIZE = 6;
 import { useTranslation } from "react-i18next";
 interface BlogInfo {
     type: "blogs" | "designs";
@@ -16,16 +17,8 @@ interface BlogInfo {
 }
 
 const Blogs:FunctionComponent<{}> = () => {
-    const { BRAND_COLORS } = designs;
-    const { i18n } = useTranslation();
+    const { t, i18n } = useTranslation();
     const currentLanguage = i18n.language;
-    const [isLoaded, setIsLoaded] = useState(false);
-
-    useEffect(() => {
-        setTimeout(() => {
-            setIsLoaded(true);
-        }, 500);
-    }, []);
 
     const { allMarkdownRemark: { edges } } = useStaticQuery(graphql`
         query {
@@ -54,93 +47,67 @@ const Blogs:FunctionComponent<{}> = () => {
         }
     `);
 
-    if(!isLoaded) {
-        return(
-            <Box
-                style={{
-                    position: "absolute",
-                    top: "50%",
-                    left: "50%",
-                    transform: "translate(-50%, -50%)",
-                    zIndex: 10,
-                }}
-            >
-                <Spinner size="xl" color={BRAND_COLORS.primary} />
-            </Box>
-        )
-    }
+    const posts: { node: { frontmatter: BlogInfo } }[] = edges
+        .filter((item: { node: { frontmatter: BlogInfo } }) => {
+            const { type, language } = item.node.frontmatter;
+            return type === "blogs" && language === currentLanguage;
+        })
+        .sort((a: { node: { frontmatter: BlogInfo } }, b: { node: { frontmatter: BlogInfo } }) => {
+            const aPinned = a.node.frontmatter.pinned ? 1 : 0;
+            const bPinned = b.node.frontmatter.pinned ? 1 : 0;
+            if (aPinned !== bPinned) {
+                return bPinned - aPinned;
+            }
+            return (
+                new Date(b.node.frontmatter.date).getTime() -
+                new Date(a.node.frontmatter.date).getTime()
+            );
+        });
+
+    const [page, setPage] = useState(1);
+    const paged = posts.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
 
     return (
-        <Box>
-            {edges.sort((a: { node: { frontmatter: BlogInfo }}, b: { node: { frontmatter: BlogInfo }}) => {
-                const aPinned = a.node.frontmatter.pinned ? 1 : 0;
-                const bPinned = b.node.frontmatter.pinned ? 1 : 0;
-
-                if (aPinned !== bPinned) {
-                    return bPinned - aPinned;
-                }
-
-                return new Date(b.node.frontmatter.date).getTime() - new Date(a.node.frontmatter.date).getTime();
-            }).filter((contentItem: { node: { frontmatter: BlogInfo }}) => {
-                const { node: { frontmatter } } = contentItem;
-                const { type, language } = frontmatter;
-                return (type === "blogs") && (language === currentLanguage);
-            }).map((item: { node: { frontmatter: BlogInfo }}) => {
-                const { node: { frontmatter } } = item;
-                const { title, date, description, slug, home_image, tags } = frontmatter;
-                return (
-                    <Box paddingY={2} key={`blog_${slug}`} onClick={() => navigate(`/blogs${slug}`)}>
+        <Box className="content-list">
+            <PageHeader title={t("navigation_blogs")} subtitle={t("blogs.description")} />
+            <div className="card-list">
+                {paged.map((item) => {
+                    const { title, date, description, slug, home_image, tags } =
+                        item.node.frontmatter;
+                    const to = `/blogs${slug}`;
+                    return (
                         <Card
-                            hoverable
                             key={slug}
-                            title={(
-                                <Box
-                                    flexBox
-                                    justifyContent="space-between"
-                                    style={{ cursor: "pointer" }}
-                                >
-                                    <Box style={{ color: BRAND_COLORS.primary }}>
-                                        {title}
-                                    </Box>
-                                </Box>
-                            )}
-                            subTitle={(
-                                <Box flexBox paddingX={1} justifyContent="space-between" style={{ color: BRAND_COLORS.primary }}>
-                                    <Box>
-                                        {date}
-                                    </Box>
-                                    <Box>
-                                    <Box>
-                                        {tags.map((item, index) => (
-                                            <span key={index}>
-                                                {item}{index < tags.length - 1 ? ', ' : ''}
-                                            </span>
-                                        ))}
-                                    </Box>
-                                    </Box>
-                                </Box>
-                            )}
+                            hoverable
+                            orientation="horizontal"
+                            clamp={3}
+                            href={to}
+                            onClick={(e) => {
+                                e.preventDefault();
+                                navigate(to);
+                            }}
+                            cover={<img src={home_image} alt={title} loading="lazy" />}
+                            title={title}
+                            meta={tags?.length ? `${date}  ·  ${tags.join("  ·  ")}` : date}
                         >
-                            <Box flexBox>
-                                <Box
-                                    style={{ flex: 4 }}
-                                >
-                                    <Image
-                                        src={home_image}
-                                        alt={`blogs-${title}`}
-                                        borderRadius='lg'
-                                        w={480}
-                                        loading="lazy"
-                                    />
-                                </Box>
-                                <Box style={{ flex: 5, padding: "0 16px" }}>
-                                    {description}
-                                </Box>
-                            </Box>
+                            {description}
                         </Card>
-                    </Box>
-                )
-            })}
+                    );
+                })}
+            </div>
+            {posts.length > PAGE_SIZE && (
+                <div className="pagination-row">
+                    <Pagination
+                        total={posts.length}
+                        pageSize={PAGE_SIZE}
+                        current={page}
+                        onChange={(next) => {
+                            setPage(next);
+                            window.scrollTo({ top: 0, behavior: "smooth" });
+                        }}
+                    />
+                </div>
+            )}
         </Box>
     );
 }

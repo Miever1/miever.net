@@ -1,0 +1,46 @@
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: var(--space-8) var(--space-6);
+    align-items: start;
+    text-align: left;
+}
+
+.skills-group-title {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin: 0 0 var(--space-3);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--letter-spacing-wider);
+    text-transform: uppercase;
+    color: var(--color-text-disabled);
+}
+
+.skills-group-icon {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-accent);
+}
+
+.skills-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+}
+
+/* Readable, theme-adaptive tags: dark text on a subtle accent tint (the
+   library's primary theme has too little contrast for body-size text). */
+.skills-tags .miever-tag {
+    color: var(--color-text-primary);
+    font-weight: var(--font-weight-medium);
+    background: rgba(12, 192, 223, 0.1);
+    border-color: rgba(12, 192, 223, 0.28);
+}
+
+/* Per-skill mark, kept monochrome in the accent colour. */
+.skills-tag-icon {
+    margin-right: var(--space-2);
+    font-size: 0.9em;
+    color: var(--color-text-accent);
+}

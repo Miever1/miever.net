@@ -1,10 +1,8 @@
 import React, { useState, useCallback, useMemo, useEffect } from "react";
-import { Box, designs } from "miever_ui";
-import { Spinner } from "@chakra-ui/react";
+import { Box, Spin } from "miever_ui";
 import { useTheme } from "../../components/Theme-Context";
 
 const Performance: React.FC = () => {
-    const { BRAND_COLORS } = designs;
     const { resolvedTheme } = useTheme();
     const [isLoaded, setIsLoaded] = useState(false);
     const lighthousePath = useMemo(() => 
@@ -36,7 +34,7 @@ const Performance: React.FC = () => {
                         zIndex: 10,
                     }}
                 >
-                    <Spinner size="xl" color={BRAND_COLORS.primary} />
+                    <Spin size="lg" />
                 </Box>
             )}
             <iframe

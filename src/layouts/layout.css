@@ -3,17 +3,28 @@ p {
 }
 
 html, body {
-    min-width: 1200px;
     background-color: var(--body-bg);
     z-index: -2;
 }
 
+/* Calm, static page backdrop — a subtle brand-tinted glow that replaces the
+   old animated particle mesh. Pointer-events free, sits behind all content. */
+.bg-canvas {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+        radial-gradient(55% 45% at 82% -5%, rgba(12, 192, 223, 0.06), transparent 70%),
+        radial-gradient(45% 40% at 0% 100%, rgba(18, 170, 156, 0.05), transparent 70%);
+}
+
 .layout-container {
-    min-width: 1200px;
+    width: 100%;
 }
 
 .menu-container {
-    background: #FFF;
+    background: var(--color-bg-primary);
     width: 100%;
     transition: all 0.3s;
 }
@@ -23,8 +34,8 @@ html, body {
     top: 0;
     left: 0;
     z-index: 1000;
-    min-width: 1200px;
     width: 100% !important;
+    border-bottom: 1px solid var(--color-border-primary);
 }
 
 .logo-container {
@@ -40,17 +51,667 @@ html, body {
     height: 100vh;
 }
 
-.footer {
-    min-width: 1200px;
-    height: 120px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 8px 0;
+/* ── Site footer ─────────────────────────────────────────────────── */
+.site-footer {
+    margin-top: var(--space-24);
+    border-top: 1px solid var(--color-border-primary);
 }
 
-.footer a {
+.site-footer-inner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: var(--space-16);
+    align-items: start;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: var(--space-12) 40px var(--space-8);
+}
+
+.site-footer-name {
+    display: block;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: var(--letter-spacing-tight);
+    color: var(--color-text-primary);
+}
+
+.site-footer-blurb {
+    margin: var(--space-2) 0 0 !important;
+    max-width: 34ch;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-secondary);
+}
+
+.site-footer-social {
+    display: flex;
+    gap: var(--space-2);
+    margin-top: var(--space-4);
+}
+
+.site-footer-social a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: var(--radius-full);
+    color: var(--color-text-secondary);
+    border: 1px solid var(--color-border-primary);
+    transition: color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.site-footer-social a:hover {
+    color: var(--color-text-accent);
+    border-color: var(--color-border-focus);
+    transform: translateY(-2px);
+}
+
+.site-footer-col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
+}
+
+.site-footer-col-title {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--letter-spacing-wider);
+    text-transform: uppercase;
+    color: var(--color-text-disabled) !important;
+}
+
+.site-footer-col a {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
     text-decoration: none;
-    color: inherit;
+    transition: color 0.2s ease;
+}
+
+.site-footer-col a:hover {
+    color: var(--color-text-accent);
+    text-decoration: none;
+}
+
+.site-footer-bottom {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: var(--space-4) 40px;
+    border-top: 1px solid var(--color-border-primary);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-disabled);
+}
+
+@media (max-width: 1199.98px) {
+    .site-footer-inner,
+    .site-footer-bottom {
+        padding-left: 32px;
+        padding-right: 32px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .site-footer-inner {
+        grid-template-columns: 1fr;
+        gap: var(--space-8);
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+    .site-footer-bottom {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+}
+
+/* ── Content container ───────────────────────────────────────────────
+   A centered max-width column with modest gutters, so content uses the
+   screen instead of sitting in a narrow strip. Phone goes near edge-to-edge. */
+.content-area {
+    width: 100%;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 8px 40px;
+}
+
+@media (max-width: 1199.98px) {
+    .content-area {
+        padding: 8px 32px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .content-area {
+        padding: 8px 16px;
+    }
+}
+
+/* Full-bleed pages (dashboard / performance iframes) opt out. */
+.content-area.content-flush {
+    max-width: none;
+    padding: 0;
+}
+
+/* Gentle page entrance — each route's content fades up on mount. */
+.content-area > * {
+    animation: page-enter 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@keyframes page-enter {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* Home has a bespoke staggered + scroll entrance, so opt it out of the
+   generic page fade. */
+.content-area > .home {
+    animation: none;
+}
+
+.hero-headline,
+.hero-lead,
+.hero-actions {
+    animation: rise-in 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.hero-headline {
+    animation-delay: 0.06s;
+}
+.hero-lead {
+    animation-delay: 0.2s;
+}
+.hero-actions {
+    animation-delay: 0.28s;
+}
+
+@keyframes rise-in {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* Scroll-reveal: elements get `.is-in` from an IntersectionObserver. Gated
+   behind `.js-reveal` (added by JS) so content is always visible if JS fails. */
+.js-reveal .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.js-reveal .reveal.is-in {
+    opacity: 1;
+    transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .content-area > *,
+    .hero-headline,
+    .hero-lead,
+    .hero-actions,
+    .hero-visual {
+        animation: none !important;
+        transition: none !important;
+    }
+    .reveal {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+}
+
+/* ── Content list pages (blogs / projects / designs) ─────────────────
+   A page header above a vertical stack of editorial Cards. */
+.content-list {
+    padding: var(--space-10) 0 var(--space-16);
+}
+
+.card-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+}
+
+.pagination-row {
+    display: flex;
+    justify-content: center;
+    margin-top: var(--space-10);
+}
+
+/* ── Footprints: map + bottom thumbnail strip ───────────────────────
+   The active city drives both the highlighted map marker and the selected
+   thumbnail. The strip scrolls horizontally on every device; nothing floats
+   over the map, so it works identically on desktop and mobile. */
+.footprints {
+    width: 100%;
+}
+
+.footprints-map {
+    position: relative;
+    width: 100%;
+}
+
+/* The map SVG scales to the container width while keeping its (now shorter)
+   aspect ratio, so the section stays compact instead of a tall, empty globe. */
+.footprints-map svg {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.footprints-country-tip {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    background: var(--color-surface-elevated);
+    color: var(--color-text-primary);
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    font-size: var(--font-size-sm);
+    z-index: 9;
+    pointer-events: none;
+}
+
+/* Pulsing ring on the active marker. */
+.footprints-pulse {
+    transform-origin: center;
+    transform-box: fill-box;
+    animation: footprints-pulse 1.6s ease-out infinite;
+}
+
+@keyframes footprints-pulse {
+    0%   { transform: scale(0.6); opacity: 0.5; }
+    70%  { transform: scale(2.2); opacity: 0; }
+    100% { transform: scale(2.2); opacity: 0; }
+}
+
+/* Horizontal thumbnail strip directly under the (now compact) map. The map's
+   viewBox is cropped to the inhabited band, so the strip just needs a small
+   gap rather than a large negative pull-up. */
+.footprints-strip {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding: 12px 4px;
+    margin-top: var(--space-2);
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+}
+
+.footprints-strip::-webkit-scrollbar {
+    height: 6px;
+}
+.footprints-strip::-webkit-scrollbar-thumb {
+    background: var(--color-border-secondary);
+    border-radius: 3px;
+}
+
+.footprints-thumb {
+    flex: 0 0 auto;
+    width: 132px;
+    padding: 0;
+    border: 2px solid transparent;
+    border-radius: var(--radius-lg);
+    background: var(--color-bg-secondary);
+    cursor: pointer;
+    overflow: hidden;
+    scroll-snap-align: center;
+    transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    text-align: left;
+}
+
+.footprints-thumb:hover {
+    transform: translateY(-2px);
+}
+
+.footprints-thumb.active {
+    border-color: var(--color-border-focus);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+}
+
+.footprints-thumb-img {
+    display: block;
+    width: 100%;
+    height: 78px;
+    background-size: cover;
+    background-position: center;
+}
+
+.footprints-thumb-meta {
+    display: block;
+    padding: var(--space-2);
+}
+
+.footprints-thumb-city {
+    display: block;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.footprints-thumb-date {
+    display: block;
+    font-size: var(--font-size-xs);
+    color: var(--color-text-secondary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media (max-width: 767.98px) {
+    .footprints-thumb {
+        width: 116px;
+    }
+    .footprints-thumb-img {
+        height: 68px;
+    }
+}
+
+/* ── Home page (editorial) ───────────────────────────────────────────
+   Generous vertical rhythm between the hero and each section. */
+.home > * + * {
+    margin-top: clamp(var(--space-16), 9vw, var(--space-24));
+}
+
+/* Hero: an editorial statement on the left, a restrained geometric panel on
+   the right. Single column (text only) on small screens. */
+.hero {
+    padding: var(--space-20) 0 var(--space-12);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(var(--space-8), 5vw, var(--space-16));
+    align-items: center;
+}
+
+@media (min-width: 880px) {
+    .hero {
+        grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    }
+}
+
+.hero-content {
+    max-width: 44rem;
+}
+
+/* ── Hero decorative panel ───────────────────────────────────────────
+   Pure CSS: layered brand glow, a faint dot grid, two rings and a single
+   orbiting accent dot framing an "AH" monogram. No images; themes via tokens. */
+.hero-visual {
+    display: flex;
+    justify-content: center;
+    animation: hero-visual-in 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+    animation-delay: 0.24s;
+}
+
+/* A single portrait photo, framed to match the site's card language. A faint
+   brand-tinted glow behind it ties it to the rest of the palette. */
+.hero-visual-photo {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    aspect-ratio: 4 / 5;
+    border-radius: var(--radius-2xl, 24px);
+    overflow: hidden;
+    border: 1px solid var(--color-border-primary);
+    box-shadow: var(--shadow-lg);
+}
+
+.hero-visual-photo::before {
+    content: "";
+    position: absolute;
+    inset: -12%;
+    z-index: -1;
+    background:
+        radial-gradient(50% 45% at 75% 10%, rgba(12, 192, 223, 0.22), transparent 70%),
+        radial-gradient(45% 40% at 15% 95%, rgba(18, 170, 156, 0.18), transparent 70%);
+}
+
+.hero-visual-photo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@keyframes hero-visual-in {
+    from {
+        opacity: 0;
+        transform: scale(0.96) translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.hero-headline {
+    margin: 0 !important;
+    font-size: clamp(2.25rem, 4vw + 1rem, 3.5rem);
+    line-height: var(--line-height-tight);
+    letter-spacing: var(--letter-spacing-tighter);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    text-wrap: balance;
+    hyphens: manual;
+}
+
+.hero-lead {
+    margin: var(--space-6) 0 0 !important;
+    max-width: 50ch;
+    font-size: var(--font-size-xl);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-secondary);
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-8);
+}
+
+/* Stats band — a few credible, personable numbers under the hero. */
+.home-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-6);
+    padding: var(--space-8) 0;
+    border-top: 1px solid var(--color-border-primary);
+    border-bottom: 1px solid var(--color-border-primary);
+}
+
+@media (min-width: 720px) {
+    .home-stats {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.home-stat {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+}
+
+.home-stat-num {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: var(--letter-spacing-tight);
+    line-height: 1;
+    color: var(--color-text-primary);
+    font-variant-numeric: tabular-nums;
+}
+
+.home-stat-label {
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-snug);
+    color: var(--color-text-secondary);
+}
+
+/* Numbered, left-aligned editorial section headers. */
+.home-section-head {
+    margin-bottom: var(--space-8);
+    padding-bottom: var(--space-5);
+    border-bottom: 1px solid var(--color-border-primary);
+}
+
+/* The section number sits as a small kicker above the title, sharing the same
+   left edge, rather than floating beside it. */
+.home-section-index {
+    display: block;
+    margin-bottom: var(--space-2);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--letter-spacing-wider);
+    color: var(--color-text-accent) !important;
+    font-variant-numeric: tabular-nums;
+}
+
+.home-section-heading {
+    flex: 1;
+    min-width: 0;
+}
+
+.home-section-title {
+    margin: 0 !important;
+    font-size: clamp(1.5rem, 2vw + 1rem, 2.25rem);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: var(--letter-spacing-tight);
+    line-height: var(--line-height-tight);
+    color: var(--color-text-primary);
+}
+
+.home-section-sub {
+    margin: var(--space-3) 0 0 !important;
+    max-width: none;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-secondary);
+}
+
+.home-thanks {
+    padding: var(--space-6) 0;
+    border-top: 1px solid var(--color-border-primary);
+}
+
+/* ── Connect section: invitation + contact cards + comment thread ──── */
+.connect-lead {
+    max-width: none;
+    margin: 0 !important;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+}
+
+.connect-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+    margin-top: var(--space-6);
+}
+
+@media (min-width: 720px) {
+    .connect-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+.connect-card {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    min-width: 0;
+    padding: var(--space-5);
+    border: 1px solid var(--color-border-primary);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface-elevated);
+    text-decoration: none !important;
+    transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.connect-card:hover {
+    border-color: var(--color-border-focus);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.connect-card-icon {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-full);
+    color: var(--color-text-accent);
+    background: var(--color-bg-secondary);
+    font-size: var(--font-size-lg);
+}
+
+.connect-card-body {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.connect-card-label {
+    color: var(--color-text-primary) !important;
+}
+
+.connect-card-value {
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-snug);
+    word-break: keep-all;
+    overflow-wrap: break-word;
+}
+
+.connect-card-arrow {
+    margin-left: auto;
+    color: var(--color-text-disabled);
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.connect-card:hover .connect-card-arrow {
+    color: var(--color-text-accent);
+    transform: translateX(3px);
+}
+
+.connect-comments {
+    margin-top: var(--space-12);
+}
+
+.connect-comments-title {
+    margin: 0 0 var(--space-5) !important;
+    font-size: var(--font-size-lg) !important;
+    color: var(--color-text-secondary) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .connect-card,
+    .connect-card-arrow {
+        transition: none !important;
+    }
+}
+
+@media (max-width: 879.98px) {
+    .hero {
+        padding: var(--space-12) 0 var(--space-8);
+    }
+    /* Single column: keep the photo present but smaller so it complements the
+       text rather than dominating the fold. */
+    .hero-visual-photo {
+        max-width: 300px;
+    }
 }

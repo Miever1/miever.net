@@ -1,13 +1,24 @@
 {
     "header_title": "Welcome to My Personal Website!",
-    "header_subtitle": "This site is a reflection of my journey as a front-end engineer, where I share my personal projects, insights, and the experiences that have shaped who I am today.",
-    "about_introduction": "As a front-end engineer, I understand the importance of having a personal website to highlight my skills and projects. I had been putting off creating mine, always busy with work and other commitments. However, as time went on, I realized it was time to change that. So here I am, finally embracing the journey of building my online presence!",
+    "header_subtitle": "This site is a reflection of my journey as a software engineer, where I share my personal projects, insights, and the experiences that have shaped who I am today.",
+    "about_introduction": "As a software engineer, I understand the importance of having a personal website to highlight my skills and projects. I had been putting off creating mine, always busy with work and other commitments. However, as time went on, I realized it was time to change that. So here I am, finally embracing the journey of building my online presence!",
+    "hero_headline": "I build software, and I care how it feels to use.",
+    "hero_lead": "I’m a software engineer based in Helsinki, finishing a master’s in human-computer interaction. Five years building products at scale, mostly on the front end with React and TypeScript, and lately I’m just as drawn to where AI fits into what I make.",
+    "cta_projects": "View Projects",
+    "cta_blog": "Read the Blog",
+    "cta_resume": "Résumé",
+    "stat_years": "Years building products",
+    "stat_awards": "Hackathon wins",
+    "stat_cities": "Cities explored",
+    "stat_languages": "Languages spoken",
     "footprints_title": "My Footprints",
-    "footprints_description": "Explore my interactive map, where I've documented the places I've traveled around the globe. Each pin on this map signifies a unique story and experience that has contributed to my growth, both personally and professionally. I look forward to adding new destinations as I embark on more adventures in life!",
+    "footprints_description": "A map of where I've lived, studied and wandered. 48 cities across 15 countries so far.",
     "footer_copyright": "Copyright © 2022-2025 Miever",
     "privacy_notice": "Privacy Notice",
     "license": "Mozilla Public License 2.0",
     "footer_design_credit": "Designed by Miever UI!",
+    "footer_resources": "Resources",
+    "footer_blurb": "Software engineer with an HCI background and a front-end core, based in Helsinki and open to new roles.",
     "thank_you": "Thank you for visiting this little corner I’ve carefully built. I hope it brings you a bit of inspiration, a smile, or a sense of connection. ❤️",
     "navigation_home": "Home",
     "navigation_blogs": "Blogs",
@@ -26,7 +37,9 @@
     "dark_theme": "Dark Theme",
     "system_theme": "Follow System",
     "comment_title": "Let’s Connect!",
-    "map_skills_title": "Skills Map",
+    "connect_lead": "I’m open to software roles and always happy to talk shop. The quickest way to reach me is email, but LinkedIn and GitHub work just as well.",
+    "connect_comments_title": "Or leave a note",
+    "map_skills_title": "Skills",
     "frontend": "Frontend",
     "html": "HTML5",
     "css": "CSS3",
@@ -62,14 +75,14 @@
     "english": "English",
     "chinese": "Chinese",
     "uyghur": "Uyghur",
-    "skills_description": "The connections between my skills shape the way I approach and solve problems. Each skill marks a meaningful milestone in my professional journey, contributing to my continuous growth.",
+    "skills_description": "The tools, frameworks and disciplines I work with day to day, grouped by where they fit best.",
     "home": {
       "title": "Home - Miever",
-      "description": "Welcome to my personal website, where I share my journey as a front-end engineer, my projects, and my insights."
+      "description": "Welcome to my personal website, where I share my journey as a software engineer, my projects, and my insights."
     },
     "resume": {
       "title": "Resume - Miever",
-      "description": "Here you can view my resume, showcasing my educational background, work experience, and skills. My resume is a snapshot of my professional journey, highlighting my growth and achievements in the front-end field."
+      "description": "Here you can view my resume, showcasing my educational background, work experience, and skills. My resume is a snapshot of my professional journey, highlighting my growth and achievements in software engineering."
     },
     "blogs": {
       "title": "Blogs - Miever",
@@ -89,7 +102,7 @@
     },
     "projects": {
       "title": "Projects - Miever",
-      "description": "Explore my projects that showcase my skills and creativity in front-end development.",
+      "description": "Explore my projects that showcase my skills and creativity in software development.",
       "miever_net": {
         "title": "Miever.net",
         "subTitle": "My personal website, built with Miever UI",

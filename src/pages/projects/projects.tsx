@@ -1,7 +1,6 @@
 
-import React, { FunctionComponent, useState, useEffect } from "react";
-import { Image, Spinner } from "@chakra-ui/react";
-import { Box, Card, Button, Icon, Tooltip, designs } from "miever_ui";
+import React, { FunctionComponent } from "react";
+import { Box, Card, Button, Icon, PageHeader } from "miever_ui";
 import { useTranslation } from "react-i18next";
 
 export interface Project {
@@ -15,14 +14,6 @@ export interface Project {
 
 const Projects:FunctionComponent<{}> = () => {
     const { t } = useTranslation();
-    const { BRAND_COLORS } = designs;
-    const [isLoaded, setIsLoaded] = useState(false);
-
-    useEffect(() => {
-        setTimeout(() => {
-            setIsLoaded(true);
-        }, 500);
-    }, []);
 
     const projectsList: Project[] = [
         {
@@ -58,107 +49,48 @@ const Projects:FunctionComponent<{}> = () => {
         }
     ];
 
-    if(!isLoaded) {
-        return(
-            <Box
-                style={{
-                    position: "absolute",
-                    top: "50%",
-                    left: "50%",
-                    transform: "translate(-50%, -50%)",
-                    zIndex: 10,
-                }}
-            >
-                <Spinner size="xl" color={BRAND_COLORS.primary} />
-            </Box>
-        )
-    }
-
     return (
-        <Box>
-            {projectsList.map(item => {
-                const { title, subTitle, liveDemoPath, githubPath, description, thumbnailPath } = item;
-                return (
-                    <Box paddingY={2}>
+        <Box className="content-list">
+            <PageHeader title={t("navigation_projects")} subtitle={t("projects.description")} />
+            <div className="card-list">
+                {projectsList.map((item) => {
+                    const { title, subTitle, liveDemoPath, githubPath, description, thumbnailPath } = item;
+                    return (
                         <Card
-                            title={(
-                                <Box flexBox >
-                                    <Box
-                                        style={{ 
-                                            color: BRAND_COLORS.primary,
-                                            cursor: "pointer",
-                                        }}
-                                        onClick={() => {
-                                            window.open(liveDemoPath);
-                                        }}
+                            key={title}
+                            hoverable
+                            orientation="horizontal"
+                            clamp={3}
+                            cover={<img src={thumbnailPath} alt={title} loading="lazy" />}
+                            title={title}
+                            meta={subTitle}
+                            footer={
+                                <>
+                                    <Button
+                                        size="sm"
+                                        type="primary"
+                                        onClick={() => window.open(liveDemoPath)}
                                     >
-                                        {title}
-                                    </Box>
-                                </Box>
-                            )}
-                            subTitle={(
-                                <Box flexBox paddingX={1} justifyContent="space-between">
-                                    <Box style={{ lineHeight: "29px", color: BRAND_COLORS.primary }}>
-                                        {subTitle}
-                                    </Box>
-                                    <Box flexBox justifyContent="flex-end">
-                                        <Tooltip overlay={t("live_demo")} placement="top">
-                                            <Button
-                                                size="sm"
-                                                styleType="link"
-                                                onClick={() => window.open(liveDemoPath)}
-                                            >
-                                                <Icon icon={["fas", "desktop"]} theme="primary" style={{ cursor: "pointer" }}/>
-                                            </Button>
-                                        </Tooltip>
-                                        {githubPath && (
-                                            <Tooltip overlay={t("github_res")} placement="top">
-                                                <Button
-                                                    size="sm"
-                                                    styleType="link"
-                                                    onClick={() => window.open(githubPath)}
-                                                >
-                                                    <Icon icon={["fab", "github"]} theme="primary" style={{ fontSize: "14px", cursor: "pointer" }}/>
-                                                </Button>
-                                            </Tooltip>
-                                        )}
-                                    </Box>
-                                </Box>
-                            )}
+                                        {t("live_demo")}
+                                    </Button>
+                                    {githubPath && (
+                                        <Button
+                                            size="sm"
+                                            type="link"
+                                            onClick={() => window.open(githubPath)}
+                                        >
+                                            <Icon icon={["fab", "github"]} style={{ marginRight: 6 }} />
+                                            {t("github_res")}
+                                        </Button>
+                                    )}
+                                </>
+                            }
                         >
-                            <Box flexBox>
-                                <Box
-                                    style={{ 
-                                        flex: 4,
-                                        overflow: "hidden"
-                                    }}
-                                >
-                                    <Image
-                                        src={thumbnailPath}
-                                        alt={`blogs-${title}`}
-                                        borderRadius='lg'
-                                        w={480}
-                                        loading="lazy"
-                                    />
-                                </Box>
-                                <Box 
-                                    style={{
-                                        flex: 5,
-                                        padding: "0 16px",
-                                        display: "-webkit-box",
-                                        WebkitBoxOrient: "vertical",
-                                        WebkitLineClamp: 6,
-                                        overflow: "hidden",
-                                        textOverflow: "ellipsis",
-                                    }}
-                                >
-                                    {description}
-                                </Box>
-                            </Box>
+                            {description}
                         </Card>
-                    </Box>
-                )
-            })}
+                    );
+                })}
+            </div>
         </Box>
     );
 }

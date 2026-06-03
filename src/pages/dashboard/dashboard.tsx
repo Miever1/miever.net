@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Box, designs } from "miever_ui";
-import { Spinner } from "@chakra-ui/react";
+import { Box, Spin } from "miever_ui";
 import { useTheme } from "../../components/Theme-Context";
 
 export default function Dashboard() {
-    const { BRAND_COLORS } = designs;
     const [isLoaded, setIsLoaded] = useState(false);
     const [iframeKey, setIframeKey] = useState(0);
     const { resolvedTheme } = useTheme();
@@ -35,7 +33,7 @@ export default function Dashboard() {
                         zIndex: 10,
                     }}
                 >
-                    <Spinner size="xl" color={BRAND_COLORS.primary} />
+                    <Spin size="lg" />
                 </Box>
             )}
             <iframe

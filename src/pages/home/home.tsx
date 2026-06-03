@@ -1,118 +1,116 @@
-import React, { FunctionComponent, useEffect, useState } from "react";
-import { Box, Card, designs } from "miever_ui"; 
-import { Spinner } from "@chakra-ui/react";
+import React, { FunctionComponent, ReactNode } from "react";
+import { navigate } from "gatsby";
+import { Box, Button, Typography } from "miever_ui";
 
 import MapChart from "./footprints";
-import Comments from "../../components/Comments";
+import Connect from "../../components/Connect";
 import { SEO } from "../../components/SEO";
 import { useTranslation } from "react-i18next";
 import SkillsMap from "../../components/Skills-Map";
+import { useInView } from "../../components/useInView";
+
+const { Title, Paragraph, Text } = Typography;
+
+/** A numbered, left-aligned editorial section header used across the home page. */
+const HomeSection: FunctionComponent<{
+    index: string;
+    title: ReactNode;
+    subtitle?: ReactNode;
+    children: ReactNode;
+}> = ({ index, title, subtitle, children }) => {
+    const [ref, inView] = useInView<HTMLElement>();
+    return (
+    <section ref={ref} className={`home-section reveal${inView ? " is-in" : ""}`}>
+        <Box className="home-section-head">
+            <Text className="home-section-index">{index}</Text>
+            <Box className="home-section-heading">
+                <Title level={2} className="home-section-title">{title}</Title>
+                {subtitle && <Paragraph type="secondary" className="home-section-sub">{subtitle}</Paragraph>}
+            </Box>
+        </Box>
+        {children}
+    </section>
+    );
+};
 
 const Home: FunctionComponent<{}> = () => {
-    const { BRAND_COLORS } = designs;
     const { t } = useTranslation();
-    const [isLoaded, setIsLoaded] = useState(false);
-
-    useEffect(() => {
-        setTimeout(() => {
-            setIsLoaded(true);
-        }, 500);
-    }, []);
-
-    if(!isLoaded) {
-        return(
-            <Box
-                style={{
-                    position: "absolute",
-                    top: "50%",
-                    left: "50%",
-                    transform: "translate(-50%, -50%)",
-                    zIndex: 10,
-                }}
-            >
-                <Spinner size="xl" color={BRAND_COLORS.primary} />
-            </Box>
-        )
-    }
-
-    const renderTitle = (title: string, marginBottom?: string) => {
-        return (
-            <Box
-                flexBox
-                justifyContent="center"
-                style={{
-                    fontSize: "32px",
-                    fontWeight: 600,
-                    color: BRAND_COLORS.primary,
-                    marginBottom: marginBottom ? marginBottom : "12px",
-                }}
-            >
-                {t(title)}
-            </Box>
-        )
-    }
+    const [statsRef, statsIn] = useInView<HTMLDivElement>();
 
     return (
-        <Card
-            hoverable
-            title={renderTitle("header_title", "0px")}
-        >
-            <Box>
-                <p>
-                    {t("header_subtitle")}
-                </p>
-                <p>
-                    {t("about_introduction")}
-                </p>
-                <img
-                    src="https://miever.s3.ap-east-1.amazonaws.com/static/selfies.webp"
-                    alt="Aerman"
-                    width="1704"    
-                    height="1280"  
-                    style={{ maxWidth: "100%", height: "auto", marginBottom: "12px" }}
-                />
-            </Box>
-            <Box>
-                {renderTitle("map_skills_title")}
-                <p>
-                    {t("skills_description")}
-                </p>
-                <SkillsMap />
-            </Box>
-            <Box>
-                {renderTitle("footprints_title")}
-                <p>
-                    {t("footprints_description")}
-                </p>
-                <Box style={{ width: "100%", paddingBottom: "70%", position: "relative" }}>
-                    <Box style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}>
-                        <MapChart />
+        <Box className="home">
+            {/* Hero */}
+            <header className="hero">
+                <Box className="hero-content">
+                    <Title level={1} className="hero-headline">{t("hero_headline")}</Title>
+                    <Paragraph type="secondary" className="hero-lead">{t("hero_lead")}</Paragraph>
+                    <Box className="hero-actions">
+                        <Button type="primary" onClick={() => navigate("/projects")}>
+                            {t("cta_projects")}
+                        </Button>
+                        <Button onClick={() => navigate("/blogs")}>
+                            {t("cta_blog")}
+                        </Button>
+                        <Button type="link" onClick={() => navigate("/resume")}>
+                            {t("cta_resume")} →
+                        </Button>
                     </Box>
                 </Box>
-            </Box>
-            
-            <Box>
-                {renderTitle("comment_title")}
-            </Box>
-            <Comments />
-            <Box
-                style={{
-                    borderTop: "1px solid var(--color-border-primary)", 
-                    borderBottom: "1px solid var(--color-border-primary)",
-                    padding: "24px 0", 
-                    textAlign: "center" 
-                }}
-            >
+                {/* Decorative, purely typographic/geometric panel. aria-hidden:
+                    no information lives here, it just gives the hero a balanced
+                    right side. CSS-only so it themes and scales for free. */}
+                <div className="hero-visual">
+                    <div className="hero-visual-photo">
+                        <img
+                            src="https://miever.s3.ap-east-1.amazonaws.com/static/footprints/Frankfurt.webp"
+                            alt="Aerman in Frankfurt"
+                            loading="eager"
+                        />
+                    </div>
+                </div>
+            </header>
+
+            <div ref={statsRef} className={`home-stats reveal${statsIn ? " is-in" : ""}`}>
+                {[
+                    { num: "5+", label: t("stat_years") },
+                    { num: "2×", label: t("stat_awards") },
+                    { num: "48", label: t("stat_cities") },
+                    { num: "3", label: t("stat_languages") },
+                ].map((stat) => (
+                    <Box className="home-stat" key={stat.label}>
+                        <Text className="home-stat-num">{stat.num}</Text>
+                        <Text type="secondary" className="home-stat-label">{stat.label}</Text>
+                    </Box>
+                ))}
+            </div>
+
+            <HomeSection index="01" title={t("map_skills_title")} subtitle={t("skills_description")}>
+                <SkillsMap />
+            </HomeSection>
+
+            <HomeSection index="02" title={t("footprints_title")} subtitle={t("footprints_description")}>
+                <MapChart />
+            </HomeSection>
+
+            <HomeSection index="03" title={t("comment_title")}>
+                <Connect />
+            </HomeSection>
+
+            <Paragraph type="secondary" align="center" className="home-thanks">
                 {t("thank_you")}
-            </Box>
-        </Card>
+            </Paragraph>
+        </Box>
     );
-}
+};
 
 export default Home;
 
 export const Head = () => (
     <>
-      <SEO title="Home" description="Home page" pathname="/" />
+        <SEO
+            title="Aerman Huofuer, Software Engineer (HCI & AI)"
+            description="Software engineer with an HCI background and a front-end core, building across engineering, design and AI. Projects, writing and design work."
+            pathname="/"
+        />
     </>
 );
