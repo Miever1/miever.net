@@ -596,7 +596,7 @@ html, body {
 
 .home-section-sub {
     margin: var(--space-3) 0 0 !important;
-    max-width: 62ch;
+    max-width: none;
     font-size: var(--font-size-lg);
     line-height: var(--line-height-relaxed);
     color: var(--color-text-secondary);

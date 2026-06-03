@@ -14,7 +14,7 @@ import {
     languages,
     labels,
     Localized,
-} from "./resumeData";
+} from "../../data/resumeData";
 
 import "./resume.css";
 
