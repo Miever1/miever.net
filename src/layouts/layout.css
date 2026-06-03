@@ -253,7 +253,9 @@ html, body {
     .hero-eyebrow,
     .hero-headline,
     .hero-lead,
-    .hero-actions {
+    .hero-actions,
+    .hero-visual,
+    .hero-visual-orbit {
         animation: none !important;
         transition: none !important;
     }
@@ -429,13 +431,151 @@ html, body {
     margin-top: clamp(var(--space-16), 9vw, var(--space-24));
 }
 
-/* Hero: a clean, text-only typographic statement. */
+/* Hero: an editorial statement on the left, a restrained geometric panel on
+   the right. Single column (text only) on small screens. */
 .hero {
     padding: var(--space-20) 0 var(--space-12);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(var(--space-8), 5vw, var(--space-16));
+    align-items: center;
+}
+
+@media (min-width: 880px) {
+    .hero {
+        grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    }
 }
 
 .hero-content {
     max-width: 44rem;
+}
+
+/* ── Hero decorative panel ───────────────────────────────────────────
+   Pure CSS: layered brand glow, a faint dot grid, two rings and a single
+   orbiting accent dot framing an "AH" monogram. No images; themes via tokens. */
+.hero-visual {
+    display: none;
+    justify-content: center;
+    animation: hero-visual-in 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+    animation-delay: 0.24s;
+}
+
+@media (min-width: 880px) {
+    .hero-visual {
+        display: flex;
+    }
+}
+
+.hero-visual-panel {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    aspect-ratio: 1 / 1;
+    display: grid;
+    place-items: center;
+    isolation: isolate;
+    border: 1px solid var(--color-border-primary);
+    border-radius: var(--radius-2xl, 24px);
+    overflow: hidden;
+    background:
+        radial-gradient(62% 55% at 72% 18%, rgba(12, 192, 223, 0.20), transparent 70%),
+        radial-gradient(52% 50% at 18% 92%, rgba(18, 170, 156, 0.16), transparent 70%),
+        var(--color-surface-elevated);
+}
+
+/* Faint dot grid, radially masked so it fades toward the edges. */
+.hero-visual-panel::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-image: radial-gradient(circle, var(--color-border-secondary) 1px, transparent 1px);
+    background-size: 22px 22px;
+    opacity: 0.45;
+    -webkit-mask-image: radial-gradient(72% 72% at 50% 50%, #000 28%, transparent 78%);
+    mask-image: radial-gradient(72% 72% at 50% 50%, #000 28%, transparent 78%);
+}
+
+.hero-visual-ring {
+    position: absolute;
+    border-radius: var(--radius-full);
+}
+
+.hero-visual-ring-a {
+    width: 80%;
+    height: 80%;
+    border: 1px solid var(--color-border-focus);
+    opacity: 0.35;
+}
+
+.hero-visual-ring-b {
+    width: 54%;
+    height: 54%;
+    border: 1px dashed var(--color-border-focus);
+    opacity: 0.3;
+}
+
+/* A wrapper sized to ring-a that rotates, carrying a single accent dot. */
+.hero-visual-orbit {
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    animation: hero-orbit 18s linear infinite;
+}
+
+.hero-visual-orbit::after {
+    content: "";
+    position: absolute;
+    top: -4px;
+    left: 50%;
+    width: 9px;
+    height: 9px;
+    margin-left: -4.5px;
+    border-radius: var(--radius-full);
+    background: var(--color-text-accent);
+    box-shadow: 0 0 14px 2px rgba(12, 192, 223, 0.55);
+}
+
+.hero-visual-monogram {
+    z-index: 1;
+    font-size: clamp(4rem, 11vw, 8rem);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: var(--letter-spacing-tighter);
+    line-height: 1;
+    background: linear-gradient(135deg, var(--color-text-accent), #0cc0df);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
+.hero-visual-tag {
+    position: absolute;
+    bottom: 13%;
+    z-index: 1;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--letter-spacing-wider);
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+}
+
+@keyframes hero-orbit {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes hero-visual-in {
+    from {
+        opacity: 0;
+        transform: scale(0.96) translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
 }
 
 .hero-eyebrow {

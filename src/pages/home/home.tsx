@@ -57,6 +57,18 @@ const Home: FunctionComponent<{}> = () => {
                         </Button>
                     </div>
                 </div>
+                {/* Decorative, purely typographic/geometric panel. aria-hidden:
+                    no information lives here, it just gives the hero a balanced
+                    right side. CSS-only so it themes and scales for free. */}
+                <div className="hero-visual" aria-hidden="true">
+                    <div className="hero-visual-panel">
+                        <span className="hero-visual-ring hero-visual-ring-a" />
+                        <span className="hero-visual-ring hero-visual-ring-b" />
+                        <span className="hero-visual-orbit" />
+                        <span className="hero-visual-monogram">AH</span>
+                        <span className="hero-visual-tag">Software · HCI · AI</span>
+                    </div>
+                </div>
             </header>
 
             <div ref={statsRef} className={`home-stats reveal${statsIn ? " is-in" : ""}`}>
