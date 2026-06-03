@@ -106,6 +106,10 @@ export default Home;
 
 export const Head = () => (
     <>
-        <SEO title="Home" description="Home page" pathname="/" />
+        <SEO
+            title="Aerman Huofuer · Frontend, HCI & AI"
+            description="Frontend engineer with an HCI background, building across engineering, design and AI. Projects, writing and design work."
+            pathname="/"
+        />
     </>
 );
