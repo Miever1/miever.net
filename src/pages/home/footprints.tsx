@@ -16,8 +16,9 @@ const MapChart = () => {
   const { t } = useTranslation();
   const geoUrl = "https://unpkg.com/world-atlas@2.0.2/countries-110m.json";
 
-  const themeColor = BRAND_COLORS.primary || "#000";
-  const activeColor = BRAND_COLORS.warning || "#f5a623";
+  // Cohesive palette: brand cyan for visited, brand teal for the active spot.
+  const themeColor = BRAND_COLORS.primary || "#0CC0DF";
+  const activeColor = BRAND_COLORS.secondary || "#12AA9C";
   const visitedCountries = [
     "China",
     "Singapore",
@@ -133,13 +134,13 @@ const MapChart = () => {
                 style={{ default: { cursor: "pointer" } }}
               >
                 {isActive && (
-                  <circle r={10} fill={BRAND_COLORS.warning} opacity={0.3} className="footprints-pulse" />
+                  <circle r={10} fill={activeColor} opacity={0.3} className="footprints-pulse" />
                 )}
                 <circle
                   r={isActive ? 5 : 3}
-                  fill={isActive ? BRAND_COLORS.warning : themeColor}
+                  fill={isActive ? activeColor : themeColor}
                   strokeWidth={1}
-                  stroke="#FFF"
+                  stroke="var(--color-bg-primary)"
                   style={{ cursor: "pointer", transition: "r 0.2s ease" }}
                 />
               </Marker>

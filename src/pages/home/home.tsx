@@ -57,16 +57,6 @@ const Home: FunctionComponent<{}> = () => {
                         </Button>
                     </div>
                 </div>
-                <div className="hero-portrait">
-                    <img
-                        className="hero-portrait-img"
-                        src="https://miever.s3.ap-east-1.amazonaws.com/static/selfies.webp"
-                        alt="Aerman"
-                        width="1704"
-                        height="1280"
-                        loading="eager"
-                    />
-                </div>
             </header>
 
             <div ref={statsRef} className={`home-stats reveal${statsIn ? " is-in" : ""}`}>

@@ -58,8 +58,8 @@ html, body {
 
 .site-footer-inner {
     display: grid;
-    grid-template-columns: 1.6fr 1fr 1fr;
-    gap: var(--space-10);
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: var(--space-8);
     padding: var(--space-12) 290px var(--space-8);
 }
 
@@ -71,10 +71,11 @@ html, body {
     color: var(--color-text-primary);
 }
 
-.site-footer-tagline {
-    display: block;
-    margin-top: var(--space-1);
+.site-footer-blurb {
+    margin: var(--space-2) 0 0 !important;
+    max-width: 34ch;
     font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
     color: var(--color-text-secondary);
 }
 
@@ -208,8 +209,7 @@ html, body {
 .hero-eyebrow,
 .hero-headline,
 .hero-lead,
-.hero-actions,
-.hero-portrait {
+.hero-actions {
     animation: rise-in 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
 .hero-eyebrow {
@@ -223,10 +223,6 @@ html, body {
 }
 .hero-actions {
     animation-delay: 0.28s;
-}
-.hero-portrait {
-    animation-delay: 0.16s;
-    animation-duration: 0.7s;
 }
 
 @keyframes rise-in {
@@ -254,12 +250,10 @@ html, body {
 
 @media (prefers-reduced-motion: reduce) {
     .content-area > *,
-    .hero-portrait-img,
     .hero-eyebrow,
     .hero-headline,
     .hero-lead,
-    .hero-actions,
-    .hero-portrait {
+    .hero-actions {
         animation: none !important;
         transition: none !important;
     }
@@ -314,10 +308,10 @@ html, body {
     left: 12px;
     background: var(--color-surface-elevated);
     color: var(--color-text-primary);
-    padding: 4px 10px;
-    border-radius: 6px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-    font-size: 13px;
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    font-size: var(--font-size-sm);
     z-index: 9;
     pointer-events: none;
 }
@@ -369,7 +363,7 @@ html, body {
     width: 132px;
     padding: 0;
     border: 2px solid transparent;
-    border-radius: 10px;
+    border-radius: var(--radius-lg);
     background: var(--color-bg-secondary);
     cursor: pointer;
     overflow: hidden;
@@ -384,7 +378,7 @@ html, body {
 
 .footprints-thumb.active {
     border-color: var(--color-border-focus);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+    box-shadow: var(--shadow-lg);
     transform: translateY(-2px);
 }
 
@@ -398,13 +392,13 @@ html, body {
 
 .footprints-thumb-meta {
     display: block;
-    padding: 6px 8px;
+    padding: var(--space-2);
 }
 
 .footprints-thumb-city {
     display: block;
-    font-size: 13px;
-    font-weight: 600;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
     color: var(--color-text-primary);
     white-space: nowrap;
     overflow: hidden;
@@ -413,7 +407,7 @@ html, body {
 
 .footprints-thumb-date {
     display: block;
-    font-size: 11px;
+    font-size: var(--font-size-xs);
     color: var(--color-text-secondary);
     white-space: nowrap;
     overflow: hidden;
@@ -435,24 +429,13 @@ html, body {
     margin-top: clamp(var(--space-16), 9vw, var(--space-24));
 }
 
-/* Hero: a typographic statement with a refined portrait alongside. */
+/* Hero: a clean, text-only typographic statement. */
 .hero {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-10);
-    align-items: center;
     padding: var(--space-20) 0 var(--space-12);
 }
 
-@media (min-width: 880px) {
-    .hero {
-        grid-template-columns: minmax(0, 1.7fr) minmax(0, 0.82fr);
-        gap: var(--space-12);
-    }
-}
-
 .hero-content {
-    max-width: none;
+    max-width: 44rem;
 }
 
 .hero-eyebrow {
@@ -467,9 +450,9 @@ html, body {
 
 .hero-headline {
     margin: 0;
-    font-size: clamp(1.875rem, 2.4vw + 1rem, 3rem);
+    font-size: clamp(2.25rem, 4vw + 1rem, 3.5rem);
     line-height: var(--line-height-tight);
-    letter-spacing: var(--letter-spacing-tight);
+    letter-spacing: var(--letter-spacing-tighter);
     font-weight: var(--font-weight-bold);
     color: var(--color-text-primary);
     text-wrap: balance;
@@ -478,7 +461,7 @@ html, body {
 
 .hero-lead {
     margin: var(--space-6) 0 0 !important;
-    max-width: 46ch;
+    max-width: 50ch;
     font-size: var(--font-size-xl);
     line-height: var(--line-height-relaxed);
     color: var(--color-text-secondary);
@@ -489,30 +472,6 @@ html, body {
     flex-wrap: wrap;
     gap: var(--space-3);
     margin-top: var(--space-8);
-}
-
-.hero-portrait {
-    justify-self: center;
-}
-
-.hero-portrait-img {
-    width: 100%;
-    max-width: 300px;
-    aspect-ratio: 4 / 5;
-    object-fit: cover;
-    border-radius: var(--radius-2xl);
-    box-shadow: var(--shadow-lg);
-    /* A thin ring + faint desaturation make a casual photo read as intentional;
-       full colour on hover. */
-    outline: 1px solid var(--color-border-primary);
-    outline-offset: -1px;
-    filter: grayscale(0.12) contrast(1.02);
-    transition: filter 0.45s ease, transform 0.45s ease;
-}
-
-.hero-portrait-img:hover {
-    filter: grayscale(0) contrast(1);
-    transform: scale(1.015);
 }
 
 /* Stats band — a few credible, personable numbers under the hero. */
@@ -601,13 +560,5 @@ html, body {
 @media (max-width: 879.98px) {
     .hero {
         padding: var(--space-12) 0 var(--space-8);
-    }
-    .hero-portrait {
-        order: -1;
-        justify-self: start;
-    }
-    .hero-portrait-img {
-        max-width: 132px;
-        border-radius: var(--radius-xl);
     }
 }

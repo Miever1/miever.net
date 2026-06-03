@@ -219,8 +219,8 @@ const Layout: FunctionComponent<{
                 <footer className="site-footer">
                     <div className="site-footer-inner">
                         <div className="site-footer-brand">
-                            <span className="site-footer-name">Aerman</span>
-                            <span className="site-footer-tagline">{t("hero_eyebrow")}</span>
+                            <span className="site-footer-name">Aerman Huofuer</span>
+                            <p className="site-footer-blurb">{t("footer_blurb")}</p>
                             <div className="site-footer-social">
                                 <a
                                     href="https://github.com/Miever1"
