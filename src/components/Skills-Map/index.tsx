@@ -19,9 +19,7 @@ const SkillsMap: FunctionComponent = () => {
                     <h3 className="skills-group-title">{t(group.label)}</h3>
                     <div className="skills-tags">
                         {group.skills.map((skill) => (
-                            <Tag key={skill.id} theme="primary">
-                                {t(skill.label)}
-                            </Tag>
+                            <Tag key={skill.id}>{t(skill.label)}</Tag>
                         ))}
                     </div>
                 </div>

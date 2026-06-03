@@ -20,3 +20,12 @@
     flex-wrap: wrap;
     gap: var(--space-2);
 }
+
+/* Readable, theme-adaptive tags: dark text on a subtle accent tint (the
+   library's primary theme has too little contrast for body-size text). */
+.skills-tags .miever-tag {
+    color: var(--color-text-primary);
+    font-weight: var(--font-weight-medium);
+    background: rgba(12, 192, 223, 0.1);
+    border-color: rgba(12, 192, 223, 0.28);
+}

@@ -29,6 +29,7 @@ const Layout: FunctionComponent<{
         () => globalHistory.listen(({ location: loc }) => setPathname(loc.pathname)),
         [],
     );
+
     const { currentTheme, setTheme } = useTheme();
     const { isMobile } = useBreakpoint();
     const [drawerOpen, setDrawerOpen] = useState(false);

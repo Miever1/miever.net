@@ -7,6 +7,7 @@ import Comments from "../../components/Comments";
 import { SEO } from "../../components/SEO";
 import { useTranslation } from "react-i18next";
 import SkillsMap from "../../components/Skills-Map";
+import { useInView } from "../../components/useInView";
 
 const { Paragraph } = Typography;
 
@@ -16,8 +17,10 @@ const HomeSection: FunctionComponent<{
     title: ReactNode;
     subtitle?: ReactNode;
     children: ReactNode;
-}> = ({ index, title, subtitle, children }) => (
-    <section className="home-section">
+}> = ({ index, title, subtitle, children }) => {
+    const [ref, inView] = useInView<HTMLElement>();
+    return (
+    <section ref={ref} className={`home-section reveal${inView ? " is-in" : ""}`}>
         <div className="home-section-head">
             <span className="home-section-index">{index}</span>
             <div className="home-section-heading">
@@ -27,10 +30,12 @@ const HomeSection: FunctionComponent<{
         </div>
         {children}
     </section>
-);
+    );
+};
 
 const Home: FunctionComponent<{}> = () => {
     const { t } = useTranslation();
+    const [statsRef, statsIn] = useInView<HTMLDivElement>();
 
     return (
         <Box className="home">
@@ -64,7 +69,7 @@ const Home: FunctionComponent<{}> = () => {
                 </div>
             </header>
 
-            <div className="home-stats">
+            <div ref={statsRef} className={`home-stats reveal${statsIn ? " is-in" : ""}`}>
                 {[
                     { num: "4+", label: t("stat_years") },
                     { num: "2×", label: t("stat_awards") },

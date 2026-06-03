@@ -199,11 +199,73 @@ html, body {
     }
 }
 
+/* Home has a bespoke staggered + scroll entrance, so opt it out of the
+   generic page fade. */
+.content-area > .home {
+    animation: none;
+}
+
+.hero-eyebrow,
+.hero-headline,
+.hero-lead,
+.hero-actions,
+.hero-portrait {
+    animation: rise-in 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.hero-eyebrow {
+    animation-delay: 0.04s;
+}
+.hero-headline {
+    animation-delay: 0.1s;
+}
+.hero-lead {
+    animation-delay: 0.2s;
+}
+.hero-actions {
+    animation-delay: 0.28s;
+}
+.hero-portrait {
+    animation-delay: 0.16s;
+    animation-duration: 0.7s;
+}
+
+@keyframes rise-in {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* Scroll-reveal: elements get `.is-in` from an IntersectionObserver. Gated
+   behind `.js-reveal` (added by JS) so content is always visible if JS fails. */
+.js-reveal .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.js-reveal .reveal.is-in {
+    opacity: 1;
+    transform: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
     .content-area > *,
-    .hero-portrait-img {
+    .hero-portrait-img,
+    .hero-eyebrow,
+    .hero-headline,
+    .hero-lead,
+    .hero-actions,
+    .hero-portrait {
         animation: none !important;
         transition: none !important;
+    }
+    .reveal {
+        opacity: 1 !important;
+        transform: none !important;
     }
 }
 
