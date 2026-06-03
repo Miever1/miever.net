@@ -97,8 +97,8 @@ export default Home;
 export const Head = () => (
     <>
         <SEO
-            title="Aerman Huofuer · Frontend, HCI & AI"
-            description="Frontend engineer with an HCI background, building across engineering, design and AI. Projects, writing and design work."
+            title="Aerman Huofuer · Software, HCI & AI"
+            description="Software engineer with an HCI background and a front-end core, building across engineering, design and AI. Projects, writing and design work."
             pathname="/"
         />
     </>
