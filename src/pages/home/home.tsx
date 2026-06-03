@@ -3,7 +3,7 @@ import { navigate } from "gatsby";
 import { Box, Button, Typography } from "miever_ui";
 
 import MapChart from "./footprints";
-import Comments from "../../components/Comments";
+import Connect from "../../components/Connect";
 import { SEO } from "../../components/SEO";
 import { useTranslation } from "react-i18next";
 import SkillsMap from "../../components/Skills-Map";
@@ -94,7 +94,7 @@ const Home: FunctionComponent<{}> = () => {
             </HomeSection>
 
             <HomeSection index="03" title={t("comment_title")}>
-                <Comments />
+                <Connect />
             </HomeSection>
 
             <Paragraph type="secondary" align="center" className="home-thanks">

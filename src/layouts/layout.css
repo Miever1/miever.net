@@ -697,6 +697,104 @@ html, body {
     border-top: 1px solid var(--color-border-primary);
 }
 
+/* ── Connect section: invitation + contact cards + comment thread ──── */
+.connect-lead {
+    max-width: 60ch;
+    margin: 0 !important;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+}
+
+.connect-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+    margin-top: var(--space-6);
+}
+
+@media (min-width: 720px) {
+    .connect-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+.connect-card {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    min-width: 0;
+    padding: var(--space-5);
+    border: 1px solid var(--color-border-primary);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface-elevated);
+    text-decoration: none !important;
+    transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.connect-card:hover {
+    border-color: var(--color-border-focus);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.connect-card-icon {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-full);
+    color: var(--color-text-accent);
+    background: var(--color-bg-secondary);
+    font-size: var(--font-size-lg);
+}
+
+.connect-card-body {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.connect-card-label {
+    color: var(--color-text-primary) !important;
+}
+
+.connect-card-value {
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-snug);
+    word-break: keep-all;
+    overflow-wrap: break-word;
+}
+
+.connect-card-arrow {
+    margin-left: auto;
+    color: var(--color-text-disabled);
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.connect-card:hover .connect-card-arrow {
+    color: var(--color-text-accent);
+    transform: translateX(3px);
+}
+
+.connect-comments {
+    margin-top: var(--space-12);
+}
+
+.connect-comments-title {
+    margin: 0 0 var(--space-5) !important;
+    font-size: var(--font-size-lg) !important;
+    color: var(--color-text-secondary) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .connect-card,
+    .connect-card-arrow {
+        transition: none !important;
+    }
+}
+
 @media (max-width: 879.98px) {
     .hero {
         padding: var(--space-12) 0 var(--space-8);
