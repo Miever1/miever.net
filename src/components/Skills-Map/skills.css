@@ -37,3 +37,10 @@
     background: rgba(12, 192, 223, 0.1);
     border-color: rgba(12, 192, 223, 0.28);
 }
+
+/* Per-skill mark, kept monochrome in the accent colour. */
+.skills-tag-icon {
+    margin-right: var(--space-2);
+    font-size: 0.9em;
+    color: var(--color-text-accent);
+}

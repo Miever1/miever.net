@@ -18,6 +18,41 @@ const CATEGORY_ICONS: Record<string, string> = {
 };
 
 /**
+ * Per-skill icon. FontAwesome brand marks where they exist (React, AWS,
+ * Figma...), otherwise a representative solid icon. Rendered monochrome in the
+ * accent colour so the row of tags stays cohesive rather than multicoloured.
+ */
+const SKILL_ICONS: Record<string, [string, string]> = {
+    html: ["fab", "html5"],
+    css: ["fab", "css3-alt"],
+    javascript: ["fab", "js"],
+    typescript: ["fas", "code"],
+    react: ["fab", "react"],
+    reactquery: ["fas", "database"],
+    gatsby: ["fas", "bolt"],
+    nest: ["fas", "cube"],
+    c_cpp: ["fas", "c"],
+    aws: ["fab", "aws"],
+    nginx: ["fas", "network-wired"],
+    github_actions: ["fab", "github"],
+    git: ["fab", "git-alt"],
+    jest: ["fas", "vial"],
+    eslint: ["fas", "check-double"],
+    figma: ["fab", "figma"],
+    interaction_design: ["fas", "hand-pointer"],
+    ux_research: ["fas", "magnifying-glass"],
+    prototyping: ["fas", "vector-square"],
+    antv: ["fas", "chart-pie"],
+    apexcharts: ["fas", "chart-line"],
+    microfrontends: ["fas", "puzzle-piece"],
+    design_system: ["fas", "shapes"],
+    topology: ["fas", "diagram-project"],
+    english: ["fas", "earth-americas"],
+    chinese: ["fas", "earth-asia"],
+    uyghur: ["fas", "earth-asia"],
+};
+
+/**
  * A clean, professional skills overview: skills grouped by category as tags,
  * each category led by an accent icon. Groups size to their content, so sparse
  * categories don't leave empty boxes.
@@ -38,7 +73,13 @@ const SkillsMap: FunctionComponent = () => {
                     </h3>
                     <div className="skills-tags">
                         {group.skills.map((skill) => (
-                            <Tag key={skill.id}>{t(skill.label)}</Tag>
+                            <Tag key={skill.id}>
+                                <Icon
+                                    icon={(SKILL_ICONS[skill.id] ?? ["fas", "code"]) as never}
+                                    className="skills-tag-icon"
+                                />
+                                {t(skill.label)}
+                            </Tag>
                         ))}
                     </div>
                 </div>
