@@ -97,7 +97,7 @@ html, body {
 }
 
 .site-footer-social a:hover {
-    color: var(--color-border-focus);
+    color: var(--color-text-accent);
     border-color: var(--color-border-focus);
     transform: translateY(-2px);
 }
@@ -125,7 +125,7 @@ html, body {
 }
 
 .site-footer-col a:hover {
-    color: var(--color-border-focus);
+    color: var(--color-text-accent);
 }
 
 .site-footer-bottom {
@@ -462,7 +462,7 @@ html, body {
     font-weight: var(--font-weight-semibold);
     letter-spacing: var(--letter-spacing-wider);
     text-transform: uppercase;
-    color: var(--color-border-focus);
+    color: var(--color-text-accent);
 }
 
 .hero-headline {
@@ -567,7 +567,7 @@ html, body {
     font-size: var(--font-size-sm);
     font-weight: var(--font-weight-semibold);
     letter-spacing: var(--letter-spacing-wide);
-    color: var(--color-border-focus);
+    color: var(--color-text-accent);
     font-variant-numeric: tabular-nums;
 }
 

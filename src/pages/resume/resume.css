@@ -26,7 +26,7 @@
 .resume-role {
     margin: var(--space-2) 0 0 !important;
     font-size: var(--font-size-lg);
-    color: var(--color-border-focus);
+    color: var(--color-text-accent);
     font-weight: var(--font-weight-medium);
 }
 
@@ -48,7 +48,7 @@
 }
 
 .resume-contact a:hover {
-    color: var(--color-border-focus);
+    color: var(--color-text-accent);
 }
 
 /* ── Grid: main + aside ──────────────────────────────────────────── */
@@ -133,7 +133,7 @@
 }
 
 .resume-entry-title a:hover {
-    color: var(--color-border-focus);
+    color: var(--color-text-accent);
 }
 
 .resume-entry-period {
@@ -146,7 +146,7 @@
     margin: var(--space-1) 0 var(--space-3) !important;
     font-size: var(--font-size-sm);
     font-weight: var(--font-weight-medium);
-    color: var(--color-border-focus);
+    color: var(--color-text-accent);
 }
 
 .resume-bullets {
@@ -263,7 +263,7 @@
 }
 
 .resume-proj .miever-card-title a {
-    color: var(--color-border-focus);
+    color: var(--color-text-accent);
     text-decoration: none;
 }
 
