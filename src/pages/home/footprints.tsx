@@ -93,7 +93,11 @@ const MapChart = () => {
         className="footprints-map"
         onMouseLeave={() => setHoveredCountry(null)}
       >
-        <ComposableMap>
+        <ComposableMap
+          width={800}
+          height={380}
+          projectionConfig={{ scale: 150, center: [10, 28] }}
+        >
           <Geographies geography={geoUrl}>
             {({ geographies }) =>
               geographies &&

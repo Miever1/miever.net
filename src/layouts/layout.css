@@ -324,9 +324,9 @@ html, body {
     100% { transform: scale(2.2); opacity: 0; }
 }
 
-/* Horizontal thumbnail strip. Pulled up over the map's empty lower band
-   (the default world projection leaves ocean/Antarctica whitespace at the
-   bottom) so the strip sits close to the landmass without distorting the map. */
+/* Horizontal thumbnail strip directly under the (now compact) map. The map's
+   viewBox is cropped to the inhabited band, so the strip just needs a small
+   gap rather than a large negative pull-up. */
 .footprints-strip {
     position: relative;
     z-index: 2;
@@ -334,15 +334,9 @@ html, body {
     gap: 10px;
     overflow-x: auto;
     padding: 12px 4px;
-    margin-top: -11%;
+    margin-top: var(--space-2);
     scroll-snap-type: x proximity;
     -webkit-overflow-scrolling: touch;
-}
-
-@media (max-width: 767.98px) {
-    .footprints-strip {
-        margin-top: -8%;
-    }
 }
 
 .footprints-strip::-webkit-scrollbar {
