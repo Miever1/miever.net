@@ -442,16 +442,10 @@ html, body {
    Pure CSS: layered brand glow, a faint dot grid, two rings and a single
    orbiting accent dot framing an "AH" monogram. No images; themes via tokens. */
 .hero-visual {
-    display: none;
+    display: flex;
     justify-content: center;
     animation: hero-visual-in 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
     animation-delay: 0.24s;
-}
-
-@media (min-width: 880px) {
-    .hero-visual {
-        display: flex;
-    }
 }
 
 /* A single portrait photo, framed to match the site's card language. A faint
@@ -705,5 +699,10 @@ html, body {
 @media (max-width: 879.98px) {
     .hero {
         padding: var(--space-12) 0 var(--space-8);
+    }
+    /* Single column: keep the photo present but smaller so it complements the
+       text rather than dominating the fold. */
+    .hero-visual-photo {
+        max-width: 300px;
     }
 }
