@@ -72,7 +72,7 @@ const Home: FunctionComponent<{}> = () => {
 
             <div ref={statsRef} className={`home-stats reveal${statsIn ? " is-in" : ""}`}>
                 {[
-                    { num: "4+", label: t("stat_years") },
+                    { num: "5+", label: t("stat_years") },
                     { num: "2×", label: t("stat_awards") },
                     { num: "48", label: t("stat_cities") },
                     { num: "3", label: t("stat_languages") },

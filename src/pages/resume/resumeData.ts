@@ -24,8 +24,8 @@ export const profile = {
         zh: "https://miever.s3.ap-east-1.amazonaws.com/static/resume/miever-zh.pdf",
     },
     summary: L(
-        "Software engineer with 4+ years of hands-on experience building scalable cloud platforms and component-based UI systems, with a front-end core in React and TypeScript. Currently pursuing a dual master's in Human-Computer Interaction through EIT Digital at Aalto University and UPM. Seeking software roles in Europe, bringing strong engineering skills and a user-centred approach to accessible, scalable web applications.",
-        "软件工程师，4 年以上构建可扩展云平台与组件化 UI 系统的实战经验，核心在前端（React 与 TypeScript）。目前通过 EIT Digital 在 Aalto University 与 UPM 攻读人机交互（HCI）双学位硕士。正在欧洲寻找软件岗位，以扎实的工程能力与以人为本的设计思维，打造可访问、可扩展的 Web 应用。"
+        "Software engineer with 5+ years of hands-on experience building scalable cloud platforms and component-based UI systems, with a front-end core in React and TypeScript. Currently pursuing a dual master's in Human-Computer Interaction through EIT Digital at Aalto University and UPM. Seeking software roles in Europe, bringing strong engineering skills and a user-centred approach to accessible, scalable web applications.",
+        "软件工程师，5 年以上构建可扩展云平台与组件化 UI 系统的实战经验，核心在前端（React 与 TypeScript）。目前通过 EIT Digital 在 Aalto University 与 UPM 攻读人机交互（HCI）双学位硕士。正在欧洲寻找软件岗位，以扎实的工程能力与以人为本的设计思维，打造可访问、可扩展的 Web 应用。"
     ),
 };
 
