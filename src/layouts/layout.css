@@ -609,7 +609,7 @@ html, body {
 
 /* ── Connect section: invitation + contact cards + comment thread ──── */
 .connect-lead {
-    max-width: 60ch;
+    max-width: none;
     margin: 0 !important;
     font-size: var(--font-size-lg);
     line-height: var(--line-height-relaxed);
