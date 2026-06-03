@@ -248,8 +248,7 @@ html, body {
     .hero-headline,
     .hero-lead,
     .hero-actions,
-    .hero-visual,
-    .hero-visual-orbit {
+    .hero-visual {
         animation: none !important;
         transition: none !important;
     }
@@ -455,118 +454,34 @@ html, body {
     }
 }
 
-.hero-visual-panel {
+/* A single portrait photo, framed to match the site's card language. A faint
+   brand-tinted glow behind it ties it to the rest of the palette. */
+.hero-visual-photo {
     position: relative;
     width: 100%;
-    max-width: 420px;
-    aspect-ratio: 1 / 1;
-    display: grid;
-    place-items: center;
-    isolation: isolate;
-    border: 1px solid var(--color-border-primary);
+    max-width: 400px;
+    aspect-ratio: 4 / 5;
     border-radius: var(--radius-2xl, 24px);
     overflow: hidden;
-    background:
-        radial-gradient(62% 55% at 72% 18%, rgba(12, 192, 223, 0.20), transparent 70%),
-        radial-gradient(52% 50% at 18% 92%, rgba(18, 170, 156, 0.16), transparent 70%),
-        var(--color-surface-elevated);
+    border: 1px solid var(--color-border-primary);
+    box-shadow: var(--shadow-lg);
 }
 
-/* Faint dot grid, radially masked so it fades toward the edges. */
-.hero-visual-panel::before {
+.hero-visual-photo::before {
     content: "";
     position: absolute;
-    inset: 0;
+    inset: -12%;
     z-index: -1;
-    background-image: radial-gradient(circle, var(--color-border-secondary) 1px, transparent 1px);
-    background-size: 22px 22px;
-    opacity: 0.45;
-    -webkit-mask-image: radial-gradient(72% 72% at 50% 50%, #000 28%, transparent 78%);
-    mask-image: radial-gradient(72% 72% at 50% 50%, #000 28%, transparent 78%);
-}
-
-/* Concentric rings, centred by the panel's grid alignment. */
-.hero-visual-ring {
-    position: absolute;
-    border-radius: var(--radius-full);
-    border: 1px solid var(--color-border-focus);
-}
-
-.hero-visual-ring-a {
-    width: 86%;
-    height: 86%;
-    opacity: 0.28;
-}
-
-.hero-visual-ring-b {
-    width: 58%;
-    height: 58%;
-    opacity: 0.42;
-}
-
-.hero-visual-ring-c {
-    width: 32%;
-    height: 32%;
-    border-style: dashed;
-    opacity: 0.5;
-}
-
-/* Each orbit is a ring-sized square that slowly spins, carrying one accent
-   dot pinned to its top edge so the dot appears to travel along a ring. */
-.hero-visual-orbit {
-    position: absolute;
-    border-radius: var(--radius-full);
-}
-
-.hero-visual-orbit::after {
-    content: "";
-    position: absolute;
-    top: -5px;
-    left: 50%;
-    transform: translateX(-50%);
-    border-radius: var(--radius-full);
-    background: var(--color-text-accent);
-}
-
-.hero-visual-orbit-a {
-    width: 86%;
-    height: 86%;
-    animation: hero-orbit 26s linear infinite;
-}
-
-.hero-visual-orbit-a::after {
-    width: 10px;
-    height: 10px;
-    box-shadow: 0 0 16px 3px rgba(12, 192, 223, 0.5);
-}
-
-.hero-visual-orbit-b {
-    width: 58%;
-    height: 58%;
-    animation: hero-orbit 17s linear infinite reverse;
-}
-
-.hero-visual-orbit-b::after {
-    width: 7px;
-    height: 7px;
-    box-shadow: 0 0 12px 2px rgba(12, 192, 223, 0.45);
-}
-
-/* Soft glowing core at the centre. */
-.hero-visual-core {
-    width: 18%;
-    height: 18%;
-    border-radius: var(--radius-full);
     background:
-        radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.85), transparent 45%),
-        linear-gradient(135deg, #0cc0df, var(--color-text-accent));
-    box-shadow: 0 0 44px 10px rgba(12, 192, 223, 0.3);
+        radial-gradient(50% 45% at 75% 10%, rgba(12, 192, 223, 0.22), transparent 70%),
+        radial-gradient(45% 40% at 15% 95%, rgba(18, 170, 156, 0.18), transparent 70%);
 }
 
-@keyframes hero-orbit {
-    to {
-        transform: rotate(360deg);
-    }
+.hero-visual-photo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 @keyframes hero-visual-in {
@@ -645,19 +560,19 @@ html, body {
 
 /* Numbered, left-aligned editorial section headers. */
 .home-section-head {
-    display: flex;
-    gap: var(--space-4);
-    align-items: baseline;
     margin-bottom: var(--space-8);
     padding-bottom: var(--space-5);
     border-bottom: 1px solid var(--color-border-primary);
 }
 
+/* The section number sits as a small kicker above the title, sharing the same
+   left edge, rather than floating beside it. */
 .home-section-index {
-    flex: 0 0 auto;
-    font-size: var(--font-size-sm);
+    display: block;
+    margin-bottom: var(--space-2);
+    font-size: var(--font-size-xs);
     font-weight: var(--font-weight-semibold);
-    letter-spacing: var(--letter-spacing-wide);
+    letter-spacing: var(--letter-spacing-wider);
     color: var(--color-text-accent) !important;
     font-variant-numeric: tabular-nums;
 }

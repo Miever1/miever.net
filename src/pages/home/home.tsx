@@ -59,14 +59,13 @@ const Home: FunctionComponent<{}> = () => {
                 {/* Decorative, purely typographic/geometric panel. aria-hidden:
                     no information lives here, it just gives the hero a balanced
                     right side. CSS-only so it themes and scales for free. */}
-                <div className="hero-visual" aria-hidden="true">
-                    <div className="hero-visual-panel">
-                        <span className="hero-visual-ring hero-visual-ring-a" />
-                        <span className="hero-visual-ring hero-visual-ring-b" />
-                        <span className="hero-visual-ring hero-visual-ring-c" />
-                        <span className="hero-visual-orbit hero-visual-orbit-a" />
-                        <span className="hero-visual-orbit hero-visual-orbit-b" />
-                        <span className="hero-visual-core" />
+                <div className="hero-visual">
+                    <div className="hero-visual-photo">
+                        <img
+                            src="https://miever.s3.ap-east-1.amazonaws.com/static/footprints/Frankfurt.webp"
+                            alt="Aerman in Frankfurt"
+                            loading="eager"
+                        />
                     </div>
                 </div>
             </header>
