@@ -243,27 +243,6 @@ const Layout: FunctionComponent<{
                                 </a>
                             </div>
                         </div>
-                        <nav className="site-footer-col" aria-label={t("footer_explore")}>
-                            <span className="site-footer-col-title">{t("footer_explore")}</span>
-                            {[
-                                { to: "/", key: "navigation_home" },
-                                { to: "/blogs", key: "navigation_blogs" },
-                                { to: "/projects", key: "navigation_projects" },
-                                { to: "/designs", key: "navigation_designs" },
-                                { to: "/resume", key: "navigation_resume" },
-                            ].map((item) => (
-                                <a
-                                    key={item.to}
-                                    href={item.to}
-                                    onClick={(e) => {
-                                        e.preventDefault();
-                                        navigate(item.to);
-                                    }}
-                                >
-                                    {t(item.key)}
-                                </a>
-                            ))}
-                        </nav>
                         <nav className="site-footer-col" aria-label={t("footer_resources")}>
                             <span className="site-footer-col-title">{t("footer_resources")}</span>
                             <a

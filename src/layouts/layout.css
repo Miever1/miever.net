@@ -58,8 +58,9 @@ html, body {
 
 .site-footer-inner {
     display: grid;
-    grid-template-columns: 1.5fr 1fr 1fr;
-    gap: var(--space-8);
+    grid-template-columns: 1fr auto;
+    gap: var(--space-16);
+    align-items: start;
     padding: var(--space-12) 290px var(--space-8);
 }
 
@@ -146,13 +147,10 @@ html, body {
 
 @media (max-width: 767.98px) {
     .site-footer-inner {
-        grid-template-columns: 1fr 1fr;
-        gap: var(--space-6);
+        grid-template-columns: 1fr;
+        gap: var(--space-8);
         padding-left: 16px;
         padding-right: 16px;
-    }
-    .site-footer-brand {
-        grid-column: 1 / -1;
     }
     .site-footer-bottom {
         padding-left: 16px;
