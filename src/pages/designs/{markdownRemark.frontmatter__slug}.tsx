@@ -60,21 +60,12 @@ export const Head: HeadFC<DesignsPostData> = ({ data }) => {
   const { frontmatter } = data.markdownRemark;
   const { title, description, slug, date, home_image } = frontmatter;
 
-  const url = `https://miever.net/designs/${slug}`;
+  const url = `https://miever.net/designs${slug}`;
   const image = home_image || "https://miever.s3.ap-east-1.amazonaws.com/static/miever-logo.webp";
   const isoDate = new Date(date).toISOString();
 
   return (
-    <SEO title={title} description={description} pathname={`/designs/${slug}`} image={image}>
-      <meta property="og:title" content={title} />
-      <meta property="og:description" content={description} />
-      <meta property="og:type" content="website" />
-      <meta property="og:url" content={url} />
-      <meta property="og:image" content={image} />
-      <meta property="og:site_name" content="Miever Designs" />
-
-      <link rel="canonical" href={url} />
-
+    <SEO title={title} description={description} pathname={`/designs${slug}`} image={image}>
       <script type="application/ld+json">
         {JSON.stringify({
           "@context": "https://schema.org",

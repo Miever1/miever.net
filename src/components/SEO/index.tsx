@@ -8,6 +8,7 @@ export const SEO = ({
     pathname,
     image,
     lang,
+    type = "website",
     children
 }: {
     title?: string;
@@ -16,6 +17,8 @@ export const SEO = ({
     image?: string;
     /** Override the document language; defaults to the active i18n language. */
     lang?: string;
+    /** Open Graph type. Defaults to "website"; blog posts pass "article". */
+    type?: string;
     children?: React.ReactNode;
 }) => {
   const { title: defaultTitle, description: defaultDescription, siteUrl } = useSiteMetadata();
@@ -36,38 +39,24 @@ export const SEO = ({
 
       <meta property="og:title" content={seo.title} />
       <meta property="og:description" content={seo.description} />
-      <meta property="og:type" content="article" />
+      <meta property="og:type" content={type} />
       <meta property="og:url" content={seo.url} />
       <meta property="og:image" content={seo.image} />
-      <meta property="og:site_name" content="Miever Blog" />
+      <meta property="og:site_name" content={defaultTitle} />
 
       <link rel="canonical" href={seo.url} />
 
+      {/* Site-wide schema only. Page-specific structured data (e.g. a
+          BlogPosting with the real publish date) is supplied by the page's
+          own Head — don't emit a dated Article here, where it would be wrong
+          for non-article pages and stale on every render. */}
       <script type="application/ld+json">
         {JSON.stringify({
           "@context": "https://schema.org",
-          "@type": "BlogPosting",
-          "headline": seo.title,
-          "description": seo.description,
-          "image": seo.image,
-          "url": seo.url,
-          "datePublished": new Date().toISOString(),
-          "author": {
-            "@type": "Person",
-            "name": "Miever Team"
-          },
-          "publisher": {
-            "@type": "Organization",
-            "name": "Miever",
-            "logo": {
-              "@type": "ImageObject",
-              "url": `${siteUrl}/static/logo.png`
-            }
-          },
-          "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": seo.url
-          }
+          "@type": "WebSite",
+          "name": defaultTitle,
+          "description": defaultDescription,
+          "url": siteUrl
         })}
       </script>
 
