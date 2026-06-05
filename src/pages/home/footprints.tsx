@@ -5,7 +5,7 @@ import {
   Geography,
   Marker
 } from "react-simple-maps";
-import { designs, Box } from "miever_ui";
+import { designs, Box, Modal } from "miever_ui";
 import { useTranslation } from "react-i18next";
 
 import { sortedMarkers } from "../../data/footprints-datas";
@@ -48,6 +48,7 @@ const MapChart = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const [hoveredCountry, setHoveredCountry] = useState<string | null>(null);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
   const stripRef = useRef<HTMLDivElement>(null);
   const itemRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
@@ -171,7 +172,10 @@ const MapChart = () => {
               type="button"
               ref={(el) => (itemRefs.current[index] = el)}
               className={`footprints-thumb${isActive ? " active" : ""}`}
-              onClick={() => select(index)}
+              onClick={() => {
+                select(index);
+                setLightboxOpen(true);
+              }}
               aria-label={`${t(`cities.${marker.name}`)} — ${marker.visitTime}`}
             >
               <span
@@ -186,6 +190,20 @@ const MapChart = () => {
           );
         })}
       </div>
+
+      <Modal
+        open={lightboxOpen}
+        title={`${t(`cities.${activeMarker.name}`)} · ${activeMarker.visitTime}`}
+        footer={null}
+        width={760}
+        onClose={() => setLightboxOpen(false)}
+      >
+        <img
+          className="footprints-lightbox-img"
+          src={activeMarker.photo}
+          alt={t(`cities.${activeMarker.name}`)}
+        />
+      </Modal>
     </Box>
   );
 };

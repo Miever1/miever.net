@@ -802,6 +802,16 @@ a.miever-card:focus {
     background-position: center;
 }
 
+/* Lightbox photo (opened from a thumbnail). */
+.footprints-lightbox-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 72vh;
+    object-fit: contain;
+    border-radius: var(--radius-md);
+}
+
 .footprints-thumb-meta {
     display: block;
     padding: var(--space-2);
