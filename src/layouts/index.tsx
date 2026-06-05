@@ -153,6 +153,9 @@ const Layout: FunctionComponent<{
         <Box
             width="100%"
         >
+            <a href="#main-content" className="skip-link">
+                {t("skip_to_content")}
+            </a>
             <ParticlesContainer />
             <Box
                 flexBox
@@ -209,6 +212,9 @@ const Layout: FunctionComponent<{
                 </Drawer>
 
                 <Box
+                    id="main-content"
+                    role="main"
+                    tabIndex={-1}
                     className={`content-area${
                         ["/dashboard/", "/performance/"].includes(pathname) ? " content-flush" : ""
                     }`}

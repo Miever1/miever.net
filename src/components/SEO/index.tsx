@@ -1,4 +1,5 @@
 import React from "react";
+import i18n from "../../i18n";
 import { useSiteMetadata } from "../../hooks/use-site-metadata";
 
 export const SEO = ({
@@ -6,15 +7,19 @@ export const SEO = ({
     description,
     pathname,
     image,
+    lang,
     children
 }: {
     title?: string;
     description?: string;
     pathname?: string;
     image?: string;
+    /** Override the document language; defaults to the active i18n language. */
+    lang?: string;
     children?: React.ReactNode;
 }) => {
   const { title: defaultTitle, description: defaultDescription, siteUrl } = useSiteMetadata();
+  const documentLang = lang || i18n.language || "en";
 
   const seo = {
     title: title || defaultTitle,
@@ -25,7 +30,7 @@ export const SEO = ({
 
   return (
     <>
-      <html lang="en" />
+      <html lang={documentLang} />
       <title>{seo.title}</title>
       <meta name="description" content={seo.description} />
 

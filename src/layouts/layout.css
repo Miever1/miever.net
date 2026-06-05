@@ -23,6 +23,56 @@ html, body {
     width: 100%;
 }
 
+/* ── Accessibility ───────────────────────────────────────────────────
+   Skip link: visually hidden until focused, then it appears at the top so
+   keyboard users can jump straight past the nav to the main content. */
+.skip-link {
+    position: fixed;
+    top: 8px;
+    left: 8px;
+    z-index: 2000;
+    padding: 8px 16px;
+    border-radius: var(--radius-md);
+    background: var(--color-bg-primary);
+    color: var(--color-text-accent);
+    border: 1px solid var(--color-border-focus);
+    box-shadow: var(--shadow-md);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    text-decoration: none;
+    transform: translateY(-150%);
+    transition: transform 0.2s ease;
+}
+
+.skip-link:focus {
+    transform: translateY(0);
+}
+
+/* The main-content region is programmatically focusable (tabIndex=-1) so the
+   skip link can move focus to it without leaving a persistent outline. */
+#main-content:focus {
+    outline: none;
+}
+
+/* Consistent, visible keyboard focus ring across interactive elements.
+   Uses :focus-visible so it only shows for keyboard/AT users, not mouse. */
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid var(--color-border-focus);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .skip-link {
+        transition: none;
+    }
+}
+
 .menu-container {
     background: var(--color-bg-primary);
     width: 100%;
