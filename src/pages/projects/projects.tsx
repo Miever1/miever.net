@@ -13,6 +13,8 @@ export interface Project {
     githubPath?: string;
     /** Public link (live site or case-study post). Omitted for internal work. */
     liveDemoPath?: string;
+    /** Custom label for the primary link button (defaults to "Live Demo"). */
+    linkLabel?: string;
     tech: string[];
 }
 
@@ -60,6 +62,8 @@ const Projects:FunctionComponent<{}> = () => {
           title: t("projects.huawei.title"),
           subTitle: t("projects.huawei.subTitle"),
           description: t("projects.huawei.description"),
+          liveDemoPath: "https://www.linkedin.com/posts/aerman-huofuer-413328280_hackathon-huawei-huaweitecharena-activity-7401337849121599489-0lKg",
+          linkLabel: t("view_post"),
           tech: ["ArkUI", "AR Engine", "AI"],
         },
         {
@@ -67,7 +71,9 @@ const Projects:FunctionComponent<{}> = () => {
           title: t("projects.ai_game.title"),
           subTitle: t("projects.ai_game.subTitle"),
           description: t("projects.ai_game.description"),
-          tech: ["LLM", "TTS", "AI"],
+          liveDemoPath: "https://caster-ai.miever.net/",
+          githubPath: "https://github.com/Miever1/caster-ai",
+          tech: ["LLM", "TTS", "React"],
         },
         {
           id: "mindflow",
@@ -150,7 +156,7 @@ const Projects:FunctionComponent<{}> = () => {
 
             <div className="project-grid">
                 {filtered.map((item) => {
-                    const { id, title, subTitle, liveDemoPath, githubPath, description, tech } = item;
+                    const { id, title, subTitle, liveDemoPath, linkLabel, githubPath, description, tech } = item;
                     return (
                         <Card
                             key={title}
@@ -174,7 +180,7 @@ const Projects:FunctionComponent<{}> = () => {
                                                 type="primary"
                                                 onClick={() => window.open(liveDemoPath)}
                                             >
-                                                {t("live_demo")}
+                                                {linkLabel || t("live_demo")}
                                             </Button>
                                         )}
                                         {githubPath && (
