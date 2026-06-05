@@ -1,6 +1,6 @@
-import React, { FunctionComponent, useState } from "react";
+import React, { FunctionComponent, ReactNode, useState } from "react";
 import { navigate, graphql, useStaticQuery } from "gatsby"
-import { Box, Card, PageHeader, Pagination } from "miever_ui";
+import { Box, Card, PageHeader, Pagination, Tag } from "miever_ui";
 
 const PAGE_SIZE = 6;
 import { useTranslation } from "react-i18next";
@@ -67,11 +67,52 @@ const Blogs:FunctionComponent<{}> = () => {
     const [page, setPage] = useState(1);
     const paged = posts.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
 
+    // On the first page, lead with the top post (pinned/newest) as a large
+    // featured card; the rest flow into a responsive grid.
+    const featured = page === 1 ? paged[0] : undefined;
+    const rest = page === 1 ? paged.slice(1) : paged;
+
+    const renderMeta = (date: string, tags?: string[]): ReactNode => (
+        <span className="card-meta-row">
+            <span className="card-meta-date">{date}</span>
+            {tags?.slice(0, 3).map((tag) => (
+                <Tag key={tag} className="card-tag">{tag}</Tag>
+            ))}
+        </span>
+    );
+
+    const goTo = (to: string) => (e: React.MouseEvent) => {
+        e.preventDefault();
+        navigate(to);
+    };
+
     return (
         <Box className="content-list">
             <PageHeader title={t("navigation_blogs")} subtitle={t("blogs.description")} />
-            <div className="card-list">
-                {paged.map((item) => {
+
+            {featured && (() => {
+                const { title, date, description, slug, home_image, tags } =
+                    featured.node.frontmatter;
+                const to = `/blogs${slug}`;
+                return (
+                    <Card
+                        className="post-featured"
+                        hoverable
+                        orientation="horizontal"
+                        clamp={3}
+                        href={to}
+                        onClick={goTo(to)}
+                        cover={<img src={home_image} alt={title} loading="lazy" />}
+                        title={title}
+                        meta={renderMeta(date, tags)}
+                    >
+                        {description}
+                    </Card>
+                );
+            })()}
+
+            <div className="post-grid">
+                {rest.map((item) => {
                     const { title, date, description, slug, home_image, tags } =
                         item.node.frontmatter;
                     const to = `/blogs${slug}`;
@@ -79,16 +120,12 @@ const Blogs:FunctionComponent<{}> = () => {
                         <Card
                             key={slug}
                             hoverable
-                            orientation="horizontal"
                             clamp={3}
                             href={to}
-                            onClick={(e) => {
-                                e.preventDefault();
-                                navigate(to);
-                            }}
+                            onClick={goTo(to)}
                             cover={<img src={home_image} alt={title} loading="lazy" />}
                             title={title}
-                            meta={tags?.length ? `${date}  ·  ${tags.join("  ·  ")}` : date}
+                            meta={renderMeta(date, tags)}
                         >
                             {description}
                         </Card>

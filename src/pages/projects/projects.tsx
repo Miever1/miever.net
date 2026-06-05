@@ -1,6 +1,6 @@
 
 import React, { FunctionComponent } from "react";
-import { Box, Card, Button, Icon, PageHeader } from "miever_ui";
+import { Box, Card, Button, Icon, PageHeader, Tag } from "miever_ui";
 import { useTranslation } from "react-i18next";
 
 export interface Project {
@@ -10,6 +10,7 @@ export interface Project {
     githubPath?: string;
     liveDemoPath: string;
     thumbnailPath: string;
+    tech: string[];
 }
 
 const Projects:FunctionComponent<{}> = () => {
@@ -22,6 +23,7 @@ const Projects:FunctionComponent<{}> = () => {
           description: t("projects.ucloud_console.description"),
           liveDemoPath: "/blogs/ucloud-frontend-experience/",
           thumbnailPath: "https://miever.s3.ap-east-1.amazonaws.com/static/blogs/ucloud-office.webp",
+          tech: ["React", "TypeScript", "Monitoring"],
         },
         {
           title: t("projects.miever_net.title"),
@@ -29,7 +31,8 @@ const Projects:FunctionComponent<{}> = () => {
           description: t("projects.miever_net.description"),
           liveDemoPath: "https://miever.net",
           thumbnailPath: "https://miever.s3.ap-east-1.amazonaws.com/static/projects/thumbnail-miever.webp",
-          githubPath: "https://github.com/Miever1/miever.net"
+          githubPath: "https://github.com/Miever1/miever.net",
+          tech: ["Gatsby", "React", "AWS"],
         },
         {
           title: t("projects.miever_ui.title"),
@@ -37,7 +40,8 @@ const Projects:FunctionComponent<{}> = () => {
           description: t("projects.miever_ui.description"),
           liveDemoPath: "https://components.miever.net",
           thumbnailPath: "https://miever.s3.ap-east-1.amazonaws.com/static/projects/thumbnail-components.webp",
-          githubPath: "https://github.com/Miever1/miever_ui"
+          githubPath: "https://github.com/Miever1/miever_ui",
+          tech: ["React", "Vite", "Storybook"],
         },
         {
           title: t("projects.news_project.title"),
@@ -45,25 +49,32 @@ const Projects:FunctionComponent<{}> = () => {
           description: t("projects.news_project.description"),
           liveDemoPath: "https://news.miever.net",
           thumbnailPath: "https://miever.s3.ap-east-1.amazonaws.com/static/projects/thumbnail-news-project.webp",
-          githubPath: "https://github.com/Miever1/news-manager"
+          githubPath: "https://github.com/Miever1/news-manager",
+          tech: ["React", "Node.js"],
         }
     ];
 
     return (
         <Box className="content-list">
             <PageHeader title={t("navigation_projects")} subtitle={t("projects.description")} />
-            <div className="card-list">
+            <div className="project-grid">
                 {projectsList.map((item) => {
-                    const { title, subTitle, liveDemoPath, githubPath, description, thumbnailPath } = item;
+                    const { title, subTitle, liveDemoPath, githubPath, description, thumbnailPath, tech } = item;
                     return (
                         <Card
                             key={title}
                             hoverable
-                            orientation="horizontal"
                             clamp={3}
                             cover={<img src={thumbnailPath} alt={title} loading="lazy" />}
                             title={title}
-                            meta={subTitle}
+                            subTitle={subTitle}
+                            meta={
+                                <span className="card-meta-row">
+                                    {tech.map((tag) => (
+                                        <Tag key={tag} className="card-tag">{tag}</Tag>
+                                    ))}
+                                </span>
+                            }
                             footer={
                                 <>
                                     <Button

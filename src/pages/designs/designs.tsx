@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from "react";
 import { navigate, graphql, useStaticQuery } from "gatsby"
-import { Box, Card, Button, PageHeader } from "miever_ui";
+import { Box, PageHeader } from "miever_ui";
 import { useTranslation } from "react-i18next";
 
 interface BlogInfo {
@@ -58,43 +58,40 @@ const Designs:FunctionComponent<{}> = () => {
     return (
         <Box className="content-list">
             <PageHeader title={t("navigation_designs")} subtitle={t("designs.description")} />
-            <div className="card-list">
+            <div className="gallery-grid">
                 {works.map((item) => {
-                    const { title, liveDemoPath, description, slug, home_image, tags } =
-                        item.node.frontmatter;
+                    const { title, slug, home_image, tags } = item.node.frontmatter;
                     const to = `/designs${slug}`;
                     return (
-                        <Card
+                        <a
                             key={slug}
-                            hoverable
-                            orientation="horizontal"
-                            clamp={3}
+                            className="gallery-tile"
                             href={to}
+                            aria-label={title}
                             onClick={(e) => {
                                 e.preventDefault();
                                 navigate(to);
                             }}
-                            cover={<img src={home_image} alt={title} loading="lazy" />}
-                            title={title}
-                            meta={tags?.length ? tags.join("  ·  ") : undefined}
-                            footer={
-                                liveDemoPath ? (
-                                    <Button
-                                        size="sm"
-                                        type="link"
-                                        onClick={(e) => {
-                                            e.preventDefault();
-                                            e.stopPropagation();
-                                            window.open(liveDemoPath);
-                                        }}
-                                    >
-                                        {t("live_demo")} ↗
-                                    </Button>
-                                ) : undefined
-                            }
                         >
-                            {description}
-                        </Card>
+                            <img
+                                className="gallery-tile-img"
+                                src={home_image}
+                                alt={title}
+                                loading="lazy"
+                            />
+                            <div className="gallery-tile-overlay">
+                                {tags?.length ? (
+                                    <div className="gallery-tile-tags">
+                                        {tags.slice(0, 3).map((tag) => (
+                                            <span key={tag} className="gallery-tile-tag">
+                                                {tag}
+                                            </span>
+                                        ))}
+                                    </div>
+                                ) : null}
+                                <div className="gallery-tile-title">{title}</div>
+                            </div>
+                        </a>
                     );
                 })}
             </div>

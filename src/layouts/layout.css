@@ -318,21 +318,164 @@ textarea:focus-visible {
 }
 
 /* ── Content list pages (blogs / projects / designs) ─────────────────
-   A page header above a vertical stack of editorial Cards. */
+   A page header above a per-page layout: blogs lead with a featured card
+   over a grid, projects use a card grid, designs use an image gallery. */
 .content-list {
     padding: var(--space-10) 0 var(--space-16);
-}
-
-.card-list {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-5);
 }
 
 .pagination-row {
     display: flex;
     justify-content: center;
     margin-top: var(--space-10);
+}
+
+/* A linked Card is a surface, not a text link — never underline it on hover.
+   (Defensive guard for the published miever_ui; the lib also fixes this.) */
+a.miever-card,
+a.miever-card:hover,
+a.miever-card:focus {
+    text-decoration: none;
+}
+
+/* Tag/date row used in card metadata across listing pages. */
+.card-meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.card-meta-date {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-disabled);
+}
+
+/* Compact, quiet pills for tags inside cards. */
+.card-tag.miever-tag {
+    margin: 0;
+    padding: 2px 10px;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border-primary);
+    border-radius: var(--radius-full);
+}
+
+/* ── Blogs: a featured lead post above a responsive grid ────────────── */
+.post-featured {
+    margin-bottom: var(--space-8);
+}
+
+.post-featured .miever-card-cover {
+    flex-basis: 50%;
+}
+
+.post-featured .miever-card-title {
+    font-size: clamp(1.5rem, 1.2rem + 1.4vw, 2rem);
+}
+
+.post-grid,
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: var(--space-6);
+}
+
+/* Give grid cards a steady rhythm: equal-height, cover on top. */
+.post-grid .miever-card,
+.project-grid .miever-card {
+    height: 100%;
+}
+
+/* ── Designs: an image-forward gallery with a caption overlay ───────── */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--space-6);
+}
+
+.gallery-tile {
+    position: relative;
+    display: block;
+    aspect-ratio: 4 / 3;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--color-border-primary);
+    background: var(--color-bg-secondary);
+    text-decoration: none;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.gallery-tile:hover,
+.gallery-tile:focus-visible {
+    transform: translateY(-4px);
+    border-color: transparent;
+    box-shadow: var(--shadow-lg);
+    text-decoration: none;
+}
+
+.gallery-tile-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.gallery-tile:hover .gallery-tile-img {
+    transform: scale(1.05);
+}
+
+/* Gradient scrim so the caption stays legible over any image. */
+.gallery-tile-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: var(--space-2);
+    padding: var(--space-5);
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.78) 0%,
+        rgba(0, 0, 0, 0.35) 45%,
+        rgba(0, 0, 0, 0) 75%
+    );
+}
+
+.gallery-tile-title {
+    color: #fff;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-snug);
+    letter-spacing: var(--letter-spacing-tight);
+}
+
+.gallery-tile-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1);
+}
+
+.gallery-tile-tag {
+    padding: 2px 10px;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    color: #fff;
+    background: rgba(255, 255, 255, 0.18);
+    border-radius: var(--radius-full);
+    backdrop-filter: blur(4px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .gallery-tile,
+    .gallery-tile-img {
+        transition: none;
+    }
 }
 
 /* ── Footprints: map + bottom thumbnail strip ───────────────────────
