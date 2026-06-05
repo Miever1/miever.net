@@ -12,7 +12,9 @@ import { useTranslation } from "react-i18next";
 
 import ParticlesContainer from "./particles-container";
 
+// @ts-ignore: side-effect CSS import; provide module declarations in global d.ts to avoid this
 import "./layout.css"
+// @ts-ignore: side-effect style import from package without local type declarations
 import "miever_ui/style";
 
 const Layout: FunctionComponent<{
@@ -100,14 +102,14 @@ const Layout: FunctionComponent<{
         >
             <Tooltip
                 overlay={t(i18n.language === "en" ? "tooltip_switch_to_zh" : "tooltip_switch_to_en")}
-                placement="bottom"
+                placement={inline ? "bottomRight" : "bottom"}
             >
                 <Button style={{ padding: "8px" }} type="link" aria-label="Language" onClick={toggleLanguage}>
                     <Icon icon={["fas", "language"]} theme="primary" style={{ fontSize: "14px", cursor: "pointer" }} />
                     {!inline && <span style={{ marginLeft: "8px" }}>{t("language")}</span>}
                 </Button>
             </Tooltip>
-            <Tooltip overlay={t(themeIconItems[currentTheme].tooltip)} placement="bottom">
+            <Tooltip overlay={t(themeIconItems[currentTheme].tooltip)} placement={inline ? "bottomRight" : "bottom"}>
                 <Button style={{ padding: "8px" }} type="link" aria-label="Theme" onClick={toggleTheme}>
                     <Icon icon={["fas", themeIconItems[currentTheme].icon]} theme="primary" style={{ fontSize: "14px", cursor: "pointer" }} />
                     {!inline && <span style={{ marginLeft: "8px" }}>{t(themeIconItems[currentTheme].tooltip)}</span>}
