@@ -66,6 +66,11 @@ export const BoxWrapper = styled(Box)(() => {
     padding: var(--chakra-space-2);
     background: rgb(42, 39, 52);
   }
+  img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius-lg);
+  }
   `
   return styleText
 })
