@@ -1,5 +1,6 @@
 import React, { FunctionComponent, ReactNode } from "react";
 import { navigate } from "gatsby";
+import { StaticImage } from "gatsby-plugin-image";
 import { Box, Button, Typography } from "miever_ui";
 
 import MapChart from "./footprints";
@@ -61,10 +62,15 @@ const Home: FunctionComponent<{}> = () => {
                     right side. CSS-only so it themes and scales for free. */}
                 <div className="hero-visual">
                     <div className="hero-visual-photo">
-                        <img
+                        <StaticImage
                             src="https://miever.s3.ap-east-1.amazonaws.com/static/footprints/Frankfurt.webp"
                             alt="Aerman in Frankfurt"
                             loading="eager"
+                            placeholder="blurred"
+                            layout="constrained"
+                            width={500}
+                            style={{ width: "100%", height: "100%" }}
+                            imgStyle={{ objectFit: "cover" }}
                         />
                     </div>
                 </div>
