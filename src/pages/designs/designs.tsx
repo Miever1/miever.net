@@ -1,5 +1,6 @@
 import React, { FunctionComponent } from "react";
 import { navigate, graphql, useStaticQuery } from "gatsby"
+import { getImage, getSrc, getSrcSet } from "gatsby-plugin-image"
 import { Box, PageHeader } from "miever_ui";
 import { useTranslation } from "react-i18next";
 
@@ -28,6 +29,18 @@ const Designs:FunctionComponent<{}> = () => {
                     headings {
                         depth
                         value
+                    }
+                    fields {
+                        homeImageFile {
+                            childImageSharp {
+                                gatsbyImageData(
+                                    width: 700
+                                    layout: CONSTRAINED
+                                    formats: [AUTO, WEBP]
+                                    placeholder: NONE
+                                )
+                            }
+                        }
                     }
                     frontmatter {
                         title,
@@ -62,6 +75,7 @@ const Designs:FunctionComponent<{}> = () => {
                 {works.map((item) => {
                     const { title, slug, home_image, tags } = item.node.frontmatter;
                     const to = `/designs${slug}`;
+                    const imageData = getImage((item.node as any).fields?.homeImageFile);
                     return (
                         <a
                             key={slug}
@@ -75,7 +89,9 @@ const Designs:FunctionComponent<{}> = () => {
                         >
                             <img
                                 className="gallery-tile-img"
-                                src={home_image}
+                                src={imageData ? getSrc(imageData) : home_image}
+                                srcSet={imageData ? getSrcSet(imageData) : undefined}
+                                sizes="(max-width: 768px) 100vw, 33vw"
                                 alt={title}
                                 loading="lazy"
                             />

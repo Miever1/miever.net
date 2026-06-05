@@ -1,5 +1,6 @@
 import React, { FunctionComponent, ReactNode, useState } from "react";
 import { navigate, graphql, useStaticQuery } from "gatsby"
+import { getImage, getSrc, getSrcSet } from "gatsby-plugin-image"
 import { Box, Card, PageHeader, Pagination, Tag } from "miever_ui";
 
 const PAGE_SIZE = 6;
@@ -29,6 +30,18 @@ const Blogs:FunctionComponent<{}> = () => {
                     headings {
                         depth
                         value
+                    }
+                    fields {
+                        homeImageFile {
+                            childImageSharp {
+                                gatsbyImageData(
+                                    width: 800
+                                    layout: CONSTRAINED
+                                    formats: [AUTO, WEBP]
+                                    placeholder: NONE
+                                )
+                            }
+                        }
                     }
                     frontmatter {
                         title,
@@ -86,6 +99,24 @@ const Blogs:FunctionComponent<{}> = () => {
         navigate(to);
     };
 
+    // Use the build-time optimized, responsive image when available; fall back
+    // to the raw remote URL if the download failed at build.
+    const renderCover = (node: any, title: string): ReactNode => {
+        const imageData = getImage(node.fields?.homeImageFile);
+        if (imageData) {
+            return (
+                <img
+                    src={getSrc(imageData)}
+                    srcSet={getSrcSet(imageData)}
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    alt={title}
+                    loading="lazy"
+                />
+            );
+        }
+        return <img src={node.frontmatter.home_image} alt={title} loading="lazy" />;
+    };
+
     return (
         <Box className="content-list">
             <PageHeader title={t("navigation_blogs")} subtitle={t("blogs.description")} />
@@ -102,7 +133,7 @@ const Blogs:FunctionComponent<{}> = () => {
                         clamp={3}
                         href={to}
                         onClick={goTo(to)}
-                        cover={<img src={home_image} alt={title} loading="lazy" />}
+                        cover={renderCover(featured.node, title)}
                         title={title}
                         meta={renderMeta(date, tags)}
                     >
@@ -123,7 +154,7 @@ const Blogs:FunctionComponent<{}> = () => {
                             clamp={3}
                             href={to}
                             onClick={goTo(to)}
-                            cover={<img src={home_image} alt={title} loading="lazy" />}
+                            cover={renderCover(item.node, title)}
                             title={title}
                             meta={renderMeta(date, tags)}
                         >
