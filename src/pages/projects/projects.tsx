@@ -18,7 +18,9 @@ export interface Project {
 // gatsby-plugin-image downloads + optimizes each at build (responsive WebP).
 const ProjectThumb: FunctionComponent<{ id: string; alt: string }> = ({ id, alt }) => {
     const fill = { width: "100%", height: "100%" } as const;
-    const cover = { objectFit: "cover" } as const;
+    // Anchor to the top so screenshots show their recognizable header/hero
+    // rather than an arbitrary center crop.
+    const cover = { objectFit: "cover", objectPosition: "top" } as const;
     switch (id) {
         case "ucloud_console":
             return <StaticImage src="https://miever.s3.ap-east-1.amazonaws.com/static/blogs/ucloud-office.webp" alt={alt} layout="constrained" width={760} placeholder="blurred" loading="lazy" style={fill} imgStyle={cover} />;
@@ -84,7 +86,6 @@ const Projects:FunctionComponent<{}> = () => {
                         <Card
                             key={title}
                             hoverable
-                            clamp={3}
                             cover={<ProjectThumb id={id} alt={title} />}
                             title={title}
                             subTitle={subTitle}
