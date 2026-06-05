@@ -78,6 +78,7 @@ const FeaturedCaster: FunctionComponent = () => {
     const { t } = useTranslation();
     const [ref, inView] = useInView<HTMLElement>();
     const videoRef = useRef<HTMLVideoElement>(null);
+    const [muted, setMuted] = useState(true);
 
     useEffect(() => {
         const v = videoRef.current;
@@ -89,10 +90,19 @@ const FeaturedCaster: FunctionComponent = () => {
         if (!reduce) v.play().catch(() => {});
     }, []);
 
+    const toggleMute = () => {
+        const v = videoRef.current;
+        if (!v) return;
+        const next = !v.muted;
+        v.muted = next;
+        if (!next) v.play().catch(() => {}); // a click is a user gesture, so sound is allowed
+        setMuted(next);
+    };
+
     return (
         <section ref={ref} className={`featured-section reveal${inView ? " is-in" : ""}`}>
             <div className="featured-card">
-                <div className="featured-visual" aria-hidden="true">
+                <div className="featured-visual">
                     <video
                         ref={videoRef}
                         className="featured-video"
@@ -101,7 +111,16 @@ const FeaturedCaster: FunctionComponent = () => {
                         muted
                         playsInline
                         preload="metadata"
+                        aria-hidden="true"
                     />
+                    <button
+                        type="button"
+                        className="featured-mute"
+                        aria-label={muted ? t("unmute") : t("mute")}
+                        onClick={toggleMute}
+                    >
+                        <Icon icon={["fas", muted ? "volume-xmark" : "volume-high"]} />
+                    </button>
                 </div>
                 <div className="featured-body">
                     <span className="featured-eyebrow">{t("featured_label")}</span>
