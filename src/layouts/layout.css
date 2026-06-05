@@ -377,6 +377,15 @@ textarea:focus-visible {
         linear-gradient(135deg, var(--color-bg-secondary), var(--color-surface-elevated));
 }
 
+.featured-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
 .featured-visual-icon {
     font-size: 3.25rem;
 }

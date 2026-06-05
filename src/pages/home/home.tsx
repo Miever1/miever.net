@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactNode, useEffect, useState } from "react";
+import React, { FunctionComponent, ReactNode, useEffect, useRef, useState } from "react";
 import { navigate } from "gatsby";
 import { StaticImage } from "gatsby-plugin-image";
 import { Box, Button, Typography, Icon, Tag } from "miever_ui";
@@ -77,12 +77,31 @@ const CountUp: FunctionComponent<{ value: string; start: boolean }> = ({ value, 
 const FeaturedCaster: FunctionComponent = () => {
     const { t } = useTranslation();
     const [ref, inView] = useInView<HTMLElement>();
+    const videoRef = useRef<HTMLVideoElement>(null);
+
+    useEffect(() => {
+        const v = videoRef.current;
+        if (!v) return;
+        v.muted = true; // set as a property so autoplay isn't blocked
+        const reduce =
+            typeof window !== "undefined" &&
+            window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (!reduce) v.play().catch(() => {});
+    }, []);
+
     return (
         <section ref={ref} className={`featured-section reveal${inView ? " is-in" : ""}`}>
             <div className="featured-card">
                 <div className="featured-visual" aria-hidden="true">
-                    <Icon icon={["fas", "gamepad"]} className="featured-visual-icon" />
-                    <span className="featured-visual-name">Caster AI</span>
+                    <video
+                        ref={videoRef}
+                        className="featured-video"
+                        src="https://miever.s3.ap-east-1.amazonaws.com/static/caster-ai/the_maid_clip_01.mp4"
+                        loop
+                        muted
+                        playsInline
+                        preload="metadata"
+                    />
                 </div>
                 <div className="featured-body">
                     <span className="featured-eyebrow">{t("featured_label")}</span>
