@@ -1,5 +1,13 @@
 {
     "skip_to_content": "Skip to content",
+    "reading_time": "{{count}} min read",
+    "table_of_contents": "Contents",
+    "post_navigation": "Post navigation",
+    "older_post": "Older",
+    "newer_post": "Newer",
+    "not_found_title": "Page not found",
+    "not_found_message": "Sorry, we couldn't find the page you were looking for.",
+    "not_found_home": "Back to home",
     "header_title": "Welcome to My Personal Website!",
     "header_subtitle": "This site is a reflection of my journey as a software engineer, where I share my personal projects, insights, and the experiences that have shaped who I am today.",
     "about_introduction": "As a software engineer, I understand the importance of having a personal website to highlight my skills and projects. I had been putting off creating mine, always busy with work and other commitments. However, as time went on, I realized it was time to change that. So here I am, finally embracing the journey of building my online presence!",

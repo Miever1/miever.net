@@ -478,6 +478,145 @@ a.miever-card:focus {
     }
 }
 
+/* ── 404 ─────────────────────────────────────────────────────────────── */
+.not-found {
+    min-height: 60vh;
+    text-align: center;
+    gap: var(--space-3);
+    padding: var(--space-16) 0;
+}
+
+.not-found-code {
+    font-size: clamp(4rem, 12vw, 8rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1;
+    letter-spacing: var(--letter-spacing-tighter);
+    color: var(--color-text-accent);
+}
+
+.not-found-title {
+    margin: 0 !important;
+}
+
+.not-found-message {
+    max-width: 40ch;
+    margin: 0 0 var(--space-4) !important;
+}
+
+/* ── Blog post: meta, table of contents, prev/next ──────────────────── */
+.blog-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2);
+    padding: 0 var(--chakra-space-4, 16px);
+    margin-bottom: var(--space-4);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-disabled);
+}
+
+.blog-meta-dot {
+    opacity: 0.6;
+}
+
+.blog-toc {
+    margin: 0 var(--chakra-space-4, 16px) var(--space-8);
+    padding: var(--space-5);
+    border: 1px solid var(--color-border-primary);
+    border-radius: var(--radius-lg);
+    background: var(--color-bg-secondary);
+}
+
+.blog-toc-title {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--letter-spacing-wider);
+    text-transform: uppercase;
+    color: var(--color-text-disabled);
+    margin-bottom: var(--space-3);
+}
+
+.blog-toc ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+}
+
+.blog-toc-h3 {
+    padding-left: var(--space-4);
+}
+
+.blog-toc a {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    font-size: var(--font-size-sm);
+    transition: color 0.2s ease;
+}
+
+.blog-toc a:hover {
+    color: var(--color-text-accent);
+}
+
+.blog-prevnext {
+    display: flex;
+    gap: var(--space-4);
+    justify-content: space-between;
+    margin: var(--space-12) var(--chakra-space-4, 16px) var(--space-8);
+}
+
+.blog-prevnext-link {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    flex: 1 1 0;
+    min-width: 0;
+    padding: var(--space-4);
+    border: 1px solid var(--color-border-primary);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface-elevated);
+    text-decoration: none;
+    transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.blog-prevnext-link:hover {
+    border-color: var(--color-border-focus);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    text-decoration: none;
+}
+
+.blog-prevnext-next {
+    text-align: right;
+}
+
+.blog-prevnext-dir {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--letter-spacing-wider);
+    text-transform: uppercase;
+    color: var(--color-text-accent);
+}
+
+.blog-prevnext-title {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media (max-width: 639.98px) {
+    .blog-prevnext {
+        flex-direction: column;
+    }
+    .blog-prevnext-next {
+        text-align: left;
+    }
+}
+
 /* ── Footprints: map + bottom thumbnail strip ───────────────────────
    The active city drives both the highlighted map marker and the selected
    thumbnail. The strip scrolls horizontally on every device; nothing floats

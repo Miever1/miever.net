@@ -1,9 +1,11 @@
 import * as React from "react"
-import { graphql, HeadFC } from "gatsby"
+import { graphql, HeadFC, navigate } from "gatsby"
 import styled from '@emotion/styled'
 import { Box, designs } from "miever_ui";
+import { useTranslation } from "react-i18next";
 import { SEO } from "../../components/SEO";
 import Comments from "../../components/Comments";
+
 interface BlogPostData {
   markdownRemark: {
     frontmatter: {
@@ -61,11 +63,6 @@ export const BoxWrapper = styled(Box)(() => {
   > p {
     font-size: var(--chakra-fontSizes-lg);
   }
-  > pre {
-    color: #fff;
-    padding: var(--chakra-space-2);
-    background: rgb(42, 39, 52);
-  }
   img {
     max-width: 100%;
     height: auto;
@@ -75,18 +72,103 @@ export const BoxWrapper = styled(Box)(() => {
   return styleText
 })
 
+// Strip any inline HTML (e.g. `<code>`) a heading may contain.
+const stripTags = (value: string): string => value.replace(/<[^>]+>/g, "");
+
+// github-slugger-compatible slug, matching gatsby-remark-autolink-headers ids.
+const slugify = (value: string): string =>
+  stripTags(value)
+    .trim()
+    .toLowerCase()
+    .replace(/[^\p{L}\p{N} -]+/gu, "")
+    .replace(/\s+/g, "-");
+
+// Rough reading time that also accounts for CJK text (no word spaces).
+const readingMinutes = (html: string): number => {
+  const text = html.replace(/<[^>]+>/g, " ");
+  const cjk = (text.match(/[一-鿿]/g) || []).length;
+  const words = (text.replace(/[一-鿿]/g, " ").match(/[A-Za-z0-9]+/g) || []).length;
+  return Math.max(1, Math.round(words / 200 + cjk / 350));
+};
+
 export default function BlogPostTemplate({
   data,
 }: { data: any }) {
-  const { markdownRemark } = data;
-  const { html } = markdownRemark
+  const { t } = useTranslation();
+  const { markdownRemark, allMarkdownRemark } = data;
+  const { html, headings, frontmatter } = markdownRemark;
+  const { slug, date, language } = frontmatter;
+
+  const minutes = readingMinutes(html);
+
+  // TOC from h2/h3 headings (the body's single h1 is the title).
+  const toc = (headings || []).filter((h: any) => h.depth === 2 || h.depth === 3);
+
+  // Previous/next within the same language, by date (newest first).
+  const siblings = (allMarkdownRemark?.nodes || []).filter(
+    (n: any) => n.frontmatter.language === language,
+  );
+  const idx = siblings.findIndex((n: any) => n.frontmatter.slug === slug);
+  const older = idx >= 0 ? siblings[idx + 1] : undefined;
+  const newer = idx > 0 ? siblings[idx - 1] : undefined;
+
+  const go = (to: string) => (e: React.MouseEvent) => {
+    e.preventDefault();
+    navigate(to);
+  };
+
   return (
-      <Box>
-        <BoxWrapper
-          dangerouslySetInnerHTML={{ __html: html }}
-        />
-        <Comments />
-      </Box>
+    <Box className="blog-post">
+      <div className="blog-meta">
+        <span>{date}</span>
+        <span className="blog-meta-dot">·</span>
+        <span>{t("reading_time", { count: minutes })}</span>
+      </div>
+
+      {toc.length > 1 && (
+        <nav className="blog-toc" aria-label={t("table_of_contents")}>
+          <div className="blog-toc-title">{t("table_of_contents")}</div>
+          <ul>
+            {toc.map((h: any) => (
+              <li key={h.value} className={`blog-toc-h${h.depth}`}>
+                <a href={`#${slugify(h.value)}`}>{stripTags(h.value)}</a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )}
+
+      <BoxWrapper dangerouslySetInnerHTML={{ __html: html }} />
+
+      {(older || newer) && (
+        <nav className="blog-prevnext" aria-label={t("post_navigation")}>
+          {older ? (
+            <a
+              className="blog-prevnext-link blog-prevnext-prev"
+              href={`/blogs${older.frontmatter.slug}`}
+              onClick={go(`/blogs${older.frontmatter.slug}`)}
+            >
+              <span className="blog-prevnext-dir">← {t("older_post")}</span>
+              <span className="blog-prevnext-title">{older.frontmatter.title}</span>
+            </a>
+          ) : (
+            <span />
+          )}
+          {newer && (
+            <a
+              className="blog-prevnext-link blog-prevnext-next"
+              href={`/blogs${newer.frontmatter.slug}`}
+              onClick={go(`/blogs${newer.frontmatter.slug}`)}
+            >
+              <span className="blog-prevnext-dir">{t("newer_post")} →</span>
+              <span className="blog-prevnext-title">{newer.frontmatter.title}</span>
+            </a>
+          )}
+        </nav>
+      )}
+
+      <Comments />
+    </Box>
   )
 }
 
@@ -97,13 +179,26 @@ export const pageQuery = graphql`
       headings {
         depth
         value
-     }
+      }
       frontmatter {
         date(formatString: "MMMM DD, YYYY")
         slug
-        title,
-        description,
+        title
+        description
         home_image
+        language
+      }
+    }
+    allMarkdownRemark(
+      filter: { frontmatter: { type: { eq: "blogs" } } }
+      sort: { frontmatter: { date: DESC } }
+    ) {
+      nodes {
+        frontmatter {
+          slug
+          title
+          language
+        }
       }
     }
   }

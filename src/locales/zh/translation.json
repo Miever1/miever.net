@@ -1,5 +1,13 @@
 {
     "skip_to_content": "跳到主要内容",
+    "reading_time": "{{count}} 分钟阅读",
+    "table_of_contents": "目录",
+    "post_navigation": "文章导航",
+    "older_post": "上一篇",
+    "newer_post": "下一篇",
+    "not_found_title": "页面未找到",
+    "not_found_message": "抱歉，没有找到你要访问的页面。",
+    "not_found_home": "返回首页",
     "header_title": "欢迎来到我的个人网站！",
     "header_subtitle": "这个网站记录了我作为软件工程师的成长历程，在这里我分享我的个人项目、经验，以及那些塑造我职业发展的关键瞬间。",
     "about_introduction": "作为一名软件工程师，我深知个人网站在展示技能和项目中的价值。虽然过去因为工作和生活琐事一再推迟，但我终于下定决心开始构建自己的在线形象！希望这个网站能展现我的热情、努力，以及一路走来的点滴。",

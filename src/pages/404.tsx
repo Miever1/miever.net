@@ -1,49 +1,33 @@
 import * as React from "react"
-import { Link, HeadFC, PageProps } from "gatsby"
+import { navigate, HeadFC, PageProps } from "gatsby"
+import { Box, Button, Typography } from "miever_ui"
+import { useTranslation } from "react-i18next"
+import { SEO } from "../components/SEO"
 
-const pageStyles = {
-  color: "#232129",
-  padding: "96px",
-  fontFamily: "-apple-system, Roboto, sans-serif, serif",
-}
-const headingStyles = {
-  marginTop: 0,
-  marginBottom: 64,
-  maxWidth: 320,
-}
-
-const paragraphStyles = {
-  marginBottom: 48,
-}
-const codeStyles = {
-  color: "#8A6534",
-  padding: 4,
-  backgroundColor: "#FFF4DB",
-  fontSize: "1.25rem",
-  borderRadius: 4,
-}
+const { Title, Paragraph } = Typography
 
 const NotFoundPage: React.FC<PageProps> = () => {
+  const { t } = useTranslation()
   return (
-    <main style={pageStyles}>
-      <h1 style={headingStyles}>Page not found</h1>
-      <p style={paragraphStyles}>
-        Sorry 😔, we couldn’t find what you were looking for.
-        <br />
-        {process.env.NODE_ENV === "development" ? (
-          <>
-            <br />
-            Try creating a page in <code style={codeStyles}>src/pages/</code>.
-            <br />
-          </>
-        ) : null}
-        <br />
-        <Link to="/">Go home</Link>.
-      </p>
-    </main>
+    <Box
+      flexBox
+      direction="column"
+      alignItems="center"
+      justifyContent="center"
+      className="not-found"
+    >
+      <span className="not-found-code">404</span>
+      <Title level={2} className="not-found-title">{t("not_found_title")}</Title>
+      <Paragraph type="secondary" className="not-found-message">
+        {t("not_found_message")}
+      </Paragraph>
+      <Button type="primary" onClick={() => navigate("/")}>
+        {t("not_found_home")}
+      </Button>
+    </Box>
   )
 }
 
 export default NotFoundPage
 
-export const Head: HeadFC = () => <title>Not found</title>
+export const Head: HeadFC = () => <SEO title="404 — Not found" />
