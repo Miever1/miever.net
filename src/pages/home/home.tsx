@@ -2,6 +2,7 @@ import React, { FunctionComponent, ReactNode } from "react";
 import { navigate } from "gatsby";
 import { StaticImage } from "gatsby-plugin-image";
 import { Box, Button, Typography } from "miever_ui";
+import { BackToTop } from "../../components/ReadingAids";
 
 import MapChart from "./footprints";
 import Connect from "../../components/Connect";
@@ -105,6 +106,7 @@ const Home: FunctionComponent<{}> = () => {
             <Paragraph type="secondary" align="center" className="home-thanks">
                 {t("thank_you")}
             </Paragraph>
+            <BackToTop />
         </Box>
     );
 };

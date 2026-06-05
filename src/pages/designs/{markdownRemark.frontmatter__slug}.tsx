@@ -5,6 +5,7 @@ import Comments  from "../../components/Comments";
 
 import { Box } from "miever_ui";
 import { BoxWrapper } from "../blogs/{markdownRemark.frontmatter__slug}";
+import { ReadingProgress, BackToTop } from "../../components/ReadingAids";
 
 export default function DesignsTemplate({
   data,
@@ -13,10 +14,12 @@ export default function DesignsTemplate({
   const { html } = markdownRemark
   return (
       <Box>
+        <ReadingProgress />
         <BoxWrapper
           dangerouslySetInnerHTML={{ __html: html }}
         />
         <Comments />
+        <BackToTop />
       </Box>
   )
 }

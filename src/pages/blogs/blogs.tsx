@@ -2,6 +2,7 @@ import React, { FunctionComponent, ReactNode, useState } from "react";
 import { navigate, graphql, useStaticQuery } from "gatsby"
 import { getImage, getSrc, getSrcSet } from "gatsby-plugin-image"
 import { Box, Card, Input, PageHeader, Pagination, Tag } from "miever_ui";
+import { BackToTop } from "../../components/ReadingAids";
 
 const PAGE_SIZE = 6;
 import { useTranslation } from "react-i18next";
@@ -91,13 +92,15 @@ const Blogs:FunctionComponent<{}> = () => {
           )
         : posts;
 
-    const paged = filtered.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
-
-    // Lead with a featured card only when browsing (no active search) on page 1;
-    // search results flow into the plain grid.
-    const useFeatured = !term && page === 1;
-    const featured = useFeatured ? paged[0] : undefined;
-    const rest = useFeatured ? paged.slice(1) : paged;
+    // When browsing (no search), the top post is featured (full width) and the
+    // grid paginates the *rest* — so each grid page holds a full PAGE_SIZE set
+    // and rows stay even (1 featured + 6 grid, not 1 + 5). While searching,
+    // every match flows into the plain grid.
+    const showFeatured = !term;
+    const gridSource = showFeatured ? filtered.slice(1) : filtered;
+    const paged = gridSource.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+    const featured = showFeatured && page === 1 ? filtered[0] : undefined;
+    const rest = paged;
 
     const onSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
         setQuery(e.target.value);
@@ -196,10 +199,10 @@ const Blogs:FunctionComponent<{}> = () => {
                     );
                 })}
             </div>
-            {filtered.length > PAGE_SIZE && (
+            {gridSource.length > PAGE_SIZE && (
                 <div className="pagination-row">
                     <Pagination
-                        total={filtered.length}
+                        total={gridSource.length}
                         pageSize={PAGE_SIZE}
                         current={page}
                         onChange={(next) => {
@@ -209,6 +212,7 @@ const Blogs:FunctionComponent<{}> = () => {
                     />
                 </div>
             )}
+            <BackToTop />
         </Box>
     );
 }
