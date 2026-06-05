@@ -3,6 +3,7 @@ import { Box, Typography, Icon } from "miever_ui";
 import { useTranslation } from "react-i18next";
 
 import Comments from "../Comments";
+import { useSiteMetadata } from "../../hooks/use-site-metadata";
 
 const { Title, Paragraph, Text, Link } = Typography;
 
@@ -15,38 +16,17 @@ type Contact = {
     external?: boolean;
 };
 
-// Primary ways to reach me. Email first (fastest), then the two profiles a
-// recruiter is most likely to check. Email matches the address on the résumé.
-const CONTACTS: Contact[] = [
-    {
-        key: "email",
-        icon: ["fas", "envelope"],
-        label: "Email",
-        // <wbr> lets the address wrap after the "@" instead of mid-word.
-        value: (
-            <>
-                aerman.huofuer@<wbr />gmail.com
-            </>
-        ),
-        href: "mailto:aerman.huofuer@gmail.com",
-    },
-    {
-        key: "linkedin",
-        icon: ["fab", "linkedin"],
-        label: "LinkedIn",
-        value: "in/aerman-huofuer",
-        href: "https://www.linkedin.com/in/aerman-huofuer-413328280/",
-        external: true,
-    },
-    {
-        key: "github",
-        icon: ["fab", "github"],
-        label: "GitHub",
-        value: "@Miever1",
-        href: "https://github.com/Miever1",
-        external: true,
-    },
-];
+// Split the canonical email (from siteMetadata) so it can wrap after the "@"
+// instead of mid-word; <wbr> only matters for the displayed value.
+const renderEmail = (email: string) => {
+    const [user, domain] = email.split("@");
+    return (
+        <>
+            {user}@<wbr />
+            {domain}
+        </>
+    );
+};
 
 /**
  * Contact block for the home page: an invitation, three direct contact cards,
@@ -55,6 +35,35 @@ const CONTACTS: Contact[] = [
  */
 const Connect: FunctionComponent = () => {
     const { t } = useTranslation();
+    const { social } = useSiteMetadata();
+
+    // Primary ways to reach me. Email first (fastest), then the two profiles a
+    // recruiter is most likely to check. All sourced from siteMetadata.
+    const CONTACTS: Contact[] = [
+        {
+            key: "email",
+            icon: ["fas", "envelope"],
+            label: "Email",
+            value: renderEmail(social.email),
+            href: `mailto:${social.email}`,
+        },
+        {
+            key: "linkedin",
+            icon: ["fab", "linkedin"],
+            label: "LinkedIn",
+            value: "in/aerman-huofuer",
+            href: social.linkedin,
+            external: true,
+        },
+        {
+            key: "github",
+            icon: ["fab", "github"],
+            label: "GitHub",
+            value: "@Miever1",
+            href: social.github,
+            external: true,
+        },
+    ];
 
     return (
         <Box className="connect">

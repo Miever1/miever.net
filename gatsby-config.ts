@@ -13,7 +13,8 @@ const config: GatsbyConfig = {
     author: "Miever",
     social: {
       github: "https://github.com/Miever1",
-      linkedin: "https://www.linkedin.com/in/aerman-huofuer-413328280/"
+      linkedin: "https://www.linkedin.com/in/aerman-huofuer-413328280/",
+      email: "aerman.huofuer@gmail.com"
     }
   },
   graphqlTypegen: true,

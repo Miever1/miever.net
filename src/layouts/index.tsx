@@ -6,6 +6,7 @@ import { navigate } from "gatsby";
 import { globalHistory } from "@gatsbyjs/reach-router";
 import { useScroll } from 'ahooks';
 import { useTheme } from "../components/Theme-Context";
+import { useSiteMetadata } from "../hooks/use-site-metadata";
 import { Menu, Icon, Box, Button, Tooltip, Drawer, Typography, useBreakpoint } from "miever_ui";
 import { useTranslation } from "react-i18next";
 
@@ -31,6 +32,7 @@ const Layout: FunctionComponent<{
     );
 
     const { currentTheme, setTheme } = useTheme();
+    const { social } = useSiteMetadata();
     const { isMobile } = useBreakpoint();
     const [drawerOpen, setDrawerOpen] = useState(false);
 
@@ -112,19 +114,19 @@ const Layout: FunctionComponent<{
                 </Button>
             </Tooltip>
             <Tooltip overlay="Github" placement="bottom">
-                <Button style={{ padding: "8px" }} type="link" aria-label="Github" onClick={() => window.open("https://github.com/Miever1")}>
+                <Button style={{ padding: "8px" }} type="link" aria-label="Github" onClick={() => window.open(social.github)}>
                     <Icon icon={["fab", "github"]} theme="primary" style={{ fontSize: "14px", cursor: "pointer" }} />
                     {!inline && <span style={{ marginLeft: "8px" }}>Github</span>}
                 </Button>
             </Tooltip>
             <Tooltip overlay={t("mail")} placement="bottom">
-                <Button style={{ padding: "8px" }} type="link" aria-label="Mail" onClick={() => window.location.href = 'mailto:miever1@163.com'}>
+                <Button style={{ padding: "8px" }} type="link" aria-label="Mail" onClick={() => window.location.href = `mailto:${social.email}`}>
                     <Icon icon={["fas", "envelope"]} theme="primary" style={{ fontSize: "14px", cursor: "pointer" }} />
                     {!inline && <span style={{ marginLeft: "8px" }}>{t("mail")}</span>}
                 </Button>
             </Tooltip>
             <Tooltip overlay={t("linkedin")} placement="bottom">
-                <Button style={{ padding: "8px" }} type="link" aria-label="LinkedIn" onClick={() => window.open("https://www.linkedin.com/in/aerman-huofuer-413328280/")}>
+                <Button style={{ padding: "8px" }} type="link" aria-label="LinkedIn" onClick={() => window.open(social.linkedin)}>
                     <Icon icon={["fab", "linkedin"]} theme="primary" style={{ fontSize: "14px", cursor: "pointer" }} />
                     {!inline && <span style={{ marginLeft: "8px" }}>{t("linkedin")}</span>}
                 </Button>
@@ -231,7 +233,7 @@ const Layout: FunctionComponent<{
                             </Typography.Paragraph>
                             <Box className="site-footer-social">
                                 <Typography.Link
-                                    href="https://github.com/Miever1"
+                                    href={social.github}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     aria-label="GitHub"
@@ -239,14 +241,14 @@ const Layout: FunctionComponent<{
                                     <Icon icon={["fab", "github"]} />
                                 </Typography.Link>
                                 <Typography.Link
-                                    href="https://www.linkedin.com/in/aerman-huofuer-413328280/"
+                                    href={social.linkedin}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     aria-label="LinkedIn"
                                 >
                                     <Icon icon={["fab", "linkedin"]} />
                                 </Typography.Link>
-                                <Typography.Link href="mailto:miever1@163.com" aria-label={t("mail")}>
+                                <Typography.Link href={`mailto:${social.email}`} aria-label={t("mail")}>
                                     <Icon icon={["fas", "envelope"]} />
                                 </Typography.Link>
                             </Box>
