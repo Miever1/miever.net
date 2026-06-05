@@ -1,5 +1,6 @@
 import * as React from "react"
 import { graphql, HeadFC, navigate } from "gatsby"
+import { getImage, getSrc, getSrcSet } from "gatsby-plugin-image"
 import styled from '@emotion/styled'
 import { Box, designs } from "miever_ui";
 import { useTranslation } from "react-i18next";
@@ -118,6 +119,37 @@ export default function BlogPostTemplate({
     navigate(to);
   };
 
+  // Small optimized thumbnail for the prev/next cards (falls back to the raw
+  // remote image if the build-time download failed).
+  const renderNavThumb = (node: any): React.ReactNode => {
+    const imageData = getImage(node.fields?.homeImageFile);
+    if (imageData) {
+      return (
+        <img
+          className="blog-prevnext-thumb"
+          src={getSrc(imageData)}
+          srcSet={getSrcSet(imageData)}
+          sizes="72px"
+          alt=""
+          aria-hidden="true"
+          loading="lazy"
+        />
+      );
+    }
+    if (node.frontmatter.home_image) {
+      return (
+        <img
+          className="blog-prevnext-thumb"
+          src={node.frontmatter.home_image}
+          alt=""
+          aria-hidden="true"
+          loading="lazy"
+        />
+      );
+    }
+    return null;
+  };
+
   return (
     <Box className="blog-post">
       <ReadingProgress />
@@ -150,8 +182,11 @@ export default function BlogPostTemplate({
               href={`/blogs${older.frontmatter.slug}`}
               onClick={go(`/blogs${older.frontmatter.slug}`)}
             >
-              <span className="blog-prevnext-dir">← {t("older_post")}</span>
-              <span className="blog-prevnext-title">{older.frontmatter.title}</span>
+              {renderNavThumb(older)}
+              <span className="blog-prevnext-text">
+                <span className="blog-prevnext-dir">← {t("older_post")}</span>
+                <span className="blog-prevnext-title">{older.frontmatter.title}</span>
+              </span>
             </a>
           ) : (
             <span />
@@ -162,8 +197,11 @@ export default function BlogPostTemplate({
               href={`/blogs${newer.frontmatter.slug}`}
               onClick={go(`/blogs${newer.frontmatter.slug}`)}
             >
-              <span className="blog-prevnext-dir">{t("newer_post")} →</span>
-              <span className="blog-prevnext-title">{newer.frontmatter.title}</span>
+              <span className="blog-prevnext-text">
+                <span className="blog-prevnext-dir">{t("newer_post")} →</span>
+                <span className="blog-prevnext-title">{newer.frontmatter.title}</span>
+              </span>
+              {renderNavThumb(newer)}
             </a>
           )}
         </nav>
@@ -197,10 +235,23 @@ export const pageQuery = graphql`
       sort: { frontmatter: { date: DESC } }
     ) {
       nodes {
+        fields {
+          homeImageFile {
+            childImageSharp {
+              gatsbyImageData(
+                width: 200
+                layout: CONSTRAINED
+                formats: [AUTO, WEBP]
+                placeholder: NONE
+              )
+            }
+          }
+        }
         frontmatter {
           slug
           title
           language
+          home_image
         }
       }
     }
