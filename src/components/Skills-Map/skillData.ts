@@ -25,6 +25,27 @@ export const skillGroups: SkillGroup[] = [
     ],
   },
   {
+    id: "ai_ml",
+    label: "ai_ml",
+    skills: [
+      { id: "llm", label: "llm", level: 4 },
+      { id: "tts", label: "tts", level: 4 },
+      { id: "model_compression", label: "model_compression", level: 3 },
+      { id: "prompt_agents", label: "prompt_agents", level: 4 },
+    ],
+  },
+  {
+    id: "graphics_3d",
+    label: "graphics_3d",
+    skills: [
+      { id: "unity", label: "unity", level: 4 },
+      { id: "arkui", label: "arkui", level: 3 },
+      { id: "ar_engine", label: "ar_engine", level: 3 },
+      { id: "realtime_3d", label: "realtime_3d", level: 3 },
+      { id: "impostor", label: "impostor", level: 3 },
+    ],
+  },
+  {
     id: "backend",
     label: "backend",
     skills: [

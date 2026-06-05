@@ -23,6 +23,56 @@ html, body {
     width: 100%;
 }
 
+/* ── Accessibility ───────────────────────────────────────────────────
+   Skip link: visually hidden until focused, then it appears at the top so
+   keyboard users can jump straight past the nav to the main content. */
+.skip-link {
+    position: fixed;
+    top: 8px;
+    left: 8px;
+    z-index: 2000;
+    padding: 8px 16px;
+    border-radius: var(--radius-md);
+    background: var(--color-bg-primary);
+    color: var(--color-text-accent);
+    border: 1px solid var(--color-border-focus);
+    box-shadow: var(--shadow-md);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    text-decoration: none;
+    transform: translateY(-150%);
+    transition: transform 0.2s ease;
+}
+
+.skip-link:focus {
+    transform: translateY(0);
+}
+
+/* The main-content region is programmatically focusable (tabIndex=-1) so the
+   skip link can move focus to it without leaving a persistent outline. */
+#main-content:focus {
+    outline: none;
+}
+
+/* Consistent, visible keyboard focus ring across interactive elements.
+   Uses :focus-visible so it only shows for keyboard/AT users, not mouse. */
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid var(--color-border-focus);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .skip-link {
+        transition: none;
+    }
+}
+
 .menu-container {
     background: var(--color-bg-primary);
     width: 100%;
@@ -268,21 +318,591 @@ html, body {
 }
 
 /* ── Content list pages (blogs / projects / designs) ─────────────────
-   A page header above a vertical stack of editorial Cards. */
+   A page header above a per-page layout: blogs lead with a featured card
+   over a grid, projects use a card grid, designs use an image gallery. */
 .content-list {
     padding: var(--space-10) 0 var(--space-16);
-}
-
-.card-list {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-5);
 }
 
 .pagination-row {
     display: flex;
     justify-content: center;
     margin-top: var(--space-10);
+}
+
+/* Search/filter box on the blog and project listings. */
+.search-bar {
+    max-width: 420px;
+    margin-bottom: var(--space-8);
+}
+
+.search-empty {
+    padding: var(--space-12) 0;
+    text-align: center;
+    font-size: var(--font-size-lg);
+    color: var(--color-text-secondary);
+}
+
+/* Skeleton shown in place of the giscus comments until the iframe loads. */
+.comments-skeleton {
+    padding: var(--space-4) 0;
+    min-height: 220px;
+}
+
+/* ── Featured project band (home) ───────────────────────────────────── */
+.featured-card {
+    display: grid;
+    grid-template-columns: 1fr;
+    border: 1px solid var(--color-border-primary);
+    border-radius: var(--radius-xl, 20px);
+    overflow: hidden;
+    background: var(--color-surface-elevated);
+}
+
+@media (min-width: 760px) {
+    .featured-card {
+        grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    }
+}
+
+.featured-visual {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 180px;
+    color: var(--color-text-accent);
+    background:
+        radial-gradient(70% 90% at 25% 15%, rgba(12, 192, 223, 0.22), transparent 70%),
+        linear-gradient(135deg, var(--color-bg-secondary), var(--color-surface-elevated));
+}
+
+.featured-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Sound toggle overlaid on the demo video (muted by default for autoplay). */
+.featured-mute {
+    position: absolute;
+    left: 12px;
+    bottom: 12px;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: var(--radius-full);
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    font-size: var(--font-size-sm);
+    cursor: pointer;
+    backdrop-filter: blur(4px);
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.featured-mute:hover {
+    background: rgba(0, 0, 0, 0.72);
+    transform: translateY(-1px);
+}
+
+.featured-visual-icon {
+    font-size: 3.25rem;
+}
+
+.featured-visual-name {
+    position: absolute;
+    right: 16px;
+    bottom: 12px;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: var(--letter-spacing-tight);
+    color: var(--color-text-primary);
+    opacity: 0.22;
+}
+
+.featured-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: var(--space-6) var(--space-8);
+}
+
+.featured-eyebrow {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--letter-spacing-wider);
+    text-transform: uppercase;
+    color: var(--color-text-accent);
+}
+
+.featured-title {
+    margin: 0 !important;
+}
+
+.featured-sub {
+    color: var(--color-text-accent) !important;
+    font-weight: var(--font-weight-medium);
+}
+
+.featured-desc {
+    margin: var(--space-1) 0 0 !important;
+    line-height: var(--line-height-relaxed);
+}
+
+.featured-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-top: var(--space-1);
+}
+
+.featured-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-3);
+    margin-top: var(--space-4);
+}
+
+/* ── "Now" block (home) ─────────────────────────────────────────────── */
+.now-lead {
+    margin: 0 0 var(--space-5) !important;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+}
+
+.now-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+}
+
+@media (min-width: 720px) {
+    .now-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+.now-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    padding: var(--space-4);
+    border: 1px solid var(--color-border-primary);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface-elevated);
+}
+
+.now-item-icon {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-full);
+    background: var(--color-bg-secondary);
+    color: var(--color-text-accent);
+}
+
+.now-item-text {
+    line-height: var(--line-height-snug);
+    color: var(--color-text-primary);
+}
+
+.now-updated {
+    display: block;
+    margin-top: var(--space-5);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-disabled);
+}
+
+/* ── Reading aids (blog posts) ──────────────────────────────────────── */
+.reading-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    z-index: 1100;
+    background: var(--color-border-focus);
+    transform-origin: 0 50%;
+    transition: transform 0.1s linear;
+    pointer-events: none;
+}
+
+.back-to-top {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 1100;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--color-border-primary);
+    background: var(--color-surface-elevated);
+    color: var(--color-text-accent);
+    box-shadow: var(--shadow-md);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    animation: back-to-top-in 0.2s ease both;
+}
+
+.back-to-top:hover {
+    transform: translateY(-2px);
+    border-color: var(--color-border-focus);
+    box-shadow: var(--shadow-lg);
+}
+
+@keyframes back-to-top-in {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: none; }
+}
+
+@media (max-width: 767.98px) {
+    .back-to-top {
+        right: 16px;
+        bottom: 16px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .reading-progress { transition: none; }
+    .back-to-top { animation: none; }
+}
+
+/* A linked Card is a surface, not a text link — never underline it on hover.
+   (Defensive guard for the published miever_ui; the lib also fixes this.) */
+a.miever-card,
+a.miever-card:hover,
+a.miever-card:focus {
+    text-decoration: none;
+}
+
+/* Tag/date row used in card metadata across listing pages. */
+.card-meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.card-meta-date {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-disabled);
+}
+
+/* Compact, quiet pills for tags inside cards. */
+.card-tag.miever-tag {
+    margin: 0;
+    padding: 2px 10px;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border-primary);
+    border-radius: var(--radius-full);
+}
+
+/* ── Blogs: a featured lead post above a responsive grid ────────────── */
+.post-featured {
+    margin-bottom: var(--space-8);
+}
+
+.post-featured .miever-card-cover {
+    flex-basis: 50%;
+}
+
+.post-featured .miever-card-title {
+    font-size: clamp(1.5rem, 1.2rem + 1.4vw, 2rem);
+}
+
+/* Branded placeholder tile for projects without a public screenshot. */
+.project-thumb-fallback {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    font-size: 2.5rem;
+    color: var(--color-text-accent);
+    background:
+        radial-gradient(60% 80% at 30% 20%, rgba(12, 192, 223, 0.18), transparent 70%),
+        linear-gradient(135deg, var(--color-bg-secondary), var(--color-surface-elevated));
+}
+
+.post-grid,
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: var(--space-6);
+}
+
+/* Give grid cards a steady rhythm: equal-height, cover on top. */
+.post-grid .miever-card,
+.project-grid .miever-card {
+    height: 100%;
+}
+
+/* ── Designs: an image-forward gallery with a caption overlay ───────── */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--space-6);
+}
+
+.gallery-tile {
+    position: relative;
+    display: block;
+    aspect-ratio: 4 / 3;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--color-border-primary);
+    background: var(--color-bg-secondary);
+    text-decoration: none;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.gallery-tile:hover,
+.gallery-tile:focus-visible {
+    transform: translateY(-4px);
+    border-color: transparent;
+    box-shadow: var(--shadow-lg);
+    text-decoration: none;
+}
+
+.gallery-tile-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.gallery-tile:hover .gallery-tile-img {
+    transform: scale(1.05);
+}
+
+/* Gradient scrim so the caption stays legible over any image. */
+.gallery-tile-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: var(--space-2);
+    padding: var(--space-5);
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.78) 0%,
+        rgba(0, 0, 0, 0.35) 45%,
+        rgba(0, 0, 0, 0) 75%
+    );
+}
+
+.gallery-tile-title {
+    color: #fff;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-snug);
+    letter-spacing: var(--letter-spacing-tight);
+}
+
+.gallery-tile-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1);
+}
+
+.gallery-tile-tag {
+    padding: 2px 10px;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    color: #fff;
+    background: rgba(255, 255, 255, 0.18);
+    border-radius: var(--radius-full);
+    backdrop-filter: blur(4px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .gallery-tile,
+    .gallery-tile-img {
+        transition: none;
+    }
+}
+
+/* ── 404 ─────────────────────────────────────────────────────────────── */
+.not-found {
+    min-height: 60vh;
+    text-align: center;
+    gap: var(--space-3);
+    padding: var(--space-16) 0;
+}
+
+.not-found-code {
+    font-size: clamp(4rem, 12vw, 8rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1;
+    letter-spacing: var(--letter-spacing-tighter);
+    color: var(--color-text-accent);
+}
+
+.not-found-title {
+    margin: 0 !important;
+}
+
+.not-found-message {
+    max-width: 40ch;
+    margin: 0 0 var(--space-4) !important;
+}
+
+/* ── Blog post: meta, table of contents, prev/next ──────────────────── */
+.blog-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2);
+    padding: 0 var(--chakra-space-4, 16px);
+    margin-bottom: var(--space-4);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-disabled);
+}
+
+.blog-meta-dot {
+    opacity: 0.6;
+}
+
+.blog-toc {
+    margin: 0 var(--chakra-space-4, 16px) var(--space-8);
+    padding: var(--space-5);
+    border: 1px solid var(--color-border-primary);
+    border-radius: var(--radius-lg);
+    background: var(--color-bg-secondary);
+}
+
+.blog-toc-title {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--letter-spacing-wider);
+    text-transform: uppercase;
+    color: var(--color-text-disabled);
+    margin-bottom: var(--space-3);
+}
+
+.blog-toc ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+}
+
+.blog-toc-h3 {
+    padding-left: var(--space-4);
+}
+
+.blog-toc a {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    font-size: var(--font-size-sm);
+    transition: color 0.2s ease;
+}
+
+.blog-toc a:hover {
+    color: var(--color-text-accent);
+}
+
+.blog-prevnext {
+    display: flex;
+    gap: var(--space-4);
+    justify-content: space-between;
+    margin: var(--space-12) var(--chakra-space-4, 16px) var(--space-8);
+}
+
+.blog-prevnext-link {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    flex: 1 1 0;
+    min-width: 0;
+    padding: var(--space-3);
+    border: 1px solid var(--color-border-primary);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface-elevated);
+    text-decoration: none;
+    transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.blog-prevnext-link:hover {
+    border-color: var(--color-border-focus);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    text-decoration: none;
+}
+
+/* Thumbnail of the linked post's cover. */
+.blog-prevnext-thumb {
+    flex: 0 0 auto;
+    width: 72px;
+    height: 56px;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+}
+
+.blog-prevnext-text {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    gap: var(--space-1);
+    min-width: 0;
+}
+
+/* The "newer" card aligns its text to the right, with the thumb after it. */
+.blog-prevnext-next .blog-prevnext-text {
+    align-items: flex-end;
+    text-align: right;
+}
+
+.blog-prevnext-dir {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--letter-spacing-wider);
+    text-transform: uppercase;
+    color: var(--color-text-accent);
+}
+
+.blog-prevnext-title {
+    max-width: 100%;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media (max-width: 639.98px) {
+    .blog-prevnext {
+        flex-direction: column;
+    }
+    .blog-prevnext-next {
+        text-align: left;
+    }
 }
 
 /* ── Footprints: map + bottom thumbnail strip ───────────────────────
@@ -380,12 +1000,34 @@ html, body {
     transform: translateY(-2px);
 }
 
+/* Selection is conveyed by the cyan .active border + shadow above, so suppress
+   the browser's default (amber, outline-style:auto) focus ring on mouse click.
+   Keyboard users still get a clear on-brand ring via :focus-visible. */
+.footprints-thumb:focus:not(:focus-visible) {
+    outline: none;
+}
+
+.footprints-thumb:focus-visible {
+    outline: 2px solid var(--color-border-focus);
+    outline-offset: 2px;
+}
+
 .footprints-thumb-img {
     display: block;
     width: 100%;
     height: 78px;
     background-size: cover;
     background-position: center;
+}
+
+/* Lightbox photo (opened from a thumbnail). */
+.footprints-lightbox-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 72vh;
+    object-fit: contain;
+    border-radius: var(--radius-md);
 }
 
 .footprints-thumb-meta {
@@ -507,6 +1149,33 @@ html, body {
     color: var(--color-text-primary);
     text-wrap: balance;
     hyphens: manual;
+}
+
+/* Subtle brand sheen drifting across the headline. Only where text clipping is
+   supported, so the text never disappears on older engines. */
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+    .hero-headline {
+        background-image: linear-gradient(
+            100deg,
+            var(--color-text-primary) 0%,
+            var(--color-text-primary) 42%,
+            var(--color-text-accent) 58%,
+            var(--color-text-primary) 74%
+        );
+        background-size: 220% auto;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+        animation:
+            rise-in 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) 0.06s both,
+            headline-sheen 9s ease-in-out 1.2s infinite alternate;
+    }
+}
+
+@keyframes headline-sheen {
+    from { background-position: 0% center; }
+    to { background-position: 100% center; }
 }
 
 .hero-lead {

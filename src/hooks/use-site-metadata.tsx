@@ -8,6 +8,12 @@ export const useSiteMetadata = () => {
           title
           description
           siteUrl
+          author
+          social {
+            github
+            linkedin
+            email
+          }
         }
       }
     }

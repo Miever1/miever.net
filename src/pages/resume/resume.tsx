@@ -3,6 +3,7 @@ import { Box, Button, Card, Icon } from "miever_ui";
 import { useTranslation } from "react-i18next";
 
 import { SEO } from "../../components/SEO";
+import { BackToTop } from "../../components/ReadingAids";
 import {
     profile,
     education,
@@ -194,6 +195,7 @@ const Resume: FunctionComponent<{}> = () => {
                     </section>
                 </aside>
             </div>
+            <BackToTop />
         </Box>
     );
 };

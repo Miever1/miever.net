@@ -13,13 +13,30 @@ const config: GatsbyConfig = {
     author: "Miever",
     social: {
       github: "https://github.com/Miever1",
-      linkedin: "https://www.linkedin.com/in/aerman-huofuer-413328280/"
+      linkedin: "https://www.linkedin.com/in/aerman-huofuer-413328280/",
+      email: "aerman.huofuer@gmail.com"
     }
   },
   graphqlTypegen: true,
   plugins: [
     "gatsby-plugin-emotion",
-    `gatsby-transformer-remark`,
+    {
+      resolve: `gatsby-transformer-remark`,
+      options: {
+        plugins: [
+          // Add slug ids + anchor links to headings (powers the post TOC).
+          {
+            resolve: `gatsby-remark-autolink-headers`,
+            options: { icon: false, maintainCase: false, removeAccents: true },
+          },
+          // Syntax-highlight fenced code blocks.
+          {
+            resolve: `gatsby-remark-prismjs`,
+            options: { showLineNumbers: false, noInlineHighlight: false },
+          },
+        ],
+      },
+    },
     `gatsby-plugin-layout`,
     "gatsby-plugin-preload-fonts",
     "gatsby-plugin-image",
@@ -120,6 +137,53 @@ const config: GatsbyConfig = {
             src: `/apple-touch-icon.png`,
             sizes: `180x180`,
             type: `image/png`,
+          },
+        ],
+      },
+    },
+    {
+      resolve: `gatsby-plugin-feed`,
+      options: {
+        query: `
+          {
+            site {
+              siteMetadata {
+                title
+                description
+                siteUrl
+              }
+            }
+          }
+        `,
+        feeds: [
+          {
+            serialize: ({ query: { site, allMarkdownRemark } }: any) =>
+              allMarkdownRemark.nodes.map((node: any) => ({
+                title: node.frontmatter.title,
+                description: node.frontmatter.description,
+                date: node.frontmatter.date,
+                url: `${site.siteMetadata.siteUrl}/blogs${node.frontmatter.slug}`,
+                guid: `${site.siteMetadata.siteUrl}/blogs${node.frontmatter.slug}`,
+              })),
+            query: `
+              {
+                allMarkdownRemark(
+                  filter: { frontmatter: { type: { eq: "blogs" }, language: { eq: "en" } } }
+                  sort: { frontmatter: { date: DESC } }
+                ) {
+                  nodes {
+                    frontmatter {
+                      title
+                      description
+                      slug
+                      date
+                    }
+                  }
+                }
+              }
+            `,
+            output: "/rss.xml",
+            title: "miever.net — Blog",
           },
         ],
       },

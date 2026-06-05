@@ -6,12 +6,15 @@ import { navigate } from "gatsby";
 import { globalHistory } from "@gatsbyjs/reach-router";
 import { useScroll } from 'ahooks';
 import { useTheme } from "../components/Theme-Context";
+import { useSiteMetadata } from "../hooks/use-site-metadata";
 import { Menu, Icon, Box, Button, Tooltip, Drawer, Typography, useBreakpoint } from "miever_ui";
 import { useTranslation } from "react-i18next";
 
 import ParticlesContainer from "./particles-container";
 
+// @ts-ignore: side-effect CSS import; provide module declarations in global d.ts to avoid this
 import "./layout.css"
+// @ts-ignore: side-effect style import from package without local type declarations
 import "miever_ui/style";
 
 const Layout: FunctionComponent<{
@@ -31,6 +34,7 @@ const Layout: FunctionComponent<{
     );
 
     const { currentTheme, setTheme } = useTheme();
+    const { social } = useSiteMetadata();
     const { isMobile } = useBreakpoint();
     const [drawerOpen, setDrawerOpen] = useState(false);
 
@@ -98,37 +102,38 @@ const Layout: FunctionComponent<{
         >
             <Tooltip
                 overlay={t(i18n.language === "en" ? "tooltip_switch_to_zh" : "tooltip_switch_to_en")}
-                placement="bottom"
+                placement={inline ? "bottomRight" : "bottom"}
             >
                 <Button style={{ padding: "8px" }} type="link" aria-label="Language" onClick={toggleLanguage}>
                     <Icon icon={["fas", "language"]} theme="primary" style={{ fontSize: "14px", cursor: "pointer" }} />
                     {!inline && <span style={{ marginLeft: "8px" }}>{t("language")}</span>}
                 </Button>
             </Tooltip>
-            <Tooltip overlay={t(themeIconItems[currentTheme].tooltip)} placement="bottom">
+            <Tooltip overlay={t(themeIconItems[currentTheme].tooltip)} placement={inline ? "bottomRight" : "bottom"}>
                 <Button style={{ padding: "8px" }} type="link" aria-label="Theme" onClick={toggleTheme}>
                     <Icon icon={["fas", themeIconItems[currentTheme].icon]} theme="primary" style={{ fontSize: "14px", cursor: "pointer" }} />
                     {!inline && <span style={{ marginLeft: "8px" }}>{t(themeIconItems[currentTheme].tooltip)}</span>}
                 </Button>
             </Tooltip>
-            <Tooltip overlay="Github" placement="bottom">
-                <Button style={{ padding: "8px" }} type="link" aria-label="Github" onClick={() => window.open("https://github.com/Miever1")}>
-                    <Icon icon={["fab", "github"]} theme="primary" style={{ fontSize: "14px", cursor: "pointer" }} />
-                    {!inline && <span style={{ marginLeft: "8px" }}>Github</span>}
-                </Button>
-            </Tooltip>
-            <Tooltip overlay={t("mail")} placement="bottom">
-                <Button style={{ padding: "8px" }} type="link" aria-label="Mail" onClick={() => window.location.href = 'mailto:miever1@163.com'}>
-                    <Icon icon={["fas", "envelope"]} theme="primary" style={{ fontSize: "14px", cursor: "pointer" }} />
-                    {!inline && <span style={{ marginLeft: "8px" }}>{t("mail")}</span>}
-                </Button>
-            </Tooltip>
-            <Tooltip overlay={t("linkedin")} placement="bottom">
-                <Button style={{ padding: "8px" }} type="link" aria-label="LinkedIn" onClick={() => window.open("https://www.linkedin.com/in/aerman-huofuer-413328280/")}>
-                    <Icon icon={["fab", "linkedin"]} theme="primary" style={{ fontSize: "14px", cursor: "pointer" }} />
-                    {!inline && <span style={{ marginLeft: "8px" }}>{t("linkedin")}</span>}
-                </Button>
-            </Tooltip>
+            {/* Social links are kept out of the desktop top bar (where they
+                crowded the nav) — they live in the footer and, on mobile, in
+                this labelled drawer list. */}
+            {!inline && (
+                <>
+                    <Button style={{ padding: "8px" }} type="link" aria-label="Github" onClick={() => window.open(social.github)}>
+                        <Icon icon={["fab", "github"]} theme="primary" style={{ fontSize: "14px", cursor: "pointer" }} />
+                        <span style={{ marginLeft: "8px" }}>Github</span>
+                    </Button>
+                    <Button style={{ padding: "8px" }} type="link" aria-label="Mail" onClick={() => window.location.href = `mailto:${social.email}`}>
+                        <Icon icon={["fas", "envelope"]} theme="primary" style={{ fontSize: "14px", cursor: "pointer" }} />
+                        <span style={{ marginLeft: "8px" }}>{t("mail")}</span>
+                    </Button>
+                    <Button style={{ padding: "8px" }} type="link" aria-label="LinkedIn" onClick={() => window.open(social.linkedin)}>
+                        <Icon icon={["fab", "linkedin"]} theme="primary" style={{ fontSize: "14px", cursor: "pointer" }} />
+                        <span style={{ marginLeft: "8px" }}>{t("linkedin")}</span>
+                    </Button>
+                </>
+            )}
         </Box>
     );
 
@@ -153,6 +158,9 @@ const Layout: FunctionComponent<{
         <Box
             width="100%"
         >
+            <a href="#main-content" className="skip-link">
+                {t("skip_to_content")}
+            </a>
             <ParticlesContainer />
             <Box
                 flexBox
@@ -209,6 +217,9 @@ const Layout: FunctionComponent<{
                 </Drawer>
 
                 <Box
+                    id="main-content"
+                    role="main"
+                    tabIndex={-1}
                     className={`content-area${
                         ["/dashboard/", "/performance/"].includes(pathname) ? " content-flush" : ""
                     }`}
@@ -225,7 +236,7 @@ const Layout: FunctionComponent<{
                             </Typography.Paragraph>
                             <Box className="site-footer-social">
                                 <Typography.Link
-                                    href="https://github.com/Miever1"
+                                    href={social.github}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     aria-label="GitHub"
@@ -233,14 +244,14 @@ const Layout: FunctionComponent<{
                                     <Icon icon={["fab", "github"]} />
                                 </Typography.Link>
                                 <Typography.Link
-                                    href="https://www.linkedin.com/in/aerman-huofuer-413328280/"
+                                    href={social.linkedin}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     aria-label="LinkedIn"
                                 >
                                     <Icon icon={["fab", "linkedin"]} />
                                 </Typography.Link>
-                                <Typography.Link href="mailto:miever1@163.com" aria-label={t("mail")}>
+                                <Typography.Link href={`mailto:${social.email}`} aria-label={t("mail")}>
                                     <Icon icon={["fas", "envelope"]} />
                                 </Typography.Link>
                             </Box>
