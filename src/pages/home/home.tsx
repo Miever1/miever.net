@@ -1,7 +1,7 @@
 import React, { FunctionComponent, ReactNode, useEffect, useState } from "react";
 import { navigate } from "gatsby";
 import { StaticImage } from "gatsby-plugin-image";
-import { Box, Button, Typography } from "miever_ui";
+import { Box, Button, Typography, Icon, Tag } from "miever_ui";
 import { BackToTop } from "../../components/ReadingAids";
 
 import MapChart from "./footprints";
@@ -72,6 +72,45 @@ const CountUp: FunctionComponent<{ value: string; start: boolean }> = ({ value, 
     return <>{n}{suffix}</>;
 };
 
+/** A prominent "featured project" band on the home page, surfacing Caster AI
+ *  (a live AI product) right under the hero. Reuses the project's copy. */
+const FeaturedCaster: FunctionComponent = () => {
+    const { t } = useTranslation();
+    const [ref, inView] = useInView<HTMLElement>();
+    return (
+        <section ref={ref} className={`featured-section reveal${inView ? " is-in" : ""}`}>
+            <div className="featured-card">
+                <div className="featured-visual" aria-hidden="true">
+                    <Icon icon={["fas", "gamepad"]} className="featured-visual-icon" />
+                    <span className="featured-visual-name">Caster AI</span>
+                </div>
+                <div className="featured-body">
+                    <span className="featured-eyebrow">{t("featured_label")}</span>
+                    <Title level={3} className="featured-title">Caster AI</Title>
+                    <Text className="featured-sub">{t("projects.ai_game.subTitle")}</Text>
+                    <Paragraph type="secondary" className="featured-desc">
+                        {t("projects.ai_game.description")}
+                    </Paragraph>
+                    <div className="featured-tags">
+                        {["LLM", "TTS", "React"].map((tag) => (
+                            <Tag key={tag} className="card-tag">{tag}</Tag>
+                        ))}
+                    </div>
+                    <div className="featured-actions">
+                        <Button type="primary" onClick={() => window.open("https://caster-ai.miever.net/")}>
+                            {t("live_demo")}
+                        </Button>
+                        <Button type="link" onClick={() => window.open("https://github.com/Miever1/caster-ai")}>
+                            <Icon icon={["fab", "github"]} style={{ marginRight: 6 }} />
+                            {t("github_res")}
+                        </Button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+};
+
 const Home: FunctionComponent<{}> = () => {
     const { t } = useTranslation();
     const [statsRef, statsIn] = useInView<HTMLDivElement>();
@@ -129,6 +168,8 @@ const Home: FunctionComponent<{}> = () => {
                     </Box>
                 ))}
             </div>
+
+            <FeaturedCaster />
 
             <HomeSection index="01" title={t("now_title")}>
                 <Now />

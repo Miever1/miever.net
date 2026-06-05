@@ -349,6 +349,93 @@ textarea:focus-visible {
     min-height: 220px;
 }
 
+/* ── Featured project band (home) ───────────────────────────────────── */
+.featured-card {
+    display: grid;
+    grid-template-columns: 1fr;
+    border: 1px solid var(--color-border-primary);
+    border-radius: var(--radius-xl, 20px);
+    overflow: hidden;
+    background: var(--color-surface-elevated);
+}
+
+@media (min-width: 760px) {
+    .featured-card {
+        grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    }
+}
+
+.featured-visual {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 180px;
+    color: var(--color-text-accent);
+    background:
+        radial-gradient(70% 90% at 25% 15%, rgba(12, 192, 223, 0.22), transparent 70%),
+        linear-gradient(135deg, var(--color-bg-secondary), var(--color-surface-elevated));
+}
+
+.featured-visual-icon {
+    font-size: 3.25rem;
+}
+
+.featured-visual-name {
+    position: absolute;
+    right: 16px;
+    bottom: 12px;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: var(--letter-spacing-tight);
+    color: var(--color-text-primary);
+    opacity: 0.22;
+}
+
+.featured-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: var(--space-6) var(--space-8);
+}
+
+.featured-eyebrow {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--letter-spacing-wider);
+    text-transform: uppercase;
+    color: var(--color-text-accent);
+}
+
+.featured-title {
+    margin: 0 !important;
+}
+
+.featured-sub {
+    color: var(--color-text-accent) !important;
+    font-weight: var(--font-weight-medium);
+}
+
+.featured-desc {
+    margin: var(--space-1) 0 0 !important;
+    line-height: var(--line-height-relaxed);
+}
+
+.featured-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-top: var(--space-1);
+}
+
+.featured-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-3);
+    margin-top: var(--space-4);
+}
+
 /* ── "Now" block (home) ─────────────────────────────────────────────── */
 .now-lead {
     margin: 0 0 var(--space-5) !important;
