@@ -72,7 +72,7 @@
     "ai_ml": "AI / ML",
     "llm": "LLMs",
     "tts": "Text-to-Speech",
-    "ai_upscaling": "AI Upscaling",
+    "model_compression": "Model Compression",
     "prompt_agents": "Prompting & Agents",
     "graphics_3d": "Graphics / 3D",
     "unity": "Unity",
@@ -137,8 +137,8 @@
       "description": "Explore my projects that showcase my skills and creativity in software development.",
       "huawei": {
         "title": "Real-time 3D & AR at Huawei",
-        "subTitle": "Graphics R&D — 2D→3D, AR, AI upscaling",
-        "description": "Built a 2D-to-3D photo-album prototype with ArkUI and the Huawei AR Engine, and explored AI upscaling and artifact reduction for impostor rendering — trading memory against quality."
+        "subTitle": "Graphics R&D — 2D→3D, AR, model compression",
+        "description": "Built a 2D-to-3D photo-album prototype with ArkUI and the Huawei AR Engine, and explored neural-network compression for impostor rendering — trading memory against quality."
       },
       "ai_game": {
         "title": "Caster AI",

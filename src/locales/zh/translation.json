@@ -72,7 +72,7 @@
     "ai_ml": "AI / 机器学习",
     "llm": "大语言模型",
     "tts": "语音合成（TTS）",
-    "ai_upscaling": "AI 超分",
+    "model_compression": "神经网络压缩",
     "prompt_agents": "提示工程与 Agent",
     "graphics_3d": "图形学 / 3D",
     "unity": "Unity",
@@ -137,8 +137,8 @@
       "description": "探索我的项目，这些项目展示了我在软件开发中的技能与创造力。",
       "huawei": {
         "title": "华为实时 3D 与 AR",
-        "subTitle": "图形学研发 — 2D→3D、AR、AI 超分",
-        "description": "用 ArkUI 与华为 AR Engine 构建 2D 转 3D 相册原型，并探索基于 AI 的超分与去伪影（impostor 渲染），在显存与画质之间做权衡。"
+        "subTitle": "图形学研发 — 2D→3D、AR、神经网络压缩",
+        "description": "用 ArkUI 与华为 AR Engine 构建 2D 转 3D 相册原型，并探索面向 impostor 渲染的神经网络压缩，在显存与画质之间做权衡。"
       },
       "ai_game": {
         "title": "Caster AI",

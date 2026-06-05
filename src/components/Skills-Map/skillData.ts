@@ -30,7 +30,7 @@ export const skillGroups: SkillGroup[] = [
     skills: [
       { id: "llm", label: "llm", level: 4 },
       { id: "tts", label: "tts", level: 4 },
-      { id: "ai_upscaling", label: "ai_upscaling", level: 3 },
+      { id: "model_compression", label: "model_compression", level: 3 },
       { id: "prompt_agents", label: "prompt_agents", level: 4 },
     ],
   },

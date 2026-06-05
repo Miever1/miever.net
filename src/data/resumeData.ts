@@ -128,8 +128,8 @@ export const internships: ExperienceItem[] = [
                 "用 ArkUI 与华为 AR Engine 构建 2D 转 3D 相册原型，实现交互式三维可视化。"
             ),
             L(
-                "Exploring AI upscaling and artifact reduction for impostor rendering, weighing memory against quality.",
-                "探索基于 AI 的超分与去伪影（impostor 渲染），权衡显存与画质。"
+                "Exploring neural-network compression for impostor rendering, weighing memory against quality.",
+                "探索面向 impostor 渲染的神经网络压缩，权衡显存与画质。"
             ),
         ],
     },

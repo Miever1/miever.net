@@ -34,7 +34,7 @@ const SKILL_ICONS: Record<string, [string, string]> = {
     gatsby: ["fas", "bolt"],
     llm: ["fas", "robot"],
     tts: ["fas", "volume-high"],
-    ai_upscaling: ["fas", "wand-magic-sparkles"],
+    model_compression: ["fas", "compress"],
     prompt_agents: ["fas", "comment-dots"],
     unity: ["fab", "unity"],
     arkui: ["fas", "mobile-screen"],
