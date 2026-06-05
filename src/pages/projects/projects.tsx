@@ -1,54 +1,74 @@
 
 import React, { FunctionComponent } from "react";
+import { StaticImage } from "gatsby-plugin-image";
 import { Box, Card, Button, Icon, PageHeader, Tag } from "miever_ui";
 import { useTranslation } from "react-i18next";
 
 export interface Project {
+    id: string;
     title: string;
     subTitle: string;
     description: string;
     githubPath?: string;
     liveDemoPath: string;
-    thumbnailPath: string;
     tech: string[];
 }
+
+// StaticImage needs a literal `src`, so the four thumbnails are switched by id.
+// gatsby-plugin-image downloads + optimizes each at build (responsive WebP).
+const ProjectThumb: FunctionComponent<{ id: string; alt: string }> = ({ id, alt }) => {
+    const fill = { width: "100%", height: "100%" } as const;
+    const cover = { objectFit: "cover" } as const;
+    switch (id) {
+        case "ucloud_console":
+            return <StaticImage src="https://miever.s3.ap-east-1.amazonaws.com/static/blogs/ucloud-office.webp" alt={alt} layout="constrained" width={760} placeholder="blurred" loading="lazy" style={fill} imgStyle={cover} />;
+        case "miever_net":
+            return <StaticImage src="https://miever.s3.ap-east-1.amazonaws.com/static/projects/thumbnail-miever.webp" alt={alt} layout="constrained" width={760} placeholder="blurred" loading="lazy" style={fill} imgStyle={cover} />;
+        case "miever_ui":
+            return <StaticImage src="https://miever.s3.ap-east-1.amazonaws.com/static/projects/thumbnail-components.webp" alt={alt} layout="constrained" width={760} placeholder="blurred" loading="lazy" style={fill} imgStyle={cover} />;
+        case "news_project":
+            return <StaticImage src="https://miever.s3.ap-east-1.amazonaws.com/static/projects/thumbnail-news-project.webp" alt={alt} layout="constrained" width={760} placeholder="blurred" loading="lazy" style={fill} imgStyle={cover} />;
+        default:
+            return null;
+    }
+};
 
 const Projects:FunctionComponent<{}> = () => {
     const { t } = useTranslation();
 
     const projectsList: Project[] = [
         {
+          id: "ucloud_console",
           title: t("projects.ucloud_console.title"),
           subTitle: t("projects.ucloud_console.subTitle"),
           description: t("projects.ucloud_console.description"),
           liveDemoPath: "/blogs/ucloud-frontend-experience/",
-          thumbnailPath: "https://miever.s3.ap-east-1.amazonaws.com/static/blogs/ucloud-office.webp",
           tech: ["React", "TypeScript", "Monitoring"],
         },
         {
+          id: "miever_net",
           title: t("projects.miever_net.title"),
           subTitle: t("projects.miever_net.subTitle"),
           description: t("projects.miever_net.description"),
           liveDemoPath: "https://miever.net",
-          thumbnailPath: "https://miever.s3.ap-east-1.amazonaws.com/static/projects/thumbnail-miever.webp",
           githubPath: "https://github.com/Miever1/miever.net",
           tech: ["Gatsby", "React", "AWS"],
         },
         {
+          id: "miever_ui",
           title: t("projects.miever_ui.title"),
           subTitle: t("projects.miever_ui.subTitle"),
           description: t("projects.miever_ui.description"),
           liveDemoPath: "https://components.miever.net",
-          thumbnailPath: "https://miever.s3.ap-east-1.amazonaws.com/static/projects/thumbnail-components.webp",
           githubPath: "https://github.com/Miever1/miever_ui",
           tech: ["React", "Vite", "Storybook"],
         },
         {
+          id: "news_project",
           title: t("projects.news_project.title"),
           subTitle: t("projects.news_project.subTitle"),
           description: t("projects.news_project.description"),
           liveDemoPath: "https://news.miever.net",
-          thumbnailPath: "https://miever.s3.ap-east-1.amazonaws.com/static/projects/thumbnail-news-project.webp",
           githubPath: "https://github.com/Miever1/news-manager",
           tech: ["React", "Node.js"],
         }
@@ -59,13 +79,13 @@ const Projects:FunctionComponent<{}> = () => {
             <PageHeader title={t("navigation_projects")} subtitle={t("projects.description")} />
             <div className="project-grid">
                 {projectsList.map((item) => {
-                    const { title, subTitle, liveDemoPath, githubPath, description, thumbnailPath, tech } = item;
+                    const { id, title, subTitle, liveDemoPath, githubPath, description, tech } = item;
                     return (
                         <Card
                             key={title}
                             hoverable
                             clamp={3}
-                            cover={<img src={thumbnailPath} alt={title} loading="lazy" />}
+                            cover={<ProjectThumb id={id} alt={title} />}
                             title={title}
                             subTitle={subTitle}
                             meta={
