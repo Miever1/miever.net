@@ -343,6 +343,68 @@ textarea:focus-visible {
     color: var(--color-text-secondary);
 }
 
+/* Skeleton shown in place of the giscus comments until the iframe loads. */
+.comments-skeleton {
+    padding: var(--space-4) 0;
+    min-height: 220px;
+}
+
+/* ── "Now" block (home) ─────────────────────────────────────────────── */
+.now-lead {
+    margin: 0 0 var(--space-5) !important;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+}
+
+.now-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+}
+
+@media (min-width: 720px) {
+    .now-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+.now-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    padding: var(--space-4);
+    border: 1px solid var(--color-border-primary);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface-elevated);
+}
+
+.now-item-icon {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-full);
+    background: var(--color-bg-secondary);
+    color: var(--color-text-accent);
+}
+
+.now-item-text {
+    line-height: var(--line-height-snug);
+    color: var(--color-text-primary);
+}
+
+.now-updated {
+    display: block;
+    margin-top: var(--space-5);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-disabled);
+}
+
 /* ── Reading aids (blog posts) ──────────────────────────────────────── */
 .reading-progress {
     position: fixed;

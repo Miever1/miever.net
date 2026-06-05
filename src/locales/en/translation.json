@@ -1,6 +1,13 @@
 {
     "skip_to_content": "Skip to content",
     "back_to_top": "Back to top",
+    "now_title": "Now",
+    "now_lead": "A snapshot of what I'm focused on right now.",
+    "now_study": "Wrapping up my master's in Human–Computer Interaction in Helsinki.",
+    "now_building": "Building this site and the miever_ui component library.",
+    "now_ai": "Exploring where AI fits into front-end work.",
+    "now_open": "Open to new software engineering roles.",
+    "now_updated": "Updated {{date}}",
     "search_blogs": "Search posts…",
     "search_projects": "Search projects…",
     "search_no_results": "No matching results.",

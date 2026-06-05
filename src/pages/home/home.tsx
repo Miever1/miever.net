@@ -5,6 +5,7 @@ import { Box, Button, Typography } from "miever_ui";
 import { BackToTop } from "../../components/ReadingAids";
 
 import MapChart from "./footprints";
+import Now from "../../components/Now";
 import Connect from "../../components/Connect";
 import { SEO } from "../../components/SEO";
 import { useTranslation } from "react-i18next";
@@ -91,15 +92,19 @@ const Home: FunctionComponent<{}> = () => {
                 ))}
             </div>
 
-            <HomeSection index="01" title={t("map_skills_title")} subtitle={t("skills_description")}>
+            <HomeSection index="01" title={t("now_title")}>
+                <Now />
+            </HomeSection>
+
+            <HomeSection index="02" title={t("map_skills_title")} subtitle={t("skills_description")}>
                 <SkillsMap />
             </HomeSection>
 
-            <HomeSection index="02" title={t("footprints_title")} subtitle={t("footprints_description")}>
+            <HomeSection index="03" title={t("footprints_title")} subtitle={t("footprints_description")}>
                 <MapChart />
             </HomeSection>
 
-            <HomeSection index="03" title={t("comment_title")}>
+            <HomeSection index="04" title={t("comment_title")}>
                 <Connect />
             </HomeSection>
 

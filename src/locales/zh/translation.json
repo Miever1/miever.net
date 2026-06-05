@@ -1,6 +1,13 @@
 {
     "skip_to_content": "跳到主要内容",
     "back_to_top": "回到顶部",
+    "now_title": "近况",
+    "now_lead": "我最近在专注的一些事。",
+    "now_study": "在赫尔辛基收尾人机交互（HCI）硕士。",
+    "now_building": "在做这个网站和 miever_ui 组件库。",
+    "now_ai": "探索 AI 在前端工作中的位置。",
+    "now_open": "正在寻找新的软件工程师机会。",
+    "now_updated": "更新于 {{date}}",
     "search_blogs": "搜索文章…",
     "search_projects": "搜索项目…",
     "search_no_results": "没有匹配的结果。",
