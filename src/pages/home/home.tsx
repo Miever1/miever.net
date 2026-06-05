@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactNode } from "react";
+import React, { FunctionComponent, ReactNode, useEffect, useState } from "react";
 import { navigate } from "gatsby";
 import { StaticImage } from "gatsby-plugin-image";
 import { Box, Button, Typography } from "miever_ui";
@@ -34,6 +34,42 @@ const HomeSection: FunctionComponent<{
         {children}
     </section>
     );
+};
+
+/** Counts a stat up from 0 to its value once it scrolls into view. Keeps any
+ *  non-numeric suffix (e.g. the "+" in "5+", the "×" in "2×") and respects
+ *  prefers-reduced-motion. */
+const CountUp: FunctionComponent<{ value: string; start: boolean }> = ({ value, start }) => {
+    const match = value.match(/^(\d+)(.*)$/);
+    const target = match ? parseInt(match[1], 10) : 0;
+    const suffix = match ? match[2] : "";
+    const [n, setN] = useState(0);
+
+    useEffect(() => {
+        if (!match) return;
+        const reduce =
+            typeof window !== "undefined" &&
+            window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (reduce) { setN(target); return; }
+        if (!start) return;
+        let raf = 0;
+        const duration = 900;
+        const t0 = performance.now();
+        const tick = (now: number) => {
+            const p = Math.min(1, (now - t0) / duration);
+            const eased = 1 - Math.pow(1 - p, 3); // easeOutCubic
+            setN(Math.round(eased * target));
+            if (p < 1) raf = requestAnimationFrame(tick);
+        };
+        raf = requestAnimationFrame(tick);
+        return () => cancelAnimationFrame(raf);
+        // `match` is recreated each render; depending on it would restart the
+        // animation on every setN. target/start fully capture what we need.
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [start, target]);
+
+    if (!match) return <>{value}</>;
+    return <>{n}{suffix}</>;
 };
 
 const Home: FunctionComponent<{}> = () => {
@@ -86,7 +122,9 @@ const Home: FunctionComponent<{}> = () => {
                     { num: "3", label: t("stat_languages") },
                 ].map((stat) => (
                     <Box className="home-stat" key={stat.label}>
-                        <Text className="home-stat-num">{stat.num}</Text>
+                        <Text className="home-stat-num">
+                            <CountUp value={stat.num} start={statsIn} />
+                        </Text>
                         <Text type="secondary" className="home-stat-label">{stat.label}</Text>
                     </Box>
                 ))}
@@ -122,7 +160,7 @@ export const Head = () => (
     <>
         <SEO
             title="Aerman Huofuer, Software Engineer (HCI & AI)"
-            description="Software engineer with an HCI background and a front-end core, building across engineering, design and AI. Projects, writing and design work."
+            description="Software engineer with an HCI background, working across front-end, graphics, AR and AI. Projects, writing and design work."
             pathname="/"
         />
     </>

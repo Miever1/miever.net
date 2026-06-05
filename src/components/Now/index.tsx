@@ -9,8 +9,8 @@ const { Paragraph, Text } = Typography;
 const NOW_UPDATED = "2026-06-06";
 
 const items: { icon: IconProp; key: string }[] = [
+  { icon: ["fas", "cube"], key: "now_huawei" },
   { icon: ["fas", "graduation-cap"], key: "now_study" },
-  { icon: ["fas", "laptop-code"], key: "now_building" },
   { icon: ["fas", "robot"], key: "now_ai" },
   { icon: ["fas", "briefcase"], key: "now_open" },
 ];
