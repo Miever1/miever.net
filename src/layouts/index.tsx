@@ -113,24 +113,25 @@ const Layout: FunctionComponent<{
                     {!inline && <span style={{ marginLeft: "8px" }}>{t(themeIconItems[currentTheme].tooltip)}</span>}
                 </Button>
             </Tooltip>
-            <Tooltip overlay="Github" placement="bottom">
-                <Button style={{ padding: "8px" }} type="link" aria-label="Github" onClick={() => window.open(social.github)}>
-                    <Icon icon={["fab", "github"]} theme="primary" style={{ fontSize: "14px", cursor: "pointer" }} />
-                    {!inline && <span style={{ marginLeft: "8px" }}>Github</span>}
-                </Button>
-            </Tooltip>
-            <Tooltip overlay={t("mail")} placement="bottom">
-                <Button style={{ padding: "8px" }} type="link" aria-label="Mail" onClick={() => window.location.href = `mailto:${social.email}`}>
-                    <Icon icon={["fas", "envelope"]} theme="primary" style={{ fontSize: "14px", cursor: "pointer" }} />
-                    {!inline && <span style={{ marginLeft: "8px" }}>{t("mail")}</span>}
-                </Button>
-            </Tooltip>
-            <Tooltip overlay={t("linkedin")} placement="bottom">
-                <Button style={{ padding: "8px" }} type="link" aria-label="LinkedIn" onClick={() => window.open(social.linkedin)}>
-                    <Icon icon={["fab", "linkedin"]} theme="primary" style={{ fontSize: "14px", cursor: "pointer" }} />
-                    {!inline && <span style={{ marginLeft: "8px" }}>{t("linkedin")}</span>}
-                </Button>
-            </Tooltip>
+            {/* Social links are kept out of the desktop top bar (where they
+                crowded the nav) — they live in the footer and, on mobile, in
+                this labelled drawer list. */}
+            {!inline && (
+                <>
+                    <Button style={{ padding: "8px" }} type="link" aria-label="Github" onClick={() => window.open(social.github)}>
+                        <Icon icon={["fab", "github"]} theme="primary" style={{ fontSize: "14px", cursor: "pointer" }} />
+                        <span style={{ marginLeft: "8px" }}>Github</span>
+                    </Button>
+                    <Button style={{ padding: "8px" }} type="link" aria-label="Mail" onClick={() => window.location.href = `mailto:${social.email}`}>
+                        <Icon icon={["fas", "envelope"]} theme="primary" style={{ fontSize: "14px", cursor: "pointer" }} />
+                        <span style={{ marginLeft: "8px" }}>{t("mail")}</span>
+                    </Button>
+                    <Button style={{ padding: "8px" }} type="link" aria-label="LinkedIn" onClick={() => window.open(social.linkedin)}>
+                        <Icon icon={["fab", "linkedin"]} theme="primary" style={{ fontSize: "14px", cursor: "pointer" }} />
+                        <span style={{ marginLeft: "8px" }}>{t("linkedin")}</span>
+                    </Button>
+                </>
+            )}
         </Box>
     );
 
