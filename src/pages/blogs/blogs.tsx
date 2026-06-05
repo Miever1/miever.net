@@ -1,7 +1,7 @@
 import React, { FunctionComponent, ReactNode, useState } from "react";
 import { navigate, graphql, useStaticQuery } from "gatsby"
 import { getImage, getSrc, getSrcSet } from "gatsby-plugin-image"
-import { Box, Card, PageHeader, Pagination, Tag } from "miever_ui";
+import { Box, Card, Input, PageHeader, Pagination, Tag } from "miever_ui";
 
 const PAGE_SIZE = 6;
 import { useTranslation } from "react-i18next";
@@ -77,13 +77,32 @@ const Blogs:FunctionComponent<{}> = () => {
             );
         });
 
+    const [query, setQuery] = useState("");
     const [page, setPage] = useState(1);
-    const paged = posts.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
 
-    // On the first page, lead with the top post (pinned/newest) as a large
-    // featured card; the rest flow into a responsive grid.
-    const featured = page === 1 ? paged[0] : undefined;
-    const rest = page === 1 ? paged.slice(1) : paged;
+    // Client-side filter over the already-loaded posts: title, description, tags.
+    const term = query.trim().toLowerCase();
+    const filtered = term
+        ? posts.filter(({ node: { frontmatter: f } }) =>
+              [f.title, f.description, ...(f.tags || [])]
+                  .join(" ")
+                  .toLowerCase()
+                  .includes(term),
+          )
+        : posts;
+
+    const paged = filtered.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+
+    // Lead with a featured card only when browsing (no active search) on page 1;
+    // search results flow into the plain grid.
+    const useFeatured = !term && page === 1;
+    const featured = useFeatured ? paged[0] : undefined;
+    const rest = useFeatured ? paged.slice(1) : paged;
+
+    const onSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setQuery(e.target.value);
+        setPage(1);
+    };
 
     const renderMeta = (date: string, tags?: string[]): ReactNode => (
         <span className="card-meta-row">
@@ -120,6 +139,20 @@ const Blogs:FunctionComponent<{}> = () => {
     return (
         <Box className="content-list">
             <PageHeader title={t("navigation_blogs")} subtitle={t("blogs.description")} />
+
+            <div className="search-bar">
+                <Input
+                    icon="magnifying-glass"
+                    placeholder={t("search_blogs")}
+                    aria-label={t("search_blogs")}
+                    value={query}
+                    onChange={onSearch}
+                />
+            </div>
+
+            {filtered.length === 0 && (
+                <Box className="search-empty">{t("search_no_results")}</Box>
+            )}
 
             {featured && (() => {
                 const { title, date, description, slug, home_image, tags } =
@@ -163,10 +196,10 @@ const Blogs:FunctionComponent<{}> = () => {
                     );
                 })}
             </div>
-            {posts.length > PAGE_SIZE && (
+            {filtered.length > PAGE_SIZE && (
                 <div className="pagination-row">
                     <Pagination
-                        total={posts.length}
+                        total={filtered.length}
                         pageSize={PAGE_SIZE}
                         current={page}
                         onChange={(next) => {

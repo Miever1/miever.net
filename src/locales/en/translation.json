@@ -1,5 +1,8 @@
 {
     "skip_to_content": "Skip to content",
+    "search_blogs": "Search posts…",
+    "search_projects": "Search projects…",
+    "search_no_results": "No matching results.",
     "reading_time": "{{count}} min read",
     "table_of_contents": "Contents",
     "post_navigation": "Post navigation",

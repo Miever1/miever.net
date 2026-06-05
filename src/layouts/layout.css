@@ -330,6 +330,19 @@ textarea:focus-visible {
     margin-top: var(--space-10);
 }
 
+/* Search/filter box on the blog and project listings. */
+.search-bar {
+    max-width: 420px;
+    margin-bottom: var(--space-8);
+}
+
+.search-empty {
+    padding: var(--space-12) 0;
+    text-align: center;
+    font-size: var(--font-size-lg);
+    color: var(--color-text-secondary);
+}
+
 /* A linked Card is a surface, not a text link — never underline it on hover.
    (Defensive guard for the published miever_ui; the lib also fixes this.) */
 a.miever-card,

@@ -1,7 +1,7 @@
 
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useState } from "react";
 import { StaticImage } from "gatsby-plugin-image";
-import { Box, Card, Button, Icon, PageHeader, Tag } from "miever_ui";
+import { Box, Card, Button, Icon, Input, PageHeader, Tag } from "miever_ui";
 import { useTranslation } from "react-i18next";
 
 export interface Project {
@@ -76,11 +76,34 @@ const Projects:FunctionComponent<{}> = () => {
         }
     ];
 
+    const [query, setQuery] = useState("");
+    const term = query.trim().toLowerCase();
+    const filtered = term
+        ? projectsList.filter((p) =>
+              [p.title, p.subTitle, ...p.tech].join(" ").toLowerCase().includes(term),
+          )
+        : projectsList;
+
     return (
         <Box className="content-list">
             <PageHeader title={t("navigation_projects")} subtitle={t("projects.description")} />
+
+            <div className="search-bar">
+                <Input
+                    icon="magnifying-glass"
+                    placeholder={t("search_projects")}
+                    aria-label={t("search_projects")}
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                />
+            </div>
+
+            {filtered.length === 0 && (
+                <Box className="search-empty">{t("search_no_results")}</Box>
+            )}
+
             <div className="project-grid">
-                {projectsList.map((item) => {
+                {filtered.map((item) => {
                     const { id, title, subTitle, liveDemoPath, githubPath, description, tech } = item;
                     return (
                         <Card
