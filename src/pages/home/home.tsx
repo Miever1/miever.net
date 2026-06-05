@@ -74,11 +74,12 @@ const CountUp: FunctionComponent<{ value: string; start: boolean }> = ({ value, 
 
 /** A prominent "featured project" band on the home page, surfacing Caster AI
  *  (a live AI product) right under the hero. Reuses the project's copy. */
+const CLIP_END = 86; // seconds (1:26) — the clip's content ends here; never play past it.
+
 const FeaturedCaster: FunctionComponent = () => {
     const { t } = useTranslation();
     const [ref, inView] = useInView<HTMLElement>();
     const videoRef = useRef<HTMLVideoElement>(null);
-    const [muted, setMuted] = useState(true);
 
     useEffect(() => {
         const v = videoRef.current;
@@ -90,15 +91,6 @@ const FeaturedCaster: FunctionComponent = () => {
         if (!reduce) v.play().catch(() => {});
     }, []);
 
-    const toggleMute = () => {
-        const v = videoRef.current;
-        if (!v) return;
-        const next = !v.muted;
-        v.muted = next;
-        if (!next) v.play().catch(() => {}); // a click is a user gesture, so sound is allowed
-        setMuted(next);
-    };
-
     return (
         <section ref={ref} className={`featured-section reveal${inView ? " is-in" : ""}`}>
             <div className="featured-card">
@@ -106,21 +98,16 @@ const FeaturedCaster: FunctionComponent = () => {
                     <video
                         ref={videoRef}
                         className="featured-video"
-                        src="https://miever.s3.ap-east-1.amazonaws.com/static/caster-ai/the_maid_clip_01.mp4"
-                        loop
+                        src="https://miever.s3.ap-east-1.amazonaws.com/static/caster-ai/caster-ai.mov"
+                        controls
                         muted
                         playsInline
                         preload="metadata"
-                        aria-hidden="true"
+                        onTimeUpdate={(e) => {
+                            // Loop only the first 1:26; never show the part after.
+                            if (e.currentTarget.currentTime >= CLIP_END) e.currentTarget.currentTime = 0;
+                        }}
                     />
-                    <button
-                        type="button"
-                        className="featured-mute"
-                        aria-label={muted ? t("unmute") : t("mute")}
-                        onClick={toggleMute}
-                    >
-                        <Icon icon={["fas", muted ? "volume-xmark" : "volume-high"]} />
-                    </button>
                 </div>
                 <div className="featured-body">
                     <span className="featured-eyebrow">{t("featured_label")}</span>
