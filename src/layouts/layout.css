@@ -509,6 +509,20 @@ a.miever-card:focus {
     font-size: clamp(1.5rem, 1.2rem + 1.4vw, 2rem);
 }
 
+/* Branded placeholder tile for projects without a public screenshot. */
+.project-thumb-fallback {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    font-size: 2.5rem;
+    color: var(--color-text-accent);
+    background:
+        radial-gradient(60% 80% at 30% 20%, rgba(12, 192, 223, 0.18), transparent 70%),
+        linear-gradient(135deg, var(--color-bg-secondary), var(--color-surface-elevated));
+}
+
 .post-grid,
 .project-grid {
     display: grid;

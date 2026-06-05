@@ -123,6 +123,26 @@
     "projects": {
       "title": "Projects - Miever",
       "description": "Explore my projects that showcase my skills and creativity in software development.",
+      "huawei": {
+        "title": "Real-time 3D & AR at Huawei",
+        "subTitle": "Graphics R&D — 2D→3D, AR, AI upscaling",
+        "description": "Built a 2D-to-3D photo-album prototype with ArkUI and the Huawei AR Engine, and explored AI upscaling and artifact reduction for impostor rendering — trading memory against quality."
+      },
+      "ai_game": {
+        "title": "AI Game-Experience Analyzer",
+        "subTitle": "Hackathon winner — LLM + TTS",
+        "description": "A 24-hour hackathon winner that turns gameplay video into multi-persona player reactions using large language models and text-to-speech."
+      },
+      "mindflow": {
+        "title": "MindFlow — AI Smart Planner",
+        "subTitle": "HCI project — AI planning + well-being",
+        "description": "An AI-powered task planner that integrates mental-health tracking, taken from user research through to a high-fidelity, usability-tested prototype."
+      },
+      "vr_worlds": {
+        "title": "VR Worlds at Aalto",
+        "subTitle": "Unity VR — interaction design",
+        "description": "A set of VR mini-projects built in Unity for Aalto’s Coding Virtual Worlds course, focused on interaction, presence and playful mechanics."
+      },
       "miever_net": {
         "title": "Miever.net",
         "subTitle": "My personal website, built with Miever UI",

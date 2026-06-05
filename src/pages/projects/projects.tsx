@@ -1,5 +1,6 @@
 
 import React, { FunctionComponent, useState } from "react";
+import type { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { StaticImage } from "gatsby-plugin-image";
 import { Box, Card, Button, Icon, Input, PageHeader, Tag } from "miever_ui";
 import { useTranslation } from "react-i18next";
@@ -10,18 +11,29 @@ export interface Project {
     subTitle: string;
     description: string;
     githubPath?: string;
-    liveDemoPath: string;
+    /** Public link (live site or case-study post). Omitted for internal work. */
+    liveDemoPath?: string;
     tech: string[];
 }
 
-// StaticImage needs a literal `src`, so the four thumbnails are switched by id.
+// StaticImage needs a literal `src`, so thumbnails are switched by id.
 // gatsby-plugin-image downloads + optimizes each at build (responsive WebP).
+// Projects without a public screenshot fall back to a branded gradient tile.
+const FALLBACK_ICON: Record<string, IconProp> = {
+    huawei: ["fas", "cube"],
+    ai_game: ["fas", "gamepad"],
+};
+
 const ProjectThumb: FunctionComponent<{ id: string; alt: string }> = ({ id, alt }) => {
     const fill = { width: "100%", height: "100%" } as const;
     // Anchor to the top so screenshots show their recognizable header/hero
     // rather than an arbitrary center crop.
     const cover = { objectFit: "cover", objectPosition: "top" } as const;
     switch (id) {
+        case "mindflow":
+            return <StaticImage src="https://miever.s3.ap-east-1.amazonaws.com/static/blogs/ai-smart-planer.png" alt={alt} layout="constrained" width={760} placeholder="blurred" loading="lazy" style={fill} imgStyle={cover} />;
+        case "vr_worlds":
+            return <StaticImage src="https://miever.s3.ap-east-1.amazonaws.com/static/blogs/coding-virtual-world.webp" alt={alt} layout="constrained" width={760} placeholder="blurred" loading="lazy" style={fill} imgStyle={cover} />;
         case "ucloud_console":
             return <StaticImage src="https://miever.s3.ap-east-1.amazonaws.com/static/blogs/ucloud-office.webp" alt={alt} layout="constrained" width={760} placeholder="blurred" loading="lazy" style={fill} imgStyle={cover} />;
         case "miever_net":
@@ -31,7 +43,11 @@ const ProjectThumb: FunctionComponent<{ id: string; alt: string }> = ({ id, alt 
         case "news_project":
             return <StaticImage src="https://miever.s3.ap-east-1.amazonaws.com/static/projects/thumbnail-news-project.webp" alt={alt} layout="constrained" width={760} placeholder="blurred" loading="lazy" style={fill} imgStyle={cover} />;
         default:
-            return null;
+            return (
+                <span className="project-thumb-fallback" aria-hidden="true">
+                    <Icon icon={FALLBACK_ICON[id] || ["fas", "folder"]} />
+                </span>
+            );
     }
 };
 
@@ -39,6 +55,36 @@ const Projects:FunctionComponent<{}> = () => {
     const { t } = useTranslation();
 
     const projectsList: Project[] = [
+        {
+          id: "huawei",
+          title: t("projects.huawei.title"),
+          subTitle: t("projects.huawei.subTitle"),
+          description: t("projects.huawei.description"),
+          tech: ["ArkUI", "AR Engine", "AI"],
+        },
+        {
+          id: "ai_game",
+          title: t("projects.ai_game.title"),
+          subTitle: t("projects.ai_game.subTitle"),
+          description: t("projects.ai_game.description"),
+          tech: ["LLM", "TTS", "AI"],
+        },
+        {
+          id: "mindflow",
+          title: t("projects.mindflow.title"),
+          subTitle: t("projects.mindflow.subTitle"),
+          description: t("projects.mindflow.description"),
+          liveDemoPath: "/blogs/ai-smart-planner-hci-project-journey/",
+          tech: ["AI", "HCI", "Figma"],
+        },
+        {
+          id: "vr_worlds",
+          title: t("projects.vr_worlds.title"),
+          subTitle: t("projects.vr_worlds.subTitle"),
+          description: t("projects.vr_worlds.description"),
+          liveDemoPath: "/blogs/coding-virtual-worlds-vr-projects/",
+          tech: ["Unity", "C#", "VR"],
+        },
         {
           id: "ucloud_console",
           title: t("projects.ucloud_console.title"),
@@ -120,25 +166,29 @@ const Projects:FunctionComponent<{}> = () => {
                                 </span>
                             }
                             footer={
-                                <>
-                                    <Button
-                                        size="sm"
-                                        type="primary"
-                                        onClick={() => window.open(liveDemoPath)}
-                                    >
-                                        {t("live_demo")}
-                                    </Button>
-                                    {githubPath && (
-                                        <Button
-                                            size="sm"
-                                            type="link"
-                                            onClick={() => window.open(githubPath)}
-                                        >
-                                            <Icon icon={["fab", "github"]} style={{ marginRight: 6 }} />
-                                            {t("github_res")}
-                                        </Button>
-                                    )}
-                                </>
+                                liveDemoPath || githubPath ? (
+                                    <>
+                                        {liveDemoPath && (
+                                            <Button
+                                                size="sm"
+                                                type="primary"
+                                                onClick={() => window.open(liveDemoPath)}
+                                            >
+                                                {t("live_demo")}
+                                            </Button>
+                                        )}
+                                        {githubPath && (
+                                            <Button
+                                                size="sm"
+                                                type="link"
+                                                onClick={() => window.open(githubPath)}
+                                            >
+                                                <Icon icon={["fab", "github"]} style={{ marginRight: 6 }} />
+                                                {t("github_res")}
+                                            </Button>
+                                        )}
+                                    </>
+                                ) : undefined
                             }
                         >
                             {description}

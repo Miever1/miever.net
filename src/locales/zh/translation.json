@@ -123,6 +123,26 @@
     "projects": {
       "title": "项目 - Miever",
       "description": "探索我的项目，这些项目展示了我在软件开发中的技能与创造力。",
+      "huawei": {
+        "title": "华为实时 3D 与 AR",
+        "subTitle": "图形学研发 — 2D→3D、AR、AI 超分",
+        "description": "用 ArkUI 与华为 AR Engine 构建 2D 转 3D 相册原型，并探索基于 AI 的超分与去伪影（impostor 渲染），在显存与画质之间做权衡。"
+      },
+      "ai_game": {
+        "title": "AI 游戏体验分析",
+        "subTitle": "黑客松冠军 — LLM + TTS",
+        "description": "24 小时黑客松冠军作品：用大语言模型与语音合成（TTS），把游戏视频转化为多人格的玩家反应。"
+      },
+      "mindflow": {
+        "title": "MindFlow — AI 智能规划助手",
+        "subTitle": "HCI 项目 — AI 规划 + 身心健康",
+        "description": "一个集成身心健康追踪的 AI 任务规划助手，从用户研究一路做到经过可用性测试的高保真原型。"
+      },
+      "vr_worlds": {
+        "title": "Aalto VR 世界",
+        "subTitle": "Unity VR — 交互设计",
+        "description": "在 Aalto「Coding Virtual Worlds」课程中用 Unity 做的一组 VR 小项目，聚焦交互、临场感与趣味机制。"
+      },
       "miever_net": {
         "title": "Miever.net",
         "subTitle": "我的个人网站，基于 Miever UI 构建",
