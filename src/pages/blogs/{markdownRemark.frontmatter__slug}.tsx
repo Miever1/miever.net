@@ -5,6 +5,7 @@ import { Box, designs } from "miever_ui";
 import { useTranslation } from "react-i18next";
 import { SEO } from "../../components/SEO";
 import Comments from "../../components/Comments";
+import { ReadingProgress, BackToTop } from "../../components/ReadingAids";
 
 interface BlogPostData {
   markdownRemark: {
@@ -119,6 +120,7 @@ export default function BlogPostTemplate({
 
   return (
     <Box className="blog-post">
+      <ReadingProgress />
       <div className="blog-meta">
         <span>{date}</span>
         <span className="blog-meta-dot">·</span>
@@ -168,6 +170,7 @@ export default function BlogPostTemplate({
       )}
 
       <Comments />
+      <BackToTop />
     </Box>
   )
 }

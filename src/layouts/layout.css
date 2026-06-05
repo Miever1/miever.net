@@ -343,6 +343,63 @@ textarea:focus-visible {
     color: var(--color-text-secondary);
 }
 
+/* ── Reading aids (blog posts) ──────────────────────────────────────── */
+.reading-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    z-index: 1100;
+    background: var(--color-border-focus);
+    transform-origin: 0 50%;
+    transition: transform 0.1s linear;
+    pointer-events: none;
+}
+
+.back-to-top {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 1100;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--color-border-primary);
+    background: var(--color-surface-elevated);
+    color: var(--color-text-accent);
+    box-shadow: var(--shadow-md);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    animation: back-to-top-in 0.2s ease both;
+}
+
+.back-to-top:hover {
+    transform: translateY(-2px);
+    border-color: var(--color-border-focus);
+    box-shadow: var(--shadow-lg);
+}
+
+@keyframes back-to-top-in {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: none; }
+}
+
+@media (max-width: 767.98px) {
+    .back-to-top {
+        right: 16px;
+        bottom: 16px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .reading-progress { transition: none; }
+    .back-to-top { animation: none; }
+}
+
 /* A linked Card is a surface, not a text link — never underline it on hover.
    (Defensive guard for the published miever_ui; the lib also fixes this.) */
 a.miever-card,
@@ -723,6 +780,18 @@ a.miever-card:focus {
     border-color: var(--color-border-focus);
     box-shadow: var(--shadow-lg);
     transform: translateY(-2px);
+}
+
+/* Selection is conveyed by the cyan .active border + shadow above, so suppress
+   the browser's default (amber, outline-style:auto) focus ring on mouse click.
+   Keyboard users still get a clear on-brand ring via :focus-visible. */
+.footprints-thumb:focus:not(:focus-visible) {
+    outline: none;
+}
+
+.footprints-thumb:focus-visible {
+    outline: 2px solid var(--color-border-focus);
+    outline-offset: 2px;
 }
 
 .footprints-thumb-img {
