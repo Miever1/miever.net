@@ -104,7 +104,10 @@ const Connect: FunctionComponent = () => {
                 <Title level={4} className="connect-comments-title">
                     {t("connect_comments_title")}
                 </Title>
-                <Comments />
+                {/* Pin the home thread to discussion #44 by number so giscus
+                    loads it directly instead of searching by pathname — that
+                    search once lagged and spawned a duplicate empty "index". */}
+                <Comments mapping="number" term="44" />
             </div>
         </Box>
     );
