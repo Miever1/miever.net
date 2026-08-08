@@ -6,7 +6,11 @@ import { Box, designs } from "miever_ui";
 import { useTranslation } from "react-i18next";
 import { SEO } from "../../components/SEO";
 import Comments from "../../components/Comments";
+import Breadcrumb from "../../components/Breadcrumb";
+import ShareButtons from "../../components/ShareButtons";
 import { ReadingProgress, BackToTop } from "../../components/ReadingAids";
+import ErrorBoundary from "../../components/ErrorBoundary";
+import { getProjectByBlogSlug, pickLang, Lang } from "../../data/projectsData";
 
 interface BlogPostData {
   markdownRemark: {
@@ -96,12 +100,16 @@ const readingMinutes = (html: string): number => {
 export default function BlogPostTemplate({
   data,
 }: { data: any }) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const lang: Lang = i18n.language === "zh" ? "zh" : "en";
   const { markdownRemark, allMarkdownRemark } = data;
   const { html, headings, frontmatter } = markdownRemark;
-  const { slug, date, language } = frontmatter;
+  const { slug, title, date, language } = frontmatter;
 
   const minutes = readingMinutes(html);
+
+  // If a project case study points at this post, surface a link back to it.
+  const relatedProject = getProjectByBlogSlug(slug);
 
   // TOC from h2/h3 headings (the body's single h1 is the title).
   const toc = (headings || []).filter((h: any) => h.depth === 2 || h.depth === 3);
@@ -123,6 +131,7 @@ export default function BlogPostTemplate({
   // remote image if the build-time download failed).
   const renderNavThumb = (node: any): React.ReactNode => {
     const imageData = getImage(node.fields?.homeImageFile);
+    const fallback = node.frontmatter.home_image;
     if (imageData) {
       return (
         <img
@@ -133,6 +142,10 @@ export default function BlogPostTemplate({
           alt=""
           aria-hidden="true"
           loading="lazy"
+          onError={(e) => {
+            const el = e.currentTarget;
+            if (fallback && el.src !== fallback) { el.srcset = ""; el.src = fallback; }
+          }}
         />
       );
     }
@@ -153,6 +166,13 @@ export default function BlogPostTemplate({
   return (
     <Box className="blog-post">
       <ReadingProgress />
+      <Breadcrumb
+        items={[
+          { label: t("navigation_home"), to: "/" },
+          { label: t("navigation_blogs"), to: "/blogs" },
+          { label: title },
+        ]}
+      />
       <div className="blog-meta">
         <span>{date}</span>
         <span className="blog-meta-dot">·</span>
@@ -172,7 +192,24 @@ export default function BlogPostTemplate({
         </nav>
       )}
 
-      <BoxWrapper dangerouslySetInnerHTML={{ __html: html }} />
+      <ErrorBoundary fallback={<p className="content-error">{t("content_error")}</p>}>
+        <BoxWrapper dangerouslySetInnerHTML={{ __html: html }} />
+      </ErrorBoundary>
+
+      {relatedProject && (
+        <a
+          className="related-project"
+          href={`/projects/${relatedProject.id}`}
+          onClick={go(`/projects/${relatedProject.id}`)}
+        >
+          <span className="related-project-eyebrow">{t("related_project")}</span>
+          <span className="related-project-title">{pickLang(relatedProject.title, lang)}</span>
+          <span className="related-project-sub">{pickLang(relatedProject.subTitle, lang)}</span>
+          <span className="related-project-cta">{t("view_case_study")} →</span>
+        </a>
+      )}
+
+      <ShareButtons url={`https://miever.net/blogs${slug}`} title={title} />
 
       {(older || newer) && (
         <nav className="blog-prevnext" aria-label={t("post_navigation")}>

@@ -34,7 +34,8 @@ const MapChart = () => {
     "Germany",
     "Finland",
     "Sweden",
-    "Estonia"
+    "Estonia",
+    "Morocco"
   ];
 
   // Map a marker's `country` value to the geo dataset's `properties.name`
@@ -42,12 +43,18 @@ const MapChart = () => {
   const geoNameForCountry = (country: string): string =>
     country === "USA" ? "United States of America" : country;
 
+  // The world-atlas dataset lists Taiwan as its own geometry; treat it as part
+  // of China so it shares China's highlighting instead of standing alone.
+  const normalizeGeoName = (name: string): string =>
+    name === "Taiwan" ? "China" : name;
+
   // Single source of truth: the index of the active city. Drives both the map
   // marker highlight and the selected thumbnail. Auto-advances until the user
   // interacts, then stays put.
   const [activeIndex, setActiveIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const [hoveredCountry, setHoveredCountry] = useState<string | null>(null);
+  const [hoveredMarker, setHoveredMarker] = useState<number | null>(null);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const stripRef = useRef<HTMLDivElement>(null);
   const itemRefs = useRef<(HTMLButtonElement | null)[]>([]);
@@ -96,17 +103,18 @@ const MapChart = () => {
       >
         <ComposableMap
           width={800}
-          height={380}
-          projectionConfig={{ scale: 150, center: [10, 28] }}
+          height={440}
+          projectionConfig={{ scale: 155, center: [10, 30] }}
         >
           <Geographies geography={geoUrl}>
             {({ geographies }) =>
               geographies &&
               geographies.map((geo) => {
+                const geoName = normalizeGeoName(geo.properties.name);
                 const isVisited =
-                  visitedCountries.includes(geo.properties.name) ||
-                  geo.properties.name === "United States of America";
-                const isActiveCountry = geo.properties.name === activeGeoName;
+                  visitedCountries.includes(geoName) ||
+                  geoName === "United States of America";
+                const isActiveCountry = geoName === activeGeoName;
                 const fill = isActiveCountry
                   ? activeColor
                   : isVisited
@@ -117,7 +125,7 @@ const MapChart = () => {
                     key={geo.rsmKey}
                     geography={geo}
                     stroke="var(--color-border-secondary)"
-                    onMouseEnter={() => setHoveredCountry(t(`${geo.properties.name}`))}
+                    onMouseEnter={() => setHoveredCountry(t(`${geoName}`))}
                     onMouseLeave={() => setHoveredCountry(null)}
                     style={{
                       default: { fill, outline: "none", transition: "fill 0.3s ease" },
@@ -129,25 +137,62 @@ const MapChart = () => {
               })
             }
           </Geographies>
+          {/* Dots first… */}
           {markers.map(({ name, coordinates }, index) => {
             const isActive = index === activeIndex;
+            const isHovered = index === hoveredMarker;
             return (
               <Marker
                 key={name}
                 coordinates={coordinates}
                 onClick={() => select(index)}
+                onMouseEnter={() => setHoveredMarker(index)}
+                onMouseLeave={() => setHoveredMarker((cur) => (cur === index ? null : cur))}
                 style={{ default: { cursor: "pointer" } }}
               >
                 {isActive && (
                   <circle r={10} fill={activeColor} opacity={0.3} className="footprints-pulse" />
                 )}
                 <circle
-                  r={isActive ? 5 : 3}
+                  r={isHovered ? 6 : isActive ? 5 : 3}
                   fill={isActive ? activeColor : themeColor}
-                  strokeWidth={1}
+                  strokeWidth={1.5}
                   stroke="var(--color-bg-primary)"
-                  style={{ cursor: "pointer", transition: "r 0.2s ease" }}
+                  style={{ cursor: "pointer", transition: "r 0.15s ease" }}
                 />
+              </Marker>
+            );
+          })}
+
+          {/* …then the active/hovered city labels on a top layer, so no other
+              dot can cover them. */}
+          {Array.from(new Set([activeIndex, hoveredMarker].filter((i): i is number => i != null && i >= 0))).map((index) => {
+            const { name, coordinates } = markers[index];
+            const label = t(`cities.${name}`);
+            // Estimate pill width: CJK glyphs are ~12px wide, Latin ~7px.
+            const labelWidth =
+              Array.from(label).reduce((w, ch) => w + (ch.charCodeAt(0) > 255 ? 12 : 7), 0) + 18;
+            return (
+              <Marker key={`label-${index}`} coordinates={coordinates} style={{ default: { pointerEvents: "none" } }}>
+                <g className="footprints-marker-label" transform="translate(0,-7)">
+                  <rect
+                    x={-labelWidth / 2}
+                    y={-19}
+                    width={labelWidth}
+                    height={19}
+                    rx={6}
+                    fill="var(--color-surface-elevated)"
+                    stroke="var(--color-border-primary)"
+                    strokeWidth={1}
+                  />
+                  <text
+                    textAnchor="middle"
+                    y={-5.5}
+                    style={{ fontSize: 11, fontWeight: 600, fill: "var(--color-text-primary)" }}
+                  >
+                    {label}
+                  </text>
+                </g>
               </Marker>
             );
           })}

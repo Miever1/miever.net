@@ -386,47 +386,6 @@ textarea:focus-visible {
     display: block;
 }
 
-/* Sound toggle overlaid on the demo video (muted by default for autoplay). */
-.featured-mute {
-    position: absolute;
-    left: 12px;
-    bottom: 12px;
-    z-index: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 38px;
-    height: 38px;
-    border-radius: var(--radius-full);
-    border: 1px solid rgba(255, 255, 255, 0.28);
-    background: rgba(0, 0, 0, 0.5);
-    color: #fff;
-    font-size: var(--font-size-sm);
-    cursor: pointer;
-    backdrop-filter: blur(4px);
-    transition: background 0.2s ease, transform 0.2s ease;
-}
-
-.featured-mute:hover {
-    background: rgba(0, 0, 0, 0.72);
-    transform: translateY(-1px);
-}
-
-.featured-visual-icon {
-    font-size: 3.25rem;
-}
-
-.featured-visual-name {
-    position: absolute;
-    right: 16px;
-    bottom: 12px;
-    font-size: var(--font-size-lg);
-    font-weight: var(--font-weight-bold);
-    letter-spacing: var(--letter-spacing-tight);
-    color: var(--color-text-primary);
-    opacity: 0.22;
-}
-
 .featured-body {
     display: flex;
     flex-direction: column;
@@ -656,6 +615,24 @@ a.miever-card:focus {
 .post-grid .miever-card,
 .project-grid .miever-card {
     height: 100%;
+}
+
+/* Uniform, rectangular covers: the image (or fallback tile) fills the whole
+   16:9 box edge-to-edge instead of sitting as a letterboxed band. */
+.project-grid .miever-card-cover {
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+}
+
+.project-grid .miever-card-cover .gatsby-image-wrapper,
+.project-grid .miever-card-cover .gatsby-image-wrapper img,
+.project-grid .miever-card-cover .project-thumb-fallback {
+    width: 100%;
+    height: 100%;
+}
+
+.project-grid .miever-card-cover .gatsby-image-wrapper img {
+    object-fit: cover;
 }
 
 /* ── Designs: an image-forward gallery with a caption overlay ───────── */
@@ -928,16 +905,40 @@ a.miever-card:focus {
 
 .footprints-country-tip {
     position: absolute;
-    bottom: 12px;
+    top: 12px;
     left: 12px;
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
     background: var(--color-surface-elevated);
     color: var(--color-text-primary);
-    padding: var(--space-1) var(--space-2);
+    padding: var(--space-2) var(--space-3);
+    border: 1px solid var(--color-border-primary);
+    border-left: 3px solid var(--color-text-accent);
     border-radius: var(--radius-md);
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--shadow-lg);
     font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
     z-index: 9;
     pointer-events: none;
+}
+
+/* City-name chip that appears above a marker on hover / when active. Matches
+   the card / country-tooltip language (surface + border + lift). */
+.footprints-marker-label {
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.28));
+    animation: footprints-label-in 0.14s ease-out;
+}
+
+@keyframes footprints-label-in {
+    from { opacity: 0; transform: translate(0, -1px); }
+    to   { opacity: 1; transform: translate(0, -7px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .footprints-marker-label {
+        animation: none;
+    }
 }
 
 /* Pulsing ring on the active marker. */
@@ -963,7 +964,7 @@ a.miever-card:focus {
     gap: 10px;
     overflow-x: auto;
     padding: 12px 4px;
-    margin-top: var(--space-2);
+    margin-top: var(--space-8);
     scroll-snap-type: x proximity;
     -webkit-overflow-scrolling: touch;
 }
@@ -1193,12 +1194,13 @@ a.miever-card:focus {
     margin-top: var(--space-8);
 }
 
-/* Stats band — a few credible, personable numbers under the hero. */
+/* Stats band — clean columns with top/bottom hairlines, solid dark numbers. */
 .home-stats {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-6);
-    padding: var(--space-8) 0;
+    gap: var(--space-8) var(--space-6);
+    margin: var(--space-6) 0;
+    padding: var(--space-10) 0;
     border-top: 1px solid var(--color-border-primary);
     border-bottom: 1px solid var(--color-border-primary);
 }
@@ -1212,16 +1214,18 @@ a.miever-card:focus {
 .home-stat {
     display: flex;
     flex-direction: column;
-    gap: var(--space-1);
+    align-items: center;
+    text-align: center;
+    gap: var(--space-2);
 }
 
 .home-stat-num {
-    font-size: clamp(2rem, 4vw, 3rem);
+    font-size: clamp(2.5rem, 4vw, 3.4rem);
     font-weight: var(--font-weight-bold);
-    letter-spacing: var(--letter-spacing-tight);
+    letter-spacing: var(--letter-spacing-tighter);
     line-height: 1;
-    color: var(--color-text-primary);
     font-variant-numeric: tabular-nums;
+    color: var(--color-text-primary);
 }
 
 .home-stat-label {
@@ -1382,5 +1386,468 @@ a.miever-card:focus {
        text rather than dominating the fold. */
     .hero-visual-photo {
         max-width: 300px;
+    }
+}
+
+/* ── Breadcrumb wrapper (miever_ui <Breadcrumb> handles the trail itself) ── */
+.breadcrumb-wrap {
+    padding: var(--space-6) var(--chakra-space-4, 16px) 0;
+}
+
+/* ── Domain filter chips (projects listing) ─────────────────────────── */
+.filter-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-bottom: var(--space-8);
+}
+
+.filter-chip {
+    padding: 6px 14px;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-secondary);
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border-primary);
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.filter-chip:hover {
+    color: var(--color-text-accent);
+    border-color: var(--color-border-focus);
+}
+
+.filter-chip.is-active {
+    color: var(--color-text-inverse, #fff);
+    background: var(--color-text-accent);
+    border-color: var(--color-text-accent);
+}
+
+/* ── Project card extras (badge, footer cta) ────────────────────────── */
+.project-grid .miever-card-cover {
+    position: relative;
+}
+
+.project-grid .miever-card-cover .project-domain-badge {
+    position: absolute;
+    top: var(--space-3);
+    left: var(--space-3);
+    /* Pin to the top-left and size to content — without these the card's
+       cover styles stretch the badge to fill the box, and its pill radius
+       then renders as a big oval. */
+    right: auto;
+    bottom: auto;
+    width: auto;
+    height: auto;
+    display: inline-block;
+    white-space: nowrap;
+    padding: 2px 10px;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--letter-spacing-wide, 0.02em);
+    line-height: 1.6;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.55);
+    border-radius: var(--radius-full);
+    backdrop-filter: blur(4px);
+    z-index: 1;
+}
+
+.project-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: var(--space-2);
+}
+
+.project-card-cta {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-accent);
+}
+
+.project-card-quick {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+}
+
+/* ── Project detail (case study) ────────────────────────────────────── */
+.project-detail {
+    padding-bottom: var(--space-16);
+}
+
+.project-hero {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+    margin: var(--space-6) var(--chakra-space-4, 16px) var(--space-10);
+    padding: 0;
+}
+
+@media (min-width: 760px) {
+    .project-hero {
+        grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+        align-items: center;
+    }
+}
+
+.project-hero-media {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    border-radius: var(--radius-xl, 20px);
+    overflow: hidden;
+    border: 1px solid var(--color-border-primary);
+    background: var(--color-bg-secondary);
+}
+
+.project-hero-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.project-eyebrow {
+    display: inline-block;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--letter-spacing-wider);
+    text-transform: uppercase;
+    color: var(--color-text-accent);
+}
+
+.project-title {
+    margin: var(--space-2) 0 0;
+    font-size: clamp(1.9rem, 1.4rem + 2vw, 2.8rem);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-tight, 1.1);
+    letter-spacing: var(--letter-spacing-tight);
+    color: var(--color-text-primary);
+}
+
+.project-subtitle {
+    margin: var(--space-2) 0 0;
+    font-size: var(--font-size-lg);
+    color: var(--color-text-secondary);
+}
+
+.project-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2);
+    margin-top: var(--space-4);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-disabled);
+}
+
+.project-meta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.project-meta-dot {
+    opacity: 0.5;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-top: var(--space-4);
+}
+
+.project-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-3);
+    margin-top: var(--space-6);
+}
+
+/* Case-study body: a centered, readable column. */
+.project-body {
+    max-width: 70ch;
+    margin: 0 var(--chakra-space-4, 16px);
+}
+
+.case-section {
+    margin-bottom: var(--space-8);
+}
+
+.case-label {
+    margin: 0 0 var(--space-3);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--letter-spacing-wider);
+    text-transform: uppercase;
+    color: var(--color-text-disabled);
+}
+
+.case-body p {
+    margin: 0;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed, 1.75);
+    color: var(--color-text-primary);
+}
+
+.case-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+.case-list li {
+    position: relative;
+    padding-left: var(--space-6);
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed, 1.7);
+    color: var(--color-text-primary);
+}
+
+.case-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.65em;
+    width: 7px;
+    height: 7px;
+    border-radius: var(--radius-full);
+    background: var(--color-text-accent);
+}
+
+.case-section-highlight {
+    padding: var(--space-5);
+    border: 1px solid var(--color-border-primary);
+    border-left: 3px solid var(--color-text-accent);
+    border-radius: var(--radius-lg);
+    background: var(--color-bg-secondary);
+}
+
+/* Project prev/next nav. */
+.project-prevnext {
+    display: flex;
+    gap: var(--space-4);
+    justify-content: space-between;
+    margin: var(--space-12) var(--chakra-space-4, 16px) 0;
+}
+
+.project-prevnext-link {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    flex: 1 1 0;
+    min-width: 0;
+    padding: var(--space-4);
+    border: 1px solid var(--color-border-primary);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface-elevated);
+    text-decoration: none;
+    transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.project-prevnext-link:hover {
+    border-color: var(--color-border-focus);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    text-decoration: none;
+}
+
+.project-prevnext-next {
+    text-align: right;
+    align-items: flex-end;
+}
+
+.project-prevnext-dir {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--letter-spacing-wider);
+    text-transform: uppercase;
+    color: var(--color-text-accent);
+}
+
+.project-prevnext-title {
+    max-width: 100%;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media (max-width: 639.98px) {
+    .project-prevnext {
+        flex-direction: column;
+    }
+    .project-prevnext-next {
+        text-align: left;
+        align-items: flex-start;
+    }
+    /* Stack role/period instead of leaving the separator orphaned on wrap. */
+    .project-meta {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .project-meta-dot {
+        display: none;
+    }
+}
+
+/* ── Share row (detail pages) ───────────────────────────────────────── */
+.share-row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin: var(--space-10) var(--chakra-space-4, 16px) 0;
+}
+
+.share-label {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--letter-spacing-wider);
+    text-transform: uppercase;
+    color: var(--color-text-disabled);
+}
+
+/* Higher specificity so these win over miever_ui's base .miever-btn styles. */
+.share-row .share-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    min-width: 0;
+    padding: 0;
+    color: var(--color-text-secondary);
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border-primary);
+    border-radius: var(--radius-full);
+    transition: color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.share-row .share-btn:hover {
+    color: var(--color-text-accent);
+    border-color: var(--color-border-focus);
+    transform: translateY(-2px);
+}
+
+.share-copied {
+    white-space: nowrap;
+    font-size: var(--font-size-xs);
+    color: var(--color-text-accent);
+}
+
+/* ── Related project card (blog detail) ─────────────────────────────── */
+.related-project {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    margin: var(--space-10) var(--chakra-space-4, 16px) 0;
+    padding: var(--space-5);
+    border: 1px solid var(--color-border-primary);
+    border-left: 3px solid var(--color-text-accent);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface-elevated);
+    text-decoration: none;
+    transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.related-project:hover {
+    border-color: var(--color-border-focus);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    text-decoration: none;
+}
+
+.related-project-eyebrow {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--letter-spacing-wider);
+    text-transform: uppercase;
+    color: var(--color-text-accent);
+}
+
+.related-project-title {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+}
+
+.related-project-sub {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+}
+
+.related-project-cta {
+    margin-top: var(--space-2);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-accent);
+}
+
+.content-error {
+    padding: var(--space-8) var(--chakra-space-4, 16px);
+    color: var(--color-text-secondary);
+}
+
+/* ── TIL / Notes — Card nodes on a miever_ui <Timeline> ──────────────── */
+/* Pull the timeline content up so each card aligns with its dot. */
+.note-timeline .note-card.miever-card {
+    margin-bottom: var(--space-5);
+}
+
+.note-card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-2);
+}
+
+.note-date {
+    font-size: var(--font-size-sm);
+    font-variant-numeric: tabular-nums;
+    color: var(--color-text-disabled);
+}
+
+.note-card .note-tag.miever-tag {
+    margin: 0;
+}
+
+.note-title.miever-typography {
+    margin: 0 0 var(--space-2) !important;
+}
+
+.note-body.miever-typography {
+    margin: 0 !important;
+}
+
+.note-link {
+    display: inline-block;
+    margin-top: var(--space-3);
+    font-weight: var(--font-weight-medium);
+}
+
+.note-viewall {
+    margin-top: var(--space-6);
+}
+
+.note-page {
+    max-width: 72ch;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .filter-chip,
+    .share-btn,
+    .project-prevnext-link,
+    .related-project {
+        transition: none;
     }
 }

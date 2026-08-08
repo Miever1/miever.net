@@ -125,6 +125,7 @@ const Blogs:FunctionComponent<{}> = () => {
     // to the raw remote URL if the download failed at build.
     const renderCover = (node: any, title: string): ReactNode => {
         const imageData = getImage(node.fields?.homeImageFile);
+        const fallback = node.frontmatter.home_image;
         if (imageData) {
             return (
                 <img
@@ -133,10 +134,19 @@ const Blogs:FunctionComponent<{}> = () => {
                     sizes="(max-width: 768px) 100vw, 50vw"
                     alt={title}
                     loading="lazy"
+                    onError={(e) => {
+                        // If the optimized derivative is missing (e.g. a cleared
+                        // dev cache), fall back to the original remote image.
+                        const el = e.currentTarget;
+                        if (fallback && el.src !== fallback) {
+                            el.srcset = "";
+                            el.src = fallback;
+                        }
+                    }}
                 />
             );
         }
-        return <img src={node.frontmatter.home_image} alt={title} loading="lazy" />;
+        return <img src={fallback} alt={title} loading="lazy" />;
     };
 
     return (

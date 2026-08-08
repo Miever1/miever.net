@@ -65,6 +65,7 @@ const Layout: FunctionComponent<{
         { label: t("navigation_blogs"), key: "blogs" },
         { label: t("navigation_projects"), key: "projects" },
         { label: t("navigation_designs"), key: "designs" },
+        { label: t("navigation_note"), key: "notes" },
         { label: t("navigation_resume"), key: "resume" },
         { label: t("navigation_dashboard"), key: "dashboard" },
         { label: t("navigation_web_performance"), key: "performance" },
@@ -120,9 +121,9 @@ const Layout: FunctionComponent<{
                 this labelled drawer list. */}
             {!inline && (
                 <>
-                    <Button style={{ padding: "8px" }} type="link" aria-label="Github" onClick={() => window.open(social.github)}>
+                    <Button style={{ padding: "8px" }} type="link" aria-label="GitHub" onClick={() => window.open(social.github)}>
                         <Icon icon={["fab", "github"]} theme="primary" style={{ fontSize: "14px", cursor: "pointer" }} />
-                        <span style={{ marginLeft: "8px" }}>Github</span>
+                        <span style={{ marginLeft: "8px" }}>{t("github")}</span>
                     </Button>
                     <Button style={{ padding: "8px" }} type="link" aria-label="Mail" onClick={() => window.location.href = `mailto:${social.email}`}>
                         <Icon icon={["fas", "envelope"]} theme="primary" style={{ fontSize: "14px", cursor: "pointer" }} />

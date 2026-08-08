@@ -60,7 +60,10 @@ export const SEO = ({
         })}
       </script>
 
-      <body>{children}</body>
+      {/* Page-specific head content (JSON-LD, extra meta). Rendered directly
+          into <head>; must NOT be wrapped in <body>, which Gatsby's Head API
+          ignores. */}
+      {children}
     </>
   );
 };
