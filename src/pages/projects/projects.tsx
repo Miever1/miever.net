@@ -1,140 +1,48 @@
-
 import React, { FunctionComponent, useState } from "react";
-import type { IconProp } from "@fortawesome/fontawesome-svg-core";
-import { StaticImage } from "gatsby-plugin-image";
+import { navigate } from "gatsby";
 import { Box, Card, Button, Icon, Input, PageHeader, Tag } from "miever_ui";
 import { useTranslation } from "react-i18next";
 
-export interface Project {
-    id: string;
-    title: string;
-    subTitle: string;
-    description: string;
-    githubPath?: string;
-    /** Public link (live site or case-study post). Omitted for internal work. */
-    liveDemoPath?: string;
-    /** Custom label for the primary link button (defaults to "Live Demo"). */
-    linkLabel?: string;
-    tech: string[];
-}
+import ProjectThumb from "../../components/ProjectThumb";
+import {
+    projects,
+    pickLang,
+    Lang,
+    ProjectDomain,
+    DOMAIN_KEYS,
+    DOMAIN_ORDER,
+} from "../../data/projectsData";
 
-// StaticImage needs a literal `src`, so thumbnails are switched by id.
-// gatsby-plugin-image downloads + optimizes each at build (responsive WebP).
-// Projects without a public screenshot fall back to a branded gradient tile.
-const FALLBACK_ICON: Record<string, IconProp> = {
-    huawei: ["fas", "cube"],
-    ai_game: ["fas", "gamepad"],
-};
-
-const ProjectThumb: FunctionComponent<{ id: string; alt: string }> = ({ id, alt }) => {
-    const fill = { width: "100%", height: "100%" } as const;
-    // Anchor to the top so screenshots show their recognizable header/hero
-    // rather than an arbitrary center crop.
-    const cover = { objectFit: "cover", objectPosition: "top" } as const;
-    switch (id) {
-        case "mindflow":
-            return <StaticImage src="https://miever.s3.ap-east-1.amazonaws.com/static/blogs/ai-smart-planer.png" alt={alt} layout="constrained" width={760} placeholder="blurred" loading="lazy" style={fill} imgStyle={cover} />;
-        case "vr_worlds":
-            return <StaticImage src="https://miever.s3.ap-east-1.amazonaws.com/static/blogs/coding-virtual-world.webp" alt={alt} layout="constrained" width={760} placeholder="blurred" loading="lazy" style={fill} imgStyle={cover} />;
-        case "ucloud_console":
-            return <StaticImage src="https://miever.s3.ap-east-1.amazonaws.com/static/blogs/ucloud-office.webp" alt={alt} layout="constrained" width={760} placeholder="blurred" loading="lazy" style={fill} imgStyle={cover} />;
-        case "miever_net":
-            return <StaticImage src="https://miever.s3.ap-east-1.amazonaws.com/static/projects/thumbnail-miever.webp" alt={alt} layout="constrained" width={760} placeholder="blurred" loading="lazy" style={fill} imgStyle={cover} />;
-        case "miever_ui":
-            return <StaticImage src="https://miever.s3.ap-east-1.amazonaws.com/static/projects/thumbnail-components.webp" alt={alt} layout="constrained" width={760} placeholder="blurred" loading="lazy" style={fill} imgStyle={cover} />;
-        case "news_project":
-            return <StaticImage src="https://miever.s3.ap-east-1.amazonaws.com/static/projects/thumbnail-news-project.webp" alt={alt} layout="constrained" width={760} placeholder="blurred" loading="lazy" style={fill} imgStyle={cover} />;
-        default:
-            return (
-                <span className="project-thumb-fallback" aria-hidden="true">
-                    <Icon icon={FALLBACK_ICON[id] || ["fas", "folder"]} />
-                </span>
-            );
-    }
-};
-
-const Projects:FunctionComponent<{}> = () => {
-    const { t } = useTranslation();
-
-    const projectsList: Project[] = [
-        {
-          id: "huawei",
-          title: t("projects.huawei.title"),
-          subTitle: t("projects.huawei.subTitle"),
-          description: t("projects.huawei.description"),
-          liveDemoPath: "https://www.linkedin.com/posts/aerman-huofuer-413328280_hackathon-huawei-huaweitecharena-activity-7401337849121599489-0lKg",
-          linkLabel: t("view_post"),
-          tech: ["ArkUI", "AR Engine", "AI"],
-        },
-        {
-          id: "ai_game",
-          title: t("projects.ai_game.title"),
-          subTitle: t("projects.ai_game.subTitle"),
-          description: t("projects.ai_game.description"),
-          liveDemoPath: "https://caster-ai.miever.net/",
-          githubPath: "https://github.com/Miever1/caster-ai",
-          tech: ["LLM", "TTS", "React"],
-        },
-        {
-          id: "mindflow",
-          title: t("projects.mindflow.title"),
-          subTitle: t("projects.mindflow.subTitle"),
-          description: t("projects.mindflow.description"),
-          liveDemoPath: "/blogs/ai-smart-planner-hci-project-journey/",
-          tech: ["AI", "HCI", "Figma"],
-        },
-        {
-          id: "vr_worlds",
-          title: t("projects.vr_worlds.title"),
-          subTitle: t("projects.vr_worlds.subTitle"),
-          description: t("projects.vr_worlds.description"),
-          liveDemoPath: "/blogs/coding-virtual-worlds-vr-projects/",
-          tech: ["Unity", "C#", "VR"],
-        },
-        {
-          id: "ucloud_console",
-          title: t("projects.ucloud_console.title"),
-          subTitle: t("projects.ucloud_console.subTitle"),
-          description: t("projects.ucloud_console.description"),
-          liveDemoPath: "/blogs/ucloud-frontend-experience/",
-          tech: ["React", "TypeScript", "Monitoring"],
-        },
-        {
-          id: "miever_net",
-          title: t("projects.miever_net.title"),
-          subTitle: t("projects.miever_net.subTitle"),
-          description: t("projects.miever_net.description"),
-          liveDemoPath: "https://miever.net",
-          githubPath: "https://github.com/Miever1/miever.net",
-          tech: ["Gatsby", "React", "AWS"],
-        },
-        {
-          id: "miever_ui",
-          title: t("projects.miever_ui.title"),
-          subTitle: t("projects.miever_ui.subTitle"),
-          description: t("projects.miever_ui.description"),
-          liveDemoPath: "https://components.miever.net",
-          githubPath: "https://github.com/Miever1/miever_ui",
-          tech: ["React", "Vite", "Storybook"],
-        },
-        {
-          id: "news_project",
-          title: t("projects.news_project.title"),
-          subTitle: t("projects.news_project.subTitle"),
-          description: t("projects.news_project.description"),
-          liveDemoPath: "https://news.miever.net",
-          githubPath: "https://github.com/Miever1/news-manager",
-          tech: ["React", "Node.js"],
-        }
-    ];
+const Projects: FunctionComponent<{}> = () => {
+    const { t, i18n } = useTranslation();
+    const lang: Lang = i18n.language === "zh" ? "zh" : "en";
+    const tr = (v: { en: string; zh: string }) => pickLang(v, lang);
 
     const [query, setQuery] = useState("");
+    const [domain, setDomain] = useState<ProjectDomain | "all">("all");
+
+    // Only show filter chips for domains that actually have projects.
+    const presentDomains = DOMAIN_ORDER.filter((d) =>
+        projects.some((p) => p.domain === d),
+    );
+
     const term = query.trim().toLowerCase();
-    const filtered = term
-        ? projectsList.filter((p) =>
-              [p.title, p.subTitle, ...p.tech].join(" ").toLowerCase().includes(term),
-          )
-        : projectsList;
+    const filtered = projects.filter((p) => {
+        if (domain !== "all" && p.domain !== domain) return false;
+        if (!term) return true;
+        return [tr(p.title), tr(p.subTitle), tr(p.summary), ...p.tech]
+            .join(" ")
+            .toLowerCase()
+            .includes(term);
+    });
+
+    const open = (url?: string) => (e: React.MouseEvent) => {
+        // Footer quick-links live inside the card link — stop the click from
+        // also triggering the card's navigation to the detail page.
+        e.stopPropagation();
+        e.preventDefault();
+        if (url) window.open(url);
+    };
 
     return (
         <Box className="content-list">
@@ -150,20 +58,54 @@ const Projects:FunctionComponent<{}> = () => {
                 />
             </div>
 
+            <div className="filter-chips" role="group" aria-label={t("filter_by_domain")}>
+                <button
+                    type="button"
+                    className={`filter-chip${domain === "all" ? " is-active" : ""}`}
+                    aria-pressed={domain === "all"}
+                    onClick={() => setDomain("all")}
+                >
+                    {t("filter_all")}
+                </button>
+                {presentDomains.map((d) => (
+                    <button
+                        key={d}
+                        type="button"
+                        className={`filter-chip${domain === d ? " is-active" : ""}`}
+                        aria-pressed={domain === d}
+                        onClick={() => setDomain(d)}
+                    >
+                        {t(DOMAIN_KEYS[d])}
+                    </button>
+                ))}
+            </div>
+
             {filtered.length === 0 && (
                 <Box className="search-empty">{t("search_no_results")}</Box>
             )}
 
             <div className="project-grid">
                 {filtered.map((item) => {
-                    const { id, title, subTitle, liveDemoPath, linkLabel, githubPath, description, tech } = item;
+                    const { id, thumbId, domain: dom, links, tech } = item;
+                    const title = tr(item.title);
+                    const detailPath = `/projects/${id}`;
                     return (
                         <Card
-                            key={title}
+                            key={id}
                             hoverable
-                            cover={<ProjectThumb id={id} alt={title} />}
+                            href={detailPath}
+                            onClick={(e: React.MouseEvent) => {
+                                e.preventDefault();
+                                navigate(detailPath);
+                            }}
+                            cover={
+                                <>
+                                    <ProjectThumb id={thumbId} alt={title} />
+                                    <span className="project-domain-badge">{t(DOMAIN_KEYS[dom])}</span>
+                                </>
+                            }
                             title={title}
-                            subTitle={subTitle}
+                            subTitle={tr(item.subTitle)}
                             meta={
                                 <span className="card-meta-row">
                                     {tech.map((tag) => (
@@ -172,38 +114,32 @@ const Projects:FunctionComponent<{}> = () => {
                                 </span>
                             }
                             footer={
-                                liveDemoPath || githubPath ? (
-                                    <>
-                                        {liveDemoPath && (
-                                            <Button
-                                                size="sm"
-                                                type="primary"
-                                                onClick={() => window.open(liveDemoPath)}
-                                            >
-                                                {linkLabel || t("live_demo")}
+                                <span className="project-card-footer">
+                                    <span className="project-card-cta">
+                                        {t("view_case_study")} →
+                                    </span>
+                                    <span className="project-card-quick">
+                                        {links.liveDemo && (
+                                            <Button size="sm" type="link" aria-label={t("live_demo")} onClick={open(links.liveDemo)}>
+                                                <Icon icon={["fas", "arrow-up-right-from-square"]} />
                                             </Button>
                                         )}
-                                        {githubPath && (
-                                            <Button
-                                                size="sm"
-                                                type="link"
-                                                onClick={() => window.open(githubPath)}
-                                            >
-                                                <Icon icon={["fab", "github"]} style={{ marginRight: 6 }} />
-                                                {t("github_res")}
+                                        {links.github && (
+                                            <Button size="sm" type="link" aria-label={t("github_res")} onClick={open(links.github)}>
+                                                <Icon icon={["fab", "github"]} />
                                             </Button>
                                         )}
-                                    </>
-                                ) : undefined
+                                    </span>
+                                </span>
                             }
                         >
-                            {description}
+                            {tr(item.summary)}
                         </Card>
                     );
                 })}
             </div>
         </Box>
     );
-}
+};
 
 export default Projects;

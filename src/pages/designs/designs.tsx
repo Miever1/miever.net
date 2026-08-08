@@ -94,6 +94,16 @@ const Designs:FunctionComponent<{}> = () => {
                                 sizes="(max-width: 768px) 100vw, 33vw"
                                 alt={title}
                                 loading="lazy"
+                                onError={(e) => {
+                                    // If the optimized derivative is missing, fall
+                                    // back to the original remote image so the tile
+                                    // never renders blank.
+                                    const el = e.currentTarget;
+                                    if (home_image && el.src !== home_image) {
+                                        el.srcset = "";
+                                        el.src = home_image;
+                                    }
+                                }}
                             />
                             <div className="gallery-tile-overlay">
                                 {tags?.length ? (

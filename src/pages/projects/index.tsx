@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 
 import Projects from "./projects";
 import { SEO } from "../../components/SEO";
+import { projects } from "../../data/projectsData";
 
 export default Projects;
 
@@ -68,6 +69,20 @@ export const Head: HeadFC = () => {
               "url": "https://miever.s3.ap-east-1.amazonaws.com/static/miever-logo.webp"
             }
           }
+        })}
+      </script>
+
+      {/* ItemList so each project case study is discoverable as a list entry. */}
+      <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          "itemListElement": projects.map((p, i) => ({
+            "@type": "ListItem",
+            "position": i + 1,
+            "name": p.title.en,
+            "url": `https://miever.net/projects/${p.id}`,
+          })),
         })}
       </script>
     </SEO>

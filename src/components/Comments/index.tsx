@@ -5,8 +5,19 @@ import { useTheme } from "../Theme-Context";
 
 const Comments: FunctionComponent<{
     reactionsEnabled?: "0" | "1";
+    /**
+     * How giscus locates the discussion. Defaults to "pathname" (one thread per
+     * URL). Pass "number" + `term` to pin a page to a specific discussion by its
+     * number — this skips giscus's title search entirely, so it can never create
+     * a duplicate or drift on trailing-slash/host differences. We use it on the
+     * home page (pinned to #44) after a search-lag duplicate appeared there.
+     */
+    mapping?: "pathname" | "url" | "title" | "og:title" | "specific" | "number";
+    term?: string;
 }> = ({
     reactionsEnabled = "1",
+    mapping = "pathname",
+    term,
 }) => {
     const { resolvedTheme } = useTheme();
     const id = `giscus-${resolvedTheme}`;
@@ -46,7 +57,8 @@ const Comments: FunctionComponent<{
                     repoId="R_kgDOIm-VVA"
                     category="General"
                     categoryId="DIC_kwDOIm-VVM4CruHb"
-                    mapping="pathname"
+                    mapping={mapping}
+                    {...(term ? { term } : {})}
                     reactionsEnabled={reactionsEnabled}
                     emitMetadata="0"
                     inputPosition="top"

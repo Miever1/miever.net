@@ -91,21 +91,27 @@ const config: GatsbyConfig = {
         isUsingColorMode: true,
       },
     },
-    {
-      resolve: "gatsby-plugin-datadog",
-      options: {
-        site: 'us5.datadoghq.com',
-        sampleRate: 100,
-        enabled: true,
-        rum: {
-          applicationId: process.env.APPLICATION_ID,
-          clientToken: process.env.CLIENT_TOKEN,
-        },
-        logs: {
-          clientToken: process.env.CLIENT_TOKEN,
-        }
-      }
-    },
+    // Datadog only when real credentials are present (i.e. production). The
+    // plugin initialises the SDK regardless of an `enabled` flag, so we omit
+    // the plugin entirely in dev to keep the console free of "token not
+    // configured" spam.
+    ...(process.env.CLIENT_TOKEN && process.env.APPLICATION_ID
+      ? [{
+          resolve: "gatsby-plugin-datadog",
+          options: {
+            site: 'us5.datadoghq.com',
+            sampleRate: 100,
+            enabled: true,
+            rum: {
+              applicationId: process.env.APPLICATION_ID,
+              clientToken: process.env.CLIENT_TOKEN,
+            },
+            logs: {
+              clientToken: process.env.CLIENT_TOKEN,
+            },
+          },
+        }]
+      : []),
     {
       resolve: `gatsby-plugin-manifest`,
       options: {

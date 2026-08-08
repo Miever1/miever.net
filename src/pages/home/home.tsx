@@ -6,11 +6,13 @@ import { BackToTop } from "../../components/ReadingAids";
 
 import MapChart from "./footprints";
 import Now from "../../components/Now";
+import Notes from "../../components/Notes";
 import Connect from "../../components/Connect";
 import { SEO } from "../../components/SEO";
 import { useTranslation } from "react-i18next";
 import SkillsMap from "../../components/Skills-Map";
 import { useInView } from "../../components/useInView";
+import { getProject, pickLang, Lang } from "../../data/projectsData";
 
 const { Title, Paragraph, Text } = Typography;
 
@@ -77,7 +79,9 @@ const CountUp: FunctionComponent<{ value: string; start: boolean }> = ({ value, 
 const CLIP_END = 86; // seconds (1:26) — the clip's content ends here; never play past it.
 
 const FeaturedCaster: FunctionComponent = () => {
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
+    const lang: Lang = i18n.language === "zh" ? "zh" : "en";
+    const caster = getProject("ai_game");
     const [ref, inView] = useInView<HTMLElement>();
     const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -112,9 +116,11 @@ const FeaturedCaster: FunctionComponent = () => {
                 <div className="featured-body">
                     <span className="featured-eyebrow">{t("featured_label")}</span>
                     <Title level={3} className="featured-title">Caster AI</Title>
-                    <Text className="featured-sub">{t("projects.ai_game.subTitle")}</Text>
+                    <Text className="featured-sub">
+                        {caster ? pickLang(caster.subTitle, lang) : ""}
+                    </Text>
                     <Paragraph type="secondary" className="featured-desc">
-                        {t("projects.ai_game.description")}
+                        {caster ? pickLang(caster.summary, lang) : ""}
                     </Paragraph>
                     <div className="featured-tags">
                         {["LLM", "TTS", "React"].map((tag) => (
@@ -182,7 +188,7 @@ const Home: FunctionComponent<{}> = () => {
                 {[
                     { num: "5+", label: t("stat_years") },
                     { num: "2×", label: t("stat_awards") },
-                    { num: "48", label: t("stat_cities") },
+                    { num: "55", label: t("stat_cities") },
                     { num: "3", label: t("stat_languages") },
                 ].map((stat) => (
                     <Box className="home-stat" key={stat.label}>
@@ -208,7 +214,16 @@ const Home: FunctionComponent<{}> = () => {
                 <MapChart />
             </HomeSection>
 
-            <HomeSection index="04" title={t("comment_title")}>
+            <HomeSection index="04" title={t("note_title")} subtitle={t("note_subtitle")}>
+                <Notes limit={3} />
+                <div className="note-viewall">
+                    <Button type="link" onClick={() => navigate("/notes")}>
+                        {t("note_view_all")} →
+                    </Button>
+                </div>
+            </HomeSection>
+
+            <HomeSection index="05" title={t("comment_title")}>
                 <Connect />
             </HomeSection>
 
